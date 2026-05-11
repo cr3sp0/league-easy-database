@@ -1,12 +1,14 @@
 <div class="nav-container">
   <div class="nav-content">
-    <div class="nav-title">LEDB</div>
+    <div class="nav-title">
+      <a href="/">LEDB</a>
+    </div>
     <div class="spacing"></div>
     <div class="nav-links">
       <a href="/builder" class="nav-link">builder</a>
-      <a href="../champions" class="nav-link">champions</a>
-      <a href="../items" class="nav-link">items</a>
-      <a href="../login" class="nav-link">login</a>
+      <a href="/champions" class="nav-link">champions</a>
+      <a href="/items" class="nav-link">items</a>
+      <a href="/login" class="nav-link">login</a>
     </div>
   </div>
 </div>

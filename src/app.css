@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
+
+:root {
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-passion: 'Passion One', sans-serif;
+
+    
+    --text-sm: clamp(0.8125rem, 0.77rem + 0.19vw, 0.9375rem);
+    --text-md: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+    --text-lg: clamp(2rem, 1.35rem + 2.88vw, 3.5rem);
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -17,4 +30,8 @@ a {
     padding: 1%;
     flex-grow: 1;
     align-self: center;
+}
+
+.filler {
+    flex-grow: 1;
 }

@@ -25,7 +25,7 @@
       <a href="/builder" class="nav-link">builder</a>
       <a href="/champions" class="nav-link">champions</a>
       <a href="/items" class="nav-link">items</a>
-      <a href="/login" class="nav-link">login</a>
+      <a href="/login" class="nav-login">login</a>
     </div>
   </div>
 </div>

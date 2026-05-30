@@ -11,9 +11,9 @@
       <Search />
       <div class="grid-content">
         {#each ["akali", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso"] as champion}
-        <div class="element">
-          <div class="champion">{champion}</div>
-        </div>
+          <div class="champion">
+            <a href="" class="element">{champion}</a>
+          </div>
         {/each}
       </div>
     </div>
@@ -43,7 +43,6 @@
   }
 
   .element{
-    grid-area: 'element';
     display: flex;
   }
 

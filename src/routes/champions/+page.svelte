@@ -7,13 +7,15 @@
   <div class="champion-content">
     <Navbar />
     <div class="title">Champion</div>
-    <Search />
     <div class="grid-container">
-      {#each ["akali", "aurora", "b", "d", "supercalifragilistichespiralidoso", "z"] as champion}
-      <div class="element">
-        <div class="champion">{champion}</div>
+      <Search />
+      <div class="grid-content">
+        {#each ["akali", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso"] as champion}
+        <div class="element">
+          <div class="champion">{champion}</div>
+        </div>
+        {/each}
       </div>
-      {/each}
     </div>
   </div>
 </div>
@@ -28,15 +30,20 @@
     display: grid;
     justify-content: center;
     align-items: center;
+    row-gap: 10px;
+    background-color: aqua;
+  }
+  
+  .grid-content{
+    display: grid;
     grid-template-columns: repeat(5, auto);
     column-gap: clamp(.5rem, 3vw, 3rem);
-    row-gap: 10px;
-    padding-left: 5%;
-    padding-right: 5%;
-    background-color: aqua;
+    row-gap: inherit;
+    background-color: green;
   }
 
   .element{
+    grid-area: 'element';
     display: flex;
   }
 

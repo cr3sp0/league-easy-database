@@ -46,7 +46,8 @@
     width: 100%;
     display: grid;
 
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+    justify-content: center;
 
     column-gap: clamp(0.5rem, 3vw, 3rem);
     row-gap: inherit;

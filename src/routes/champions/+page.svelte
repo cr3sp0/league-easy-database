@@ -1,6 +1,7 @@
 <script>
   import Navbar from "$lib/components/navbar.svelte";
   import Search from "$lib/components/search.svelte";
+    import { redirect } from "@sveltejs/kit";
 </script>
 
 <div class="container">
@@ -8,14 +9,12 @@
     <Navbar />
     <div class="title">Champions</div>
     <Search />
-    <div class="grid-container">
-      <div class="grid-content">
-        {#each ["akali", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso"] as champion}
-          <div class="champion">
-            <a href="" class="element">{champion}</a>
-          </div>
-        {/each}
+    <div class="grid-content">
+      {#each ["akali", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso"] as champion}
+      <div class="champion">
+          <a href="/champions/{champion}" class="element">{champion}</a>
       </div>
+      {/each}
     </div>
   </div>
 </div>
@@ -36,15 +35,10 @@
     border: solid var(--white-20) 1px;
   }
 
-  .grid-container {
-    width: 100%;
-    row-gap: 10px;
-    background-color: aqua;
-  }
-
   .grid-content {
     width: 100%;
     display: grid;
+    row-gap: 10px;
 
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 

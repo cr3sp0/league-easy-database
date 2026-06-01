@@ -1,7 +1,8 @@
 <script>
+  import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
   import Search from "$lib/components/search.svelte";
-    import { redirect } from "@sveltejs/kit";
+  import { redirect } from "@sveltejs/kit";
 </script>
 
 <div class="container">
@@ -11,9 +12,9 @@
     <Search />
     <div class="grid-content">
       {#each ["akali", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso"] as champion}
-      <div class="champion">
-          <a href="/champions/{champion}" class="element">{champion}</a>
-      </div>
+        <a href="/champions/{champion}" class="element"
+          ><Champcard name={champion} /></a
+        >
       {/each}
     </div>
   </div>
@@ -45,7 +46,6 @@
 
     column-gap: clamp(0.5rem, 3vw, 3rem);
     row-gap: inherit;
-    background-color: green;
   }
 
   .element {
@@ -53,10 +53,5 @@
     overflow-wrap: anywhere;
     word-break: break-word;
     hyphens: auto;
-  }
-
-  .champion {
-    flex-grow: 1;
-    background-color: blue;
   }
 </style>

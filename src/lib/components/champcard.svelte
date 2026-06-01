@@ -1,7 +1,11 @@
+<script>
+  let { name } = $props();
+</script>
+
 <div class="card-container">
   <div class="card-content">
     <img src="" alt="faker" />
-    <div class="card-name">FAKER!</div>
+    <div class="card-name">{name}</div>
   </div>
 </div>
 

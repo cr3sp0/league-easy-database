@@ -8,7 +8,7 @@
     
     --text-sm: clamp(0.8125rem, 0.77rem + 0.19vw, 0.9375rem);
     --text-md: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
-    --text-lg: clamp(2rem, 1.35rem + 2.88vw, 3.5rem);
+    --text-lg: clamp(2rem, 1.35rem + 2.88vw, 6rem);
 
     --white-20: rgba(255, 255, 255, 0.2);
     --black-20: rgba(0, 0, 0, 0.2);

@@ -9,11 +9,13 @@
     <div class="title">Champions</div>
     <Search />
     <div class="grid-container">
-      {#each ["akali", "aurora", "b", "d", "supercalifragilistichespiralidoso", "z"] as champion}
-        <div class="element">
-          <div class="champion">{champion}</div>
-        </div>
-      {/each}
+      <div class="grid-content">
+        {#each ["akali", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso"] as champion}
+          <div class="champion">
+            <a href="" class="element">{champion}</a>
+          </div>
+        {/each}
+      </div>
     </div>
   </div>
 </div>
@@ -35,19 +37,27 @@
   }
 
   .grid-container {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: repeat(5, auto);
-    column-gap: clamp(0.5rem, 3vw, 3rem);
+    width: 100%;
     row-gap: 10px;
-    padding-left: 5%;
-    padding-right: 5%;
     background-color: aqua;
+  }
+
+  .grid-content {
+    width: 100%;
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    column-gap: clamp(0.5rem, 3vw, 3rem);
+    row-gap: inherit;
+    background-color: green;
   }
 
   .element {
     display: flex;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
   }
 
   .champion {

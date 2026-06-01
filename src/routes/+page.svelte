@@ -2,7 +2,7 @@
   import Navbar from "$lib/components/navbar.svelte";
 </script>
 
-<div class="landpage-container">
+<div class="container">
   <div class="landpage-content">
     <Navbar />
     <div class="landpage-3d-container">
@@ -19,14 +19,6 @@
 </div>
 
 <style>
-  .landpage-container {
-    width: 100%;
-    height: 100%;
-    background-color: #261a1a;
-    box-sizing: border-box;
-    padding: 40px clamp(15px, 5vw, 60px);
-  }
-
   .landpage-content {
     display: flex;
     flex-direction: column;

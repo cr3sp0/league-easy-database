@@ -7,8 +7,8 @@
   <div class="champion-content">
     <Navbar />
     <div class="title">Champion</div>
+    <Search />
     <div class="grid-container">
-      <Search />
       <div class="grid-content">
         {#each ["akali", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso"] as champion}
           <div class="champion">
@@ -21,32 +21,32 @@
 </div>
 
 <style>
-  .champion-content{
+  .champion-content {
     display: flex;
     flex-direction: column;
   }
 
-  .grid-container{
+  .grid-container {
     display: grid;
     justify-content: center;
     align-items: center;
     row-gap: 10px;
     background-color: aqua;
   }
-  
-  .grid-content{
+
+  .grid-content {
     display: grid;
     grid-template-columns: repeat(5, auto);
-    column-gap: clamp(.5rem, 3vw, 3rem);
+    column-gap: clamp(0.5rem, 3vw, 3rem);
     row-gap: inherit;
     background-color: green;
   }
 
-  .element{
+  .element {
     display: flex;
   }
 
-  .champion{
+  .champion {
     flex-grow: 1;
     background-color: blue;
   }

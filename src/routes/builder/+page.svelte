@@ -1,4 +1,5 @@
 <script>
+  import Buildcard from "$lib/components/buildcard.svelte";
   import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
 </script>
@@ -31,8 +32,8 @@
       <div class="title">Build Browser</div>
       <div class="builder-subtitle">bla bla bla</div>
       <div class="builder-results-container">
-        <div class="builder-column"></div>
-        <div class="builder-column"></div>
+        <div class="builder-column"><Buildcard /></div>
+        <div class="builder-column"><Buildcard /></div>
       </div>
     </div>
   </div>
@@ -101,5 +102,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
+
+    width: 100%;
+  }
+
+  .builder-results-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .builder-column {
+    flex-grow: 1;
+    padding: 20px 40px;
   }
 </style>

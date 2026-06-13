@@ -1,22 +1,48 @@
+<script>
+  import { slide } from "svelte/transition";
+
+  let isOpen = $state(false);
+
+  function toggleCard() {
+    isOpen = !isOpen;
+  }
+</script>
+
 <div class="buildcard-container">
-  <div class="buildcard-header">
+  <div
+    class="buildcard-header"
+    onclick={toggleCard}
+    role="button"
+    tabindex="0"
+    onkeydown={(e) => e.key === "Enter" && toggleCard()}
+  >
     <div class="buildcard-header-icon"></div>
     <div class="buildcard-header-title">
       <div class="buildcard-header-title-name">Champ Name, Build Name</div>
       <div class="buildcard-header-title-auth">Author Name</div>
     </div>
-    <div class="buildcard-header-button"></div>
+    <div class="buildcard-header-button">
+      <span class="arrow" class:rotated={isOpen}>▼</span>
+    </div>
   </div>
-  <div class="buildcard-model"></div>
-  <div class="buildcard-section-title">Runes</div>
-  <div class="buildcard-runes">
-    <div class="runes-primary"></div>
-    <div class="runes-secondary"></div>
-  </div>
-  <div class="buildcard-section-title">Items</div>
-  <div class="buildcard-items"></div>
-  <div class="buildcard-section-title">Stats</div>
-  <div class="buildcard-stats"></div>
+
+  {#if isOpen}
+    <div transition:slide={{ duration: 300 }} class="buildcard-body">
+      <div class="buildcard-model"></div>
+
+      <div class="buildcard-section-title">Runes</div>
+      <div class="buildcard-runes">
+        <div class="runes-primary"></div>
+        <div class="runes-secondary"></div>
+      </div>
+
+      <div class="buildcard-section-title">Items</div>
+      <div class="buildcard-items"></div>
+
+      <div class="buildcard-section-title">Stats</div>
+      <div class="buildcard-stats"></div>
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -28,12 +54,12 @@
 
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
+    height: auto;
 
     padding: clamp(20px, 2vw, 30px) 10px;
 
-    background-color: var(--black-20);
-    font-family: var(--font-mono);
+    background-color: var(--black-20, #1a1a1a);
+    font-family: var(--font-mono, monospace);
   }
 
   .buildcard-header {
@@ -43,6 +69,8 @@
     height: 80px;
     width: 100%;
     gap: 20px;
+    cursor: pointer;
+    user-select: none;
   }
 
   .buildcard-header-icon {
@@ -57,7 +85,33 @@
   }
 
   .buildcard-header-title-auth {
-    color: var(--white-20);
+    color: var(--white-20, #888);
+  }
+
+  .buildcard-header-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    color: var(--white-100, #fff);
+  }
+
+  .arrow.rotated {
+    transform: rotate(180deg);
+  }
+
+  .buildcard-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
   }
 
   .buildcard-model {

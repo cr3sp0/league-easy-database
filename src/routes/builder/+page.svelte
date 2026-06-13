@@ -17,6 +17,7 @@
         <input
           type="search"
           class="search"
+          id="champ-search"
           placeholder="Search for your Champion"
         />
       </div>
@@ -30,10 +31,25 @@
 
     <div class="builder-builds">
       <div class="title">Build Browser</div>
-      <div class="builder-subtitle">bla bla bla</div>
+      <div class="builder-message">
+        Find inspiration or compare <br />
+        your builds!
+      </div>
+      <div class="builder-search">
+        <input
+          type="search"
+          class="search"
+          id="build-search"
+          placeholder="Search for a Build"
+        />
+      </div>
       <div class="builder-results-container">
-        <div class="builder-column"><Buildcard /></div>
-        <div class="builder-column"><Buildcard /></div>
+        <div class="builder-column">
+          <span>Your Builds</span><Buildcard /><Buildcard />
+        </div>
+        <div class="builder-column">
+          <span>Others Builds</span><Buildcard />
+        </div>
       </div>
     </div>
   </div>
@@ -47,7 +63,7 @@
 
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 90px;
     align-items: center;
 
     padding: 20px clamp(20px, 6vw, 80px);
@@ -102,7 +118,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 45px;
 
     width: 100%;
   }
@@ -116,5 +132,15 @@
   .builder-column {
     flex-grow: 1;
     padding: 20px 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .builder-column span {
+    font-size: var(--text-md);
+    font-family: var(--font-mono);
   }
 </style>

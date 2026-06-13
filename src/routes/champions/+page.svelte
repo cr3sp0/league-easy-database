@@ -12,9 +12,9 @@
     <Search />
     <div class="grid-content">
       {#each ["akali", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso"] as champion}
-        <a href="/champions/{champion}" class="element"
-          ><Champcard name={champion} /></a
-        >
+        <a href="/champions/{champion}" class="element">
+          <Champcard name={champion} />
+        </a>
       {/each}
     </div>
   </div>

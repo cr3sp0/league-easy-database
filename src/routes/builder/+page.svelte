@@ -22,7 +22,10 @@
         />
       </div>
       <div class="builder-most-used">
-        <Champcard name={"champion"} />
+        <a href="/builder/newbuild" class="element">
+          <Champcard name={"champion"} /></a
+        >
+
         <Champcard name={"champion"} />
         <Champcard name={"champion"} />
         <Champcard name={"champion"} />
@@ -56,6 +59,10 @@
 </div>
 
 <style>
+  a {
+    display: contents;
+  }
+
   .builder-content {
     height: 100%;
     width: 100%;

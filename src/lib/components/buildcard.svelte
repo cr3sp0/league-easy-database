@@ -22,7 +22,20 @@
       <div class="buildcard-header-title-auth">Author Name</div>
     </div>
     <div class="buildcard-header-button">
-      <span class="arrow" class:rotated={isOpen}>▼</span>
+      <span class="arrow" class:rotated={isOpen}
+        ><svg
+          width="25"
+          height="15"
+          viewBox="0 0 25 15"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12.5 15L0 3.75L4.16863 0L12.5 7.5L20.8314 0L25 3.75L12.5 15Z"
+            fill="white"
+          />
+        </svg>
+      </span>
     </div>
   </div>
 

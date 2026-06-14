@@ -1,5 +1,7 @@
 <script lang="ts">
     import Navbar from '$lib/components/navbar.svelte';
+    import Build from '$lib/components/build.svelte';
+    import Search from '$lib/components/search.svelte';
 
     let { data } = $props();
 </script>
@@ -13,10 +15,14 @@
             </div>
             <div class="title">{data.name}</div>
         </div>
+        <br />
         <div class="profile-content">
-            {#each ["asdasd", "fghfgh"] as build}
-            <div class="build">{build}</div>
-            {/each}
+            <Search />
+            <div class="builds-grid">
+                {#each data.builds as build}
+                <Build author={data.name} champion={build.champ} runes={build.runes} items={build.items}/>
+                {/each}
+            </div>
         </div>
     </div>
 </div>
@@ -45,9 +51,13 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        padding-left: 10%;
+        padding-right: 10%;
     }
 
-    .build{
-        background-color: blueviolet;
+    .builds-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
     }
 </style>

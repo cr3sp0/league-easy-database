@@ -9,9 +9,10 @@ export const load: PageServerLoad = ({ params }) => {
     let runes: Rune[] = [{Name: "tyu", Grade: 1}];
     let items: Item[] = [{Name: "asd", Cost: 3000}]
     let champ: Champion = {Name: "Akali"}
-
+    let build1: Build = {Name: "FantoBuild", Author: params.profile, Champion: champ, Runes: runes, Items: items}
+    
     return {
         name: params.profile,
-        builds: [{champ, runes, items}, {champ, runes, items}]
+        builds: [build1, build1, build1, build1]
     }
 }

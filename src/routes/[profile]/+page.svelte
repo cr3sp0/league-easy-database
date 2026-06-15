@@ -1,6 +1,6 @@
 <script lang="ts">
     import Navbar from '$lib/components/navbar.svelte';
-    import Build from '$lib/components/build.svelte';
+    import BuildcardHolder from '$lib/components/buildcardHolder.svelte';
     import Search from '$lib/components/search.svelte';
 
     let { data } = $props();
@@ -19,9 +19,7 @@
         <div class="profile-content">
             <Search />
             <div class="builds-grid">
-                {#each data.builds as build}
-                <Build author={data.name} champion={build.champ} runes={build.runes} items={build.items}/>
-                {/each}
+                <BuildcardHolder personalBuilds={data.builds} comunityBuilds={data.builds} />
             </div>
         </div>
     </div>

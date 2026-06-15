@@ -23,9 +23,11 @@ declare global {
 		Cost: Number
 	}
 	export type Build = {
+		Name: String
+		Author: String
 		Champion: Champion
-		Runes: Rune
-		Objects: Object
+		Runes: Rune[]
+		Items: Item[]
 	}
 }
 

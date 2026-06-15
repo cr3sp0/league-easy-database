@@ -19,6 +19,10 @@
 </div>
 
 <style>
+  .container {
+    height: 100%;
+  }
+
   .landpage-content {
     display: flex;
     flex-direction: column;

@@ -1,8 +1,10 @@
 <div class="nav-container">
   <div class="nav-content">
     <div class="nav-title">
-      <svg viewBox="0 0 448 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
+      <!-- svelte-ignore a11y_consider_explicit_label -->
+      <a href="/">
+        <svg viewBox="0 0 448 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
           d="M77.8744 130H0V0H59.0338V88.3414H80.8051L77.8744 130Z"
           fill="currentColor"
         />
@@ -19,13 +21,18 @@
           fill="currentColor"
         />
       </svg>
+    </a>
     </div>
     <div class="spacing"></div>
     <div class="nav-links">
       <a href="/builder" class="nav-link">builder</a>
       <a href="/champions" class="nav-link">champions</a>
       <a href="/items" class="nav-link">items</a>
+      {#if true}
       <a href="/login" class="nav-login">login</a>
+      {:else}
+      <a href="/">logout</a>
+      {/if}
     </div>
   </div>
 </div>

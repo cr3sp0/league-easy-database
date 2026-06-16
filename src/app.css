@@ -40,6 +40,11 @@ a {
     flex-grow: 1;
 }
 
+.icon {
+    overflow: hidden;
+    border-radius: 50%;
+}
+
 .container {
     width: 100%;
     min-height: 100%;

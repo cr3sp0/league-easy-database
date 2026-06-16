@@ -1,17 +1,10 @@
 <script lang="ts">
-  import Reneselector2 from "$lib/components/reneselector2.svelte";
   import type { PathConfig } from "$lib/types";
   import type { RunePath } from "$lib/types";
 
-  //TODO: we need to use the database data here
+  let { paths }: { paths: PathConfig[] } = $props();
 
-  const paths: PathConfig[] = [
-    { id: "precision", name: "Precision", color: "#e5c158" },
-    { id: "domination", name: "Domination", color: "#dc4b4b" },
-    { id: "sorcery", name: "Sorcery", color: "#9faafb" },
-    { id: "resolve", name: "Resolve", color: "#a1d28a" },
-    { id: "inspiration", name: "Inspiration", color: "#49a0b4" },
-  ];
+  //TODO: we need to use the database data here
 
   let selectedPath = $state<RunePath | null>(null);
   let isMenuOpen = $state(false);
@@ -20,12 +13,6 @@
   let currentPathColor = $derived(
     paths.find((p) => p.id === selectedPath)?.color || "#ffffff",
   );
-
-  function isSelected() {
-    if (selectedPath) {
-      return true;
-    }
-  }
 
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
@@ -75,15 +62,13 @@
     <div class="beads-container">
       <div class="rune-line" class:pulse-active={isAnimating}></div>
 
-      <div class="rune-bead keystone" class:active={selectedPath}></div>
       <div class="rune-bead" class:active={selectedPath}></div>
       <div class="rune-bead" class:active={selectedPath}></div>
-      <div class="rune-bead" class:active={selectedPath}></div>
+      <div class="small-rune-bead" class:active={selectedPath}></div>
+      <div class="small-rune-bead" class:active={selectedPath}></div>
+      <div class="small-rune-bead" class:active={selectedPath}></div>
     </div>
   </div>
-  {#if isSelected()}
-    <Reneselector2 paths={paths.filter((p) => p.id != selectedPath)} />
-  {/if}
 </div>
 
 {#if isMenuOpen}
@@ -262,12 +247,26 @@
     flex-shrink: 0;
   }
 
-  .rune-bead.keystone {
-    width: clamp(90px, 12vw, 150px);
-    height: clamp(90px, 12vw, 150px);
+  .small-rune-bead {
+    position: relative;
+    z-index: 2;
+    width: clamp(45px, 7vw, 80px);
+    height: clamp(45px, 7vw, 80px);
+    border-radius: 50%;
+    background: #111214;
+    border: 3px solid #252830;
+    transition:
+      border-color 0.4s 0.4s,
+      box-shadow 0.4s 0.4s;
+    flex-shrink: 0;
   }
 
   .rune-bead.active {
+    border-color: var(--current-path-color);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  }
+
+  .small-rune-bead.active {
     border-color: var(--current-path-color);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   }

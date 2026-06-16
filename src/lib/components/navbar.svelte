@@ -1,3 +1,9 @@
+<script lang="ts">
+  import { page } from "$app/stores"; //this is deprecated but i don't care.
+
+let { user = "" } : { user? : String } = $props();
+</script>
+
 <div class="nav-container">
   <div class="nav-content">
     <div class="nav-title">
@@ -28,10 +34,12 @@
       <a href="/builder" class="nav-link">builder</a>
       <a href="/champions" class="nav-link">champions</a>
       <a href="/items" class="nav-link">items</a>
-      {#if true}
+      {#if user === ""}
       <a href="/login" class="nav-login">login</a>
+      {:else if $page.url.pathname === "/account/" + user}
+      <a href="/" class="nav-login">logout</a>
       {:else}
-      <a href="/">logout</a>
+      <a href="/account/{user}" class="nav-login">{user}</a>
       {/if}
     </div>
   </div>

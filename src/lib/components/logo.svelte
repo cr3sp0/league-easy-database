@@ -1,9 +1,9 @@
 <script lang="ts">
-    let { widthPerc = "auto", heightPerc = "auto" } 
-    : { widthPerc? : String, heightPerc? : String } = $props();
+    let { width = "auto", height = "auto" } 
+    : { width? : String, height? : String } = $props();
 </script>
 
-<div style="width: {widthPerc}; height: {heightPerc}">
+<div style="width: {width}; height: {height}">
     <div class="logo">
         <!-- svelte-ignore a11y_consider_explicit_label -->
         <a href="/">

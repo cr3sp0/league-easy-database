@@ -12,6 +12,7 @@
     --text-lg: clamp(2rem, 1.35rem + 2.88vw, 6rem);
 
     --white-20: rgba(255, 255, 255, 0.2);
+    --white-50: rgba(255, 255, 255, 0.5);
     --black-20: rgba(0, 0, 0, 0.2);
 }
 
@@ -52,3 +53,14 @@ a {
     box-sizing: border-box;
     padding: 40px clamp(15px, 5vw, 60px);
 }
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    border: none;
+    z-index: 10;
+  }

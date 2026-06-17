@@ -1,6 +1,21 @@
-<script>
+<script lang="ts">
+  import Itemselector from "$lib/components/Itemselector.svelte";
   import Navbar from "$lib/components/navbar.svelte";
   import Runeselector from "$lib/components/runeselector.svelte";
+  import type { StatItem } from "$lib/types";
+
+  // PLACEHOLDER
+  const stats: StatItem[] = [
+    { id: 1, name: "Attack Damage", value: "75" },
+    { id: 2, name: "Ability Power", value: "120" },
+    { id: 3, name: "Armor", value: "45" },
+    { id: 4, name: "Magic Resist", value: "38" },
+    { id: 5, name: "Attack Speed", value: "1.42" },
+    { id: 6, name: "Ability Haste", value: "25" },
+    { id: 7, name: "Critical Strike", value: "20%" },
+    { id: 8, name: "Lethality", value: "18" },
+    { id: 9, name: "Move Speed", value: "345" },
+  ];
 </script>
 
 <div class="container">
@@ -22,6 +37,28 @@
     <div class="buildinfo-runes">
       <div class="buildinfo-sectiontitle">Runes</div>
       <Runeselector />
+    </div>
+
+    <div class="buildinfo-items">
+      <div class="buildinfo-sectiontitle">Items</div>
+      <div class="items-row">
+        <Itemselector /><Itemselector /><Itemselector />
+      </div>
+      <div class="items-row">
+        <Itemselector /><Itemselector /><Itemselector />
+      </div>
+    </div>
+
+    <div class="buildinfo-stats">
+      <div class="buildinfo-sectiontitle">Stats</div>
+      <div class="stats-grid">
+        {#each stats as stat (stat.id)}
+          <div class="stat-card">
+            <span class="stat-name">{stat.name}</span>
+            <span class="stat-value">{stat.value}</span>
+          </div>
+        {/each}
+      </div>
     </div>
   </div>
 </div>
@@ -74,5 +111,76 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 25px;
+  }
+
+  .buildinfo-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .items-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    gap: clamp(80px, 10vw, 125px);
+  }
+
+  .buildinfo-stats {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 50px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+  }
+
+  .stat-card {
+    font-family: var(--font-mono);
+    border-radius: 4px;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      transform 0.2s;
+  }
+
+  .stat-name {
+    color: #8a93a0;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  .stat-value {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  @media (max-width: 500px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>

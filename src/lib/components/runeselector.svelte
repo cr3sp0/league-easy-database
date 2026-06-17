@@ -272,17 +272,6 @@
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   }
 
-  .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: transparent;
-    border: none;
-    z-index: 10;
-  }
-
   @media (max-width: 600px) {
     .rune-row {
       flex-direction: column;

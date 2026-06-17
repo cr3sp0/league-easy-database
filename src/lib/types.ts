@@ -11,3 +11,10 @@ export interface PathConfig {
     name: string;
     color: string;
   }
+
+// PLACEHOLDER
+export interface StatItem {
+    id: number;
+    name: string;
+    value: string | number;
+  }

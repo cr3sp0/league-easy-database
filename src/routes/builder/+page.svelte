@@ -1,6 +1,6 @@
 <script>
   import Buildcard from "$lib/components/buildcard.svelte";
-    import BuildcardHolder from "$lib/components/buildcardHolder.svelte";
+  import BuildcardHolder from "$lib/components/buildcardHolder.svelte";
   import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
 </script>
@@ -123,5 +123,4 @@
 
     width: 100%;
   }
-
 </style>

@@ -8,6 +8,10 @@
   let password: String = $state("");
   let passConfirm: String = $state("");
 
+  function stateChange() {
+    registration = !registration
+  }
+
   function usernameCheck () : Boolean{
     user = user.trim();
 
@@ -29,8 +33,7 @@
         <input 
           type="text" 
           class="info-content form-text" 
-          bind:value={user} 
-          onkeydown={(e) => e.key === "Enter"} 
+          bind:value={user}
           placeholder="Insert here..."
         />
 
@@ -38,8 +41,7 @@
         <input 
           type="password" 
           class="info-content form-text" 
-          bind:value={password} 
-          onkeydown={(e) => e.key === "Enter"} 
+          bind:value={password}
           placeholder="Insert here..."
         />
 
@@ -48,24 +50,23 @@
           <input 
             type="password" 
             class="info-content form-text" 
-            bind:value={passConfirm} 
-            onkeydown={(e) => e.key === "Enter"} 
+            bind:value={passConfirm}
             placeholder="Insert here..."
           />
         {/if}
       </div>
       {#if registration}
         <a 
-          id="login" class="form-button form-text" 
+          class="form-button form-text" 
           href="/account/{user}" 
           onclick={() => usernameCheck()} 
-          onkeydown={(e) => e.key === "Enter" && usernameCheck()}
+          onkeydown={(e : KeyboardEvent) => e.key === "Enter" && usernameCheck()}
         >
           Sign Up
         </a>
       {:else}
         <a 
-          id="login" class="form-button form-text" 
+          class="form-button form-text" 
           href="/account/{user}" 
           onclick={() => usernameCheck()} 
           onkeydown={(e) => e.key === "Enter" && usernameCheck()}
@@ -82,7 +83,7 @@
           <div class="form-text">You already have an account?</div>
           <button 
             class="form-button form-text" 
-            onclick={() => {registration=false}}
+            onclick={() => stateChange()}
           >
             Login
           </button>
@@ -90,7 +91,7 @@
           <div class="form-text">You don't have an account?</div>
           <button 
             class="form-button form-text" 
-            onclick={() => {registration=true}}
+            onclick={() => stateChange()}
           >
             Sign Up
           </button>
@@ -102,10 +103,6 @@
 </div>
 
 <style>
-  .logo-continer {
-    height: 50%;
-  }
-
   .login-content {
     display: flex;
     flex-direction: column;
@@ -165,12 +162,12 @@
     width: clamp(1vw, 10vw, 50%);
     cursor: pointer;
     justify-content: center;
-  }
+  } 
   .form-button:hover {
     text-decoration: underline;
   }
-  .form-button:focus {
-    text-decoration: dashed;
+  .form-button:focus-visible {
+    text-decoration: underline;
   }
 
   .form-text {

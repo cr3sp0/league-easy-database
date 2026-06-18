@@ -1,0 +1,32 @@
+Le cose principali che servono all'interno dello schema sono:
+    - Un data source. 
+    - Un generator (Prisma client).
+    - Dei data model.
+    - Degli attributi per i dati.
+
+DEFINIZIONE COMPONENTI
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/lib/server/prisma"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+  role      Role     @default(USER)
+  posts     Post[]
+}
+
+
+
+
+
+
+
+

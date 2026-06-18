@@ -1,5 +1,5 @@
 export function _getBuildsFromAuthor(author : String, limit: number) : Build[] {
-    console.log("!!!")
+
 	//TODO: Random values need to be removed once the queries are ready to be used.
 	let runes: Rune[] = [{Name: "tyu", Grade: 1}];
 	let items: Item[] = [{Name: "asd", Cost: 3000}]

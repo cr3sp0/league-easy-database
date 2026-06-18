@@ -3,11 +3,13 @@
     import BuildcardHolder from '$lib/components/buildcardHolder.svelte';
     import Search from '$lib/components/search.svelte';
     import { _getBuildsForChampion, _getBuildsFromAuthor } from './+page';
+    import Report from '$lib/components/report.svelte';
     
     let { data } = $props();
     const username = () => data.name;
 
     let isMenuOpen = $state(false);
+    let isReportOpen = $state(false);
 
     let buildsLimit : number = 5;
     let personalBuilds : Build[] = $state(_getBuildsFromAuthor(username(), buildsLimit));
@@ -20,6 +22,8 @@
 
 </script>
 
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="container">
     <div class="profile-content">
         <Navbar user={username()}/>
@@ -43,13 +47,14 @@
                         <path d="M0.000193455 174.649V169.259C0.119052 168.823 0.317149 168.427 0.396388 167.991C2.13965 156.657 11.5691 147.701 22.6227 146.948C34.984 146.076 45.4436 153.13 48.8508 164.622C49.2866 166.128 49.6036 167.714 49.9998 169.259V174.649C49.8809 175.006 49.6828 175.322 49.6432 175.719C47.9396 186.181 40.4119 194.147 30.1108 196.406C29.3184 196.564 28.526 196.802 27.7336 197H22.3454C21.9888 196.881 21.6322 196.683 21.2757 196.643C10.9746 194.979 3.13014 187.647 0.752768 177.462C0.515051 176.472 0.23791 175.56 0.000193455 174.649ZM50 22.3115L49.9998 27.7016C49.8809 28.1375 49.6828 28.5338 49.6432 28.9697C47.8603 40.3832 38.3913 49.2999 27.2186 50.0133C14.8969 50.8059 4.477 43.6725 1.10934 32.1401C0.673527 30.6736 0.356575 29.1679 0 27.7014V22.3117C0.118858 21.955 0.316956 21.638 0.396195 21.2813C2.29793 10.9775 8.28047 4.24041 18.2646 1.03038C19.572 0.59445 20.9587 0.35667 22.3058 0H27.694C28.0506 0.11889 28.4072 0.31704 28.7638 0.35667C39.1044 2.06076 46.9095 9.35268 49.2866 19.5376C49.5246 20.4887 49.7623 21.4002 50 22.3115ZM49.9998 95.7857V101.175C49.8809 101.611 49.6828 102.008 49.6036 102.444C47.8207 113.817 37.9951 122.972 26.9016 123.447C14.4215 124.002 3.84309 116.473 0.871628 104.861C0.554672 103.632 0.277336 102.404 0 101.175V95.7857C0.118858 95.3498 0.316956 94.9535 0.396195 94.5176C2.13945 83.1438 12.0047 73.989 23.0982 73.474C35.5783 72.8796 46.1567 80.4489 49.1282 92.0605C49.4451 93.3287 49.7225 94.5572 49.9998 95.7857Z" fill="white"/>
                     </svg>
                 </button>
+
                 {#if isMenuOpen}
                     <div id="optionsBtn" class="options-content">
-                        <a href="/">Report</a>
-                        <a href="/">Report</a>
+                        <!-- svelte-ignore a11y_click_events_have_key_events -->
+                        <!-- svelte-ignore a11y_no_static_element_interactions -->
+                        <div onclick={() => isReportOpen = true}>Report</div>
                     </div>
                 {/if}
-                
             </div>
         </div>
         <br />
@@ -61,6 +66,8 @@
             <!-- svelte-ignore a11y_click_events_have_key_events -->
             <button class="btn-more" onclick={() => incrementBuildLimit()}>More...</button>
         </div>
+
+        <Report bind:visible={isReportOpen}/>
     </div>
 </div>
 {#if isMenuOpen}
@@ -186,22 +193,21 @@
     .options-content {
         position: absolute;
         right: var(--options-size);
-        bottom: 0;
         background-color: #261a1a;
         min-width: fit-content;
         z-index: 1;
     }
-    .options-content a {
+    .options-content div{
         display: block;
         color: white;
         padding: 12px 16px;
         font-family: var(--font-mono);
         background-color: var(--black-20);
     }
-    .options-content a:hover {
+    .options-content div:hover {
         text-decoration: underline;
     }
-    .options-content a:focus-visible {
+    .options-content div:focus-visible {
         text-decoration: underline;
     }
 

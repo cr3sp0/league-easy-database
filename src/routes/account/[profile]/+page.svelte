@@ -7,16 +7,17 @@
     let { data } = $props();
     const username = () => data.name;
 
+    let isMenuOpen = $state(false);
+
     let buildsLimit : number = 5;
-    console.log("pre");
     let personalBuilds : Build[] = $state(_getBuildsFromAuthor(username(), buildsLimit));
 
     function incrementBuildLimit() {
         buildsLimit += 3;
-        console.log("post");
+
         personalBuilds = _getBuildsFromAuthor(username(), buildsLimit)
-        console.log(personalBuilds.length)
     }
+
 </script>
 
 <div class="container">
@@ -38,20 +39,15 @@
                 
                 <div class="options">
                     <div class="btn-option-container">
-                        <button 
-                            class="btn-option-content" 
-                            onclick={() => {
-                                document.getElementById("optionsBtn")?.classList.toggle("show");
-                                document.getElementById("optionsBtn")?.classList.toggle("hide");
-                                }}
-                        >opt</button>
+                        <button class="btn-option-content" onclick={() => isMenuOpen = !isMenuOpen}>dfg</button>
                     </div>
-                    <div id="optionsBtn" class="options-content hide">
-                        <a href="/">Report</a>
-                    </div>
+                    {#if isMenuOpen}
+                        <div id="optionsBtn" class="options-content">
+                            <a href="/">Report</a>
+                        </div>
+                    {/if}
                 </div>
             </div>
-            <!-- TODO: mail, riotID, segnalazioni -->
         </div>
         <br />
         <div class="builds-content">
@@ -64,6 +60,13 @@
         </div>
     </div>
 </div>
+{#if isMenuOpen}
+  <button
+    class="backdrop"
+    onclick={() => (isMenuOpen = false)}
+    aria-label="Close menu"
+  ></button>
+{/if}
 
 <style>
     .pfp{
@@ -157,33 +160,25 @@
         display: inline-block;
     }
     
-    /* Dropdown Content (Hidden by Default) */
     .options-content {
         position: absolute;
+        right: 0px;
         background-color: #261a1a;
         min-width: fit-content;
         z-index: 1;
     }
 
-    /* Links inside the dropdown */
     .options-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
         display: block;
-    }
-
-    /* Change color of dropdown links on hover */
-    .options-content a:hover {
+        color: white;
+        padding: 12px 16px;
+        font-family: var(--font-mono);
+        display: block;
         background-color: var(--black-20);
     }
 
-    .hide {
-        display: none;
-    }
-
-    .show {
-        display:block;
+    .options-content a:hover, .options-content a:focus {
+        text-decoration: underline;
     }
 
 </style>

@@ -58,7 +58,7 @@
       {#if registration}
         <a 
           class="form-button form-text" 
-          href="/account/{user}" 
+          href="/account/{user}"
           onclick={() => usernameCheck()} 
           onkeydown={(e : KeyboardEvent) => e.key === "Enter" && usernameCheck()}
         >
@@ -106,7 +106,7 @@
   .login-content {
     display: flex;
     flex-direction: column;
-
+    justify-content: center;
     align-items: center;
   }
 
@@ -120,7 +120,7 @@
 
     background-color: var(--black-20);
     
-    padding: 2% 8%;
+    padding: 25px 8%;
     gap: 25px;
   }
 

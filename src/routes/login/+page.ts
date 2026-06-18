@@ -1,8 +1,13 @@
 import type { ServerLoad, Actions, Cookies } from "@sveltejs/kit";
-import type { PageServerLoad } from "./$types";
 
 import { error, redirect } from "@sveltejs/kit";
 
+export function _login(mail: String, password: String) {
+
+}
+export function _registration(mail: String, password: String) {
+
+}
 
 /*export const load: ServerLoad = async ({ locals }) => {
     const { session } = locals;

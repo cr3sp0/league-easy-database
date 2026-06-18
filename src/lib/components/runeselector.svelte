@@ -44,7 +44,7 @@
 
 <div class="rune-builder" style="--current-path-color: {currentPathColor}">
   <div class="rune-row">
-    <div class="path-selector-wrapper">
+    <div class="path-selector-wrapper" class:open={isMenuOpen}>
       <button
         class="path-circle"
         class:empty-glow={!selectedPath}
@@ -115,6 +115,10 @@
     position: relative;
     z-index: 20;
     flex-shrink: 0;
+  }
+
+  .path-selector-wrapper.open {
+    z-index: 50;
   }
 
   .path-circle {

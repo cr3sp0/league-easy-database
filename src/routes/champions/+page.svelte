@@ -1,6 +1,57 @@
 <script>
+  import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
+  import Search from "$lib/components/search.svelte";
+  import { redirect } from "@sveltejs/kit";
 </script>
 
-<Navbar />
-<div class="builder-container">champions!!</div>
+<div class="container">
+  <div class="champion-content">
+    <Navbar />
+    <div class="title">Champions</div>
+    <Search />
+    <div class="grid-content">
+      {#each ["akali", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso"] as champion}
+        <a href="/champions/{champion}" class="element">
+          <Champcard name={champion} />
+        </a>
+      {/each}
+    </div>
+  </div>
+</div>
+
+<style>
+  .champion-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    padding: 20px clamp(20px, 6vw, 80px);
+
+    border: solid var(--white-20) 1px;
+  }
+
+  .grid-content {
+    width: 100%;
+    display: grid;
+    row-gap: 10px;
+
+    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+    justify-content: center;
+
+    column-gap: clamp(0.5rem, 3vw, 3rem);
+    row-gap: inherit;
+  }
+
+  .element {
+    display: flex;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+  }
+</style>

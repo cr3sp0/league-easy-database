@@ -11,11 +11,19 @@
   ></button>
 
   {#if isMenuOpen}
-    <div class="item-searcher">
+    <div class="item-searcher" class:open={isMenuOpen}>
       <input type="search" class="item-search" placeholder="Search for item" />
     </div>
   {/if}
 </div>
+
+{#if isMenuOpen}
+  <button
+    class="backdrop"
+    onclick={() => (isMenuOpen = false)}
+    aria-label="Close menu"
+  ></button>
+{/if}
 
 <style>
   .item-container {
@@ -46,6 +54,10 @@
     min-width: 140px;
     min-height: 200px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+
+  .item-searcher.open {
+    z-index: 50;
   }
 
   .item-search {

@@ -36,7 +36,7 @@ let { user = "" } : { user? : String } = $props();
       <a href="/items" class="nav-link">items</a>
       {#if user === ""}
       <a href="/login" class="nav-login">login</a>
-      {:else if page.url.pathname === "/account/" + user}
+      {:else if page.url.pathname.includes("/account")}
       <a href="/" class="nav-login">logout</a>
       {:else}
       <a href="/account/{user}" class="nav-login">{user}</a>
@@ -102,6 +102,7 @@ let { user = "" } : { user? : String } = $props();
     text-transform: capitalize;
     font-weight: 800;
     font-size: var(--text-md);
+    min-width: fit-content;
   }
 
   .nav-login:hover {

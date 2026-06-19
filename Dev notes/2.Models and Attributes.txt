@@ -1,0 +1,45 @@
+MODELS
+Fanno parte della parte di Prisma schema e rappresentano le entità del DB.
+
+COME GENERARE UN DATABASE
+
+model NOMETABELLA {
+    id              int     @attribute
+    campo1          Tipo1   
+    campo2          Tipo2   @attribute
+
+}
+
+All'interno di un modello ci sono:
+    - Entità, che definiscono i campi e le relazioni 
+    - Enum, si possono creare enum da utilizzare come tipi per gli attributi 
+    - Attributi che modificano il funzionamento dei campi 
+
+Le entità seguono le stesse naming conventions di qualsiasi altro DB
+
+DEFINIZIONE CAMPI
+Le entità sono composte da campi, questi campi sono composti da:
+    - Nome del campo (Es. ID, NomeCampione, Salsiccia)
+    - Tipo del campo (Es. Int, String)
+    - Attributi opzionali del campo ()
+
+I tipi di un entità sono divisi in 2:
+    - Scalari
+    - Campi relazionari 
+
+Gli scalari sono semplicemente i tipi primari (String, Int...)
+
+I campi relazionari sono quelli che definiscono le relazioni del DB. Esempio:
+
+        model Post {
+        id       Int       @id @default(autoincrement())
+        // Other fields
+        comments Comment[] // A post can have many comments
+        }
+        model Comment {
+        id     Int
+        // Other fields
+        post   Post @relation(fields: [postId], references: [id]) // A comment can have one post
+        postId Int
+        }
+

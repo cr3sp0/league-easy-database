@@ -13,8 +13,111 @@ datasource db {
 }
 
 // Esempio di modello
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String
+model Campione {
+  ID    Int     @id @default(autoincrement())
+  nome String  @unique
+  Icona  String @unique
+  Titolo String @unique
+  Descrizione String 
+  Razza String 
+  Regione String
+  Ruolo String
+  Vita  Int
+  Mana  Int
+  Attacco Int
+  Velocità_di_movimento Int
+  Armatura  Int
+  Resistenza_magica Int
+  Velocità_di_attacco Int
+  Gittata Int
+}
+
+model Ruolo{
+  Nome String @id
+  Descrizione String 
+}
+
+model Razza{
+  Nome String @id
+  Descrizione String 
+}
+
+model Posizione{
+  Nome String @id 
+}
+
+model Regione{
+  Nome String @id 
+  Descrizione String
+}
+
+model Cosmetico{
+  Campione String  @id
+  Immagine String //? not sure
+ // Modello 
+  Nome String
+}
+
+model Incantesimo{
+  Nome String @id
+  Descrizione String 
+  Ricarica Float
+}
+
+model Configurazione{
+  ID Int @id
+}
+
+model Oggetto{
+  Nome String @id
+  Costo Int
+  Descrizione String 
+  Immagine String //? not sure
+}
+
+model Storico{
+  Versione String @id
+  Data DateTime
+}
+
+model Modifica{
+  Soggetto_della_modifica String  @id
+  Nuovo_Valore String 
+}
+
+model Statistica{
+  Nome String 
+  Livello Int 
+  @@id([Nome, Livello])
+}
+
+model Runa{
+  Nome String @id
+  Descrizione String
+}
+
+model Grado{
+  Grado_runa Int @id
+}
+
+model Tipologia_runa{
+  Cammino String @id
+}
+
+model Account{
+  Nome String @id
+  Password String 
+  Descrizione String 
+  Immagine String //?
+  RiotID String   @db.VarChar(50)
+}
+
+model Partita{
+  Campione String @id
+  Configurazione String
+  Data DateTime @default(now())
+}
+
+model Risultato{
+  Stato String @id
 }

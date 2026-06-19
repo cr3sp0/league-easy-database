@@ -1,0 +1,32 @@
+                TESTO
+text		
+char(x)		
+varchar(x)		
+bit(x)		
+varbit		
+uuid		
+xml 
+inet
+
+                BOOLEAN 
+boolean
+
+                INT 
+integer/int/int4
+smallint
+smallserial
+serial 
+bigint/int8
+bigserial
+
+                FLOAT
+double precision
+real
+
+                DATETIME 
+timestamp(x)		
+date
+time(x)		
+
+                BLOB/BYTES
+bytea

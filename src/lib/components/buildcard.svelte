@@ -1,8 +1,9 @@
 <script lang="ts">
+  import type { Champion, Rune, Item } from "$lib/types";
   import { slide } from "svelte/transition";
 
   let { name, author, champion, runes, items }
-  : { name:String, author: String, champion: Champion, runes: Rune[], items: Item[] } = $props();
+  : { name: string, author: string, champion: Champion, runes: Rune[], items: Item[], winrate?: number } = $props();
   // TODO: More parameters are required for this component, add them once the dbms is ready.
 
   let isOpen = $state(false);
@@ -22,7 +23,7 @@
   >
     <div class="buildcard-header-icon"></div>
     <div class="buildcard-header-title">
-      <div class="buildcard-header-title-name">{champion.Name}, {name}</div>
+      <div class="buildcard-header-title-name">{champion.name}, {name}</div>
       <div class="buildcard-header-title-auth">{author}</div>
     </div>
     <div class="buildcard-header-button">

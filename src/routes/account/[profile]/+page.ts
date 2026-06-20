@@ -1,12 +1,12 @@
 import type { Build, Rune, Item, Champion, Report } from "$lib/types";
 
-export function _getBuildsFromAuthor(author : String, limit: number) : Build[] {
+export function _getBuildsFromAuthor(author : string, limit: number) : Build[] {
 
 	//TODO: Random values need to be removed once the queries are ready to be used.
-	let runes: Rune[] = [{Name: "tyu", Grade: 1}];
-	let items: Item[] = [{Name: "asd", Cost: 3000}]
-	let champ: Champion = {Name: "Akali"}
-	let build1: Build = {Name: "FantoBuild", Author: author, Champion: champ, Runes: runes, Items: items}
+	let runes: Rune[] = [{name: "tyu", path: "precision", primary: true}];
+	let items: Item[] = [{name: "asd", cost: 3000}]
+	let champ: Champion = {name: "Akali", title:"someone"}
+	let build1: Build = {name: "FantoBuild", author: author, champion: champ, runes: runes, items: items, winrate: 0.65}
 
 	let builds : Build[] = [];
 	

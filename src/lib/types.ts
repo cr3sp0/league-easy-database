@@ -20,28 +20,31 @@ export interface StatItem {
   }
 
 export interface Champion {
-  Name: string
+  name: string
+  title: string
 }
 export interface Rune {
-  Name: String
-  Grade: Number
+  name: string
+  path: RunePath
+  primary: boolean
 }
 export interface Item {
-  Name: String
-  Cost: Number
+  name: string
+  cost: number
 }
 export interface Build {
-  Name: String
-  Author: String
-  Champion: Champion
-  Runes: Rune[]
-  Items: Item[]
+  name: string
+  author: string
+  champion: Champion
+  runes: Rune[]
+  items: Item[]
+  winrate?: number
 }
 
 export interface Report {
-  Target: String //id
-  Reason: ReportReason
-  Description?: String
+  target: string //id
+  reason: ReportReason
+  description?: string
 }
 export type ReportReason = 
   | ""

@@ -67,7 +67,7 @@
             <button class="btn-more" onclick={() => incrementBuildLimit()}>More...</button>
         </div>
 
-        <Report bind:visible={isReportOpen}/>
+        <Report bind:visible={isReportOpen} target={username()}/>
     </div>
 </div>
 {#if isMenuOpen}
@@ -111,7 +111,7 @@
 
         padding: 20px clamp(20px, 6vw, 80px);
 
-        border: 1px var(--white-20) solid;
+        border: 1px solid var(--white-20);
     }
     
     .profile-header{
@@ -121,12 +121,13 @@
         gap: 15px;
         width: 75%;
     }
-
+    
     .header-info{
         height: 100%;
         display: flex;
         flex-direction: row;
         flex-grow: 1;
+        border-bottom: 2px solid var(--white-20);
     }
 
     .profile-title{
@@ -193,7 +194,7 @@
     .options-content {
         position: absolute;
         right: var(--options-size);
-        background-color: #261a1a;
+        background-color: transparent;
         min-width: fit-content;
         z-index: 1;
     }
@@ -202,7 +203,8 @@
         color: white;
         padding: 12px 16px;
         font-family: var(--font-mono);
-        background-color: var(--black-20);
+        background-color: transparent;
+        box-shadow: 0px 2px 5px black;
     }
     .options-content div:hover {
         text-decoration: underline;

@@ -1,4 +1,4 @@
-import type { Build, Rune, Item, Champion } from "$lib/types";
+import type { Build, Rune, Item, Champion, Report } from "$lib/types";
 
 export function _getBuildsFromAuthor(author : String, limit: number) : Build[] {
 
@@ -18,4 +18,8 @@ export function _getBuildsFromAuthor(author : String, limit: number) : Build[] {
 
 export function _getBuildsForChampion(champion: Champion, limit: number) : Build[] {
     return [];
+}
+
+export function _sendReport(report: Report, author?: String) {
+	//Get author from the current session.
 }

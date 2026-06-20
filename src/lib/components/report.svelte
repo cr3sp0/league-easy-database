@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Report, ReportReason } from "$lib/types";
 
-    let { visible = $bindable(), output = $bindable(), target } : {visible : Boolean, target : String, output? : Report } = $props();
+    let { visible = $bindable(), output = $bindable(), target, send } : {visible : Boolean, target : String, output? : Report, send : Function } = $props();
     let reasonOfReport : ReportReason = $state("");
     let description = $state<String|undefined>(undefined)
 
@@ -16,6 +16,7 @@
             }
 
             visible = false
+            send.apply(output);
         }
     }
 </script>

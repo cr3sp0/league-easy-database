@@ -2,13 +2,12 @@
     import Navbar from '$lib/components/navbar.svelte';
     import BuildcardHolder from '$lib/components/buildcardHolder.svelte';
     import Search from '$lib/components/search.svelte';
-    import { _getBuildsForChampion, _getBuildsFromAuthor } from './+page';
+    import { _getBuildsForChampion, _getBuildsFromAuthor, _sendReport } from './+page';
     import Report from '$lib/components/report.svelte';
     import type { Build, Report as ReportType } from '$lib/types.js';
     
     let { data } = $props();
     const username = () => data.name;
-    let newReport = $state<ReportType | undefined>(undefined);
 
     let isMenuOpen = $state(false);
     let isReportOpen = $state(false);
@@ -68,7 +67,11 @@
             <button class="btn-more" onclick={() => incrementBuildLimit()}>More...</button>
         </div>
 
-        <Report bind:visible={isReportOpen} bind:output={newReport} target={username()} />
+        <Report 
+            bind:visible={isReportOpen}
+            target={username()}
+            send={(output : ReportType) => {_sendReport(output)}}
+        />
     </div>
 </div>
 {#if isMenuOpen}
@@ -83,11 +86,11 @@
     :root{
         --options-size: 25px;
     }
+
     .pfp{
         width: 150px;
         height: 150px;
     }
-    
     .pfp img {
         width: 100%;
         height: 100%;
@@ -114,7 +117,7 @@
 
         border: 1px solid var(--white-20);
     }
-    
+
     .profile-header{
         display: flex;
         flex-direction: row;
@@ -122,7 +125,7 @@
         gap: 15px;
         width: 75%;
     }
-    
+
     .header-info{
         height: 100%;
         display: flex;
@@ -151,7 +154,7 @@
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 15px;
     }
-    
+
     .btn-more {
         background: transparent;
         border: none;
@@ -180,7 +183,7 @@
     .options.open {
         z-index: 50;
     }
-    
+
     .btn-option-content {
         height: var(--options-size);
         width: var(--options-size);
@@ -191,7 +194,7 @@
     .btn-option-content svg {
         height: 90%;
     }
-    
+
     .options-content {
         position: absolute;
         right: var(--options-size);

@@ -52,7 +52,7 @@
                     <div id="optionsBtn" class="options-content">
                         <!-- svelte-ignore a11y_click_events_have_key_events -->
                         <!-- svelte-ignore a11y_no_static_element_interactions -->
-                        <div onclick={() => isReportOpen = true}>Report</div>
+                        <div onclick={() => {isMenuOpen = false; isReportOpen = true}}>Report</div>
                     </div>
                 {/if}
             </div>

@@ -34,7 +34,7 @@
                     <div class="header">
                         <div class="title">Report this User?</div>
                         <div class="filler"></div>
-                        <div>
+                        <div class="close-button">
                             <!-- svelte-ignore a11y_consider_explicit_label -->
                             <button class="close-icon" onclick={() => visible = false}>
                                 <svg viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,6 +109,11 @@
     .header {
         display: flex;
         flex-direction: row;
+    }
+
+    .close-button {
+        display: flex;
+        align-items: center;
     }
 
     .close-icon {

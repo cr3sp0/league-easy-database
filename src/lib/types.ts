@@ -37,3 +37,13 @@ export interface Build {
   Runes: Rune[]
   Items: Item[]
 }
+
+export interface Report {
+  Target: String //id
+  Reason: ReportReason
+  Description?: String
+}
+export type ReportReason = 
+  | ""
+  | "Offensie Name"
+  | "Other"

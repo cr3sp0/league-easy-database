@@ -4,9 +4,11 @@
     import Search from '$lib/components/search.svelte';
     import { _getBuildsForChampion, _getBuildsFromAuthor } from './+page';
     import Report from '$lib/components/report.svelte';
+    import type { Build, Report as ReportType } from '$lib/types.js';
     
     let { data } = $props();
     const username = () => data.name;
+    let newReport = $state<ReportType | undefined>(undefined);
 
     let isMenuOpen = $state(false);
     let isReportOpen = $state(false);
@@ -16,7 +18,6 @@
 
     function incrementBuildLimit() {
         buildsLimit += 3;
-
         personalBuilds = _getBuildsFromAuthor(username(), buildsLimit)
     }
 
@@ -67,7 +68,7 @@
             <button class="btn-more" onclick={() => incrementBuildLimit()}>More...</button>
         </div>
 
-        <Report bind:visible={isReportOpen} target={username()}/>
+        <Report bind:visible={isReportOpen} bind:output={newReport} target={username()} />
     </div>
 </div>
 {#if isMenuOpen}

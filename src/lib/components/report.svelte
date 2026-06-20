@@ -1,7 +1,23 @@
 <script lang="ts">
-    let { visible = $bindable(), target } : {visible : Boolean, target : String } = $props();
+    import type { Report, ReportReason } from "$lib/types";
 
+    let { visible = $bindable(), output = $bindable(), target } : {visible : Boolean, target : String, output? : Report } = $props();
+    let reasonOfReport : ReportReason = $state("");
+    let description = $state<String|undefined>(undefined)
 
+    let dropMenu : ReportReason[] = ["Offensie Name", "Other"]
+
+    function prepreObject() {
+        if (reasonOfReport?.trim().length != 0) {
+            output = {
+                Target: target,
+                Reason: reasonOfReport,
+                Description: description
+            }
+
+            visible = false
+        }
+    }
 </script>
 
 {#if visible}
@@ -31,21 +47,22 @@
                             <div class="text">Report</div>
                             <div class="text target">{target}</div>
                             <div class="text">for:</div>
-                            
+
                             <div class="filler"></div>
 
                             <div class="drop-menu">
-                                <select>
+                                <select id="reason" bind:value={reasonOfReport}>
                                     <option value="" selected disabled hidden>Select</option>
-                                    <option value="name">Offensive Username</option>
-                                    <option value="Other">Other</option>
+                                    {#each dropMenu as option}
+                                        <option value={option}>{option}</option>
+                                    {/each}
                                 </select>
                             </div>
                         </div>
 
-                        <input class="description" type="text" placeholder="(Optional) Details..."/>
+                        <input class="description" type="text" placeholder="(Optional) Details..." bind:value={description}/>
                         
-                        <button class="btn">Report</button>
+                        <button class="btn" onclick={() => prepreObject()}>Report</button>
                     </div>
                     <div class="footer">Once sent the report, an Admin will review it and take actions accordingly.</div>
                 </div>

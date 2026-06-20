@@ -4,7 +4,6 @@
 :root {
     --font-mono: 'IBM Plex Mono', monospace;
     --font-passion: 'Passion One', sans-serif;
-
     
     --text-sm: clamp(0.8125rem, 0.77rem + 0.19vw, 0.9375rem);
     --text-md: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
@@ -14,6 +13,7 @@
     --white-20: rgba(255, 255, 255, 0.2);
     --white-50: rgba(255, 255, 255, 0.5);
     --black-20: rgba(0, 0, 0, 0.2);
+    --background: #261a1a;
 }
 
 html, body {
@@ -32,9 +32,42 @@ a {
     cursor: pointer;
 }
 
+select {
+    border: none;
+    border-bottom: 1px solid var(--white-20);
+    background-color: transparent;
+    color: white;
+
+    font-family: var(--font-mono);
+    font-size: var(--text-md);
+}
+select,
+select::picker(select) {
+    appearance: base-select;
+}
+::picker(select) {
+    background-color: var(--background);
+    border: none;
+    box-shadow: 2px 2px 5px black;
+}
+
+option {
+    color: white;
+    background-color: transparent;
+}
+option:focus-visible, option:hover {
+    border: none;
+    background-color: var(--white-20);
+}
+
 .title {
     font-family: var(--font-passion);
     font-size: var(--text-lg);
+}
+
+.text {
+    font-family: var(--font-mono);
+    font-size: var(--text-lm);
 }
 
 .filler {
@@ -49,7 +82,7 @@ a {
 .container {
     width: 100%;
     min-height: 100%;
-    background-color: #261a1a;
+    background-color: var(--background);
     box-sizing: border-box;
     padding: 40px clamp(15px, 5vw, 60px);
 }
@@ -63,4 +96,4 @@ a {
     background: transparent;
     border: none;
     z-index: 10;
-  }
+}

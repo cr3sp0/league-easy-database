@@ -1,3 +1,5 @@
+import type { Build, Rune, Item, Champion } from "$lib/types";
+
 export function _getBuildsFromAuthor(author : String, limit: number) : Build[] {
 
 	//TODO: Random values need to be removed once the queries are ready to be used.

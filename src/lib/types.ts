@@ -18,3 +18,22 @@ export interface StatItem {
     name: string;
     value: string | number;
   }
+
+export interface Champion {
+  Name: string
+}
+export interface Rune {
+  Name: String
+  Grade: Number
+}
+export interface Item {
+  Name: String
+  Cost: Number
+}
+export interface Build {
+  Name: String
+  Author: String
+  Champion: Champion
+  Runes: Rune[]
+  Items: Item[]
+}

@@ -29,7 +29,7 @@ const login : Action = async ({request, cookies}) => {
 	const sessionSQL = ""; // TODO: query to insert user and expiration date
 	const sessionResp = null; //await PostgreSQL().query(sql, [user.id]);
 
-	let session : ISession = {guid: ""}; //= {...sessionResp.row[0]}
+	let session : ISession = {guid: username}; //= {...sessionResp.row[0]}
 	cookies.set(
 		'ledb_session',
 		session.guid,

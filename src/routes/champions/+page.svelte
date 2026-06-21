@@ -3,11 +3,13 @@
   import Navbar from "$lib/components/navbar.svelte";
   import Search from "$lib/components/search.svelte";
   import { redirect } from "@sveltejs/kit";
+
+  let { data } = $props()
 </script>
 
 <div class="container">
   <div class="champion-content">
-    <Navbar />
+    <Navbar user={data.profile}/>
     <div class="title">Champions</div>
     <Search />
     <div class="grid-content">

@@ -3,11 +3,13 @@
   import BuildcardHolder from "$lib/components/buildcardHolder.svelte";
   import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
+
+  let { data } = $props()
 </script>
 
 <div class="container">
   <div class="builder-content">
-    <Navbar />
+    <Navbar user={data.profile} />
     <div class="builder-header-container">
       <div class="title">Builder</div>
       <div class="builder-message">

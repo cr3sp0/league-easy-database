@@ -13,12 +13,11 @@ export async function handle({event, resolve}) {
         const resp = ""; //await PostgreSQL().query(sql, [sessionGUID])
 
         if(true) { //check 'resp' rows
-            const user : IUser = {
+            event.locals.user = {
                 userID: 1,
                 userName: "kk",
                 riotID: "kk#g"
             }
-            event.locals.user = user;
         }
     }
 

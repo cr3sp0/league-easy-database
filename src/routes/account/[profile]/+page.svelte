@@ -7,7 +7,7 @@
     import type { Build, Report as ReportType } from '$lib/types.js';
     
     let { data } = $props();
-    const username = () => data.name;
+    const username = () => data.profile !== undefined ? data.profile : "[Profile Error]";
 
     let isMenuOpen = $state(false);
     let isReportOpen = $state(false);
@@ -35,7 +35,7 @@
 
             <div class="header-info">
                 <div class="profile-title">
-                    <div class="title">{data.name}</div>
+                    <div class="title">{data.profile}</div>
                     <div class="id">{data.id}</div>
                 </div>    
                 <div class="filler"></div>

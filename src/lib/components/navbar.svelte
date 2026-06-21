@@ -1,7 +1,9 @@
 <script lang="ts">
   import { page } from "$app/state"; //this is deprecated but i don't care.
+  import type { IUser } from "$lib/types";
 
-let { user = "" } : { user? : String } = $props();
+  let { user } : { user? : String } = $props();
+
 </script>
 
 <div class="nav-container">
@@ -34,7 +36,7 @@ let { user = "" } : { user? : String } = $props();
       <a href="/builder" class="nav-link">builder</a>
       <a href="/champions" class="nav-link">champions</a>
       <a href="/items" class="nav-link">items</a>
-      {#if user === ""}
+      {#if !user}
       <a href="/login" class="nav-login">login</a>
       {:else if page.url.pathname.includes("/account")}
       <a href="/" class="nav-login">logout</a>

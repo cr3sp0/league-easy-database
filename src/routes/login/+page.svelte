@@ -1,6 +1,8 @@
 <script lang="ts">
-  import Navbar from "$lib/components/navbar.svelte";
   import Logo from "$lib/components/logo.svelte";
+  import { enhance } from "$app/forms";
+  import { goto } from "$app/navigation";
+    import type { ActionResult } from "@sveltejs/kit";
 
   let registration: Boolean = $state(false);
 
@@ -17,87 +19,49 @@
 
 	  return user.length != 0;
   }
+
+  function userCheck(result: ActionResult) {
+    //TODO: something
+    if (result.type === 'success' && result.status === 200 && result.data?.user.length !== 0) {
+      goto("/account/" + result.data?.user)
+    } else {
+      //TODO: error
+    }
+  }
 </script>
 
 <div class="container">
   <div class="login-content">    
     <div style="min-height: 5vw;"></div>
-
-    <div class="login-form">
+    <div class="form-container">
       <Logo width="75%" />
 
       <div style="min-height: 4vw;"></div>
-
-      <div class="info-container">
-        <div class="form-text">Username:</div>
-        <input 
-          type="text" 
-          class="info-content form-text" 
-          bind:value={user}
-          placeholder="Insert here..."
-        />
-
-        <div class="form-text">Password:</div>
-        <input 
-          type="password" 
-          class="info-content form-text" 
-          bind:value={password}
-          placeholder="Insert here..."
-        />
-
-        {#if registration}
-          <div class="form-text">Confirm Password:</div>
-          <input 
-            type="password" 
-            class="info-content form-text" 
-            bind:value={passConfirm}
-            placeholder="Insert here..."
-          />
-        {/if}
-      </div>
       {#if registration}
-        <a 
-          class="form-button form-text" 
-          href="/account/{user}"
-          onclick={() => usernameCheck()} 
-          onkeydown={(e : KeyboardEvent) => e.key === "Enter" && usernameCheck()}
-        >
-          Sign Up
-        </a>
+        <div class="form-text">You already have an account?</div>
       {:else}
-        <a 
-          class="form-button form-text" 
-          href="/account/{user}" 
-          onclick={() => usernameCheck()} 
-          onkeydown={(e) => e.key === "Enter" && usernameCheck()}
+        <form
+          action="?/login"
+          method="post"
+          class="login-form"
+          use:enhance = {() => {return async({result}) => {userCheck(result)}} }
         >
-          Login
-        </a>
-      {/if}
-
-      <div style="min-height: 4vw;"></div>
-      
-      <div class="login-form-footer">
-        <div style="width: 100%;"></div>
-        {#if registration}
-          <div class="form-text">You already have an account?</div>
-          <button 
-            class="form-button form-text" 
-            onclick={() => stateChange()}
-          >
-            Login
-          </button>
-        {:else}
+          <div class="form-text">Username:</div>
+          <input name="user" type="text" class="info-content form-text" bind:value={user} placeholder="Insert here..." />
+          <div class="form-text">Password:</div>
+          <input name="password" type="password" class="info-content form-text" bind:value={password} placeholder="Insert here..." />
+          <div class="button-container">
+            <button class="form-button form-text">Login</button>
+          </div>
+        </form>
+        
+        <div style="min-height: 4vw;"></div>
+        
+        <div class="login-form-footer">
           <div class="form-text">You don't have an account?</div>
-          <button 
-            class="form-button form-text" 
-            onclick={() => stateChange()}
-          >
-            Sign Up
-          </button>
-        {/if}
-        <div style="width: 100%;"></div>
-      </div>
+          <button class="form-button form-text" onclick={() => stateChange()}>Sign Up</button>
+        </div>
+      {/if}
     </div>
   </div>
 </div>
@@ -110,13 +74,13 @@
     align-items: center;
   }
 
-  .login-form {
+  .form-container {
     display: flex;
     flex-direction: column;    
     box-sizing: border-box;
     width: fit-content;
 
-    align-items: center;  
+    align-items: center;
 
     background-color: var(--black-20);
     
@@ -124,7 +88,7 @@
     gap: 25px;
   }
 
-  .info-container {
+  .login-form {
     display: flex;
     flex-direction: column;
     
@@ -150,18 +114,27 @@
     font-size: 70%;
   }
 
+  .button-container {
+    display:flex;
+    width: 100%;
+    align-items: center;
+  }
+
   .form-button {
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: inherit;
-    font-family: inherit;
-    color: inherit;
     display: flex;
     flex-grow: 1;
+    background: transparent;
+    
+    border: none;
+    outline: none;
+    
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+
     width: clamp(1vw, 10vw, 50%);
-    cursor: pointer;
     justify-content: center;
+    cursor: pointer;
   } 
   .form-button:hover {
     text-decoration: underline;

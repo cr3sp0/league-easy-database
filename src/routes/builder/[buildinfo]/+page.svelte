@@ -22,7 +22,7 @@
 
 <div class="container">
   <div class="buildinfo-content">
-    <Navbar user={data.profile}/>
+    <Navbar profile={data.profile}/>
     <div class="buildinfo-header">
       <div class="champpic"></div>
       <div class="title">New build</div>

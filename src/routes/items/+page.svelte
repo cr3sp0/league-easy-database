@@ -4,5 +4,5 @@
   let { data } = $props()
 </script>
 
-<Navbar user={data.profile} />
+<Navbar profile={data.profile} />
 <div class="builder-container">items!!</div>

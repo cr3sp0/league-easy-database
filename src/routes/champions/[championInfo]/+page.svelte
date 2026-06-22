@@ -11,7 +11,7 @@
 <div class="container">
   <div class="info-container">
     <div class="info-cover">
-      <Navbar user={data.profile}/>
+      <Navbar profile={data.profile}/>
       <div class="champ-name">{data.champName}</div>
     </div>
     <div class="info-content">

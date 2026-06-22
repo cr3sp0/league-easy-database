@@ -9,7 +9,7 @@
 
 <div class="container">
   <div class="champion-content">
-    <Navbar user={data.profile}/>
+    <Navbar profile={data.profile}/>
     <div class="title">Champions</div>
     <Search />
     <div class="grid-content">

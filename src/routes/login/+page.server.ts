@@ -45,4 +45,51 @@ const login : Action = async ({request, cookies}) => {
 	}
 }
 
-export const actions : Actions = {login}
+const register : Action = async ({request, cookies}) => {
+	const data = await request.formData();
+
+	const username = data.get('user')
+	const password = data.get('password')
+	const confirmPassword = data.get('cofirmPassword')
+
+	if(
+		typeof username !== 'string' ||
+		typeof password !== 'string' ||
+		typeof confirmPassword !== 'string' ||
+		!username ||
+		!password ||
+		!confirmPassword ||
+		password !== confirmPassword
+	) {
+		return fail(400, "Provide a valid User and/or Password.");
+	}
+
+	//TODO: Add info to the database, use a "users" and a "session" table.
+	const sql = "";
+	const resp = null; //await PostgreSQL().query(sql, [username, password]);
+
+	const user : IUser = {
+		userID: 0, //TODO: generate next id from the db
+		username: username
+	};
+
+	const sessionSQL = ""; // TODO: query to insert user and expiration date
+	const sessionResp = null; //await PostgreSQL().query(sql, [user.id]);
+
+	let session : ISession = {guid: username}; //= {...sessionResp.row[0]}
+	cookies.set(
+		'ledb_session',
+		session.guid,
+		{
+			path: "/",
+			maxAge: 60 * 60 //1 hour
+		}
+	)
+
+	return {
+		success: true,
+		user: username
+	}
+}
+
+export const actions : Actions = {login, register}

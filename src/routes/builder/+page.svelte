@@ -9,7 +9,7 @@
 
 <div class="container">
   <div class="builder-content">
-    <Navbar user={data.profile} />
+    <Navbar profile={data.profile} />
     <div class="builder-header-container">
       <div class="title">Builder</div>
       <div class="builder-message">

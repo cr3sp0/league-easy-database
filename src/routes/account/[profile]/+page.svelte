@@ -26,7 +26,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="container">
     <div class="profile-content">
-        <Navbar user={username()}/>
+        <Navbar profile={username()}/>
 
         <div class="profile-header">
             <div class="pfp">

@@ -1,6 +1,5 @@
 // on EVERY request do:
 
-import type { IUser } from '$lib/types';
 import { redirect } from '@sveltejs/kit';
 
 export async function handle({event, resolve}) {
@@ -15,13 +14,16 @@ export async function handle({event, resolve}) {
         if(true) { //check 'resp' rows
             event.locals.user = {
                 userID: 1,
-                userName: "kk",
+                username: "kk",
                 riotID: "kk#g"
             }
         }
     }
 
-    if((event.url.pathname.startsWith("/account")) && !event.locals.user) {
+    if(
+        (event.url.pathname.startsWith("/account") || event.url.pathname === "/builder/newbuild") 
+        && !event.locals.user
+    ) {
         throw redirect(303, '/login')
     }
 

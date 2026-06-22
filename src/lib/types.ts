@@ -1,8 +1,8 @@
 // Types for the handling of a user's session
 export interface IUser {
   userID: number,
-  userName: string,
-  riotID: string
+  username: string,
+  riotID?: string
 }
 
 export interface ISession {

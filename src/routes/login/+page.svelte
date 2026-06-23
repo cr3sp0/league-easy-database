@@ -2,7 +2,8 @@
   import Logo from "$lib/components/logo.svelte";
   import { enhance } from "$app/forms";
   import { goto } from "$app/navigation";
-    import type { ActionResult } from "@sveltejs/kit";
+  import { text, type ActionResult } from "@sveltejs/kit";
+    import { popup } from "$lib/components/store/popup.svelte";
 
   let registration: Boolean = $state(false);
 
@@ -11,21 +12,33 @@
   }
 
   function userCheck(result: ActionResult) {
-    //TODO: something
     if (
       result.type === 'success' && 
       result.status === 200 && 
       result.data?.user
     ) {
+
+      popup.text = ""
+      popup.color = 'green'
+      popup.text = "Access Successful"
       goto("/account/" + result.data?.user)
-    } else {
-      console.log("form error")//TODO: add error pop-up
+    
+    } else if (result.type === 'redirect' ) {
+
+      goto(result.location, {invalidateAll: true})
+
+    } else if (result.type === 'failure') {
+
+      popup.text = ""
+      popup.color = 'red'
+      popup.text = result.data?.msg
+
     }
   }
 </script>
 
 <div class="container">
-  <div class="login-content">    
+  <div class="login-content">
     <div style="min-height: 5vw;"></div>
     <div class="form-container">
       <Logo width="75%" />

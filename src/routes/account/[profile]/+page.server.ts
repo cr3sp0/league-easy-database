@@ -13,6 +13,8 @@ export const load: PageServerLoad = ({ params, cookies }) => {
 const logout : Action = ({ cookies }) => {
   cookies.delete('ledb_session', {path: "/"});
 
+  //TODO: Delete session from the DB.
+
   return {success: true}
 }
 

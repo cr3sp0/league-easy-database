@@ -2,7 +2,7 @@ import type { IUser, ISession } from "$lib/types";
 import { fail, type Action, type Actions } from "@sveltejs/kit";
 
 const login : Action = async ({request, cookies}) => {
-	const data = await request.formData();
+	const data = await request.formData()
 
 	const username = data.get('user')
 	const password = data.get('password')
@@ -13,7 +13,7 @@ const login : Action = async ({request, cookies}) => {
 		!username ||
 		!password
 	) {
-		return fail(400, "Provide a valid User and/or Password.");
+		return fail(400, { msg: "Provide a valid User and/or Password." })
 	}
 
 	//TODO: Check database info, use a "users" and a "session" table.
@@ -21,7 +21,7 @@ const login : Action = async ({request, cookies}) => {
 	const resp = null; //await PostgreSQL().query(sql, [username, password]);
 
 	if (false) { // resp.rowCount === 0
-		return fail(400, "User or Password incorrect.")
+		return fail(400, { msg: "User or Password incorrect." })
 	}
 
 	const user : IUser | null = null; // {...resp.row[0]}
@@ -29,7 +29,7 @@ const login : Action = async ({request, cookies}) => {
 	const sessionSQL = ""; // TODO: query to insert user and expiration date
 	const sessionResp = null; //await PostgreSQL().query(sql, [user.id]);
 
-	let session : ISession = {guid: username}; //= {...sessionResp.row[0]}
+	let session : ISession = { guid: username } //= {...sessionResp.row[0]}
 	cookies.set(
 		'ledb_session',
 		session.guid,
@@ -46,7 +46,7 @@ const login : Action = async ({request, cookies}) => {
 }
 
 const signup : Action = async ({request, cookies}) => {
-	const data = await request.formData();
+	const data = await request.formData()
 
 	const username = data.get('user')
 	const password = data.get('password')
@@ -60,11 +60,11 @@ const signup : Action = async ({request, cookies}) => {
 		!password ||
 		!confirmPassword
 	) {
-		return fail(400, "Provide a valid User and/or Password.");
+		return fail(400, { msg: "Provide a valid User and/or Password." })
 	}
 
 	if(password.localeCompare(confirmPassword)) {
-		return fail(400, "The Password doesn't match.");
+		return fail(400, { msg: "The Password doesn't match." })
 	}
 
 	//TODO: Add info to the database, use a "users" and a "session" table.

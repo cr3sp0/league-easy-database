@@ -45,12 +45,12 @@ const login : Action = async ({request, cookies}) => {
 	}
 }
 
-const register : Action = async ({request, cookies}) => {
+const signup : Action = async ({request, cookies}) => {
 	const data = await request.formData();
 
 	const username = data.get('user')
 	const password = data.get('password')
-	const confirmPassword = data.get('cofirmPassword')
+	const confirmPassword = data.get('confirmPassword')
 
 	if(
 		typeof username !== 'string' ||
@@ -58,10 +58,13 @@ const register : Action = async ({request, cookies}) => {
 		typeof confirmPassword !== 'string' ||
 		!username ||
 		!password ||
-		!confirmPassword ||
-		password !== confirmPassword
+		!confirmPassword
 	) {
 		return fail(400, "Provide a valid User and/or Password.");
+	}
+
+	if(password.localeCompare(confirmPassword)) {
+		return fail(400, "The Password doesn't match.");
 	}
 
 	//TODO: Add info to the database, use a "users" and a "session" table.
@@ -92,4 +95,4 @@ const register : Action = async ({request, cookies}) => {
 	}
 }
 
-export const actions : Actions = {login, register}
+export const actions : Actions = {login, signup}

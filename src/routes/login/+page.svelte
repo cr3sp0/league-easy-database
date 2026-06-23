@@ -6,26 +6,20 @@
 
   let registration: Boolean = $state(false);
 
-  let user: String = $state("");
-  let password: String = $state("");
-  let passConfirm: String = $state("");
-
   function stateChange() {
     registration = !registration
   }
 
-  function usernameCheck () : Boolean{
-    user = user.trim();
-
-	  return user.length != 0;
-  }
-
   function userCheck(result: ActionResult) {
     //TODO: something
-    if (result.type === 'success' && result.status === 200 && result.data?.user.length !== 0) {
+    if (
+      result.type === 'success' && 
+      result.status === 200 && 
+      result.data?.user
+    ) {
       goto("/account/" + result.data?.user)
     } else {
-      //TODO: error
+      console.log("form error")//TODO: add error pop-up
     }
   }
 </script>
@@ -37,31 +31,42 @@
       <Logo width="75%" />
 
       <div style="min-height: 4vw;"></div>
-      {#if registration}
-        <div class="form-text">You already have an account?</div>
-      {:else}
-        <form
-          action="?/login"
-          method="post"
-          class="login-form"
-          use:enhance = {() => {return async({result}) => {userCheck(result)}} }
-        >
-          <div class="form-text">Username:</div>
-          <input name="user" type="text" class="info-content form-text" bind:value={user} placeholder="Insert here..." />
-          <div class="form-text">Password:</div>
-          <input name="password" type="password" class="info-content form-text" bind:value={password} placeholder="Insert here..." />
-          <div class="button-container">
-            <button class="form-button form-text">Login</button>
-          </div>
-        </form>
+
+      <form
+        action={registration ? "?/signup" : "?/login"}
+        method="post"
+        class="login-form"
+        use:enhance={ () => {return async({result}) => {userCheck(result)}} }
+      >
+        <div class="form-text">Username:</div>
+        <input name="user" type="text" class="info-content form-text" placeholder="Insert here..." />
+        <div class="form-text">Password:</div>
+        <input name="password" type="password" class="info-content form-text" placeholder="Insert here..." />
         
-        <div style="min-height: 4vw;"></div>
-        
-        <div class="login-form-footer">
-          <div class="form-text">You don't have an account?</div>
-          <button class="form-button form-text" onclick={() => stateChange()}>Sign Up</button>
+        {#if registration}
+          <div class="form-text">Confirm Password:</div>
+          <input name="confirmPassword" type="password" class="info-content form-text" placeholder="Insert here..." />
+        {/if}
+
+        <div class="button-container">
+          <button class="form-button form-text" type="submit">
+            {registration ? "Sign Up" : "Login"}
+          </button>
         </div>
-      {/if}
+      </form>
+        
+      <div style="min-height: 4vw;"></div>
+
+      <div class="login-form-footer">
+        {#if registration}
+          <div class="form-text">You already have an account?</div>
+        {:else}
+          <div class="form-text">You don't have an account?</div>
+        {/if}
+        <button class="form-button form-text" onclick={() => stateChange()}>
+          {registration ? "Login" : "Sign Up"}
+        </button>
+      </div>
     </div>
   </div>
 </div>

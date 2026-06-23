@@ -5,19 +5,20 @@ import { redirect } from '@sveltejs/kit';
 export async function handle({event, resolve}) {
 
     // check that the user already logged in.
-    const sessionGUID = event.cookies.get('ledb_session')
+    const sessionGUID = event.cookies.get('ledb_session') //gets the username
     if(sessionGUID) {
         //check in the DB.
         const sql = "";
         const resp = ""; //await PostgreSQL().query(sql, [sessionGUID])
 
-        if(true) { //check 'resp' rows
+        if(true) { // TODO: create local user based on the 'resp' rows from the DB
             event.locals.user = {
                 userID: 1,
-                username: "kk",
-                riotID: "kk#g"
+                username: "kk"
             }
         }
+
+        //TODO: Check what else to do here.
     }
 
     if(

@@ -5,7 +5,7 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../src/lib/server/prisma"
+  output   = "@/src/lib/server/prisma"
 }
 
 datasource db {
@@ -14,13 +14,11 @@ datasource db {
 
 // Esempio di modello
 model Campione {
-  ID    Int     @id @default(autoincrement())
+  ID   String     @id
   nome String  @unique
   Icona  String @unique
   Titolo String @unique
   Descrizione String 
-  Razza String 
-  Regione String
   Ruolo String
   Vita  Int
   Mana  Int
@@ -30,42 +28,86 @@ model Campione {
   Resistenza_magica Int
   Velocità_di_attacco Int
   Gittata Int
+  Cosmetico Cosmetico[]
+  Regione Campione_Regione[]
+  Razza Campione_Razza[]
+  Posizione Campione_Posizione[]
+  Config Configurazione[]
+  Role Ruolo @relation(fields: [Ruolo], references: [Nome]) 
+}
+
+model Cosmetico{
+  IdCampione String @id
+  Immagine String //? not sure
+ // Modello 
+  Nome String
+  champ Campione  @relation(fields: [IdCampione], references: [ID])
 }
 
 model Ruolo{
   Nome String @id
   Descrizione String 
+  Campione Campione[]
 }
 
 model Razza{
   Nome String @id
   Descrizione String 
+  relazione Campione_Razza[]
+}
+
+model Campione_Razza{
+  IdCampione String @id
+  NomeRazza String
+  champ Campione @relation(fields: [IdCampione], references: [ID])
+  razza Razza @relation(fields: [NomeRazza], references: [Nome]) 
 }
 
 model Posizione{
   Nome String @id 
+  pos Campione_Posizione[]
+}
+
+
+model Campione_Posizione {
+  IdCampione String @id
+  NomePosizione String
+  champ Campione @relation(fields:[IdCampione], references: [ID])
+  Pos Posizione @relation(fields: [NomePosizione], references: [Nome]) 
 }
 
 model Regione{
   Nome String @id 
   Descrizione String
+  Regi Campione_Regione[]
 }
 
-model Cosmetico{
-  Campione String  @id
-  Immagine String //? not sure
- // Modello 
-  Nome String
+model Campione_Regione {
+  IdCampione String @id
+  NomeRegione String
+  champ Campione @relation(fields: [IdCampione], references: [ID])
+  Regi Regione @relation(fields: [NomeRegione], references: [Nome]) 
+
 }
 
 model Incantesimo{
   Nome String @id
   Descrizione String 
   Ricarica Float
+  Incant1 Configurazione[] @relation("Inc1")
+  Incant2 Configurazione[] @relation("Inc2")
 }
 
 model Configurazione{
   ID Int @id
+  IdCampione String
+  Incantesimo1 String
+  Incantesimo2 String
+  Account Int
+  champ Campione @relation(fields: [IdCampione], references: [ID])
+  Inc1 Incantesimo @relation(fields: [Incantesimo1], references: [Nome], name: "Inc1")
+  Inc2 Incantesimo @relation(fields: [Incantesimo2], references: [Nome], name: "Inc2") 
+  User Account @relation(fields: [Account], references: [AccountId]) 
 }
 
 model Oggetto{
@@ -75,6 +117,52 @@ model Oggetto{
   Immagine String //? not sure
 }
 
+model Account{
+  Nome String
+  AccountId Int @unique
+  Password String 
+  Descrizione String 
+  Immagine String //?
+  RiotID String   @db.VarChar(50)
+  sessione Sessione[]
+  Config Configurazione[]
+  @@id([Nome,AccountId])
+}
+
+model Sessione{
+  Id Int @id 
+  guid_id Int
+  user_id Int 
+  date_created DateTime @default(now())
+  date_expired DateTime
+  user Account @relation(fields: [user_id], references: [AccountId], onDelete: Cascade)  
+}
+
+model Kit{
+  IdKit Int @id
+  Passiva String
+  Abilita1 String
+  Abilita2 String
+  Abilita3 String
+  Abilita4 String
+  Pass Abilita @relation(fields: [Passiva], references: [NomeAbilità], name: "Passiva")
+  Spell1 Abilita @relation(fields: [Abilita1], references: [NomeAbilità], name: "Abilita1")
+  Spell2 Abilita @relation(fields: [Abilita2], references: [NomeAbilità], name: "Abilita2")
+  Spell3 Abilita @relation(fields: [Abilita3], references: [NomeAbilità], name: "Abilita3")
+  Spell4 Abilita @relation(fields: [Abilita4], references: [NomeAbilità], name: "Abilita4")
+}
+
+model Abilita{
+NomeAbilità String @id @unique
+Descrzione String
+passiva Kit[] @relation("Passiva")
+Abilita1 Kit[] @relation("Abilita1")
+Abilita2 Kit[] @relation("Abilita2")
+Abilita3 Kit[] @relation("Abilita3")
+Abilita4 Kit[] @relation("Abilita4")
+}
+
+/*
 model Storico{
   Versione String @id
   Data DateTime
@@ -104,14 +192,6 @@ model Tipologia_runa{
   Cammino String @id
 }
 
-model Account{
-  Nome String @id
-  Password String 
-  Descrizione String 
-  Immagine String //?
-  RiotID String   @db.VarChar(50)
-}
-
 model Partita{
   Campione String @id
   Configurazione String
@@ -119,5 +199,8 @@ model Partita{
 }
 
 model Risultato{
-  Stato String @id
+  Stato String @id  
 }
+
+/*
+}*/

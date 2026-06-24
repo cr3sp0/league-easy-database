@@ -11,13 +11,28 @@
 <div class="container">
   <div class="info-container">
     <div class="info-cover">
-      <Navbar profile={data.profile}/>
-      <div class="champ-name">{data.champName}</div>
+      <Navbar profile={data.profile} />
+      <div class="champ-name">
+        {data.champName}
+        <br />
+        <div class="ruolo">ruolo</div>
+      </div>
     </div>
+
     <div class="info-content">
+      <div class="title">Sottotitolo</div>
+      <div class="description section">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae beatae
+        ipsum animi, ipsam amet similique voluptatem nisi itaque dolorum aut ab
+        facilis culpa natus a nobis quae hic possimus maxime! Lorem ipsum dolor
+        sit amet consectetur adipisicing elit. Eaque illum totam quo a?
+        Perspiciatis, molestiae. Mollitia culpa maiores at laborum eos iure
+        perferendis architecto aspernatur consectetur, corrupti, quibusdam ab
+        nihil.
+      </div>
       <div class="title">Statistiche</div>
       <Sectionheader />
-      <div class="info-stat"><InfoStat /></div>
+      <div class="info-stat section"><InfoStat /></div>
       <div class="title">Migliori Build</div>
       <Search />
       <BuildcardHolder />
@@ -62,13 +77,25 @@
   .champ-name {
     flex-grow: 1;
     display: flex;
-    align-items: end;
-    flex-direction: row;
+    align-items: start;
+    justify-content: end;
+    flex-direction: column;
+    gap: 0px;
 
     text-transform: uppercase;
     font-family: var(--font-passion);
     font-size: var(--text-lg);
     color: var(--white-50);
+  }
+
+  .ruolo {
+    font-size: var(--text-lm);
+    text-transform: capitalize;
+  }
+
+  .description {
+    font-size: var(--text-md);
+    font-family: var(--font-mono);
   }
 
   .info-stat {

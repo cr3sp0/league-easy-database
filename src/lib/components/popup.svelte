@@ -68,7 +68,6 @@
     .popup-content {
         width: fit-content;
 
-        
         background-color: white;
         box-shadow: 0 0 5px black;
     }
@@ -76,6 +75,8 @@
         display: flex;
         flex-direction: row;
         gap: 20px;
+
+        font-family: var(--font-mono);
 
         padding: clamp(30px, 2vw, 100px);
         align-items: center;

@@ -2,6 +2,7 @@
     import { enhance } from "$app/forms";
     import { goto } from "$app/navigation";
   import { page } from "$app/state";
+    import { popup } from "./store/popup.svelte";
 
   let { profile } : { profile? : String } = $props();
 
@@ -38,10 +39,20 @@
       <a href="/champions" class="nav-link">champions</a>
       <a href="/items" class="nav-link">items</a>
       {#if !profile}
-        <a href="/login" class="nav-login">login</a>
+        <a href="/login" class="nav-login">Login</a>
       {:else if page.url.pathname.includes("/account")}
-        <form method="post" action="?/logout" use:enhance={() => async ({result}) => {if (result.status === 200) goto("/")}}>
-          <button class="nav-login" type="submit">logout</button>
+        <form 
+          method="post" 
+          action="?/logout" 
+          use:enhance={ () => async ({result}) => {
+            if (result.status === 200) {
+              popup.color = 'green'
+              popup.text = "Logout successful"
+              goto("/")
+            }
+          } }
+        >
+          <button class="nav-login" type="submit">Logout</button>
         </form>
       {:else}
         <a href="/account/{profile}" class="nav-login">{profile}</a>
@@ -104,7 +115,6 @@
   }
 
   .nav-login {
-    text-transform: capitalize;
     font-weight: 800;
     font-family: inherit;
     font-size: var(--text-md);

@@ -29,7 +29,7 @@
 
     } else if (result.type === 'failure') {
 
-      popup.text = ""
+      popup.text = "" // reset popup text
       popup.color = 'red'
       popup.text = result.data?.msg
 

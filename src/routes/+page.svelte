@@ -1,10 +1,13 @@
-<script>
+<script lang="ts">
   import Navbar from "$lib/components/navbar.svelte";
+  import type { IUser } from "$lib/types";
+
+  let { data } = $props();
 </script>
 
 <div class="container">
   <div class="landpage-content">
-    <Navbar />
+    <Navbar profile={data.profile}/>
     <div class="landpage-3d-container">
       <img src="..\img\shyvana 1.png" alt="" srcset="" />
     </div>

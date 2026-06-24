@@ -1,7 +1,11 @@
 <script lang="ts">
-  import { page } from "$app/state"; //this is deprecated but i don't care.
+    import { enhance } from "$app/forms";
+    import { goto } from "$app/navigation";
+  import { page } from "$app/state";
+    import { popup } from "./store/popup.svelte";
 
-let { user = "" } : { user? : String } = $props();
+  let { profile } : { profile? : String } = $props();
+
 </script>
 
 <div class="nav-container">
@@ -34,12 +38,24 @@ let { user = "" } : { user? : String } = $props();
       <a href="/builder" class="nav-link">builder</a>
       <a href="/champions" class="nav-link">champions</a>
       <a href="/items" class="nav-link">items</a>
-      {#if user === ""}
-      <a href="/login" class="nav-login">login</a>
+      {#if !profile}
+        <a href="/login" class="nav-login">Login</a>
       {:else if page.url.pathname.includes("/account")}
-      <a href="/" class="nav-login">logout</a>
+        <form 
+          method="post" 
+          action="?/logout" 
+          use:enhance={ () => async ({result}) => {
+            if (result.status === 200) {
+              popup.color = 'green'
+              popup.text = "Logout successful"
+              goto("/")
+            }
+          } }
+        >
+          <button class="nav-login" type="submit">Logout</button>
+        </form>
       {:else}
-      <a href="/account/{user}" class="nav-login">{user}</a>
+        <a href="/account/{profile}" class="nav-login">{profile}</a>
       {/if}
     </div>
   </div>
@@ -99,13 +115,19 @@ let { user = "" } : { user? : String } = $props();
   }
 
   .nav-login {
-    text-transform: capitalize;
     font-weight: 800;
+    font-family: inherit;
     font-size: var(--text-md);
+
+    border: none;
+    background-color: transparent;
+    color: white;
+
     min-width: fit-content;
   }
 
   .nav-login:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 </style>

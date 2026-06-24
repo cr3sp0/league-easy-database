@@ -2,11 +2,13 @@
   import Itemsgrid from "$lib/components/itemsgrid.svelte";
   import Navbar from "$lib/components/navbar.svelte";
   import Search from "$lib/components/search.svelte";
+
+  let { data } = $props()
 </script>
 
 <div class="container">
   <div class="items-content">
-    <Navbar />
+    <Navbar profile={data.profile}/>
     <div class="title">Items</div>
     <Search />
     <Itemsgrid />

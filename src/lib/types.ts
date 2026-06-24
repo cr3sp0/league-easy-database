@@ -1,3 +1,14 @@
+// Types for the handling of a user's session
+export interface IUser {
+  userID: number,
+  username: string,
+  riotID?: string
+}
+
+export interface ISession {
+  guid: string
+}
+
 // Types for Rune selection, #TODO: create a db import for this.
 export type RunePath =
     | "precision"

@@ -1,9 +1,9 @@
 <script lang="ts">
   import type { Champion, Rune, Item } from "$lib/types";
+    import { run } from "svelte/legacy";
   import { slide } from "svelte/transition";
 
-  let { name, author, champion, runes, items, winrate }
-  : { name: string, author: string, champion: Champion, runes: Rune[], items: Item[], winrate?: number } = $props();
+  let { name, author, champion, runes, items, winrate } : { name: string, author: string, champion: Champion, runes: { primary: Rune[], secondary: Rune[], shards: Rune[] }, items: Item[], winrate?: number } = $props();
   // TODO: More parameters are required for this component, add them once the dbms is ready.
 
   let isOpen = $state(false);
@@ -53,11 +53,30 @@
   {#if isOpen}
     <div transition:slide={{ duration: 300 }} class="buildcard-body">
       <div class="buildcard-model"></div>
-
-      <div class="buildcard-section-title">Runes</div>
       <div class="buildcard-runes">
-        <div class="runes-primary"></div>
-        <div class="runes-secondary"></div>
+        <div class="buildcard-body-column">
+          <img src="" alt={ runes.primary.find((rune) => rune.level === "keystone")?.name } />
+          <div class="buildcard-body-row">
+            {#each runes.primary as rune}
+              {#if rune.level !== "keystone"}
+                <img src="" alt={ rune.name }/>
+              {/if}
+            {/each}
+          </div>
+        </div>
+        <div class="buildcard-body-column">
+          <img src="" alt={ runes.secondary.find((rune) => rune.path)?.path.name } />
+          <div class="buildcard-body-row">
+            {#each runes.secondary as rune}
+              <img src="" alt={ rune.name }/>
+            {/each}
+          </div>
+          <div class="buildcard-body-row">
+            {#each runes.shards as rune}
+                <img src="" alt={ rune.name }/>
+            {/each}
+          </div>
+        </div>
       </div>
 
       <div class="buildcard-section-title">Items</div>
@@ -143,6 +162,19 @@
     align-items: center;
     gap: 20px;
   }
+  .buildcard-body-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+  }
+  .buildcard-body-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
 
   .buildcard-model {
     width: 60%;
@@ -159,17 +191,8 @@
     justify-content: center;
     gap: 100px;
   }
+  .buildcard-runes img {
 
-  .runes-primary {
-    display: flex;
-    flex-direction: row;
-    background-color: blue;
-  }
-
-  .runes-secondary {
-    display: flex;
-    flex-direction: row;
-    background-color: blue;
   }
 
   .buildcard-items {

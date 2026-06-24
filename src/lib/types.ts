@@ -15,13 +15,28 @@ export type RunePath =
     | "domination"
     | "sorcery"
     | "resolve"
-    | "inspiration";
+    | "inspiration"
+export type RuneLevel =
+  | "keystone"
+  | 1
+  | 2
+  | 3
 
 export interface PathConfig {
-    id: RunePath;
-    name: string;
-    color: string;
-  }
+  id: RunePath | "shard"
+  name: string
+  color: string
+}
+export interface Rune {
+  path: PathConfig
+  name: string
+  level: RuneLevel
+}
+export interface RuneConfiguration {
+  primary: Rune[]
+  secondary: Rune[]
+  shards: Rune[]
+}
 
 // PLACEHOLDER
 export interface StatItem {
@@ -34,11 +49,6 @@ export interface Champion {
   name: string
   title: string
 }
-export interface Rune {
-  name: string
-  path: RunePath
-  primary: boolean
-}
 export interface Item {
   name: string
   cost: number
@@ -47,7 +57,7 @@ export interface Build {
   name: string
   author: string
   champion: Champion
-  runes: Rune[]
+  runes: RuneConfiguration
   items: Item[]
   winrate?: number
 }

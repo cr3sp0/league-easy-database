@@ -32,7 +32,6 @@
   .grid-container {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-auto-rows: 100px;
     gap: 16px;
     width: 100%;
     max-width: 1200px;
@@ -46,6 +45,7 @@
     border: 1px var(--white-20) solid;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    aspect-ratio: 1;
   }
 
   .grid-item:hover {
@@ -57,6 +57,7 @@
     grid-column: span 3;
     background-color: #2a2323;
     border-color: #554949;
+    aspect-ratio: auto;
   }
 
   @media (max-width: 1024px) {
@@ -68,7 +69,6 @@
   @media (max-width: 768px) {
     .grid-container {
       grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 80px;
     }
     .grid-item.expanded {
       grid-column: span 2;

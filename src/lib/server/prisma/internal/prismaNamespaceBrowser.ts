@@ -51,7 +51,22 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  Campione: 'Campione',
+  Cosmetico: 'Cosmetico',
+  Ruolo: 'Ruolo',
+  Razza: 'Razza',
+  Campione_Razza: 'Campione_Razza',
+  Posizione: 'Posizione',
+  Campione_Posizione: 'Campione_Posizione',
+  Regione: 'Regione',
+  Campione_Regione: 'Campione_Regione',
+  Incantesimo: 'Incantesimo',
+  Configurazione: 'Configurazione',
+  Oggetto: 'Oggetto',
+  Account: 'Account',
+  Sessione: 'Sessione',
+  Kit: 'Kit',
+  Abilita: 'Abilita'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,13 +85,161 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UserScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  name: 'name'
+export const CampioneScalarFieldEnum = {
+  ID: 'ID',
+  nome: 'nome',
+  Icona: 'Icona',
+  Titolo: 'Titolo',
+  Descrizione: 'Descrizione',
+  Ruolo: 'Ruolo',
+  Vita: 'Vita',
+  Mana: 'Mana',
+  Attacco: 'Attacco',
+  Velocità_di_movimento: 'Velocità_di_movimento',
+  Armatura: 'Armatura',
+  Resistenza_magica: 'Resistenza_magica',
+  Velocità_di_attacco: 'Velocità_di_attacco',
+  Gittata: 'Gittata'
 } as const
 
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+export type CampioneScalarFieldEnum = (typeof CampioneScalarFieldEnum)[keyof typeof CampioneScalarFieldEnum]
+
+
+export const CosmeticoScalarFieldEnum = {
+  IdCampione: 'IdCampione',
+  Immagine: 'Immagine',
+  Nome: 'Nome'
+} as const
+
+export type CosmeticoScalarFieldEnum = (typeof CosmeticoScalarFieldEnum)[keyof typeof CosmeticoScalarFieldEnum]
+
+
+export const RuoloScalarFieldEnum = {
+  Nome: 'Nome',
+  Descrizione: 'Descrizione'
+} as const
+
+export type RuoloScalarFieldEnum = (typeof RuoloScalarFieldEnum)[keyof typeof RuoloScalarFieldEnum]
+
+
+export const RazzaScalarFieldEnum = {
+  Nome: 'Nome',
+  Descrizione: 'Descrizione'
+} as const
+
+export type RazzaScalarFieldEnum = (typeof RazzaScalarFieldEnum)[keyof typeof RazzaScalarFieldEnum]
+
+
+export const Campione_RazzaScalarFieldEnum = {
+  IdCampione: 'IdCampione',
+  NomeRazza: 'NomeRazza'
+} as const
+
+export type Campione_RazzaScalarFieldEnum = (typeof Campione_RazzaScalarFieldEnum)[keyof typeof Campione_RazzaScalarFieldEnum]
+
+
+export const PosizioneScalarFieldEnum = {
+  Nome: 'Nome'
+} as const
+
+export type PosizioneScalarFieldEnum = (typeof PosizioneScalarFieldEnum)[keyof typeof PosizioneScalarFieldEnum]
+
+
+export const Campione_PosizioneScalarFieldEnum = {
+  IdCampione: 'IdCampione',
+  NomePosizione: 'NomePosizione'
+} as const
+
+export type Campione_PosizioneScalarFieldEnum = (typeof Campione_PosizioneScalarFieldEnum)[keyof typeof Campione_PosizioneScalarFieldEnum]
+
+
+export const RegioneScalarFieldEnum = {
+  Nome: 'Nome',
+  Descrizione: 'Descrizione'
+} as const
+
+export type RegioneScalarFieldEnum = (typeof RegioneScalarFieldEnum)[keyof typeof RegioneScalarFieldEnum]
+
+
+export const Campione_RegioneScalarFieldEnum = {
+  IdCampione: 'IdCampione',
+  NomeRegione: 'NomeRegione'
+} as const
+
+export type Campione_RegioneScalarFieldEnum = (typeof Campione_RegioneScalarFieldEnum)[keyof typeof Campione_RegioneScalarFieldEnum]
+
+
+export const IncantesimoScalarFieldEnum = {
+  Nome: 'Nome',
+  Descrizione: 'Descrizione',
+  Ricarica: 'Ricarica'
+} as const
+
+export type IncantesimoScalarFieldEnum = (typeof IncantesimoScalarFieldEnum)[keyof typeof IncantesimoScalarFieldEnum]
+
+
+export const ConfigurazioneScalarFieldEnum = {
+  ID: 'ID',
+  IdCampione: 'IdCampione',
+  Incantesimo1: 'Incantesimo1',
+  Incantesimo2: 'Incantesimo2',
+  Account: 'Account'
+} as const
+
+export type ConfigurazioneScalarFieldEnum = (typeof ConfigurazioneScalarFieldEnum)[keyof typeof ConfigurazioneScalarFieldEnum]
+
+
+export const OggettoScalarFieldEnum = {
+  Nome: 'Nome',
+  Costo: 'Costo',
+  Descrizione: 'Descrizione',
+  Immagine: 'Immagine'
+} as const
+
+export type OggettoScalarFieldEnum = (typeof OggettoScalarFieldEnum)[keyof typeof OggettoScalarFieldEnum]
+
+
+export const AccountScalarFieldEnum = {
+  Nome: 'Nome',
+  AccountId: 'AccountId',
+  Password: 'Password',
+  Descrizione: 'Descrizione',
+  Immagine: 'Immagine',
+  RiotID: 'RiotID'
+} as const
+
+export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+export const SessioneScalarFieldEnum = {
+  Id: 'Id',
+  guid_id: 'guid_id',
+  user_id: 'user_id',
+  date_created: 'date_created',
+  date_expired: 'date_expired'
+} as const
+
+export type SessioneScalarFieldEnum = (typeof SessioneScalarFieldEnum)[keyof typeof SessioneScalarFieldEnum]
+
+
+export const KitScalarFieldEnum = {
+  IdKit: 'IdKit',
+  Passiva: 'Passiva',
+  Abilita1: 'Abilita1',
+  Abilita2: 'Abilita2',
+  Abilita3: 'Abilita3',
+  Abilita4: 'Abilita4'
+} as const
+
+export type KitScalarFieldEnum = (typeof KitScalarFieldEnum)[keyof typeof KitScalarFieldEnum]
+
+
+export const AbilitaScalarFieldEnum = {
+  NomeAbilità: 'NomeAbilità',
+  Descrzione: 'Descrzione'
+} as const
+
+export type AbilitaScalarFieldEnum = (typeof AbilitaScalarFieldEnum)[keyof typeof AbilitaScalarFieldEnum]
 
 
 export const SortOrder = {

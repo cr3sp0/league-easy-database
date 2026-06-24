@@ -98,7 +98,7 @@
     }
 
     .id{
-        font-size: var(--text-lm);
+        font-size: var(--text-xlm);
         font-family: var(--font-mono);
         opacity: 40%;
     }

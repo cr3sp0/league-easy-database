@@ -2,11 +2,16 @@
   import type { Champion, Rune, Item } from "$lib/types";
   import { slide } from "svelte/transition";
 
-  let { name, author, champion, runes, items }
+  let { name, author, champion, runes, items, winrate }
   : { name: string, author: string, champion: Champion, runes: Rune[], items: Item[], winrate?: number } = $props();
   // TODO: More parameters are required for this component, add them once the dbms is ready.
 
   let isOpen = $state(false);
+  let winPerc : string | undefined = $state()
+  // svelte-ignore state_referenced_locally
+  if (winrate) {
+    winPerc = (winrate * 100) + "%"
+  }
 
   function toggleCard() {
     isOpen = !isOpen;
@@ -26,6 +31,7 @@
       <div class="buildcard-header-title-name">{champion.name}, {name}</div>
       <div class="buildcard-header-title-auth">{author}</div>
     </div>
+    <div class="buildcard-header-winrate">{winPerc}</div>
     <div class="buildcard-header-button">
       <span class="arrow" class:rotated={isOpen}
         ><svg
@@ -104,6 +110,12 @@
 
   .buildcard-header-title-auth {
     color: var(--white-20, #888);
+  }
+
+  .buildcard-header-winrate {
+    font-family: inherit;
+    font-size: var(--text-lm);
+    color: var(--white-20);
   }
 
   .buildcard-header-button {

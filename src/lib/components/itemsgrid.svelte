@@ -9,7 +9,7 @@
     id: i + 1,
   }));
 
-  let expandedId = $state<number | null>(1);
+  let expandedId = $state<number | null>(0);
 
   const toggleExpand = (id: number): void => {
     expandedId = expandedId === id ? null : id;

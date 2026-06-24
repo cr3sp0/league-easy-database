@@ -63,6 +63,11 @@ option:focus-visible, option:hover {
 .title {
     font-family: var(--font-passion);
     font-size: var(--text-lg);
+    margin-bottom: 3rem;
+}
+
+.section {
+    margin-bottom: 3rem;
 }
 
 .text {
@@ -80,7 +85,7 @@ option:focus-visible, option:hover {
 }
 
 .container {
-    width: 100%;
+    max-width: 100%;
     min-height: 100%;
     background-color: var(--background);
     box-sizing: border-box;

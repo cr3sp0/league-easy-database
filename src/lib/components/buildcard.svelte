@@ -2,15 +2,28 @@
   import type { Champion, Rune, Item } from "$lib/types";
   import { slide } from "svelte/transition";
 
-  let { name, author, champion, runes, items, winrate }
-  : { name: string, author: string, champion: Champion, runes: Rune[], items: Item[], winrate?: number } = $props();
+  let {
+    name,
+    author,
+    champion,
+    runes,
+    items,
+    winrate,
+  }: {
+    name: string;
+    author: string;
+    champion: Champion;
+    runes: Rune[];
+    items: Item[];
+    winrate?: number;
+  } = $props();
   // TODO: More parameters are required for this component, add them once the dbms is ready.
 
   let isOpen = $state(false);
-  let winPerc : string | undefined = $state()
+  let winPerc: string | undefined = $state();
   // svelte-ignore state_referenced_locally
   if (winrate) {
-    winPerc = (winrate * 100) + "%"
+    winPerc = winrate * 100 + "%";
   }
 
   function toggleCard() {

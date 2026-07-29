@@ -26,7 +26,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="container">
     <div class="profile-content">
-        <Navbar profile={username()}/>
+        <Navbar profile={username()} overrideAccount={!data.owner}/>
 
         <div class="profile-header">
             <div class="pfp">
@@ -35,7 +35,7 @@
 
             <div class="header-info">
                 <div class="profile-title">
-                    <div class="title">{data.profile}</div>
+                    <div>{data.profile}</div>
                     <div class="id">{data.id}</div>
                 </div>    
                 <div class="filler"></div>
@@ -140,6 +140,8 @@
         align-items: end;
         gap: 20px;
         flex-grow: 1;
+        font-family: var(--font-passion);
+        font-size: var(--text-lg);
     }
 
     .builds-content{

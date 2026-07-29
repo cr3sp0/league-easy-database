@@ -4,7 +4,7 @@
   import { page } from "$app/state";
     import { popup } from "./store/popup.svelte";
 
-  let { profile } : { profile? : String } = $props();
+  let { profile, overrideAccount = false } : { profile? : String, overrideAccount? : Boolean } = $props();
 
 </script>
 
@@ -40,7 +40,7 @@
       <a href="/items" class="nav-link">items</a>
       {#if !profile}
         <a href="/login" class="nav-login">Login</a>
-      {:else if page.url.pathname.includes("/account")}
+      {:else if (page.url.pathname.includes("/account") && !overrideAccount)}
         <form 
           method="post" 
           action="?/logout" 

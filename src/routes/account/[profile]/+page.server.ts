@@ -1,12 +1,47 @@
-import type { Action, Actions } from '@sveltejs/kit';
+import { error, type Action, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from "./$types";
+import prisma from '$lib/server/prisma';
+import type { Build, Champion, Item, Rune, RuneConfiguration } from '$lib/types';
 
 export const load: PageServerLoad = ({ params, cookies }) => {
 
-	//TODO: getUserByID() from the DB.
+	let profile = cookies.get('ledb_session')
+
+	if(!profile) {
+		error(400, "Profile is missing")
+	}
+
+	let primary: Rune[] = [
+		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: "keystone"},
+		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 1},
+		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 2},
+		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 3}
+	]
+	let secondary: Rune[] = [
+		{path: {id: "precision", name:"Domination", color:"green"}, name: "ppp", level: 1},
+		{path: {id: "precision", name:"Domination", color:"green"}, name: "ppp", level: 3}
+	]
+	let shards: Rune[] = [
+		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 1},
+		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 2},
+		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 3}
+	]
+
+	let runes: RuneConfiguration = {primary: primary, secondary: secondary, shards: shards}
+	let items: Item[] = [{name: "asd", cost: 3000}]
+	let champ: Champion = {name: "Akali", title:"someone"}
+	let build1: Build = {name: "FantoBuild", author: profile, champion: champ, runes: runes, items: items, winrate: 0.65}
+
+	let builds : Build[] = [];
+
+	for (let index = 0; index < 5; index++) {
+		builds = builds.concat(build1);
+	}
+
 	return {
-		profile: cookies.get('ledb_session'),
-		id: params.profile + "#EUW"
+		profile: profile,
+		id: params.profile + "#EUW",
+		owner: profile === profile //TODO: check cookie === session
 	}
 }
 

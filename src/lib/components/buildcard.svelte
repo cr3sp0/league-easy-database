@@ -14,10 +14,10 @@
   // TODO: More parameters are required for this component, add them once the dbms is ready.
 
   let isOpen = $state(false);
-  let winPerc: string | undefined = $state();
+  let winPerc: string | undefined = $state()
   // svelte-ignore state_referenced_locally
   if (winrate) {
-    winPerc = winrate * 100 + "%";
+    winPerc = winrate * 100 + "%"
   }
 
   function toggleCard() {
@@ -36,7 +36,7 @@
     <div class="buildcard-header-icon"></div>
     <div class="buildcard-header-title">
       <div class="buildcard-header-title-name">{champion.name}, {name}</div>
-      <div class="buildcard-header-title-auth">{author}</div>
+      <a href="/account/{author}" class="buildcard-header-title-auth">{author}</a>
     </div>
     <div class="buildcard-header-winrate">{winPerc}</div>
     <div class="buildcard-header-button">
@@ -136,6 +136,9 @@
 
   .buildcard-header-title-auth {
     color: var(--white-20, #888);
+  }
+  .buildcard-header-title-auth:hover {
+    text-decoration: underline;
   }
 
   .buildcard-header-winrate {

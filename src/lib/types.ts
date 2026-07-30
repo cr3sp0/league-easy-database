@@ -69,5 +69,5 @@ export interface Report {
 }
 export type ReportReason = 
   | ""
-  | "Offensie Name"
+  | "Offensive Name"
   | "Other"

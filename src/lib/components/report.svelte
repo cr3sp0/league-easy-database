@@ -7,7 +7,7 @@
     let reasonOfReport : ReportReason = $state("");
     let description = $state<string|undefined>(undefined)
 
-    let dropMenu : ReportReason[] = ["Offensie Name", "Other"]
+    let dropMenu : ReportReason[] = ["Offensive Name", "Other"]
 
     function prepreObject() {
         if (reasonOfReport?.trim().length != 0) {
@@ -34,7 +34,7 @@
             <div class="container">
                 <div class="form">
                     <div class="header">
-                        <div class="title">Report this User?</div>
+                        <div>Report this User?</div>
                         <div class="filler"></div>
                         <div class="close-button">
                             <!-- svelte-ignore a11y_consider_explicit_label -->
@@ -63,7 +63,7 @@
                             </div>
                         </div>
 
-                        <input class="description" type="text" placeholder="(Optional) Details..." bind:value={description}/>
+                        <textarea class="description" placeholder="(Optional) Details..." bind:value={description}></textarea>
                         
                         <button class="btn" onclick={() => prepreObject()}>Report</button>
                     </div>
@@ -102,15 +102,17 @@
     .form {
         display: flex;
         flex-direction: column;
-        height: 70vh;
+        height: 75vh;
         min-width: fit-content;
 
         gap: clamp(20px, 2vh, 80px);
     }
-    
+
     .header {
         display: flex;
         flex-direction: row;
+        font-family: var(--font-passion);
+        font-size: var(--text-lg);
     }
 
     .close-button {
@@ -133,7 +135,7 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        gap: clamp(100px, 2vh, 300px);
+        gap: clamp(50px, 2vh, 300px);
 
         padding: 20px clamp(20px, 6vw, 80px);
         border: 1px var(--white-20) solid;
@@ -151,12 +153,12 @@
     }
 
     .drop-menu {
-        min-width: fit-content;
         padding: 5px clamp(10px, 2vw, 50px);
+        cursor: pointer;
     }
 
     .description {
-        padding: 20px;
+        min-height: 50%;
 
         background-color: transparent;
         color: white;
@@ -164,22 +166,22 @@
 
         font-size: var(--text-md);
         font-family: var(--font-mono);
-
     }
 
     .btn {
-        background-color: transparent;
-        border: none;
+        background-color: var(--black-20);
+        border: 1px var(--white-20) solid;
         
         color: white;
         text-decoration: underline;
         
         font-family: var(--font-mono);
         font-size: var(--text-md);
+        cursor: pointer;
     }
     .btn:hover, .btn:focus {
-        background-color: var(--black-20);
-        box-shadow: 1px 1px 5px black;
+        background-color: #2a2323;
+        border-color: #4a3f3f;
     }
 
     .footer {

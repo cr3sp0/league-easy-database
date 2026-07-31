@@ -2,9 +2,9 @@
     import Navbar from '$lib/components/navbar.svelte';
     import BuildcardHolder from '$lib/components/buildcardHolder.svelte';
     import Search from '$lib/components/search.svelte';
-    import { _getBuildsForChampion, _getBuildsFromAuthor, _sendReport } from './+page';
     import Report from '$lib/components/report.svelte';
     import type { Build, Report as ReportType } from '$lib/types.js';
+    import { enhance } from '$app/forms';
     
     let { data } = $props();
     const username = () => data.profile !== undefined ? data.profile : "[Profile Error]";
@@ -12,13 +12,7 @@
     let isMenuOpen = $state(false);
     let isReportOpen = $state(false);
 
-    let buildsLimit : number = 5;
-    let personalBuilds : Build[] = $state(_getBuildsFromAuthor(username(), buildsLimit));
-
-    function incrementBuildLimit() {
-        buildsLimit += 3;
-        personalBuilds = _getBuildsFromAuthor(username(), buildsLimit)
-    }
+    let personalBuilds : Build[] = $state(data.baseBuilds);
 
 </script>
 
@@ -26,7 +20,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="container">
     <div class="profile-content">
-        <Navbar profile={username()} overrideAccount={!data.owner}/>
+        <Navbar profile={data.user.userProfile} overrideAccount={!data.user.isUser}/>
 
         <div class="profile-header">
             <div class="pfp">
@@ -64,13 +58,27 @@
                 <BuildcardHolder personalBuilds={personalBuilds} />
             </div>
             <!-- svelte-ignore a11y_click_events_have_key_events -->
-            <button class="btn-more" onclick={() => incrementBuildLimit()}>More...</button>
+            <form
+            class="btn-more" 
+            method="post"
+            action="?/moreBuilds"
+            use:enhance = {() => async ({result}) => {
+                if(result.type === 'success' && result.data?.builds){
+                    personalBuilds = (result.data as {builds : Build[]}).builds
+                    console.log(personalBuilds[0].author + "|||||")
+                }
+            }}
+             >
+                <button class="btn-more" type="submit">More...</button>
+            </form>
         </div>
 
         <Report 
             bind:visible={isReportOpen}
             target={username()}
-            send={(output : ReportType) => {_sendReport(output)}}
+            send={(report : ReportType) => {
+                //TODO
+            }}
         />
     </div>
 </div>
@@ -209,11 +217,13 @@
         color: white;
         padding: 12px 16px;
         font-family: var(--font-mono);
-        background-color: transparent;
-        box-shadow: 0px 2px 5px black;
+        background-color: var(--black-20);
+        border: 1px var(--white-20) solid;
     }
     .options-content div:hover {
         text-decoration: underline;
+        background-color: #2a2323;
+        border-color: #4a3f3f;
     }
     .options-content div:focus-visible {
         text-decoration: underline;

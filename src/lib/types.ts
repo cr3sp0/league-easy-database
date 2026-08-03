@@ -2,7 +2,8 @@
 export interface IUser {
   userID: number,
   username: string,
-  riotID?: string
+  riotID?: string,
+  role: "admin" | "user"
 }
 
 export interface ISession {
@@ -64,10 +65,11 @@ export interface Build {
 
 export interface Report {
   target: string //id
-  reason: ReportReason
+  author: string
+  reason: string
   description?: string
 }
-export type ReportReason = 
-  | ""
-  | "Offensive Name"
-  | "Other"
+export const ReportReason = [
+  "Offensive Name",
+  "Other"
+]

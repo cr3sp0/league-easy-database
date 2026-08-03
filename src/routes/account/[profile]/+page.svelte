@@ -11,9 +11,11 @@
 
     let isMenuOpen = $state(false);
     let isReportOpen = $state(false);
+    let isReportListOpen = $state(false);
+    let isBlockAccountOpen = $state(false);
 
+    // svelte-ignore state_referenced_locally
     let personalBuilds : Build[] = $state(data.baseBuilds);
-
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -28,11 +30,11 @@
             </div>
 
             <div class="header-info">
-                <div class="profile-title">
-                    <div>{data.profile}</div>
-                    <div class="id">{data.id}</div>
-                </div>    
-                <div class="filler"></div>
+                <div class="profile-role">{data.profileRole}</div>
+                    <div class="profile-title">
+                        <div>{data.profile}</div>
+                        <div class="id">{data.id}</div>
+                    </div>  
             </div>
             <div class="options" class:open={isMenuOpen}>
                 <!-- svelte-ignore a11y_consider_explicit_label -->
@@ -47,8 +49,13 @@
                         <!-- svelte-ignore a11y_click_events_have_key_events -->
                         <!-- svelte-ignore a11y_no_static_element_interactions -->
                         <div onclick={() => {isMenuOpen = false; isReportOpen = true}}>Report</div>
+                        {#if data.user.userRole === "admin"}
+                            <div onclick={() => {isMenuOpen = false; isReportListOpen = true}}>Reports Recived</div>
+                            <div onclick={() => {isMenuOpen = false; isBlockAccountOpen = true}}>Block Account</div>
+                        {/if}
                     </div>
                 {/if}
+                <Report bind:visible={isReportOpen} target={username()}/>
             </div>
         </div>
         <br />
@@ -57,29 +64,21 @@
             <div class="builds-grid">
                 <BuildcardHolder personalBuilds={personalBuilds} />
             </div>
-            <!-- svelte-ignore a11y_click_events_have_key_events -->
+            
             <form
-            class="btn-more" 
+            class="btn-more"
             method="post"
             action="?/moreBuilds"
             use:enhance = {() => async ({result}) => {
                 if(result.type === 'success' && result.data?.builds){
                     personalBuilds = (result.data as {builds : Build[]}).builds
-                    console.log(personalBuilds[0].author + "|||||")
                 }
             }}
-             >
+            >
+                <input name="limit" type="hidden" value={personalBuilds.length + 3}/>
                 <button class="btn-more" type="submit">More...</button>
             </form>
         </div>
-
-        <Report 
-            bind:visible={isReportOpen}
-            target={username()}
-            send={(report : ReportType) => {
-                //TODO
-            }}
-        />
     </div>
 </div>
 {#if isMenuOpen}
@@ -130,14 +129,13 @@
         display: flex;
         flex-direction: row;
         height: 150px;
-        gap: 15px;
+        gap: clamp(5px, 1vw, 20px);
         width: 75%;
     }
 
     .header-info{
-        height: 100%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-grow: 1;
         border-bottom: 2px solid var(--white-20);
     }
@@ -150,6 +148,11 @@
         flex-grow: 1;
         font-family: var(--font-passion);
         font-size: var(--text-lg);
+    }
+
+    .profile-role{
+        display: flex;
+        height: 100%;
     }
 
     .builds-content{
@@ -208,7 +211,7 @@
     .options-content {
         position: absolute;
         right: var(--options-size);
-        background-color: transparent;
+        background-color: var(--background);
         min-width: fit-content;
         z-index: 1;
     }
@@ -224,6 +227,7 @@
         text-decoration: underline;
         background-color: #2a2323;
         border-color: #4a3f3f;
+        cursor: pointer;
     }
     .options-content div:focus-visible {
         text-decoration: underline;

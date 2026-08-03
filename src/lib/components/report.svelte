@@ -1,26 +1,13 @@
 <script lang="ts">
-    import type { Report, ReportReason } from "$lib/types";
+    import { enhance } from "$app/forms";
+    import { ReportReason } from "$lib/types";
+    import { popup } from "./store/popup.svelte";
 
-    let { visible = $bindable(), output = $bindable(), target, send } 
-    : {visible : Boolean, target : string, output? : Report, send : Function } = $props();
+    let { visible = $bindable(), target } 
+    : { visible : Boolean, target : string } = $props();
 
-    let reasonOfReport : ReportReason = $state("");
+    let reasonOfReport : string = $state("");
     let description = $state<string|undefined>(undefined)
-
-    let dropMenu : ReportReason[] = ["Offensive Name", "Other"]
-
-    function prepreObject() {
-        if (reasonOfReport?.trim().length != 0) {
-            output = {
-                target: target,
-                reason: reasonOfReport,
-                description: description
-            }
-
-            visible = false
-            send.apply(output);
-        }
-    }
 </script>
 
 {#if visible}
@@ -32,7 +19,25 @@
         ></button>
         <div class="report-popup">
             <div class="container">
-                <div class="form">
+                <form
+                class="form"
+                method="post"
+                action="?/sendReport"
+                use:enhance={() => async({result}) => {
+                    popup.text = ""
+                    if(result.type === "success" && result.data?.msg){
+                        popup.color = 'green'
+                        popup.text = "" + result.data.msg
+                    } else if(result.type === "failure" && result.data?.msg){
+                        popup.color = 'red'
+                        popup.text = "" + result.data?.msg
+                    } else {
+                        popup.color = 'red'
+                        popup.text = "Uknown Error: Please try again later"
+                    }
+                    visible = false
+                }}
+                >
                     <div class="header">
                         <div>Report this User?</div>
                         <div class="filler"></div>
@@ -54,21 +59,21 @@
                             <div class="filler"></div>
 
                             <div class="drop-menu">
-                                <select id="reason" bind:value={reasonOfReport}>
+                                <select name="reason" id="reason" bind:value={reasonOfReport}>
                                     <option value="" selected disabled hidden>Select</option>
-                                    {#each dropMenu as option}
+                                    {#each ReportReason as option}
                                         <option value={option}>{option}</option>
                                     {/each}
                                 </select>
                             </div>
                         </div>
 
-                        <textarea class="description" placeholder="(Optional) Details..." bind:value={description}></textarea>
-                        
-                        <button class="btn" onclick={() => prepreObject()}>Report</button>
+                        <textarea name="description" class="description" placeholder="(Optional) Details..." bind:value={description}></textarea>
+
+                        <button type="submit" class="btn">Report</button>
                     </div>
                     <div class="footer">Once sent the report, an Admin will review it and take actions accordingly.</div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -88,7 +93,7 @@
 
         z-index: 50;
 
-        backdrop-filter: blur(5px) grayscale(60%);
+        backdrop-filter: blur(5px) grayscale(80%);
     }
 
     .report-popup{

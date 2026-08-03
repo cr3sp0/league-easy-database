@@ -1,7 +1,7 @@
-import { error, type Action, type Actions } from '@sveltejs/kit';
+import { error, fail, type Action, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from "./$types";
 import prisma from '$lib/server/prisma';
-import type { Build, Champion, Item, Rune, RuneConfiguration, Report } from '$lib/types';
+import type { Build, Champion, Item, Rune, RuneConfiguration, Report, ReportReason } from '$lib/types';
 
 //dummy values
 	let primary: Rune[] = [
@@ -38,15 +38,20 @@ export const load: PageServerLoad = ({ params, cookies }) => {
 
 	let builds : Build[] = [];
 
-	limit = 5
-	for (let index = 0; index < limit; index++) {
+	const startingLimit = 5
+	for (let index = 0; index < startingLimit; index++) {
 		builds = builds.concat(build1);
 	}
 
 	return {
 		profile: profile,
 		id: params.profile + "#EUW",
-		user: { isUser: profile === cookies.get('ledb_session'), userProfile: cookies.get('ledb_session') }, //TODO: check cookie === session
+		profileRole: profile === "Fanto" ? "admin" : "user", //TODO: get the role from the user connected to the session in the db.
+		user: { 
+			isUser: profile === cookies.get('ledb_session'),
+			userProfile: cookies.get('ledb_session'),
+			userRole: "admin"
+		}, //TODO: check cookie === session
 		baseBuilds: builds
 	}
 }
@@ -59,18 +64,18 @@ const logout : Action = ({ cookies }) => {
   return {success: true}
 }
 
-let limit : number;
-const moreBuilds : Action = ({params}) => {
-	let profile = params.profile
+const moreBuilds : Action = async ({ request, params }) => {
 
+	let profile = params.profile
 	if(!profile) {
 		error(400, "Profile is missing")
 	}
 
 	let build1: Build = {name: "FantoBuild", author: profile, champion: champ, runes: runes, items: items, winrate: 0.65}
-	let builds : Build[] = []
+	let builds : Build[] = []//TODO: get actual builds
 
-	limit += 3
+	let limit : number = (await request.formData()).get("limit")?.valueOf() as number
+	console.log(limit)
 	for (let index = builds.length; index < limit; index++) {
 		builds = builds.concat(build1);
 	}
@@ -81,8 +86,39 @@ const moreBuilds : Action = ({params}) => {
 	}
 }
 
-export const actions : Actions = {logout, moreBuilds}
+const sendReport : Action = async ({ request, params, cookies }) => {
 
-export const _sendReport : Function = (report: Report, author?: String) => {
-	//Get author from the current session.
+	const formData = await request.formData()
+	const target = params.profile
+	const author = cookies.get("ledb_session")
+
+	const reason = formData.get("reason")?.toString()
+	const description = formData.get("description")?.valueOf() as string
+
+	if(!author) {
+		return error(400)
+	}
+
+	if(!target || !reason) {
+		return fail(400, {msg: "Missing values of the Report"})
+	}
+	if(target === cookies.get("ledb_session")){
+		return fail(400, {msg: "You cannot Report your own account."})
+	}
+
+	const report : Report = {
+		target: target,
+		author: author,
+		reason: reason,
+		description: description
+	}
+
+	//TODO: send the report to the db
+
+	return {
+		success: true,
+		msg: "Successfully sent a Report for " + target + "."
+	}
 }
+
+export const actions : Actions = {logout, moreBuilds, sendReport}

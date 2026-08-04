@@ -178,7 +178,6 @@
         border: 1px var(--white-20) solid;
         
         color: white;
-        text-decoration: underline;
         
         font-family: var(--font-mono);
         font-size: var(--text-md);
@@ -187,6 +186,7 @@
     .btn:hover, .btn:focus {
         background-color: #2a2323;
         border-color: #4a3f3f;
+        text-decoration: underline;
     }
 
     .footer {

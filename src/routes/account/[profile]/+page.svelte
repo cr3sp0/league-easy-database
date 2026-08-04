@@ -2,9 +2,11 @@
     import Navbar from '$lib/components/navbar.svelte';
     import BuildcardHolder from '$lib/components/buildcardHolder.svelte';
     import Search from '$lib/components/search.svelte';
-    import Report from '$lib/components/report.svelte';
-    import type { Build, Report as ReportType } from '$lib/types.js';
+    import CreateReport from '$lib/components/createReport.svelte';
+    import type { Build } from '$lib/types.js';
     import { enhance } from '$app/forms';
+    import BanAccount from '$lib/components/banAccount.svelte';
+    import ReportList from '$lib/components/reportList.svelte';
     
     let { data } = $props();
     const username = () => data.profile !== undefined ? data.profile : "[Profile Error]";
@@ -49,13 +51,55 @@
                         <!-- svelte-ignore a11y_click_events_have_key_events -->
                         <!-- svelte-ignore a11y_no_static_element_interactions -->
                         <div onclick={() => {isMenuOpen = false; isReportOpen = true}}>Report</div>
-                        {#if data.user.userRole === "admin"}
+                        {#if data.user.userRole === "Admin"}
                             <div onclick={() => {isMenuOpen = false; isReportListOpen = true}}>Reports Recived</div>
                             <div onclick={() => {isMenuOpen = false; isBlockAccountOpen = true}}>Block Account</div>
                         {/if}
                     </div>
                 {/if}
-                <Report bind:visible={isReportOpen} target={username()}/>
+                <CreateReport bind:visible={isReportOpen} target={username()} />
+                <ReportList bind:visible={isReportListOpen} target={username()} list={[
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.\n\nLorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"},
+                    {target: data.profile, author: "Fanto", reason:"Other", description:"placeholder"}
+                ]} />
+                <BanAccount bind:visible={isBlockAccountOpen} target={username()} />
             </div>
         </div>
         <br />
@@ -64,7 +108,7 @@
             <div class="builds-grid">
                 <BuildcardHolder personalBuilds={personalBuilds} />
             </div>
-            
+
             <form
             class="btn-more"
             method="post"
@@ -151,8 +195,9 @@
     }
 
     .profile-role{
-        display: flex;
-        height: 100%;
+        font-size: var(--text-lm);
+        font-family: var(--font-passion);
+        color: var(--white-20);
     }
 
     .builds-content{

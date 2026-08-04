@@ -46,11 +46,11 @@ export const load: PageServerLoad = ({ params, cookies }) => {
 	return {
 		profile: profile,
 		id: params.profile + "#EUW",
-		profileRole: profile === "Fanto" ? "admin" : "user", //TODO: get the role from the user connected to the session in the db.
+		profileRole: profile === "Fanto" ? "Admin" : "User", //TODO: get the role from the user connected to the session in the db.
 		user: { 
 			isUser: profile === cookies.get('ledb_session'),
 			userProfile: cookies.get('ledb_session'),
-			userRole: "admin"
+			userRole: "Admin" //TODO: put actual role, this allows every user to access admin level actions
 		}, //TODO: check cookie === session
 		baseBuilds: builds
 	}
@@ -75,7 +75,7 @@ const moreBuilds : Action = async ({ request, params }) => {
 	let builds : Build[] = []//TODO: get actual builds
 
 	let limit : number = (await request.formData()).get("limit")?.valueOf() as number
-	console.log(limit)
+
 	for (let index = builds.length; index < limit; index++) {
 		builds = builds.concat(build1);
 	}
@@ -121,4 +121,4 @@ const sendReport : Action = async ({ request, params, cookies }) => {
 	}
 }
 
-export const actions : Actions = {logout, moreBuilds, sendReport}
+export const actions : Actions = { logout, moreBuilds, sendReport }

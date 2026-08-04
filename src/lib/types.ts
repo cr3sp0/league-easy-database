@@ -3,7 +3,7 @@ export interface IUser {
   userID: number,
   username: string,
   riotID?: string,
-  role: "admin" | "user"
+  role: "Admin" | "User"
 }
 
 export interface ISession {

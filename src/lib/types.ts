@@ -64,7 +64,8 @@ export interface Build {
 }
 
 export interface Report {
-  target: string //id
+  date: Date
+  target: string
   author: string
   reason: string
   description?: string

@@ -11,5 +11,5 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
-<Popup color={popup.color} text={popup.text}/>
+<Popup color={popup.color} bind:text={popup.text}/>
 {@render children()}

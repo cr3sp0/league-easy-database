@@ -1,14 +1,15 @@
 <script lang="ts">
     import { fade } from "svelte/transition";
 
-    let { color, text } : { color? : 'green' | 'red', text?: String } = $props()
+    let { color, text = $bindable() } : { color? : 'green' | 'red', text? : String } = $props()
 
     $effect( () => {
         if (text !== "") {
-            setTimeout( () => text = "", color === "red" ? 3000 : 1000 )
+            setTimeout(() => text = "", color === "red" ? 3000 : 1000)
         }
     } )
 </script>
+
 {#if text}
     <div class="popup-container" transition:fade>
         <div class="popup-content">

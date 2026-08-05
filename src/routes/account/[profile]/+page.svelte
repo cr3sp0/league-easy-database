@@ -5,8 +5,6 @@
     import CreateReport from '$lib/components/createReport.svelte';
     import type { Build } from '$lib/types.js';
     import { enhance } from '$app/forms';
-    import BanAccount from '$lib/components/banAccount.svelte';
-    import ReportList from '$lib/components/reportList.svelte';
     
     let { data } = $props();
 

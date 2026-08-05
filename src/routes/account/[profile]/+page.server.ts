@@ -47,11 +47,10 @@ export const load: PageServerLoad = ({ params, cookies }) => {
 		profile: profile,
 		id: params.profile + "#EUW",
 		profileRole: profile === "Fanto" ? "Admin" : "User", //TODO: get the role from the user connected to the session in the db.
-		user: { 
-			isUser: profile === cookies.get('ledb_session'),
+		user: {
 			userProfile: cookies.get('ledb_session'),
 			userRole: "Admin" //TODO: put actual role, this allows every user to access admin level actions
-		}, //TODO: check cookie === session
+		},
 		baseBuilds: builds
 	}
 }
@@ -107,6 +106,7 @@ const sendReport : Action = async ({ request, params, cookies }) => {
 	}
 
 	const report : Report = {
+		date: new Date(Date.now()),
 		target: target,
 		author: author,
 		reason: reason,

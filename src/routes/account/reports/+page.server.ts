@@ -9,7 +9,7 @@ export const load : PageServerLoad = async ({ cookies, url }) => {
     let role = "Admin" //TODO: get role from the session cookie
 
     if (!profile || role != "Admin") {
-        return fail(400, "You Cannot Access This Page.")
+        return fail(400, {msg: "You Cannot Access This Page."})
     }
 
     let reports : Report[]
@@ -47,7 +47,7 @@ export const load : PageServerLoad = async ({ cookies, url }) => {
 }
 
 
-const deleteReport : Action = async ({request}) => {
+const deleteReport : Action = async ({ request }) => {
 
     let formData = await request.formData()
 

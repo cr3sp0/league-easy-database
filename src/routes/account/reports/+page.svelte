@@ -3,14 +3,11 @@
     import Navbar from "$lib/components/navbar.svelte";
     import Search from "$lib/components/search.svelte";
     import { popup } from "$lib/components/store/popup.svelte";
-import type { Report } from "$lib/types";
     import { slide } from "svelte/transition";
 
     let { data } = $props();
-    let reportList = () => data.reports
 
     let expandedId = $state<number | null>(null);
-
     const toggleExpand = (id: number) => {
         expandedId = expandedId === id ? null : id;
     };
@@ -19,15 +16,15 @@ import type { Report } from "$lib/types";
 <div class="container">
     <div class="reports-content">
         <Navbar profile={data.profile} role={data.role} />
-        
+
         <div class="header">
-            <div class="title">List</div>
+            <div class="title">Reports List</div>
         </div>
 
         <Search />
         <div class="body">
             <div class="report-list">
-                {#each reportList() as listItem, currIndex}
+                {#each data.reports as listItem, currIndex}
                 <!-- svelte-ignore a11y_click_events_have_key_events -->
                 <!-- svelte-ignore a11y_no_static_element_interactions -->
                 <div
@@ -62,7 +59,7 @@ import type { Report } from "$lib/types";
                         >
                             <input name="target" type="hidden" value={listItem.target} />
                             <input name="reason" type="hidden" value={listItem.reason} />
-                            
+
                             <button class="btn" type="submit" value="banAccount">Ban</button>
                         </form>
                         <form

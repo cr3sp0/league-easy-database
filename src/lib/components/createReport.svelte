@@ -24,7 +24,6 @@
                 method="post"
                 action="?/sendReport"
                 use:enhance={() => async({result}) => {
-                    popup.text = ""
                     if(result.type === "success" && result.data?.msg){
                         popup.color = 'green'
                         popup.text = "" + result.data.msg
@@ -144,12 +143,12 @@
 
         padding: 20px clamp(20px, 6vw, 80px);
         border: 1px var(--white-20) solid;
+        align-items: center;
     }
     .report-info {
         display: flex;
         flex-direction: row;
         gap: 10px;
-        align-items: center;
     }
 
     .target {
@@ -163,9 +162,14 @@
     }
 
     .description {
-        min-height: 50%;
+        min-width: 70%;
+        max-width: 90%;
 
-        background-color: transparent;
+        min-height: 25vh;
+
+        overflow-y: auto;
+
+        background-color: var(--black-20);
         color: white;
         border: 2px solid var(--white-20);
 
@@ -174,6 +178,10 @@
     }
 
     .btn {
+        height: fit-content;
+        width: fit-content;
+        padding: 1.5vh 2vw;
+
         background-color: var(--black-20);
         border: 1px var(--white-20) solid;
         

@@ -40,7 +40,7 @@ const banAccount : Action = async ({ request }) => {
     let description = formData.get("description")
 
     if(!target || !reason || !duration) {
-        return error(400)
+        return fail(400)
     }
 
     if(reason === "Other" && !description) {

@@ -33,13 +33,9 @@
         method="post"
         action="?/banAccount"
         use:enhance={() => async({ result }) => {
-            popup.text = ""
-            if (result.type === "error") {
+            if (result.type === "failure") {
                 popup.color = "red"
-                popup.text = "Unknown Error"
-            } else if (result.type === "failure") {
-                popup.color = "red"
-                popup.text = "" + result.data?.msg
+                popup.text = result.data?.msg ? "" + result.data?.msg : "Unknown Error"
             } else if (result.type === "success") {
                 popup.color = "green"
                 popup.text = "" + result.data?.msg

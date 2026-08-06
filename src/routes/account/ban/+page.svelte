@@ -1,11 +1,14 @@
 <script lang="ts">
+    import { enhance } from '$app/forms';
     import Navbar from '$lib/components/navbar.svelte';
-    import { ReportReason } from '$lib/types.js';
+    import { popup } from '$lib/components/store/popup.svelte.js';
+    import { BanDurations, ReportReason } from '$lib/types.js';
 
     let { data } = $props();
 
     const target = () => data.target
-    let reason : string = $state("")
+    let reason = $state()
+    let duration = $state()
 
     // svelte-ignore state_referenced_locally
     if(data.reason) {
@@ -17,29 +20,57 @@
     <div class="content">
         <Navbar profile={data.profile}/>
 
-        <div class="body">
-            <form
-            class="form"
-            method="post"
-            action="?/banAccount"
-            >
-                <div class="form-info">
-                    <div>Ban the Account:</div>
-                    <div class="target">{target()}</div>
-                </div>
-                <input name="target" type="hidden" value={target()} />
-                <input name="reason" type="hidden" bind:value={reason} />
-                <select class="drop-menu" bind:value={reason}>
-                    <option value="" selected disabled hidden>Select</option>
+        <div class="title">Ban</div>
+        
+        <div class="header form-info">
+            <div>Ban the Account:</div>
+            <div class="filler"></div>
+            <div class="target">{target()}</div>
+        </div>
+
+        <form
+        class="form"
+        method="post"
+        action="?/banAccount"
+        use:enhance={() => async({ result }) => {
+            popup.text = ""
+            if (result.type === "error") {
+                popup.color = "red"
+                popup.text = "Unknown Error"
+            } else if (result.type === "failure") {
+                popup.color = "red"
+                popup.text = "" + result.data?.msg
+            } else if (result.type === "success") {
+                popup.color = "green"
+                popup.text = "" + result.data?.msg
+            }
+        }}
+        >
+            <input name="target" type="hidden" value={target()} />
+
+            <div class="form-info">
+                <div>Reason:</div>
+                <select name="reason" class="drop-menu" bind:value={reason}>
+                    <option value={undefined} selected hidden>Select</option>
                     <option value="Repeated Reports">Repeated Reports</option>
                     {#each ReportReason as reason}
                     <option value={reason}>{reason}</option>
                     {/each}
                 </select>
-                <textarea name="description" class="description" placeholder="Details..."></textarea>
-                <button class="btn" type="submit">Ban</button>    
-            </form>
-        </div>
+            </div>
+            <div class="form-info">
+                <div>Duration:</div>
+                <select name="duration" class="drop-menu" bind:value={duration}>
+                    <option value={undefined} selected hidden>Select</option>
+                    {#each BanDurations as duration}
+                        <option value={duration.hours}>{duration.label}</option>
+                    {/each}
+                </select>
+            </div>
+
+            <textarea name="description" class="description" placeholder="Details..."></textarea>
+            <button class="btn" type="submit">Ban</button>    
+        </form>
         
         <div class="footer">This user will no longer be able to access the account.</div>
     </div>
@@ -61,18 +92,25 @@
         border: 1px solid var(--white-20);
     }
 
+    .header {
+        max-width: 20vw;
+    }
+
     .form {
         display: flex;
         flex-direction: column;
         align-items: center;
 
-        padding: clamp(5rem, 2vh, 25rem);
+        width: 80%;
+
+        padding: clamp(5rem, 2vh, 15rem);
         gap: clamp(25px, 1vh, 80px);
     }
 
     .form-info {
         display: flex;
         flex-direction: row;
+        gap: 20px;
 
         color: white;
         font-family: var(--font-mono);
@@ -90,9 +128,14 @@
     }
 
     .description {
-        min-height: 50%;
+        min-width: 70%;
+        max-width: 90%;
 
-        background-color: transparent;
+        min-height: 20vh;
+
+        overflow-y: auto;
+
+        background-color: var(--black-20);
         color: white;
         border: 2px solid var(--white-20);
 
@@ -101,6 +144,9 @@
     }
 
     .btn {
+        height: fit-content;
+        padding: 1.5vh 2vw;
+
         background-color: var(--black-20);
         border: 1px var(--white-20) solid;
         

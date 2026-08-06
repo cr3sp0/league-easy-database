@@ -1,26 +1,13 @@
 <script lang="ts">
-    import type { Report, ReportReason } from "$lib/types";
+    import { enhance } from "$app/forms";
+    import { ReportReason } from "$lib/types";
+    import { popup } from "./store/popup.svelte";
 
-    let { visible = $bindable(), output = $bindable(), target, send } 
-    : {visible : Boolean, target : string, output? : Report, send : Function } = $props();
+    let { visible = $bindable(), target } 
+    : { visible : Boolean, target : string } = $props();
 
-    let reasonOfReport : ReportReason = $state("");
+    let reasonOfReport : string = $state("");
     let description = $state<string|undefined>(undefined)
-
-    let dropMenu : ReportReason[] = ["Offensie Name", "Other"]
-
-    function prepreObject() {
-        if (reasonOfReport?.trim().length != 0) {
-            output = {
-                target: target,
-                reason: reasonOfReport,
-                description: description
-            }
-
-            visible = false
-            send.apply(output);
-        }
-    }
 </script>
 
 {#if visible}
@@ -32,9 +19,26 @@
         ></button>
         <div class="report-popup">
             <div class="container">
-                <div class="form">
+                <form
+                class="form"
+                method="post"
+                action="?/sendReport"
+                use:enhance={() => async({result}) => {
+                    if(result.type === "success" && result.data?.msg){
+                        popup.color = 'green'
+                        popup.text = "" + result.data.msg
+                    } else if(result.type === "failure" && result.data?.msg){
+                        popup.color = 'red'
+                        popup.text = "" + result.data?.msg
+                    } else {
+                        popup.color = 'red'
+                        popup.text = "Uknown Error: Please try again later"
+                    }
+                    visible = false
+                }}
+                >
                     <div class="header">
-                        <div class="title">Report this User?</div>
+                        <div>Report this User?</div>
                         <div class="filler"></div>
                         <div class="close-button">
                             <!-- svelte-ignore a11y_consider_explicit_label -->
@@ -54,21 +58,21 @@
                             <div class="filler"></div>
 
                             <div class="drop-menu">
-                                <select id="reason" bind:value={reasonOfReport}>
+                                <select name="reason" id="reason" bind:value={reasonOfReport}>
                                     <option value="" selected disabled hidden>Select</option>
-                                    {#each dropMenu as option}
+                                    {#each ReportReason as option}
                                         <option value={option}>{option}</option>
                                     {/each}
                                 </select>
                             </div>
                         </div>
 
-                        <input class="description" type="text" placeholder="(Optional) Details..." bind:value={description}/>
-                        
-                        <button class="btn" onclick={() => prepreObject()}>Report</button>
+                        <textarea name="description" class="description" placeholder="(Optional) Details..." bind:value={description}></textarea>
+
+                        <button type="submit" class="btn">Report</button>
                     </div>
                     <div class="footer">Once sent the report, an Admin will review it and take actions accordingly.</div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -88,7 +92,7 @@
 
         z-index: 50;
 
-        backdrop-filter: blur(5px) grayscale(60%);
+        backdrop-filter: blur(5px) grayscale(80%);
     }
 
     .report-popup{
@@ -102,15 +106,17 @@
     .form {
         display: flex;
         flex-direction: column;
-        height: 70vh;
+        height: 75vh;
         min-width: fit-content;
 
         gap: clamp(20px, 2vh, 80px);
     }
-    
+
     .header {
         display: flex;
         flex-direction: row;
+        font-family: var(--font-passion);
+        font-size: var(--text-lg);
     }
 
     .close-button {
@@ -133,16 +139,16 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        gap: clamp(100px, 2vh, 300px);
+        gap: clamp(50px, 2vh, 300px);
 
         padding: 20px clamp(20px, 6vw, 80px);
         border: 1px var(--white-20) solid;
+        align-items: center;
     }
     .report-info {
         display: flex;
         flex-direction: row;
         gap: 10px;
-        align-items: center;
     }
 
     .target {
@@ -151,35 +157,44 @@
     }
 
     .drop-menu {
-        min-width: fit-content;
         padding: 5px clamp(10px, 2vw, 50px);
+        cursor: pointer;
     }
 
     .description {
-        padding: 20px;
+        min-width: 70%;
+        max-width: 90%;
 
-        background-color: transparent;
+        min-height: 25vh;
+
+        overflow-y: auto;
+
+        background-color: var(--black-20);
         color: white;
         border: 2px solid var(--white-20);
 
         font-size: var(--text-md);
         font-family: var(--font-mono);
-
     }
 
     .btn {
-        background-color: transparent;
-        border: none;
+        height: fit-content;
+        width: fit-content;
+        padding: 1.5vh 2vw;
+
+        background-color: var(--black-20);
+        border: 1px var(--white-20) solid;
         
         color: white;
-        text-decoration: underline;
         
         font-family: var(--font-mono);
         font-size: var(--text-md);
+        cursor: pointer;
     }
     .btn:hover, .btn:focus {
-        background-color: var(--black-20);
-        box-shadow: 1px 1px 5px black;
+        background-color: #2a2323;
+        border-color: #4a3f3f;
+        text-decoration: underline;
     }
 
     .footer {

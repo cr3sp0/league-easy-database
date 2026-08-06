@@ -36,29 +36,18 @@ a {
 select {
     border: none;
     border-bottom: 1px solid var(--white-20);
-    background-color: transparent;
+    background-color: var(--background);
     color: white;
 
     font-family: var(--font-mono);
     font-size: var(--text-md);
 }
-select,
-select::picker(select) {
-    appearance: base-select;
-}
-::picker(select) {
-    background-color: var(--background);
-    border: none;
-    box-shadow: 2px 2px 5px black;
-}
-
 option {
     color: white;
     background-color: transparent;
 }
 option:focus-visible, option:hover {
-    border: none;
-    background-color: var(--white-20);
+    background-color: #2a2323;
 }
 
 .title {

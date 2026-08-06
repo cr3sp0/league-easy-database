@@ -1,11 +1,11 @@
 <script lang="ts">
     import { enhance } from "$app/forms";
     import { goto } from "$app/navigation";
-  import { page } from "$app/state";
+    import { page } from "$app/state";
     import { popup } from "./store/popup.svelte";
 
-  let { profile } : { profile? : String } = $props();
-
+  let { profile, role = "User" } : { profile? : String, role? : String } = $props();
+  //TODO: Add role to each navbar
 </script>
 
 <div class="nav-container">
@@ -35,12 +35,15 @@
     </div>
     <div class="spacing"></div>
     <div class="nav-links">
+      {#if role === "Admin"}
+        <a href="/account/reports" class="nav-link">reports</a>
+      {/if}
       <a href="/builder" class="nav-link">builder</a>
       <a href="/champions" class="nav-link">champions</a>
       <a href="/items" class="nav-link">items</a>
       {#if !profile}
         <a href="/login" class="nav-login">Login</a>
-      {:else if page.url.pathname.includes("/account")}
+      {:else if (page.url.pathname.includes("/account/" + profile))}
         <form 
           method="post" 
           action="?/logout" 

@@ -1,29 +1,23 @@
 <script lang="ts">
-  import type { Champion, Rune, Item } from "$lib/types";
+  import type { Champion, Rune, Item, RuneConfiguration } from "$lib/types";
+    import { run } from "svelte/legacy";
   import { slide } from "svelte/transition";
 
-  let {
-    name,
-    author,
-    champion,
-    runes,
-    items,
-    winrate,
-  }: {
-    name: string;
-    author: string;
-    champion: Champion;
-    runes: Rune[];
-    items: Item[];
-    winrate?: number;
+  let { name, author, champion, runes, items, winrate }
+  : { name: string, 
+    author: string, 
+    champion: Champion, 
+    runes: RuneConfiguration, 
+    items: Item[], 
+    winrate?: number 
   } = $props();
   // TODO: More parameters are required for this component, add them once the dbms is ready.
 
   let isOpen = $state(false);
-  let winPerc: string | undefined = $state();
+  let winPerc: string | undefined = $state()
   // svelte-ignore state_referenced_locally
   if (winrate) {
-    winPerc = winrate * 100 + "%";
+    winPerc = winrate * 100 + "%"
   }
 
   function toggleCard() {
@@ -42,7 +36,7 @@
     <div class="buildcard-header-icon"></div>
     <div class="buildcard-header-title">
       <div class="buildcard-header-title-name">{champion.name}, {name}</div>
-      <div class="buildcard-header-title-auth">{author}</div>
+      <a href="/account/{author}" class="buildcard-header-title-auth">{author}</a>
     </div>
     <div class="buildcard-header-winrate">{winPerc}</div>
     <div class="buildcard-header-button">
@@ -66,11 +60,30 @@
   {#if isOpen}
     <div transition:slide={{ duration: 300 }} class="buildcard-body">
       <div class="buildcard-model"></div>
-
-      <div class="buildcard-section-title">Runes</div>
       <div class="buildcard-runes">
-        <div class="runes-primary"></div>
-        <div class="runes-secondary"></div>
+        <div class="buildcard-body-column">
+          <img src="" alt={ runes.primary.find((rune) => rune.level === "keystone")?.name } />
+          <div class="buildcard-body-row">
+            {#each runes.primary as rune}
+              {#if rune.level !== "keystone"}
+                <img src="" alt={ rune.name }/>
+              {/if}
+            {/each}
+          </div>
+        </div>
+        <div class="buildcard-body-column">
+          <img src="" alt={ runes.secondary.find((rune) => rune.path)?.path.name } />
+          <div class="buildcard-body-row">
+            {#each runes.secondary as rune}
+              <img src="" alt={ rune.name }/>
+            {/each}
+          </div>
+          <div class="buildcard-body-row">
+            {#each runes.shards as rune}
+                <img src="" alt={ rune.name }/>
+            {/each}
+          </div>
+        </div>
       </div>
 
       <div class="buildcard-section-title">Items</div>
@@ -124,6 +137,9 @@
   .buildcard-header-title-auth {
     color: var(--white-20, #888);
   }
+  .buildcard-header-title-auth:hover {
+    text-decoration: underline;
+  }
 
   .buildcard-header-winrate {
     font-family: inherit;
@@ -156,6 +172,19 @@
     align-items: center;
     gap: 20px;
   }
+  .buildcard-body-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+  }
+  .buildcard-body-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
 
   .buildcard-model {
     width: 60%;
@@ -172,17 +201,8 @@
     justify-content: center;
     gap: 100px;
   }
+  .buildcard-runes img {
 
-  .runes-primary {
-    display: flex;
-    flex-direction: row;
-    background-color: blue;
-  }
-
-  .runes-secondary {
-    display: flex;
-    flex-direction: row;
-    background-color: blue;
   }
 
   .buildcard-items {

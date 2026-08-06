@@ -102,7 +102,11 @@ const sendReport : Action = async ({ request, params, cookies }) => {
 		return fail(400, {msg: "Missing values of the Report"})
 	}
 	if(target === cookies.get("ledb_session")){
-		return fail(400, {msg: "You cannot Report your own account."})
+		return fail(400, {msg: "You cannot Report your own account"})
+	}
+
+	if(target === "Pippo") { //TODO: Check actual banned accounts.
+		return fail(400, {msg: "This Account has already been Banned"})
 	}
 
 	const report : Report = {

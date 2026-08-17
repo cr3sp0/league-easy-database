@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import Buildcard from "$lib/components/buildcard.svelte";
   import BuildcardHolder from "$lib/components/buildcardHolder.svelte";
   import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
 
-  let { data } = $props()
+  let { data } = $props();
 </script>
 
 <div class="container">
@@ -26,8 +26,12 @@
       </div>
       <div class="builder-most-used section">
         <a href="/builder/newbuild" class="element">
-          <Champcard name={"champion"} /></a
-        >
+          {#if data.champion}
+            <Champcard name={data.champion.nome} />
+          {:else}
+            <Champcard name={"champion"} />
+          {/if}
+        </a>
 
         <Champcard name={"champion"} />
         <Champcard name={"champion"} />

@@ -51,7 +51,7 @@ model Ruolo{
   Nome String @id
   Descrizione String 
   Campione Campione[]
-}
+  }
 
 model Razza{
   Nome String @id
@@ -86,7 +86,7 @@ model Regione{
   Nome String @id 
   Descrizione String
   Regi Campione_Regione[]
-}
+  }
 
 model Campione_Regione {
   IdCampione String

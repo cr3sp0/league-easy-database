@@ -1,20 +1,22 @@
-<script>
+<script lang="ts">
   import Buildcard from "$lib/components/buildcard.svelte";
   import BuildcardHolder from "$lib/components/buildcardHolder.svelte";
   import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
+
+  let { data } = $props();
 </script>
 
 <div class="container">
   <div class="builder-content">
-    <Navbar />
+    <Navbar profile={data.profile} />
     <div class="builder-header-container">
       <div class="title">Builder</div>
-      <div class="builder-message">
+      <div class="builder-message section">
         Create a new Build... <br /><br /> Start by searching your
         <b>Champion!</b>
       </div>
-      <div class="builder-search">
+      <div class="builder-search section">
         <input
           type="search"
           class="search"
@@ -22,10 +24,14 @@
           placeholder="Search for your Champion"
         />
       </div>
-      <div class="builder-most-used">
+      <div class="builder-most-used section">
         <a href="/builder/newbuild" class="element">
-          <Champcard name={"champion"} /></a
-        >
+          {#if data.champion}
+            <Champcard name={data.champion.nome} />
+          {:else}
+            <Champcard name={"champion"} />
+          {/if}
+        </a>
 
         <Champcard name={"champion"} />
         <Champcard name={"champion"} />
@@ -33,13 +39,13 @@
       </div>
     </div>
 
-    <div class="builder-builds">
+    <div class="builder-builds section">
       <div class="title">Build Browser</div>
-      <div class="builder-message">
+      <div class="builder-message section">
         Find inspiration or compare <br />
         your builds!
       </div>
-      <div class="builder-search">
+      <div class="builder-search section">
         <input
           type="search"
           class="search"
@@ -64,7 +70,6 @@
 
     display: flex;
     flex-direction: column;
-    gap: 90px;
     align-items: center;
 
     padding: 20px clamp(20px, 6vw, 80px);
@@ -78,7 +83,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 45px;
   }
 
   .builder-message {
@@ -111,15 +115,13 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-
-    gap: 20px;
+    gap: 25px;
   }
 
   .builder-builds {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 45px;
 
     width: 100%;
   }

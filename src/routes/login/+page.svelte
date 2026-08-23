@@ -1,102 +1,84 @@
 <script lang="ts">
-  import Navbar from "$lib/components/navbar.svelte";
   import Logo from "$lib/components/logo.svelte";
+  import { enhance } from "$app/forms";
+  import { goto } from "$app/navigation";
+  import { text, type ActionResult } from "@sveltejs/kit";
+    import { popup } from "$lib/components/store/popup.svelte";
 
   let registration: Boolean = $state(false);
-
-  let user: String = $state("");
-  let password: String = $state("");
-  let passConfirm: String = $state("");
 
   function stateChange() {
     registration = !registration
   }
 
-  function usernameCheck () : Boolean{
-    user = user.trim();
+  function userCheck(result: ActionResult) {
+    if (
+      result.type === 'success' && 
+      result.status === 200 && 
+      result.data?.user
+    ) {
 
-	  return user.length != 0;
+      popup.text = ""
+      popup.color = 'green'
+      popup.text = "Access Successful"
+      goto("/account/" + result.data?.user)
+    
+    } else if (result.type === 'redirect' ) {
+
+      goto(result.location, {invalidateAll: true})
+
+    } else if (result.type === 'failure') {
+
+      popup.text = "" // reset popup text
+      popup.color = 'red'
+      popup.text = result.data?.msg
+
+    }
   }
 </script>
 
 <div class="container">
-  <div class="login-content">    
+  <div class="login-content">
     <div style="min-height: 5vw;"></div>
-
-    <div class="login-form">
+    <div class="form-container">
       <Logo width="75%" />
 
       <div style="min-height: 4vw;"></div>
 
-      <div class="info-container">
+      <form
+        action={registration ? "?/signup" : "?/login"}
+        method="post"
+        class="login-form"
+        use:enhance={ () => {return async({result}) => {userCheck(result)}} }
+      >
         <div class="form-text">Username:</div>
-        <input 
-          type="text" 
-          class="info-content form-text" 
-          bind:value={user}
-          placeholder="Insert here..."
-        />
-
+        <input name="user" type="text" class="info-content form-text" placeholder="Insert here..." />
         <div class="form-text">Password:</div>
-        <input 
-          type="password" 
-          class="info-content form-text" 
-          bind:value={password}
-          placeholder="Insert here..."
-        />
-
+        <input name="password" type="password" class="info-content form-text" placeholder="Insert here..." />
+        
         {#if registration}
           <div class="form-text">Confirm Password:</div>
-          <input 
-            type="password" 
-            class="info-content form-text" 
-            bind:value={passConfirm}
-            placeholder="Insert here..."
-          />
+          <input name="confirmPassword" type="password" class="info-content form-text" placeholder="Insert here..." />
         {/if}
-      </div>
-      {#if registration}
-        <a 
-          class="form-button form-text" 
-          href="/account/{user}"
-          onclick={() => usernameCheck()} 
-          onkeydown={(e : KeyboardEvent) => e.key === "Enter" && usernameCheck()}
-        >
-          Sign Up
-        </a>
-      {:else}
-        <a 
-          class="form-button form-text" 
-          href="/account/{user}" 
-          onclick={() => usernameCheck()} 
-          onkeydown={(e) => e.key === "Enter" && usernameCheck()}
-        >
-          Login
-        </a>
-      {/if}
 
+        <div class="button-container">
+          <button class="form-button form-text" type="submit">
+            {registration ? "Sign Up" : "Login"}
+          </button>
+        </div>
+      </form>
+        
       <div style="min-height: 4vw;"></div>
-      
+
       <div class="login-form-footer">
-        <div style="width: 100%;"></div>
         {#if registration}
           <div class="form-text">You already have an account?</div>
-          <button 
-            class="form-button form-text" 
-            onclick={() => stateChange()}
-          >
-            Login
-          </button>
         {:else}
           <div class="form-text">You don't have an account?</div>
-          <button 
-            class="form-button form-text" 
-            onclick={() => stateChange()}
-          >
-            Sign Up
-          </button>
         {/if}
-        <div style="width: 100%;"></div>
+        <button class="form-button form-text" onclick={() => stateChange()}>
+          {registration ? "Login" : "Sign Up"}
+        </button>
       </div>
     </div>
   </div>
@@ -110,13 +92,13 @@
     align-items: center;
   }
 
-  .login-form {
+  .form-container {
     display: flex;
     flex-direction: column;    
     box-sizing: border-box;
     width: fit-content;
 
-    align-items: center;  
+    align-items: center;
 
     background-color: var(--black-20);
     
@@ -124,7 +106,7 @@
     gap: 25px;
   }
 
-  .info-container {
+  .login-form {
     display: flex;
     flex-direction: column;
     
@@ -150,18 +132,27 @@
     font-size: 70%;
   }
 
+  .button-container {
+    display:flex;
+    width: 100%;
+    align-items: center;
+  }
+
   .form-button {
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: inherit;
-    font-family: inherit;
-    color: inherit;
     display: flex;
     flex-grow: 1;
+    background: transparent;
+    
+    border: none;
+    outline: none;
+    
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+
     width: clamp(1vw, 10vw, 50%);
-    cursor: pointer;
     justify-content: center;
+    cursor: pointer;
   } 
   .form-button:hover {
     text-decoration: underline;

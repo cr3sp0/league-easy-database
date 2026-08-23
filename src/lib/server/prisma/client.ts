@@ -31,8 +31,8 @@ export * from "./enums.ts"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Campiones
+ * const campiones = await prisma.campione.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -42,7 +42,82 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model User
+ * Model Campione
  * 
  */
-export type User = Prisma.UserModel
+export type Campione = Prisma.CampioneModel
+/**
+ * Model Cosmetico
+ * 
+ */
+export type Cosmetico = Prisma.CosmeticoModel
+/**
+ * Model Ruolo
+ * 
+ */
+export type Ruolo = Prisma.RuoloModel
+/**
+ * Model Razza
+ * 
+ */
+export type Razza = Prisma.RazzaModel
+/**
+ * Model Campione_Razza
+ * 
+ */
+export type Campione_Razza = Prisma.Campione_RazzaModel
+/**
+ * Model Posizione
+ * 
+ */
+export type Posizione = Prisma.PosizioneModel
+/**
+ * Model Campione_Posizione
+ * 
+ */
+export type Campione_Posizione = Prisma.Campione_PosizioneModel
+/**
+ * Model Regione
+ * 
+ */
+export type Regione = Prisma.RegioneModel
+/**
+ * Model Campione_Regione
+ * 
+ */
+export type Campione_Regione = Prisma.Campione_RegioneModel
+/**
+ * Model Incantesimo
+ * 
+ */
+export type Incantesimo = Prisma.IncantesimoModel
+/**
+ * Model Configurazione
+ * 
+ */
+export type Configurazione = Prisma.ConfigurazioneModel
+/**
+ * Model Oggetto
+ * 
+ */
+export type Oggetto = Prisma.OggettoModel
+/**
+ * Model Account
+ * 
+ */
+export type Account = Prisma.AccountModel
+/**
+ * Model Sessione
+ * 
+ */
+export type Sessione = Prisma.SessioneModel
+/**
+ * Model Kit
+ * 
+ */
+export type Kit = Prisma.KitModel
+/**
+ * Model Abilita
+ * 
+ */
+export type Abilita = Prisma.AbilitaModel

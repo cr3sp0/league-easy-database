@@ -4,6 +4,8 @@
   import Runeselector from "$lib/components/runeselector.svelte";
   import type { StatItem } from "$lib/types";
 
+  let { data } = $props()
+
   // PLACEHOLDER
   const stats: StatItem[] = [
     { id: 1, name: "Attack Damage", value: "75" },
@@ -20,7 +22,7 @@
 
 <div class="container">
   <div class="buildinfo-content">
-    <Navbar />
+    <Navbar profile={data.profile}/>
     <div class="buildinfo-header">
       <div class="champpic"></div>
       <div class="title">New build</div>
@@ -102,7 +104,7 @@
   }
 
   .buildinfo-sectiontitle {
-    font-size: var(--text-lm);
+    font-size: var(--text-xlm);
     font-family: var(--font-mono);
   }
 

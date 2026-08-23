@@ -1,4 +1,5 @@
 <script lang="ts">
+    import type { Build } from "$lib/types";
     import Buildcard from "./buildcard.svelte";
 
     let { personalBuilds = [], comunityBuilds = [] } : { personalBuilds?: Build[], comunityBuilds?: Build[] } = $props();
@@ -10,7 +11,14 @@
     <div class="build-content">
         <span>Your Builds</span>
         {#each personalBuilds as build}
-        <Buildcard name={build.Name} author={build.Author} champion={build.Champion} runes={build.Runes} items={build.Items}/>
+        <Buildcard
+          name={build.name}
+          author={build.author}
+          champion={build.champion}
+          runes={build.runes}
+          items={build.items}
+          winrate={build.winrate}
+        />
         {/each}
     </div>
     {/if}
@@ -18,7 +26,14 @@
     <div class="build-content">
         <span>Other's Builds</span>
         {#each comunityBuilds as build}
-        <Buildcard name={build.Name} author={build.Author} champion={build.Champion} runes={build.Runes} items={build.Items}/>
+        <Buildcard
+          name={build.name}
+          author={build.author}
+          champion={build.champion}
+          runes={build.runes}
+          items={build.items}
+          winrate={build.winrate}
+        />
         {/each}
     </div>
     {/if}

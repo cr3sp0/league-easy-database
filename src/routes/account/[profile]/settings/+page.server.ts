@@ -14,7 +14,7 @@ export const load : PageServerLoad = async ({ params, cookies, request, url }) =
     let imageList : string[] = [
         "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_p.jpg",
         "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/aurora/Aurora_p.jpg",
-        "3", "4", "5"]    //TODO: get all images
+        ]    //TODO: get all images
     const currentImage = imageList[1]
 
     return {
@@ -33,16 +33,33 @@ const sendEdit : Action = async({ request, params, cookies }) => {
     let newID = formData.get("newID")?.toString()
 
     if(!newPfp || !newUsername) {
-        return fail(400, {msg: "Unkown Error"})
+        return fail(400, { msg: "Unkown Error" })
     }
 
-    let usernameCheck
-    //TODO: check the usernames in the db
-    if(usernameCheck && usernameCheck === newUsername) {
-        return fail(400, { msg: "This Username has already been taken" })
+    if(newID && newID.indexOf('#') <= 0) {
+        return fail(400, { msg: "Invalid RiotID" })
     }
 
+    //TODO: update values inside the databse
 
+    if(false) { //TODO: unsuccessful update
+        return fail(400, { msg: "Connection Error" })
+    }
+
+    cookies.delete("ledb_session", { path: "/" })
+    cookies.set(
+		'ledb_session',
+		newUsername,
+		{
+			path: "/",
+			maxAge: 60 * 60 //1 hour
+		}
+	)
+
+    return {
+        success: true,
+        msg: "Your Profile has been edited successfully."
+    }
 }
 
 export const actions : Actions = { sendEdit }

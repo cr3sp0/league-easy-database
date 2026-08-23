@@ -46,6 +46,16 @@
                         <div>
                             <button class="option-content-btn" onclick={() => {isMenuOpen = false; isReportOpen = true}}>Report</button>
                         </div>
+                        {#if data.user.userProfile === data.profile}
+                            <div>
+                                <form
+                                method="get"
+                                action="/account/{data.profile}/settings"
+                                >
+                                    <button type="submit" class="option-content-btn">Edit</button>
+                                </form>
+                            </div>
+                        {/if}
                         {#if data.user.userRole === "Admin"}
                             <div>
                                 <form

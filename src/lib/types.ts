@@ -7,7 +7,8 @@ export interface IUser {
 }
 
 export interface ISession {
-  guid: string
+  guid: string,
+  role: "Admin" | "User",
 }
 
 // Types for Rune selection, #TODO: create a db import for this.
@@ -52,6 +53,8 @@ export interface Champion {
 }
 export interface Item {
   name: string
+  description: string
+  image: string
   cost: number
 }
 export interface Build {
@@ -60,7 +63,8 @@ export interface Build {
   champion: Champion
   runes: RuneConfiguration
   items: Item[]
-  winrate?: number
+  wins: number
+  losses: number
 }
 
 export interface Report {

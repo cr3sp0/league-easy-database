@@ -3,8 +3,30 @@
   import BuildcardHolder from "$lib/components/buildcardHolder.svelte";
   import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
+    import type { Item, Rune, RuneConfiguration, Build, Champion } from "$lib/types.js";
 
-  let { data } = $props();
+  let { data } = $props()
+
+  	let primary: Rune[] = [
+		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: "keystone", image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
+		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 1, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
+		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 2, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
+		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 3, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"}
+	]
+	let secondary: Rune[] = [
+		{path: {id: "precision", name:"Domination", color:"green"}, name: "ppp", level: 1, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
+		{path: {id: "precision", name:"Domination", color:"green"}, name: "ppp", level: 3, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"}
+	]
+	let shards: Rune[] = [
+		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 1, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
+		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 2, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
+		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 3, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"}
+	]
+
+	let runes: RuneConfiguration = {primary: primary, secondary: secondary, shards: shards}
+	let items: Item[] = [{name: "asd", description: "lorem ipsum", image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gragas/Gragas_p.jpg", cost: 3000}]
+	let champ: Champion = {name: "Akali", title:"someone"}
+	let build1: Build = {name: "FantoBuild", author: "Faker", champion: champ, runes: runes, items: items, kills: 25, deaths: 10, assists: 50, wins: 65, losses: 10}
 </script>
 
 <div class="container">
@@ -53,7 +75,7 @@
           placeholder="Search for a Build"
         />
       </div>
-      <BuildcardHolder />
+      <BuildcardHolder comunityBuilds={[build1]}/>
     </div>
   </div>
 </div>

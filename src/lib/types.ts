@@ -32,6 +32,7 @@ export interface PathConfig {
 export interface Rune {
   path: PathConfig
   name: string
+  image: string
   level: RuneLevel
 }
 export interface RuneConfiguration {
@@ -63,6 +64,9 @@ export interface Build {
   champion: Champion
   runes: RuneConfiguration
   items: Item[]
+  kills: number
+  deaths: number
+  assists: number
   wins: number
   losses: number
 }

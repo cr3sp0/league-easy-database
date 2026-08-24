@@ -170,14 +170,15 @@ export type Campione_RegioneOrderByWithRelationInput = {
 }
 
 export type Campione_RegioneWhereUniqueInput = Prisma.AtLeast<{
-  IdCampione?: string
+  IdCampione_NomeRegione?: Prisma.Campione_RegioneIdCampioneNomeRegioneCompoundUniqueInput
   AND?: Prisma.Campione_RegioneWhereInput | Prisma.Campione_RegioneWhereInput[]
   OR?: Prisma.Campione_RegioneWhereInput[]
   NOT?: Prisma.Campione_RegioneWhereInput | Prisma.Campione_RegioneWhereInput[]
+  IdCampione?: Prisma.StringFilter<"Campione_Regione"> | string
   NomeRegione?: Prisma.StringFilter<"Campione_Regione"> | string
   champ?: Prisma.XOR<Prisma.CampioneScalarRelationFilter, Prisma.CampioneWhereInput>
   Regi?: Prisma.XOR<Prisma.RegioneScalarRelationFilter, Prisma.RegioneWhereInput>
-}, "IdCampione">
+}, "IdCampione_NomeRegione">
 
 export type Campione_RegioneOrderByWithAggregationInput = {
   IdCampione?: Prisma.SortOrder
@@ -237,6 +238,11 @@ export type Campione_RegioneListRelationFilter = {
 
 export type Campione_RegioneOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type Campione_RegioneIdCampioneNomeRegioneCompoundUniqueInput = {
+  IdCampione: string
+  NomeRegione: string
 }
 
 export type Campione_RegioneCountOrderByAggregateInput = {

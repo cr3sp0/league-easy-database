@@ -170,14 +170,15 @@ export type Campione_PosizioneOrderByWithRelationInput = {
 }
 
 export type Campione_PosizioneWhereUniqueInput = Prisma.AtLeast<{
-  IdCampione?: string
+  IdCampione_NomePosizione?: Prisma.Campione_PosizioneIdCampioneNomePosizioneCompoundUniqueInput
   AND?: Prisma.Campione_PosizioneWhereInput | Prisma.Campione_PosizioneWhereInput[]
   OR?: Prisma.Campione_PosizioneWhereInput[]
   NOT?: Prisma.Campione_PosizioneWhereInput | Prisma.Campione_PosizioneWhereInput[]
+  IdCampione?: Prisma.StringFilter<"Campione_Posizione"> | string
   NomePosizione?: Prisma.StringFilter<"Campione_Posizione"> | string
   champ?: Prisma.XOR<Prisma.CampioneScalarRelationFilter, Prisma.CampioneWhereInput>
   Pos?: Prisma.XOR<Prisma.PosizioneScalarRelationFilter, Prisma.PosizioneWhereInput>
-}, "IdCampione">
+}, "IdCampione_NomePosizione">
 
 export type Campione_PosizioneOrderByWithAggregationInput = {
   IdCampione?: Prisma.SortOrder
@@ -237,6 +238,11 @@ export type Campione_PosizioneListRelationFilter = {
 
 export type Campione_PosizioneOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type Campione_PosizioneIdCampioneNomePosizioneCompoundUniqueInput = {
+  IdCampione: string
+  NomePosizione: string
 }
 
 export type Campione_PosizioneCountOrderByAggregateInput = {

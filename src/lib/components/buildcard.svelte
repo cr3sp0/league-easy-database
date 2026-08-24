@@ -1,27 +1,34 @@
 <script lang="ts">
-  import type { Champion, Rune, Item, RuneConfiguration } from "$lib/types";
-    import { run } from "svelte/legacy";
+  import type { Champion, Item, RuneConfiguration } from "$lib/types";
   import { slide } from "svelte/transition";
+  import Itemsgrid from "./itemsgrid.svelte";
 
-  let { name, author, champion, runes, items, winrate }
-  : { name: string, 
+  let { name, author, champion, runes, items, wins, losses, kills, deaths, assists }
+  : {
+    name: string, 
     author: string, 
     champion: Champion, 
     runes: RuneConfiguration, 
-    items: Item[], 
-    winrate?: number 
+    items: Item[],
+    wins: number,
+    losses: number,
+    kills: number,
+    deaths: number,
+    assists: number
   } = $props();
   // TODO: More parameters are required for this component, add them once the dbms is ready.
 
   let isOpen = $state(false);
   let winPerc: string | undefined = $state()
   // svelte-ignore state_referenced_locally
-  if (winrate) {
-    winPerc = winrate * 100 + "%"
+  if (wins && losses) {
+    winPerc = (wins / (wins + losses) * 100).toFixed(0) + "%"
   }
 
   function toggleCard() {
     isOpen = !isOpen;
+    console.error("!!!!!!!!")
+    console.log(wins + " " + losses + " " + kills)
   }
 </script>
 
@@ -60,13 +67,15 @@
   {#if isOpen}
     <div transition:slide={{ duration: 300 }} class="buildcard-body">
       <div class="buildcard-model"></div>
+
+      <div class="buildcard-section-title">Runes</div>
       <div class="buildcard-runes">
         <div class="buildcard-body-column">
           <img src="" alt={ runes.primary.find((rune) => rune.level === "keystone")?.name } />
           <div class="buildcard-body-row">
             {#each runes.primary as rune}
               {#if rune.level !== "keystone"}
-                <img src="" alt={ rune.name }/>
+                <img src={rune.image} alt={ rune.name }/>
               {/if}
             {/each}
           </div>
@@ -75,22 +84,45 @@
           <img src="" alt={ runes.secondary.find((rune) => rune.path)?.path.name } />
           <div class="buildcard-body-row">
             {#each runes.secondary as rune}
-              <img src="" alt={ rune.name }/>
+              <img src={rune.image} alt={ rune.name }/>
             {/each}
           </div>
           <div class="buildcard-body-row">
             {#each runes.shards as rune}
-                <img src="" alt={ rune.name }/>
+                <img src={rune.image} alt={ rune.name }/>
             {/each}
           </div>
         </div>
       </div>
 
       <div class="buildcard-section-title">Items</div>
-      <div class="buildcard-items"></div>
+      <div class="buildcard-items">
+        <!--
+          <Itemsgrid itemList={items} />
+        -->
+      </div>
 
       <div class="buildcard-section-title">Stats</div>
-      <div class="buildcard-stats"></div>
+      <div class="buildcard-stats">
+        <div>
+          <div>K / D / A</div>
+          <div class="total">{kills} / {deaths} / {assists}</div>
+        </div>
+      </div>
+      <div class="buildcard-stats">
+        <div>
+          <div>Victories</div>
+          <div class="win">{wins}</div>
+        </div>
+        <div>
+          <div>Defeates</div>
+          <div class="loss">{losses}</div>
+        </div>
+        <div>
+          <div>Total</div>
+          <div class="total">{wins + losses}</div>
+        </div>
+      </div>
     </div>
   {/if}
 </div>
@@ -200,13 +232,49 @@
     flex-direction: row;
     justify-content: center;
     gap: 100px;
+
   }
   .buildcard-runes img {
+    height: 50px;
+    width: 50px;
 
+    overflow-x: visible;
   }
 
   .buildcard-items {
     display: flex;
     flex-direction: column;
+    width: 90%;
   }
+
+  .buildcard-stats {
+    display: flex;
+    flex-direction: row;
+
+    cursor: default;
+
+    gap: clamp(8rem, 2vw, 10rem);
+  }
+  .buildcard-stats div {
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--font-mono);
+    font-size: var(--text-md);
+    align-items: center;
+  }
+  .buildcard-stats .win {
+    color: green;
+
+    font-size: var(--text-lm);
+  }
+  .buildcard-stats .loss {
+    color: red;
+    font-size: var(--text-lm);
+  }
+  .buildcard-stats .total {
+    color: gray;
+    font-size: var(--text-lm);
+  }
+
 </style>

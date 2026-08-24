@@ -138,6 +138,9 @@
         cursor: pointer;
         outline: none;
         border-color: #554949;
+
+        aspect-ratio: 1;
+        overflow: hidden;
     }
     .pfp img {
         max-width: 200px;

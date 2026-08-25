@@ -102,6 +102,11 @@ export type Configurazione = Prisma.ConfigurazioneModel
  */
 export type Oggetto = Prisma.OggettoModel
 /**
+ * Model Inventario
+ * 
+ */
+export type Inventario = Prisma.InventarioModel
+/**
  * Model Account
  * 
  */
@@ -121,3 +126,48 @@ export type Kit = Prisma.KitModel
  * 
  */
 export type Abilita = Prisma.AbilitaModel
+/**
+ * Model Kit_Abilita
+ * 
+ */
+export type Kit_Abilita = Prisma.Kit_AbilitaModel
+/**
+ * Model Pagina_Runa
+ * 
+ */
+export type Pagina_Runa = Prisma.Pagina_RunaModel
+/**
+ * Model Sezione_Runa
+ * 
+ */
+export type Sezione_Runa = Prisma.Sezione_RunaModel
+/**
+ * Model Runa
+ * 
+ */
+export type Runa = Prisma.RunaModel
+/**
+ * Model Tipologia_runa
+ * 
+ */
+export type Tipologia_runa = Prisma.Tipologia_runaModel
+/**
+ * Model Partita
+ * 
+ */
+export type Partita = Prisma.PartitaModel
+/**
+ * Model Modifica
+ * 
+ */
+export type Modifica = Prisma.ModificaModel
+/**
+ * Model Storico
+ * 
+ */
+export type Storico = Prisma.StoricoModel
+/**
+ * Model Statistica
+ * 
+ */
+export type Statistica = Prisma.StatisticaModel

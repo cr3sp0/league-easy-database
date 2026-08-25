@@ -17,7 +17,11 @@
           champion={build.champion}
           runes={build.runes}
           items={build.items}
-          winrate={build.winrate}
+          wins={build.wins}
+          losses={build.losses}
+          kills={build.kills}
+          deaths={build.deaths}
+          assists={build.assists}
         />
         {/each}
     </div>
@@ -32,7 +36,11 @@
           champion={build.champion}
           runes={build.runes}
           items={build.items}
-          winrate={build.winrate}
+          wins={build.wins}
+          losses={build.losses}
+          kills={build.kills}
+          deaths={build.deaths}
+          assists={build.assists}
         />
         {/each}
     </div>

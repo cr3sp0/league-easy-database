@@ -47,6 +47,9 @@
         max-width: 250px;
         max-height: 250px;
 
+        aspect-ratio: 1;
+        overflow: hidden;
+
         background: none;
         border: 2px solid transparent;
         padding: 4px;

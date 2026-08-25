@@ -18,7 +18,6 @@
       result.data?.user
     ) {
 
-      popup.text = ""
       popup.color = 'green'
       popup.text = "Access Successful"
       goto("/account/" + result.data?.user)
@@ -29,7 +28,6 @@
 
     } else if (result.type === 'failure') {
 
-      popup.text = "" // reset popup text
       popup.color = 'red'
       popup.text = result.data?.msg
 

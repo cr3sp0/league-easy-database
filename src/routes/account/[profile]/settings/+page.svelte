@@ -1,5 +1,6 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
+    import { goto } from '$app/navigation';
     import ImagePicker from '$lib/components/imagePicker.svelte';
     import Navbar from '$lib/components/navbar.svelte';
     import { popup } from '$lib/components/store/popup.svelte.js';
@@ -34,6 +35,7 @@
             } else if (result.type === "success") {
                 popup.color = "green"
                 popup.text = "" + result.data?.msg
+                goto("/account/" + username)
             }
         }}
         >
@@ -59,13 +61,13 @@
             <div class="form-info">
                 <div>Set a new Username</div>
                 <div class="filler"></div>
-                <textarea name="newUserbane" class="description" bind:value={username}></textarea>
+                <textarea name="newUsername" class="text" bind:value={username}></textarea>
             </div>
 
             <div class="form-info">
                 <div>Insert a new RiotID</div>
                 <div class="filler"></div>
-                <textarea name="newID" class="description" placeholder="RiotID"></textarea>
+                <textarea name="newID" class="text" placeholder="RiotID" bind:value={riotID}></textarea>
             </div>
 
             <button type="submit" class="btn">Edit</button>
@@ -88,10 +90,6 @@
         padding: 20px clamp(20px, 6vw, 80px);
 
         border: 1px solid var(--white-20);
-    }
-
-    .header {
-        max-width: 20vw;
     }
 
     .form {
@@ -118,17 +116,7 @@
         font-size: var(--text-md);
     }
 
-    .target {
-        font-weight: 800;
-        text-decoration: underline;
-    }
-
-    .drop-menu {
-        padding: 5px clamp(10px, 2vw, 50px);
-        cursor: pointer;
-    }
-
-    .description {
+    .text {
         min-height: min-content;
 
         background-color: var(--black-20);
@@ -150,6 +138,9 @@
         cursor: pointer;
         outline: none;
         border-color: #554949;
+
+        aspect-ratio: 1;
+        overflow: hidden;
     }
     .pfp img {
         max-width: 200px;
@@ -172,10 +163,5 @@
         background-color: #2a2323;
         border-color: #4a3f3f;
         text-decoration: underline;
-    }
-
-    .footer {
-        font-family: var(--font-mono);
-        font-size: var(--text-sm);
     }
 </style>

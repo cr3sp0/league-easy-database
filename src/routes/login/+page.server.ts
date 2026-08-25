@@ -1,3 +1,4 @@
+import prisma from "$lib/server/prisma";
 import type { IUser, ISession } from "$lib/types";
 import { fail, type Action, type Actions } from "@sveltejs/kit";
 
@@ -17,19 +18,32 @@ const login : Action = async ({request, cookies}) => {
 	}
 
 	//TODO: Check database info, use a "users" and a "session" table.
+	let g = prisma.account.findFirst({ // SELECT * FROM Account WHERE Nome = username AND Password = password
+		where: { 
+			Nome: username,
+			Password: password
+		}
+	})
 	const sql = "";
 	const resp = null; //await PostgreSQL().query(sql, [username, password]);
-
-	if (false) { // resp.rowCount === 0
+	
+	if (!g) { // resp.rowCount === 0
 		return fail(400, { msg: "User or Password incorrect." })
 	}
 
-	const user : IUser | null = null; // {...resp.row[0]}
+	let id = Number(g.then((elem) => {return elem?.AccountId})) // Prendi il valore dell'id
+	let name = String(g.then((elem) => {return elem?.Nome})) // Prendi il valore del nome
+
+	const user : IUser | null = { 
+		userID: id,
+		username: name,
+		role: username === "Fanto" ? "Admin" : "User"
+	};
 
 	const sessionSQL = ""; // TODO: query to insert user and expiration date
 	const sessionResp = null; //await PostgreSQL().query(sql, [user.id]);
 
-	let session : ISession = { guid: username } //= {...sessionResp.row[0]}
+	let session : ISession = { guid: username, role: "User" } //= {...sessionResp.row[0]}
 	cookies.set(
 		'ledb_session',
 		session.guid,
@@ -73,13 +87,14 @@ const signup : Action = async ({request, cookies}) => {
 
 	const user : IUser = {
 		userID: 0, //TODO: generate next id from the db
-		username: username
+		username: username,
+		role: username === "Fanto" ? "Admin" : "User" //TODO: check status inside the db
 	};
 
 	const sessionSQL = ""; // TODO: query to insert user and expiration date
 	const sessionResp = null; //await PostgreSQL().query(sql, [user.id]);
 
-	let session : ISession = {guid: username}; //= {...sessionResp.row[0]}
+	let session : ISession = { guid: username, role: "User" }; //= {...sessionResp.row[0]} TODO: get the user from the query response
 	cookies.set(
 		'ledb_session',
 		session.guid,

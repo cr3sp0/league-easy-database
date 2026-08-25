@@ -146,7 +146,7 @@ model Account{
   Descrizione String 
   Immagine String //?
   RiotID String @db.VarChar(50) @unique
-  IsAdmin String
+  IsAdmin Boolean
   sessione Sessione[]
   Config Configurazione[]
   Partita Partita[] 
@@ -228,6 +228,7 @@ model Runa {
   Descrizione String
   CamminoId Int
   Grado Int
+  Immagine String
   Deprecata Boolean @default(false)
   Camm Tipologia_runa @relation(fields: [CamminoId], references: [Id])
   keystone Sezione_Runa[] @relation("Keystone")

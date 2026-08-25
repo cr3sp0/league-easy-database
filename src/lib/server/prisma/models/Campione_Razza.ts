@@ -170,14 +170,15 @@ export type Campione_RazzaOrderByWithRelationInput = {
 }
 
 export type Campione_RazzaWhereUniqueInput = Prisma.AtLeast<{
-  IdCampione?: string
+  IdCampione_NomeRazza?: Prisma.Campione_RazzaIdCampioneNomeRazzaCompoundUniqueInput
   AND?: Prisma.Campione_RazzaWhereInput | Prisma.Campione_RazzaWhereInput[]
   OR?: Prisma.Campione_RazzaWhereInput[]
   NOT?: Prisma.Campione_RazzaWhereInput | Prisma.Campione_RazzaWhereInput[]
+  IdCampione?: Prisma.StringFilter<"Campione_Razza"> | string
   NomeRazza?: Prisma.StringFilter<"Campione_Razza"> | string
   champ?: Prisma.XOR<Prisma.CampioneScalarRelationFilter, Prisma.CampioneWhereInput>
   razza?: Prisma.XOR<Prisma.RazzaScalarRelationFilter, Prisma.RazzaWhereInput>
-}, "IdCampione">
+}, "IdCampione_NomeRazza">
 
 export type Campione_RazzaOrderByWithAggregationInput = {
   IdCampione?: Prisma.SortOrder
@@ -237,6 +238,11 @@ export type Campione_RazzaListRelationFilter = {
 
 export type Campione_RazzaOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type Campione_RazzaIdCampioneNomeRazzaCompoundUniqueInput = {
+  IdCampione: string
+  NomeRazza: string
 }
 
 export type Campione_RazzaCountOrderByAggregateInput = {

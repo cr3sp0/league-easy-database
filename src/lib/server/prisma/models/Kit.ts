@@ -36,29 +36,17 @@ export type KitSumAggregateOutputType = {
 
 export type KitMinAggregateOutputType = {
   IdKit: number | null
-  Passiva: string | null
-  Abilita1: string | null
-  Abilita2: string | null
-  Abilita3: string | null
-  Abilita4: string | null
+  IdCampione: string | null
 }
 
 export type KitMaxAggregateOutputType = {
   IdKit: number | null
-  Passiva: string | null
-  Abilita1: string | null
-  Abilita2: string | null
-  Abilita3: string | null
-  Abilita4: string | null
+  IdCampione: string | null
 }
 
 export type KitCountAggregateOutputType = {
   IdKit: number
-  Passiva: number
-  Abilita1: number
-  Abilita2: number
-  Abilita3: number
-  Abilita4: number
+  IdCampione: number
   _all: number
 }
 
@@ -73,29 +61,17 @@ export type KitSumAggregateInputType = {
 
 export type KitMinAggregateInputType = {
   IdKit?: true
-  Passiva?: true
-  Abilita1?: true
-  Abilita2?: true
-  Abilita3?: true
-  Abilita4?: true
+  IdCampione?: true
 }
 
 export type KitMaxAggregateInputType = {
   IdKit?: true
-  Passiva?: true
-  Abilita1?: true
-  Abilita2?: true
-  Abilita3?: true
-  Abilita4?: true
+  IdCampione?: true
 }
 
 export type KitCountAggregateInputType = {
   IdKit?: true
-  Passiva?: true
-  Abilita1?: true
-  Abilita2?: true
-  Abilita3?: true
-  Abilita4?: true
+  IdCampione?: true
   _all?: true
 }
 
@@ -187,11 +163,7 @@ export type KitGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type KitGroupByOutputType = {
   IdKit: number
-  Passiva: string
-  Abilita1: string
-  Abilita2: string
-  Abilita3: string
-  Abilita4: string
+  IdCampione: string
   _count: KitCountAggregateOutputType | null
   _avg: KitAvgAggregateOutputType | null
   _sum: KitSumAggregateOutputType | null
@@ -219,30 +191,16 @@ export type KitWhereInput = {
   OR?: Prisma.KitWhereInput[]
   NOT?: Prisma.KitWhereInput | Prisma.KitWhereInput[]
   IdKit?: Prisma.IntFilter<"Kit"> | number
-  Passiva?: Prisma.StringFilter<"Kit"> | string
-  Abilita1?: Prisma.StringFilter<"Kit"> | string
-  Abilita2?: Prisma.StringFilter<"Kit"> | string
-  Abilita3?: Prisma.StringFilter<"Kit"> | string
-  Abilita4?: Prisma.StringFilter<"Kit"> | string
-  Pass?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
-  Spell1?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
-  Spell2?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
-  Spell3?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
-  Spell4?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
+  IdCampione?: Prisma.StringFilter<"Kit"> | string
+  champ?: Prisma.XOR<Prisma.CampioneScalarRelationFilter, Prisma.CampioneWhereInput>
+  abilita?: Prisma.Kit_AbilitaListRelationFilter
 }
 
 export type KitOrderByWithRelationInput = {
   IdKit?: Prisma.SortOrder
-  Passiva?: Prisma.SortOrder
-  Abilita1?: Prisma.SortOrder
-  Abilita2?: Prisma.SortOrder
-  Abilita3?: Prisma.SortOrder
-  Abilita4?: Prisma.SortOrder
-  Pass?: Prisma.AbilitaOrderByWithRelationInput
-  Spell1?: Prisma.AbilitaOrderByWithRelationInput
-  Spell2?: Prisma.AbilitaOrderByWithRelationInput
-  Spell3?: Prisma.AbilitaOrderByWithRelationInput
-  Spell4?: Prisma.AbilitaOrderByWithRelationInput
+  IdCampione?: Prisma.SortOrder
+  champ?: Prisma.CampioneOrderByWithRelationInput
+  abilita?: Prisma.Kit_AbilitaOrderByRelationAggregateInput
 }
 
 export type KitWhereUniqueInput = Prisma.AtLeast<{
@@ -250,25 +208,14 @@ export type KitWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.KitWhereInput | Prisma.KitWhereInput[]
   OR?: Prisma.KitWhereInput[]
   NOT?: Prisma.KitWhereInput | Prisma.KitWhereInput[]
-  Passiva?: Prisma.StringFilter<"Kit"> | string
-  Abilita1?: Prisma.StringFilter<"Kit"> | string
-  Abilita2?: Prisma.StringFilter<"Kit"> | string
-  Abilita3?: Prisma.StringFilter<"Kit"> | string
-  Abilita4?: Prisma.StringFilter<"Kit"> | string
-  Pass?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
-  Spell1?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
-  Spell2?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
-  Spell3?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
-  Spell4?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
+  IdCampione?: Prisma.StringFilter<"Kit"> | string
+  champ?: Prisma.XOR<Prisma.CampioneScalarRelationFilter, Prisma.CampioneWhereInput>
+  abilita?: Prisma.Kit_AbilitaListRelationFilter
 }, "IdKit">
 
 export type KitOrderByWithAggregationInput = {
   IdKit?: Prisma.SortOrder
-  Passiva?: Prisma.SortOrder
-  Abilita1?: Prisma.SortOrder
-  Abilita2?: Prisma.SortOrder
-  Abilita3?: Prisma.SortOrder
-  Abilita4?: Prisma.SortOrder
+  IdCampione?: Prisma.SortOrder
   _count?: Prisma.KitCountOrderByAggregateInput
   _avg?: Prisma.KitAvgOrderByAggregateInput
   _max?: Prisma.KitMaxOrderByAggregateInput
@@ -281,104 +228,43 @@ export type KitScalarWhereWithAggregatesInput = {
   OR?: Prisma.KitScalarWhereWithAggregatesInput[]
   NOT?: Prisma.KitScalarWhereWithAggregatesInput | Prisma.KitScalarWhereWithAggregatesInput[]
   IdKit?: Prisma.IntWithAggregatesFilter<"Kit"> | number
-  Passiva?: Prisma.StringWithAggregatesFilter<"Kit"> | string
-  Abilita1?: Prisma.StringWithAggregatesFilter<"Kit"> | string
-  Abilita2?: Prisma.StringWithAggregatesFilter<"Kit"> | string
-  Abilita3?: Prisma.StringWithAggregatesFilter<"Kit"> | string
-  Abilita4?: Prisma.StringWithAggregatesFilter<"Kit"> | string
+  IdCampione?: Prisma.StringWithAggregatesFilter<"Kit"> | string
 }
 
 export type KitCreateInput = {
-  IdKit: number
-  Pass: Prisma.AbilitaCreateNestedOneWithoutPassivaInput
-  Spell1: Prisma.AbilitaCreateNestedOneWithoutAbilita1Input
-  Spell2: Prisma.AbilitaCreateNestedOneWithoutAbilita2Input
-  Spell3: Prisma.AbilitaCreateNestedOneWithoutAbilita3Input
-  Spell4: Prisma.AbilitaCreateNestedOneWithoutAbilita4Input
+  champ: Prisma.CampioneCreateNestedOneWithoutKitInput
+  abilita?: Prisma.Kit_AbilitaCreateNestedManyWithoutKitInput
 }
 
 export type KitUncheckedCreateInput = {
-  IdKit: number
-  Passiva: string
-  Abilita1: string
-  Abilita2: string
-  Abilita3: string
-  Abilita4: string
+  IdKit?: number
+  IdCampione: string
+  abilita?: Prisma.Kit_AbilitaUncheckedCreateNestedManyWithoutKitInput
 }
 
 export type KitUpdateInput = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Pass?: Prisma.AbilitaUpdateOneRequiredWithoutPassivaNestedInput
-  Spell1?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita1NestedInput
-  Spell2?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita2NestedInput
-  Spell3?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita3NestedInput
-  Spell4?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita4NestedInput
+  champ?: Prisma.CampioneUpdateOneRequiredWithoutKitNestedInput
+  abilita?: Prisma.Kit_AbilitaUpdateManyWithoutKitNestedInput
 }
 
 export type KitUncheckedUpdateInput = {
   IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Passiva?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita1?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita2?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita3?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita4?: Prisma.StringFieldUpdateOperationsInput | string
+  IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
+  abilita?: Prisma.Kit_AbilitaUncheckedUpdateManyWithoutKitNestedInput
 }
 
 export type KitCreateManyInput = {
-  IdKit: number
-  Passiva: string
-  Abilita1: string
-  Abilita2: string
-  Abilita3: string
-  Abilita4: string
+  IdKit?: number
+  IdCampione: string
 }
 
 export type KitUpdateManyMutationInput = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
+
 }
 
 export type KitUncheckedUpdateManyInput = {
   IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Passiva?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita1?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita2?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita3?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita4?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type KitCountOrderByAggregateInput = {
-  IdKit?: Prisma.SortOrder
-  Passiva?: Prisma.SortOrder
-  Abilita1?: Prisma.SortOrder
-  Abilita2?: Prisma.SortOrder
-  Abilita3?: Prisma.SortOrder
-  Abilita4?: Prisma.SortOrder
-}
-
-export type KitAvgOrderByAggregateInput = {
-  IdKit?: Prisma.SortOrder
-}
-
-export type KitMaxOrderByAggregateInput = {
-  IdKit?: Prisma.SortOrder
-  Passiva?: Prisma.SortOrder
-  Abilita1?: Prisma.SortOrder
-  Abilita2?: Prisma.SortOrder
-  Abilita3?: Prisma.SortOrder
-  Abilita4?: Prisma.SortOrder
-}
-
-export type KitMinOrderByAggregateInput = {
-  IdKit?: Prisma.SortOrder
-  Passiva?: Prisma.SortOrder
-  Abilita1?: Prisma.SortOrder
-  Abilita2?: Prisma.SortOrder
-  Abilita3?: Prisma.SortOrder
-  Abilita4?: Prisma.SortOrder
-}
-
-export type KitSumOrderByAggregateInput = {
-  IdKit?: Prisma.SortOrder
+  IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type KitListRelationFilter = {
@@ -391,360 +277,123 @@ export type KitOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type KitCreateNestedManyWithoutPassInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutPassInput, Prisma.KitUncheckedCreateWithoutPassInput> | Prisma.KitCreateWithoutPassInput[] | Prisma.KitUncheckedCreateWithoutPassInput[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutPassInput | Prisma.KitCreateOrConnectWithoutPassInput[]
-  createMany?: Prisma.KitCreateManyPassInputEnvelope
+export type KitCountOrderByAggregateInput = {
+  IdKit?: Prisma.SortOrder
+  IdCampione?: Prisma.SortOrder
+}
+
+export type KitAvgOrderByAggregateInput = {
+  IdKit?: Prisma.SortOrder
+}
+
+export type KitMaxOrderByAggregateInput = {
+  IdKit?: Prisma.SortOrder
+  IdCampione?: Prisma.SortOrder
+}
+
+export type KitMinOrderByAggregateInput = {
+  IdKit?: Prisma.SortOrder
+  IdCampione?: Prisma.SortOrder
+}
+
+export type KitSumOrderByAggregateInput = {
+  IdKit?: Prisma.SortOrder
+}
+
+export type KitScalarRelationFilter = {
+  is?: Prisma.KitWhereInput
+  isNot?: Prisma.KitWhereInput
+}
+
+export type KitCreateNestedManyWithoutChampInput = {
+  create?: Prisma.XOR<Prisma.KitCreateWithoutChampInput, Prisma.KitUncheckedCreateWithoutChampInput> | Prisma.KitCreateWithoutChampInput[] | Prisma.KitUncheckedCreateWithoutChampInput[]
+  connectOrCreate?: Prisma.KitCreateOrConnectWithoutChampInput | Prisma.KitCreateOrConnectWithoutChampInput[]
+  createMany?: Prisma.KitCreateManyChampInputEnvelope
   connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
 }
 
-export type KitCreateNestedManyWithoutSpell1Input = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell1Input, Prisma.KitUncheckedCreateWithoutSpell1Input> | Prisma.KitCreateWithoutSpell1Input[] | Prisma.KitUncheckedCreateWithoutSpell1Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell1Input | Prisma.KitCreateOrConnectWithoutSpell1Input[]
-  createMany?: Prisma.KitCreateManySpell1InputEnvelope
+export type KitUncheckedCreateNestedManyWithoutChampInput = {
+  create?: Prisma.XOR<Prisma.KitCreateWithoutChampInput, Prisma.KitUncheckedCreateWithoutChampInput> | Prisma.KitCreateWithoutChampInput[] | Prisma.KitUncheckedCreateWithoutChampInput[]
+  connectOrCreate?: Prisma.KitCreateOrConnectWithoutChampInput | Prisma.KitCreateOrConnectWithoutChampInput[]
+  createMany?: Prisma.KitCreateManyChampInputEnvelope
   connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
 }
 
-export type KitCreateNestedManyWithoutSpell2Input = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell2Input, Prisma.KitUncheckedCreateWithoutSpell2Input> | Prisma.KitCreateWithoutSpell2Input[] | Prisma.KitUncheckedCreateWithoutSpell2Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell2Input | Prisma.KitCreateOrConnectWithoutSpell2Input[]
-  createMany?: Prisma.KitCreateManySpell2InputEnvelope
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-}
-
-export type KitCreateNestedManyWithoutSpell3Input = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell3Input, Prisma.KitUncheckedCreateWithoutSpell3Input> | Prisma.KitCreateWithoutSpell3Input[] | Prisma.KitUncheckedCreateWithoutSpell3Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell3Input | Prisma.KitCreateOrConnectWithoutSpell3Input[]
-  createMany?: Prisma.KitCreateManySpell3InputEnvelope
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-}
-
-export type KitCreateNestedManyWithoutSpell4Input = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell4Input, Prisma.KitUncheckedCreateWithoutSpell4Input> | Prisma.KitCreateWithoutSpell4Input[] | Prisma.KitUncheckedCreateWithoutSpell4Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell4Input | Prisma.KitCreateOrConnectWithoutSpell4Input[]
-  createMany?: Prisma.KitCreateManySpell4InputEnvelope
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-}
-
-export type KitUncheckedCreateNestedManyWithoutPassInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutPassInput, Prisma.KitUncheckedCreateWithoutPassInput> | Prisma.KitCreateWithoutPassInput[] | Prisma.KitUncheckedCreateWithoutPassInput[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutPassInput | Prisma.KitCreateOrConnectWithoutPassInput[]
-  createMany?: Prisma.KitCreateManyPassInputEnvelope
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-}
-
-export type KitUncheckedCreateNestedManyWithoutSpell1Input = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell1Input, Prisma.KitUncheckedCreateWithoutSpell1Input> | Prisma.KitCreateWithoutSpell1Input[] | Prisma.KitUncheckedCreateWithoutSpell1Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell1Input | Prisma.KitCreateOrConnectWithoutSpell1Input[]
-  createMany?: Prisma.KitCreateManySpell1InputEnvelope
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-}
-
-export type KitUncheckedCreateNestedManyWithoutSpell2Input = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell2Input, Prisma.KitUncheckedCreateWithoutSpell2Input> | Prisma.KitCreateWithoutSpell2Input[] | Prisma.KitUncheckedCreateWithoutSpell2Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell2Input | Prisma.KitCreateOrConnectWithoutSpell2Input[]
-  createMany?: Prisma.KitCreateManySpell2InputEnvelope
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-}
-
-export type KitUncheckedCreateNestedManyWithoutSpell3Input = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell3Input, Prisma.KitUncheckedCreateWithoutSpell3Input> | Prisma.KitCreateWithoutSpell3Input[] | Prisma.KitUncheckedCreateWithoutSpell3Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell3Input | Prisma.KitCreateOrConnectWithoutSpell3Input[]
-  createMany?: Prisma.KitCreateManySpell3InputEnvelope
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-}
-
-export type KitUncheckedCreateNestedManyWithoutSpell4Input = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell4Input, Prisma.KitUncheckedCreateWithoutSpell4Input> | Prisma.KitCreateWithoutSpell4Input[] | Prisma.KitUncheckedCreateWithoutSpell4Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell4Input | Prisma.KitCreateOrConnectWithoutSpell4Input[]
-  createMany?: Prisma.KitCreateManySpell4InputEnvelope
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-}
-
-export type KitUpdateManyWithoutPassNestedInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutPassInput, Prisma.KitUncheckedCreateWithoutPassInput> | Prisma.KitCreateWithoutPassInput[] | Prisma.KitUncheckedCreateWithoutPassInput[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutPassInput | Prisma.KitCreateOrConnectWithoutPassInput[]
-  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutPassInput | Prisma.KitUpsertWithWhereUniqueWithoutPassInput[]
-  createMany?: Prisma.KitCreateManyPassInputEnvelope
+export type KitUpdateManyWithoutChampNestedInput = {
+  create?: Prisma.XOR<Prisma.KitCreateWithoutChampInput, Prisma.KitUncheckedCreateWithoutChampInput> | Prisma.KitCreateWithoutChampInput[] | Prisma.KitUncheckedCreateWithoutChampInput[]
+  connectOrCreate?: Prisma.KitCreateOrConnectWithoutChampInput | Prisma.KitCreateOrConnectWithoutChampInput[]
+  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutChampInput | Prisma.KitUpsertWithWhereUniqueWithoutChampInput[]
+  createMany?: Prisma.KitCreateManyChampInputEnvelope
   set?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
   disconnect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
   delete?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
   connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  update?: Prisma.KitUpdateWithWhereUniqueWithoutPassInput | Prisma.KitUpdateWithWhereUniqueWithoutPassInput[]
-  updateMany?: Prisma.KitUpdateManyWithWhereWithoutPassInput | Prisma.KitUpdateManyWithWhereWithoutPassInput[]
+  update?: Prisma.KitUpdateWithWhereUniqueWithoutChampInput | Prisma.KitUpdateWithWhereUniqueWithoutChampInput[]
+  updateMany?: Prisma.KitUpdateManyWithWhereWithoutChampInput | Prisma.KitUpdateManyWithWhereWithoutChampInput[]
   deleteMany?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
 }
 
-export type KitUpdateManyWithoutSpell1NestedInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell1Input, Prisma.KitUncheckedCreateWithoutSpell1Input> | Prisma.KitCreateWithoutSpell1Input[] | Prisma.KitUncheckedCreateWithoutSpell1Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell1Input | Prisma.KitCreateOrConnectWithoutSpell1Input[]
-  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutSpell1Input | Prisma.KitUpsertWithWhereUniqueWithoutSpell1Input[]
-  createMany?: Prisma.KitCreateManySpell1InputEnvelope
+export type KitUncheckedUpdateManyWithoutChampNestedInput = {
+  create?: Prisma.XOR<Prisma.KitCreateWithoutChampInput, Prisma.KitUncheckedCreateWithoutChampInput> | Prisma.KitCreateWithoutChampInput[] | Prisma.KitUncheckedCreateWithoutChampInput[]
+  connectOrCreate?: Prisma.KitCreateOrConnectWithoutChampInput | Prisma.KitCreateOrConnectWithoutChampInput[]
+  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutChampInput | Prisma.KitUpsertWithWhereUniqueWithoutChampInput[]
+  createMany?: Prisma.KitCreateManyChampInputEnvelope
   set?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
   disconnect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
   delete?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
   connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  update?: Prisma.KitUpdateWithWhereUniqueWithoutSpell1Input | Prisma.KitUpdateWithWhereUniqueWithoutSpell1Input[]
-  updateMany?: Prisma.KitUpdateManyWithWhereWithoutSpell1Input | Prisma.KitUpdateManyWithWhereWithoutSpell1Input[]
+  update?: Prisma.KitUpdateWithWhereUniqueWithoutChampInput | Prisma.KitUpdateWithWhereUniqueWithoutChampInput[]
+  updateMany?: Prisma.KitUpdateManyWithWhereWithoutChampInput | Prisma.KitUpdateManyWithWhereWithoutChampInput[]
   deleteMany?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
 }
 
-export type KitUpdateManyWithoutSpell2NestedInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell2Input, Prisma.KitUncheckedCreateWithoutSpell2Input> | Prisma.KitCreateWithoutSpell2Input[] | Prisma.KitUncheckedCreateWithoutSpell2Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell2Input | Prisma.KitCreateOrConnectWithoutSpell2Input[]
-  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutSpell2Input | Prisma.KitUpsertWithWhereUniqueWithoutSpell2Input[]
-  createMany?: Prisma.KitCreateManySpell2InputEnvelope
-  set?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  disconnect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  delete?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  update?: Prisma.KitUpdateWithWhereUniqueWithoutSpell2Input | Prisma.KitUpdateWithWhereUniqueWithoutSpell2Input[]
-  updateMany?: Prisma.KitUpdateManyWithWhereWithoutSpell2Input | Prisma.KitUpdateManyWithWhereWithoutSpell2Input[]
-  deleteMany?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
+export type KitCreateNestedOneWithoutAbilitaInput = {
+  create?: Prisma.XOR<Prisma.KitCreateWithoutAbilitaInput, Prisma.KitUncheckedCreateWithoutAbilitaInput>
+  connectOrCreate?: Prisma.KitCreateOrConnectWithoutAbilitaInput
+  connect?: Prisma.KitWhereUniqueInput
 }
 
-export type KitUpdateManyWithoutSpell3NestedInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell3Input, Prisma.KitUncheckedCreateWithoutSpell3Input> | Prisma.KitCreateWithoutSpell3Input[] | Prisma.KitUncheckedCreateWithoutSpell3Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell3Input | Prisma.KitCreateOrConnectWithoutSpell3Input[]
-  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutSpell3Input | Prisma.KitUpsertWithWhereUniqueWithoutSpell3Input[]
-  createMany?: Prisma.KitCreateManySpell3InputEnvelope
-  set?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  disconnect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  delete?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  update?: Prisma.KitUpdateWithWhereUniqueWithoutSpell3Input | Prisma.KitUpdateWithWhereUniqueWithoutSpell3Input[]
-  updateMany?: Prisma.KitUpdateManyWithWhereWithoutSpell3Input | Prisma.KitUpdateManyWithWhereWithoutSpell3Input[]
-  deleteMany?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
+export type KitUpdateOneRequiredWithoutAbilitaNestedInput = {
+  create?: Prisma.XOR<Prisma.KitCreateWithoutAbilitaInput, Prisma.KitUncheckedCreateWithoutAbilitaInput>
+  connectOrCreate?: Prisma.KitCreateOrConnectWithoutAbilitaInput
+  upsert?: Prisma.KitUpsertWithoutAbilitaInput
+  connect?: Prisma.KitWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KitUpdateToOneWithWhereWithoutAbilitaInput, Prisma.KitUpdateWithoutAbilitaInput>, Prisma.KitUncheckedUpdateWithoutAbilitaInput>
 }
 
-export type KitUpdateManyWithoutSpell4NestedInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell4Input, Prisma.KitUncheckedCreateWithoutSpell4Input> | Prisma.KitCreateWithoutSpell4Input[] | Prisma.KitUncheckedCreateWithoutSpell4Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell4Input | Prisma.KitCreateOrConnectWithoutSpell4Input[]
-  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutSpell4Input | Prisma.KitUpsertWithWhereUniqueWithoutSpell4Input[]
-  createMany?: Prisma.KitCreateManySpell4InputEnvelope
-  set?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  disconnect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  delete?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  update?: Prisma.KitUpdateWithWhereUniqueWithoutSpell4Input | Prisma.KitUpdateWithWhereUniqueWithoutSpell4Input[]
-  updateMany?: Prisma.KitUpdateManyWithWhereWithoutSpell4Input | Prisma.KitUpdateManyWithWhereWithoutSpell4Input[]
-  deleteMany?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
+export type KitCreateWithoutChampInput = {
+  abilita?: Prisma.Kit_AbilitaCreateNestedManyWithoutKitInput
 }
 
-export type KitUncheckedUpdateManyWithoutPassNestedInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutPassInput, Prisma.KitUncheckedCreateWithoutPassInput> | Prisma.KitCreateWithoutPassInput[] | Prisma.KitUncheckedCreateWithoutPassInput[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutPassInput | Prisma.KitCreateOrConnectWithoutPassInput[]
-  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutPassInput | Prisma.KitUpsertWithWhereUniqueWithoutPassInput[]
-  createMany?: Prisma.KitCreateManyPassInputEnvelope
-  set?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  disconnect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  delete?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  update?: Prisma.KitUpdateWithWhereUniqueWithoutPassInput | Prisma.KitUpdateWithWhereUniqueWithoutPassInput[]
-  updateMany?: Prisma.KitUpdateManyWithWhereWithoutPassInput | Prisma.KitUpdateManyWithWhereWithoutPassInput[]
-  deleteMany?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
+export type KitUncheckedCreateWithoutChampInput = {
+  IdKit?: number
+  abilita?: Prisma.Kit_AbilitaUncheckedCreateNestedManyWithoutKitInput
 }
 
-export type KitUncheckedUpdateManyWithoutSpell1NestedInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell1Input, Prisma.KitUncheckedCreateWithoutSpell1Input> | Prisma.KitCreateWithoutSpell1Input[] | Prisma.KitUncheckedCreateWithoutSpell1Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell1Input | Prisma.KitCreateOrConnectWithoutSpell1Input[]
-  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutSpell1Input | Prisma.KitUpsertWithWhereUniqueWithoutSpell1Input[]
-  createMany?: Prisma.KitCreateManySpell1InputEnvelope
-  set?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  disconnect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  delete?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  update?: Prisma.KitUpdateWithWhereUniqueWithoutSpell1Input | Prisma.KitUpdateWithWhereUniqueWithoutSpell1Input[]
-  updateMany?: Prisma.KitUpdateManyWithWhereWithoutSpell1Input | Prisma.KitUpdateManyWithWhereWithoutSpell1Input[]
-  deleteMany?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
-}
-
-export type KitUncheckedUpdateManyWithoutSpell2NestedInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell2Input, Prisma.KitUncheckedCreateWithoutSpell2Input> | Prisma.KitCreateWithoutSpell2Input[] | Prisma.KitUncheckedCreateWithoutSpell2Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell2Input | Prisma.KitCreateOrConnectWithoutSpell2Input[]
-  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutSpell2Input | Prisma.KitUpsertWithWhereUniqueWithoutSpell2Input[]
-  createMany?: Prisma.KitCreateManySpell2InputEnvelope
-  set?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  disconnect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  delete?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  update?: Prisma.KitUpdateWithWhereUniqueWithoutSpell2Input | Prisma.KitUpdateWithWhereUniqueWithoutSpell2Input[]
-  updateMany?: Prisma.KitUpdateManyWithWhereWithoutSpell2Input | Prisma.KitUpdateManyWithWhereWithoutSpell2Input[]
-  deleteMany?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
-}
-
-export type KitUncheckedUpdateManyWithoutSpell3NestedInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell3Input, Prisma.KitUncheckedCreateWithoutSpell3Input> | Prisma.KitCreateWithoutSpell3Input[] | Prisma.KitUncheckedCreateWithoutSpell3Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell3Input | Prisma.KitCreateOrConnectWithoutSpell3Input[]
-  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutSpell3Input | Prisma.KitUpsertWithWhereUniqueWithoutSpell3Input[]
-  createMany?: Prisma.KitCreateManySpell3InputEnvelope
-  set?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  disconnect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  delete?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  update?: Prisma.KitUpdateWithWhereUniqueWithoutSpell3Input | Prisma.KitUpdateWithWhereUniqueWithoutSpell3Input[]
-  updateMany?: Prisma.KitUpdateManyWithWhereWithoutSpell3Input | Prisma.KitUpdateManyWithWhereWithoutSpell3Input[]
-  deleteMany?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
-}
-
-export type KitUncheckedUpdateManyWithoutSpell4NestedInput = {
-  create?: Prisma.XOR<Prisma.KitCreateWithoutSpell4Input, Prisma.KitUncheckedCreateWithoutSpell4Input> | Prisma.KitCreateWithoutSpell4Input[] | Prisma.KitUncheckedCreateWithoutSpell4Input[]
-  connectOrCreate?: Prisma.KitCreateOrConnectWithoutSpell4Input | Prisma.KitCreateOrConnectWithoutSpell4Input[]
-  upsert?: Prisma.KitUpsertWithWhereUniqueWithoutSpell4Input | Prisma.KitUpsertWithWhereUniqueWithoutSpell4Input[]
-  createMany?: Prisma.KitCreateManySpell4InputEnvelope
-  set?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  disconnect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  delete?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  connect?: Prisma.KitWhereUniqueInput | Prisma.KitWhereUniqueInput[]
-  update?: Prisma.KitUpdateWithWhereUniqueWithoutSpell4Input | Prisma.KitUpdateWithWhereUniqueWithoutSpell4Input[]
-  updateMany?: Prisma.KitUpdateManyWithWhereWithoutSpell4Input | Prisma.KitUpdateManyWithWhereWithoutSpell4Input[]
-  deleteMany?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
-}
-
-export type KitCreateWithoutPassInput = {
-  IdKit: number
-  Spell1: Prisma.AbilitaCreateNestedOneWithoutAbilita1Input
-  Spell2: Prisma.AbilitaCreateNestedOneWithoutAbilita2Input
-  Spell3: Prisma.AbilitaCreateNestedOneWithoutAbilita3Input
-  Spell4: Prisma.AbilitaCreateNestedOneWithoutAbilita4Input
-}
-
-export type KitUncheckedCreateWithoutPassInput = {
-  IdKit: number
-  Abilita1: string
-  Abilita2: string
-  Abilita3: string
-  Abilita4: string
-}
-
-export type KitCreateOrConnectWithoutPassInput = {
+export type KitCreateOrConnectWithoutChampInput = {
   where: Prisma.KitWhereUniqueInput
-  create: Prisma.XOR<Prisma.KitCreateWithoutPassInput, Prisma.KitUncheckedCreateWithoutPassInput>
+  create: Prisma.XOR<Prisma.KitCreateWithoutChampInput, Prisma.KitUncheckedCreateWithoutChampInput>
 }
 
-export type KitCreateManyPassInputEnvelope = {
-  data: Prisma.KitCreateManyPassInput | Prisma.KitCreateManyPassInput[]
+export type KitCreateManyChampInputEnvelope = {
+  data: Prisma.KitCreateManyChampInput | Prisma.KitCreateManyChampInput[]
   skipDuplicates?: boolean
 }
 
-export type KitCreateWithoutSpell1Input = {
-  IdKit: number
-  Pass: Prisma.AbilitaCreateNestedOneWithoutPassivaInput
-  Spell2: Prisma.AbilitaCreateNestedOneWithoutAbilita2Input
-  Spell3: Prisma.AbilitaCreateNestedOneWithoutAbilita3Input
-  Spell4: Prisma.AbilitaCreateNestedOneWithoutAbilita4Input
-}
-
-export type KitUncheckedCreateWithoutSpell1Input = {
-  IdKit: number
-  Passiva: string
-  Abilita2: string
-  Abilita3: string
-  Abilita4: string
-}
-
-export type KitCreateOrConnectWithoutSpell1Input = {
+export type KitUpsertWithWhereUniqueWithoutChampInput = {
   where: Prisma.KitWhereUniqueInput
-  create: Prisma.XOR<Prisma.KitCreateWithoutSpell1Input, Prisma.KitUncheckedCreateWithoutSpell1Input>
+  update: Prisma.XOR<Prisma.KitUpdateWithoutChampInput, Prisma.KitUncheckedUpdateWithoutChampInput>
+  create: Prisma.XOR<Prisma.KitCreateWithoutChampInput, Prisma.KitUncheckedCreateWithoutChampInput>
 }
 
-export type KitCreateManySpell1InputEnvelope = {
-  data: Prisma.KitCreateManySpell1Input | Prisma.KitCreateManySpell1Input[]
-  skipDuplicates?: boolean
-}
-
-export type KitCreateWithoutSpell2Input = {
-  IdKit: number
-  Pass: Prisma.AbilitaCreateNestedOneWithoutPassivaInput
-  Spell1: Prisma.AbilitaCreateNestedOneWithoutAbilita1Input
-  Spell3: Prisma.AbilitaCreateNestedOneWithoutAbilita3Input
-  Spell4: Prisma.AbilitaCreateNestedOneWithoutAbilita4Input
-}
-
-export type KitUncheckedCreateWithoutSpell2Input = {
-  IdKit: number
-  Passiva: string
-  Abilita1: string
-  Abilita3: string
-  Abilita4: string
-}
-
-export type KitCreateOrConnectWithoutSpell2Input = {
+export type KitUpdateWithWhereUniqueWithoutChampInput = {
   where: Prisma.KitWhereUniqueInput
-  create: Prisma.XOR<Prisma.KitCreateWithoutSpell2Input, Prisma.KitUncheckedCreateWithoutSpell2Input>
+  data: Prisma.XOR<Prisma.KitUpdateWithoutChampInput, Prisma.KitUncheckedUpdateWithoutChampInput>
 }
 
-export type KitCreateManySpell2InputEnvelope = {
-  data: Prisma.KitCreateManySpell2Input | Prisma.KitCreateManySpell2Input[]
-  skipDuplicates?: boolean
-}
-
-export type KitCreateWithoutSpell3Input = {
-  IdKit: number
-  Pass: Prisma.AbilitaCreateNestedOneWithoutPassivaInput
-  Spell1: Prisma.AbilitaCreateNestedOneWithoutAbilita1Input
-  Spell2: Prisma.AbilitaCreateNestedOneWithoutAbilita2Input
-  Spell4: Prisma.AbilitaCreateNestedOneWithoutAbilita4Input
-}
-
-export type KitUncheckedCreateWithoutSpell3Input = {
-  IdKit: number
-  Passiva: string
-  Abilita1: string
-  Abilita2: string
-  Abilita4: string
-}
-
-export type KitCreateOrConnectWithoutSpell3Input = {
-  where: Prisma.KitWhereUniqueInput
-  create: Prisma.XOR<Prisma.KitCreateWithoutSpell3Input, Prisma.KitUncheckedCreateWithoutSpell3Input>
-}
-
-export type KitCreateManySpell3InputEnvelope = {
-  data: Prisma.KitCreateManySpell3Input | Prisma.KitCreateManySpell3Input[]
-  skipDuplicates?: boolean
-}
-
-export type KitCreateWithoutSpell4Input = {
-  IdKit: number
-  Pass: Prisma.AbilitaCreateNestedOneWithoutPassivaInput
-  Spell1: Prisma.AbilitaCreateNestedOneWithoutAbilita1Input
-  Spell2: Prisma.AbilitaCreateNestedOneWithoutAbilita2Input
-  Spell3: Prisma.AbilitaCreateNestedOneWithoutAbilita3Input
-}
-
-export type KitUncheckedCreateWithoutSpell4Input = {
-  IdKit: number
-  Passiva: string
-  Abilita1: string
-  Abilita2: string
-  Abilita3: string
-}
-
-export type KitCreateOrConnectWithoutSpell4Input = {
-  where: Prisma.KitWhereUniqueInput
-  create: Prisma.XOR<Prisma.KitCreateWithoutSpell4Input, Prisma.KitUncheckedCreateWithoutSpell4Input>
-}
-
-export type KitCreateManySpell4InputEnvelope = {
-  data: Prisma.KitCreateManySpell4Input | Prisma.KitCreateManySpell4Input[]
-  skipDuplicates?: boolean
-}
-
-export type KitUpsertWithWhereUniqueWithoutPassInput = {
-  where: Prisma.KitWhereUniqueInput
-  update: Prisma.XOR<Prisma.KitUpdateWithoutPassInput, Prisma.KitUncheckedUpdateWithoutPassInput>
-  create: Prisma.XOR<Prisma.KitCreateWithoutPassInput, Prisma.KitUncheckedCreateWithoutPassInput>
-}
-
-export type KitUpdateWithWhereUniqueWithoutPassInput = {
-  where: Prisma.KitWhereUniqueInput
-  data: Prisma.XOR<Prisma.KitUpdateWithoutPassInput, Prisma.KitUncheckedUpdateWithoutPassInput>
-}
-
-export type KitUpdateManyWithWhereWithoutPassInput = {
+export type KitUpdateManyWithWhereWithoutChampInput = {
   where: Prisma.KitScalarWhereInput
-  data: Prisma.XOR<Prisma.KitUpdateManyMutationInput, Prisma.KitUncheckedUpdateManyWithoutPassInput>
+  data: Prisma.XOR<Prisma.KitUpdateManyMutationInput, Prisma.KitUncheckedUpdateManyWithoutChampInput>
 }
 
 export type KitScalarWhereInput = {
@@ -752,329 +401,138 @@ export type KitScalarWhereInput = {
   OR?: Prisma.KitScalarWhereInput[]
   NOT?: Prisma.KitScalarWhereInput | Prisma.KitScalarWhereInput[]
   IdKit?: Prisma.IntFilter<"Kit"> | number
-  Passiva?: Prisma.StringFilter<"Kit"> | string
-  Abilita1?: Prisma.StringFilter<"Kit"> | string
-  Abilita2?: Prisma.StringFilter<"Kit"> | string
-  Abilita3?: Prisma.StringFilter<"Kit"> | string
-  Abilita4?: Prisma.StringFilter<"Kit"> | string
+  IdCampione?: Prisma.StringFilter<"Kit"> | string
 }
 
-export type KitUpsertWithWhereUniqueWithoutSpell1Input = {
+export type KitCreateWithoutAbilitaInput = {
+  champ: Prisma.CampioneCreateNestedOneWithoutKitInput
+}
+
+export type KitUncheckedCreateWithoutAbilitaInput = {
+  IdKit?: number
+  IdCampione: string
+}
+
+export type KitCreateOrConnectWithoutAbilitaInput = {
   where: Prisma.KitWhereUniqueInput
-  update: Prisma.XOR<Prisma.KitUpdateWithoutSpell1Input, Prisma.KitUncheckedUpdateWithoutSpell1Input>
-  create: Prisma.XOR<Prisma.KitCreateWithoutSpell1Input, Prisma.KitUncheckedCreateWithoutSpell1Input>
+  create: Prisma.XOR<Prisma.KitCreateWithoutAbilitaInput, Prisma.KitUncheckedCreateWithoutAbilitaInput>
 }
 
-export type KitUpdateWithWhereUniqueWithoutSpell1Input = {
-  where: Prisma.KitWhereUniqueInput
-  data: Prisma.XOR<Prisma.KitUpdateWithoutSpell1Input, Prisma.KitUncheckedUpdateWithoutSpell1Input>
+export type KitUpsertWithoutAbilitaInput = {
+  update: Prisma.XOR<Prisma.KitUpdateWithoutAbilitaInput, Prisma.KitUncheckedUpdateWithoutAbilitaInput>
+  create: Prisma.XOR<Prisma.KitCreateWithoutAbilitaInput, Prisma.KitUncheckedCreateWithoutAbilitaInput>
+  where?: Prisma.KitWhereInput
 }
 
-export type KitUpdateManyWithWhereWithoutSpell1Input = {
-  where: Prisma.KitScalarWhereInput
-  data: Prisma.XOR<Prisma.KitUpdateManyMutationInput, Prisma.KitUncheckedUpdateManyWithoutSpell1Input>
+export type KitUpdateToOneWithWhereWithoutAbilitaInput = {
+  where?: Prisma.KitWhereInput
+  data: Prisma.XOR<Prisma.KitUpdateWithoutAbilitaInput, Prisma.KitUncheckedUpdateWithoutAbilitaInput>
 }
 
-export type KitUpsertWithWhereUniqueWithoutSpell2Input = {
-  where: Prisma.KitWhereUniqueInput
-  update: Prisma.XOR<Prisma.KitUpdateWithoutSpell2Input, Prisma.KitUncheckedUpdateWithoutSpell2Input>
-  create: Prisma.XOR<Prisma.KitCreateWithoutSpell2Input, Prisma.KitUncheckedCreateWithoutSpell2Input>
+export type KitUpdateWithoutAbilitaInput = {
+  champ?: Prisma.CampioneUpdateOneRequiredWithoutKitNestedInput
 }
 
-export type KitUpdateWithWhereUniqueWithoutSpell2Input = {
-  where: Prisma.KitWhereUniqueInput
-  data: Prisma.XOR<Prisma.KitUpdateWithoutSpell2Input, Prisma.KitUncheckedUpdateWithoutSpell2Input>
-}
-
-export type KitUpdateManyWithWhereWithoutSpell2Input = {
-  where: Prisma.KitScalarWhereInput
-  data: Prisma.XOR<Prisma.KitUpdateManyMutationInput, Prisma.KitUncheckedUpdateManyWithoutSpell2Input>
-}
-
-export type KitUpsertWithWhereUniqueWithoutSpell3Input = {
-  where: Prisma.KitWhereUniqueInput
-  update: Prisma.XOR<Prisma.KitUpdateWithoutSpell3Input, Prisma.KitUncheckedUpdateWithoutSpell3Input>
-  create: Prisma.XOR<Prisma.KitCreateWithoutSpell3Input, Prisma.KitUncheckedCreateWithoutSpell3Input>
-}
-
-export type KitUpdateWithWhereUniqueWithoutSpell3Input = {
-  where: Prisma.KitWhereUniqueInput
-  data: Prisma.XOR<Prisma.KitUpdateWithoutSpell3Input, Prisma.KitUncheckedUpdateWithoutSpell3Input>
-}
-
-export type KitUpdateManyWithWhereWithoutSpell3Input = {
-  where: Prisma.KitScalarWhereInput
-  data: Prisma.XOR<Prisma.KitUpdateManyMutationInput, Prisma.KitUncheckedUpdateManyWithoutSpell3Input>
-}
-
-export type KitUpsertWithWhereUniqueWithoutSpell4Input = {
-  where: Prisma.KitWhereUniqueInput
-  update: Prisma.XOR<Prisma.KitUpdateWithoutSpell4Input, Prisma.KitUncheckedUpdateWithoutSpell4Input>
-  create: Prisma.XOR<Prisma.KitCreateWithoutSpell4Input, Prisma.KitUncheckedCreateWithoutSpell4Input>
-}
-
-export type KitUpdateWithWhereUniqueWithoutSpell4Input = {
-  where: Prisma.KitWhereUniqueInput
-  data: Prisma.XOR<Prisma.KitUpdateWithoutSpell4Input, Prisma.KitUncheckedUpdateWithoutSpell4Input>
-}
-
-export type KitUpdateManyWithWhereWithoutSpell4Input = {
-  where: Prisma.KitScalarWhereInput
-  data: Prisma.XOR<Prisma.KitUpdateManyMutationInput, Prisma.KitUncheckedUpdateManyWithoutSpell4Input>
-}
-
-export type KitCreateManyPassInput = {
-  IdKit: number
-  Abilita1: string
-  Abilita2: string
-  Abilita3: string
-  Abilita4: string
-}
-
-export type KitCreateManySpell1Input = {
-  IdKit: number
-  Passiva: string
-  Abilita2: string
-  Abilita3: string
-  Abilita4: string
-}
-
-export type KitCreateManySpell2Input = {
-  IdKit: number
-  Passiva: string
-  Abilita1: string
-  Abilita3: string
-  Abilita4: string
-}
-
-export type KitCreateManySpell3Input = {
-  IdKit: number
-  Passiva: string
-  Abilita1: string
-  Abilita2: string
-  Abilita4: string
-}
-
-export type KitCreateManySpell4Input = {
-  IdKit: number
-  Passiva: string
-  Abilita1: string
-  Abilita2: string
-  Abilita3: string
-}
-
-export type KitUpdateWithoutPassInput = {
+export type KitUncheckedUpdateWithoutAbilitaInput = {
   IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Spell1?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita1NestedInput
-  Spell2?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita2NestedInput
-  Spell3?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita3NestedInput
-  Spell4?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita4NestedInput
+  IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type KitUncheckedUpdateWithoutPassInput = {
+export type KitCreateManyChampInput = {
+  IdKit?: number
+}
+
+export type KitUpdateWithoutChampInput = {
+  abilita?: Prisma.Kit_AbilitaUpdateManyWithoutKitNestedInput
+}
+
+export type KitUncheckedUpdateWithoutChampInput = {
   IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Abilita1?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita2?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita3?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita4?: Prisma.StringFieldUpdateOperationsInput | string
+  abilita?: Prisma.Kit_AbilitaUncheckedUpdateManyWithoutKitNestedInput
 }
 
-export type KitUncheckedUpdateManyWithoutPassInput = {
+export type KitUncheckedUpdateManyWithoutChampInput = {
   IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Abilita1?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita2?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita3?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita4?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type KitUpdateWithoutSpell1Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Pass?: Prisma.AbilitaUpdateOneRequiredWithoutPassivaNestedInput
-  Spell2?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita2NestedInput
-  Spell3?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita3NestedInput
-  Spell4?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita4NestedInput
+
+/**
+ * Count Type KitCountOutputType
+ */
+
+export type KitCountOutputType = {
+  abilita: number
 }
 
-export type KitUncheckedUpdateWithoutSpell1Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Passiva?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita2?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita3?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita4?: Prisma.StringFieldUpdateOperationsInput | string
+export type KitCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  abilita?: boolean | KitCountOutputTypeCountAbilitaArgs
 }
 
-export type KitUncheckedUpdateManyWithoutSpell1Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Passiva?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita2?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita3?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita4?: Prisma.StringFieldUpdateOperationsInput | string
+/**
+ * KitCountOutputType without action
+ */
+export type KitCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the KitCountOutputType
+   */
+  select?: Prisma.KitCountOutputTypeSelect<ExtArgs> | null
 }
 
-export type KitUpdateWithoutSpell2Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Pass?: Prisma.AbilitaUpdateOneRequiredWithoutPassivaNestedInput
-  Spell1?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita1NestedInput
-  Spell3?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita3NestedInput
-  Spell4?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita4NestedInput
+/**
+ * KitCountOutputType without action
+ */
+export type KitCountOutputTypeCountAbilitaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.Kit_AbilitaWhereInput
 }
-
-export type KitUncheckedUpdateWithoutSpell2Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Passiva?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita1?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita3?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita4?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type KitUncheckedUpdateManyWithoutSpell2Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Passiva?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita1?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita3?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita4?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type KitUpdateWithoutSpell3Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Pass?: Prisma.AbilitaUpdateOneRequiredWithoutPassivaNestedInput
-  Spell1?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita1NestedInput
-  Spell2?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita2NestedInput
-  Spell4?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita4NestedInput
-}
-
-export type KitUncheckedUpdateWithoutSpell3Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Passiva?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita1?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita2?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita4?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type KitUncheckedUpdateManyWithoutSpell3Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Passiva?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita1?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita2?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita4?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type KitUpdateWithoutSpell4Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Pass?: Prisma.AbilitaUpdateOneRequiredWithoutPassivaNestedInput
-  Spell1?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita1NestedInput
-  Spell2?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita2NestedInput
-  Spell3?: Prisma.AbilitaUpdateOneRequiredWithoutAbilita3NestedInput
-}
-
-export type KitUncheckedUpdateWithoutSpell4Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Passiva?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita1?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita2?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita3?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type KitUncheckedUpdateManyWithoutSpell4Input = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Passiva?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita1?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita2?: Prisma.StringFieldUpdateOperationsInput | string
-  Abilita3?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
 
 
 export type KitSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   IdKit?: boolean
-  Passiva?: boolean
-  Abilita1?: boolean
-  Abilita2?: boolean
-  Abilita3?: boolean
-  Abilita4?: boolean
-  Pass?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell1?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell2?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell3?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell4?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  IdCampione?: boolean
+  champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
+  abilita?: boolean | Prisma.Kit$abilitaArgs<ExtArgs>
+  _count?: boolean | Prisma.KitCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["kit"]>
 
 export type KitSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   IdKit?: boolean
-  Passiva?: boolean
-  Abilita1?: boolean
-  Abilita2?: boolean
-  Abilita3?: boolean
-  Abilita4?: boolean
-  Pass?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell1?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell2?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell3?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell4?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  IdCampione?: boolean
+  champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["kit"]>
 
 export type KitSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   IdKit?: boolean
-  Passiva?: boolean
-  Abilita1?: boolean
-  Abilita2?: boolean
-  Abilita3?: boolean
-  Abilita4?: boolean
-  Pass?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell1?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell2?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell3?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell4?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  IdCampione?: boolean
+  champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["kit"]>
 
 export type KitSelectScalar = {
   IdKit?: boolean
-  Passiva?: boolean
-  Abilita1?: boolean
-  Abilita2?: boolean
-  Abilita3?: boolean
-  Abilita4?: boolean
+  IdCampione?: boolean
 }
 
-export type KitOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdKit" | "Passiva" | "Abilita1" | "Abilita2" | "Abilita3" | "Abilita4", ExtArgs["result"]["kit"]>
+export type KitOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdKit" | "IdCampione", ExtArgs["result"]["kit"]>
 export type KitInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Pass?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell1?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell2?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell3?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell4?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
+  abilita?: boolean | Prisma.Kit$abilitaArgs<ExtArgs>
+  _count?: boolean | Prisma.KitCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type KitIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Pass?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell1?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell2?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell3?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell4?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
 }
 export type KitIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Pass?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell1?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell2?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell3?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
-  Spell4?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
 }
 
 export type $KitPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Kit"
   objects: {
-    Pass: Prisma.$AbilitaPayload<ExtArgs>
-    Spell1: Prisma.$AbilitaPayload<ExtArgs>
-    Spell2: Prisma.$AbilitaPayload<ExtArgs>
-    Spell3: Prisma.$AbilitaPayload<ExtArgs>
-    Spell4: Prisma.$AbilitaPayload<ExtArgs>
+    champ: Prisma.$CampionePayload<ExtArgs>
+    abilita: Prisma.$Kit_AbilitaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     IdKit: number
-    Passiva: string
-    Abilita1: string
-    Abilita2: string
-    Abilita3: string
-    Abilita4: string
+    IdCampione: string
   }, ExtArgs["result"]["kit"]>
   composites: {}
 }
@@ -1469,11 +927,8 @@ readonly fields: KitFieldRefs;
  */
 export interface Prisma__KitClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Pass<T extends Prisma.AbilitaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AbilitaDefaultArgs<ExtArgs>>): Prisma.Prisma__AbilitaClient<runtime.Types.Result.GetResult<Prisma.$AbilitaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Spell1<T extends Prisma.AbilitaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AbilitaDefaultArgs<ExtArgs>>): Prisma.Prisma__AbilitaClient<runtime.Types.Result.GetResult<Prisma.$AbilitaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Spell2<T extends Prisma.AbilitaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AbilitaDefaultArgs<ExtArgs>>): Prisma.Prisma__AbilitaClient<runtime.Types.Result.GetResult<Prisma.$AbilitaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Spell3<T extends Prisma.AbilitaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AbilitaDefaultArgs<ExtArgs>>): Prisma.Prisma__AbilitaClient<runtime.Types.Result.GetResult<Prisma.$AbilitaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Spell4<T extends Prisma.AbilitaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AbilitaDefaultArgs<ExtArgs>>): Prisma.Prisma__AbilitaClient<runtime.Types.Result.GetResult<Prisma.$AbilitaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  champ<T extends Prisma.CampioneDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampioneDefaultArgs<ExtArgs>>): Prisma.Prisma__CampioneClient<runtime.Types.Result.GetResult<Prisma.$CampionePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  abilita<T extends Prisma.Kit$abilitaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kit$abilitaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Kit_AbilitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1504,11 +959,7 @@ export interface Prisma__KitClient<T, Null = never, ExtArgs extends runtime.Type
  */
 export interface KitFieldRefs {
   readonly IdKit: Prisma.FieldRef<"Kit", 'Int'>
-  readonly Passiva: Prisma.FieldRef<"Kit", 'String'>
-  readonly Abilita1: Prisma.FieldRef<"Kit", 'String'>
-  readonly Abilita2: Prisma.FieldRef<"Kit", 'String'>
-  readonly Abilita3: Prisma.FieldRef<"Kit", 'String'>
-  readonly Abilita4: Prisma.FieldRef<"Kit", 'String'>
+  readonly IdCampione: Prisma.FieldRef<"Kit", 'String'>
 }
     
 
@@ -1907,6 +1358,30 @@ export type KitDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Limit how many Kits to delete.
    */
   limit?: number
+}
+
+/**
+ * Kit.abilita
+ */
+export type Kit$abilitaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Kit_Abilita
+   */
+  select?: Prisma.Kit_AbilitaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Kit_Abilita
+   */
+  omit?: Prisma.Kit_AbilitaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Kit_AbilitaInclude<ExtArgs> | null
+  where?: Prisma.Kit_AbilitaWhereInput
+  orderBy?: Prisma.Kit_AbilitaOrderByWithRelationInput | Prisma.Kit_AbilitaOrderByWithRelationInput[]
+  cursor?: Prisma.Kit_AbilitaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Kit_AbilitaScalarFieldEnum | Prisma.Kit_AbilitaScalarFieldEnum[]
 }
 
 /**

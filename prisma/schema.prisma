@@ -5,7 +5,7 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "@/src/lib/server/prisma"
+  output   = "../src/lib/server/prisma"
 }
 
 datasource db {
@@ -22,11 +22,12 @@ model Campione {
   Ruolo String
   Vita  Int
   Mana  Int
-  Attacco Int
+  Attacco Decimal
+  AttaccoMagico Int @default(0)
   Velocità_di_movimento Int
-  Armatura  Int
-  Resistenza_magica Int
-  Velocità_di_attacco Int
+  Armatura  Decimal
+  Resistenza_magica Decimal
+  Velocità_di_attacco Decimal
   Gittata Int
   Kit Kit[]
   Cosmetico Cosmetico[]
@@ -129,8 +130,6 @@ model Oggetto{
   Inv Inventario[]
 }
 
-
-
 model Inventario{
   IdInventario Int 
   NomeOggetto String
@@ -147,6 +146,7 @@ model Account{
   Descrizione String 
   Immagine String //?
   RiotID String @db.VarChar(50) @unique
+  IsAdmin String
   sessione Sessione[]
   Config Configurazione[]
   Partita Partita[] 
@@ -154,7 +154,7 @@ model Account{
 
 model Sessione{
   Id Int @id 
-  guid_id String @db.Uuid @unique
+  guid_id String @unique
   user_id Int 
   date_created DateTime @default(now())
   date_expired DateTime
@@ -261,7 +261,7 @@ enum Risultato{
 model Modifica{
   Soggetto_modifica String 
   Id_Statistica Int
-  Nuovo_Valore String 
+  Nuovo_Valore Decimal 
   Versione String
   Vers Storico @relation(fields: [Versione], references: [Versione])
   Stat Statistica @relation(fields: [Id_Statistica], references: [Id])

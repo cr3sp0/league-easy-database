@@ -16,342 +16,1860 @@ const prisma = new PrismaClient({
 });
 
 async function main() {
-await prisma.campione.upsert({
-  where: { nome: "Fanto" },
+    // AKALI
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Stinger Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "fantini giacomo",
-    nome: "Fanto",
-    Icona: "https://www.google.com/search?sca_esv=09364ea4b0795b77&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832VTJOOCxW_fyN-Q_ezyf8gLZhoVnym8adqD7lVa5VazpWFun_Hbf9lrDzcGOCzTXwLF8QrRYckTcchjYAyznaoWyVNutNj3vDs5z9k0_6hM1lzEV5TC-7hhOxbSchppD-z-9ZC8&q=fantini+giacomo&sa=X&ved=2ahUKEwiot7mSjryWAxXfif0HHUPxNTMQtKgLegQIFxAB&biw=1366&bih=633&dpr=1#sv=CAMSURoyKhBlLVptX2lrd1Jjbk5VZGRNMg5abV9pa3dSY25OVWRkTToOcklUdnA5dGNjZVRvbU0gBCoXCgFzEhBlLVptX2lrd1Jjbk5VZGRNGAEwARgHIKzwu80MSggQARgBIAEoAQ",
-    Titolo: "Lo studente modello",
-    Descrizione: "Fanto è uno sfegatato utilizzatore di linux che usa le sue conoscenze per abbattere i nemici che gli si parano davanti",
-    Ruolo: "Combattente",
-    Vita: 80085,
-    Mana: 1,
-    Attacco: 1234,
-    Velocità_di_movimento: 20,
-    Armatura: 4321,
-    Resistenza_magica: 6,
-    Velocità_di_attacco: 0.3333,
-    Gittata: 3,
-  },
+    IdCampione: "akali",
+    Nome: "Stinger Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_1.jpg"
+  }
 });
 
-    await prisma.campione.upsert({
-  where: { nome: "Akali" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Infernal Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "akali",
-    nome: "Akali",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_p.jpg",
-    Titolo: "L'Assassina Furtiva",
-    Descrizione: "Akali è un'assassina agile che combatte sfruttando la furtività.",
-    Ruolo: "Assassino",
-    Vita: 2623,
-    Mana: 0,
-    Attacco: 118.1,
-    Velocità_di_movimento: 345,
-    Armatura: 102.9,
-    Resistenza_magica: 71.85,
-    Velocità_di_attacco: 0.965,
-    Gittata: 125,
-  },
+    IdCampione: "akali",
+    Nome: "Infernal Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_2.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Zoe" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "All-Star Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "zoe",
-    nome: "Zoe",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/zoe/Zoe_p.jpg",
-    Titolo: "La Portatrice del Crepuscolo",
-    Descrizione: "Zoe è una creatura cosmica capace di manipolare la realtà.",
-    Ruolo: "Mago",
-    Vita: 2432,
-    Mana: 850,
-    Attacco: 114.1,
-    Velocità_di_movimento: 340,
-    Armatura: 100.9,
-    Resistenza_magica: 52.1,
-    Velocità_di_attacco: 0.924,
-    Gittata: 550,
-  },
+    IdCampione: "akali",
+    Nome: "All-Star Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_3.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Lillia" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Nurse Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "lillia",
-    nome: "Lillia",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/lillia/Lillia_p.jpg",
-    Titolo: "La timida fioritura",
-    Descrizione: "Lillia è una timida driade che vaga nei sogni degli esseri viventi.",
-    Ruolo: "Mago",
-    Vita: 2390,
-    Mana: 1260,
-    Attacco: 113.7,
-    Velocità_di_movimento: 330,
-    Armatura: 98.5,
-    Resistenza_magica: 58.35,
-    Velocità_di_attacco: 0.912,
-    Gittata: 325,
-  },
+    IdCampione: "akali",
+    Nome: "Nurse Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_4.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Taliyah" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Blood Moon Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "taliyah",
-    nome: "Taliyah",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/taliyah/Taliyah_p.jpg",
-    Titolo: "La Tessitrice di Pietra",
-    Descrizione: "Taliyah è una giovane maga capace di manipolare la pietra.",
-    Ruolo: "Mago",
-    Vita: 2318,
-    Mana: 980,
-    Attacco: 114.1,
-    Velocità_di_movimento: 330,
-    Armatura: 97.9,
-    Resistenza_magica: 52.1,
-    Velocità_di_attacco: 0.802,
-    Gittata: 525,
-  },
+    IdCampione: "akali",
+    Nome: "Blood Moon Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_5.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Kindred" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Silverfang Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "kindred",
-    nome: "Kindred",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/kindred/Kindred_p.jpg",
-    Titolo: "Gli Eterni Cacciatori",
-    Descrizione: "Kindred rappresenta le due essenze della morte.",
-    Ruolo: "Tiratore",
-    Vita: 2363,
-    Mana: 895,
-    Attacco: 120.25,
-    Velocità_di_movimento: 325,
-    Armatura: 108.9,
-    Resistenza_magica: 52.1,
-    Velocità_di_attacco: 0.997,
-    Gittata: 500,
-  },
+    IdCampione: "akali",
+    Nome: "Silverfang Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_6.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Nami" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Headhunter Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "nami",
-    nome: "Nami",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/nami/Nami_p.jpg",
-    Titolo: "La Mareamante",
-    Descrizione: "Nami è una vastaya marina che controlla le acque e protegge il suo popolo.",
-    Ruolo: "Supporto",
-    Vita: 2056,
-    Mana: 1096,
-    Attacco: 106.7,
-    Velocità_di_movimento: 335,
-    Armatura: 117.4,
-    Resistenza_magica: 52.1,
-    Velocità_di_attacco: 0.93,
-    Gittata: 550,
-  },
+    IdCampione: "akali",
+    Nome: "Headhunter Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_7.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Aurora" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Sashimi Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "aurora",
-    nome: "Aurora",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/aurora/Aurora_p.jpg",
-    Titolo: "La Strega tra i Mondi",
-    Descrizione: "Aurora è una maga capace di interagire con il mondo degli spiriti.",
-    Ruolo: "Mago",
-    Vita: 2477,
-    Mana: 985,
-    Attacco: 104,
-    Velocità_di_movimento: 335,
-    Armatura: 99.5,
-    Resistenza_magica: 52.1,
-    Velocità_di_attacco: 0.895,
-    Gittata: 550,
-  },
+    IdCampione: "akali",
+    Nome: "Sashimi Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_8.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Irelia" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "K/DA Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "irelia",
-    nome: "Irelia",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/irelia/Irelia_p.jpg",
-    Titolo: "La Danza delle Lame",
-    Descrizione: "Irelia è una guerriera che combatte controllando lame fluttuanti.",
-    Ruolo: "Combattente",
-    Vita: 2585,
-    Mana: 1200,
-    Attacco: 124.5,
-    Velocità_di_movimento: 335,
-    Armatura: 115.9,
-    Resistenza_magica: 64.85,
-    Velocità_di_attacco: 0.935,
-    Gittata: 200,
-  },
+    IdCampione: "akali",
+    Nome: "K/DA Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_9.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Gwen" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "K/DA Akali Prestige Edition"
+    }
+  },
   update: {},
   create: {
-    ID: "gwen",
-    nome: "Gwen",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg",
-    Titolo: "La Sacra Cucitrice",
-    Descrizione: "Gwen è una bambola animata che combatte usando grandi forbici.",
-    Ruolo: "Combattente",
-    Vita: 2575,
-    Mana: 1010,
-    Attacco: 114,
-    Velocità_di_movimento: 340,
-    Armatura: 127.4,
-    Resistenza_magica: 66.85,
-    Velocità_di_attacco: 0.954,
-    Gittata: 150,
-  },
+    IdCampione: "akali",
+    Nome: "K/DA Akali Prestige Edition",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_10.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Pantheon" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "True Damage Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "pantheon",
-    nome: "Pantheon",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/pantheon/Pantheon_p.jpg",
-    Titolo: "L'Inarrestabile",
-    Descrizione: "Pantheon è un guerriero che combatte con lancia e scudo.",
-    Ruolo: "Combattente",
-    Vita: 2503,
-    Mana: 844,
-    Attacco: 120.1,
-    Velocità_di_movimento: 345,
-    Armatura: 124.15,
-    Resistenza_magica: 62.85,
-    Velocità_di_attacco: 0.988,
-    Gittata: 175,
-  },
+    IdCampione: "akali",
+    Nome: "True Damage Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_11.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Orianna" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "K/DA ALL OUT Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "orianna",
-    nome: "Orianna",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/orianna/Orianna_p.jpg",
-    Titolo: "La Signora degli Ingranaggi",
-    Descrizione: "Orianna è una creatura meccanica che combatte controllando una sfera magica.",
-    Ruolo: "Mago",
-    Vita: 2455,
-    Mana: 843,
-    Attacco: 88.2,
-    Velocità_di_movimento: 325,
-    Armatura: 91.4,
-    Resistenza_magica: 48.1,
-    Velocità_di_attacco: 1.05,
-    Gittata: 525,
-  },
+    IdCampione: "akali",
+    Nome: "K/DA ALL OUT Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_12.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Mel" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Crime City Nightmare Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "mel",
-    nome: "Mel",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/mel/Mel_p.jpg",
-    Titolo: "Il Riflesso dell'Anima",
-    Descrizione: "Mel è una potente maga dotata di capacità magiche straordinarie.",
-    Ruolo: "Mago",
-    Vita: 2358,
-    Mana: 843,
-    Attacco: 104,
-    Velocità_di_movimento: 330,
-    Armatura: 100.9,
-    Resistenza_magica: 52.1,
-    Velocità_di_attacco: 0.902,
-    Gittata: 550,
-  },
+    IdCampione: "akali",
+    Nome: "Crime City Nightmare Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_13.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Syndra" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Star Guardian Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "syndra",
-    nome: "Syndra",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/syndra/Syndra_p.jpg",
-    Titolo: "La Sorgente Oscura",
-    Descrizione: "Syndra è una maga dotata di un enorme pouvoir magique.",
-    Ruolo: "Mago",
-    Vita: 2331,
-    Mana: 1160,
-    Attacco: 103.3,
-    Velocità_di_movimento: 330,
-    Armatura: 103.2,
-    Resistenza_magica: 52.1,
-    Velocità_di_attacco: 0.871,
-    Gittata: 550,
-  },
+    IdCampione: "akali",
+    Nome: "Star Guardian Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_15.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Diana" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "DRX Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "diana",
-    nome: "Diana",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/diana/Diana_p.jpg",
-    Titolo: "Lo Scorno della Luna",
-    Descrizione: "Diana è una guerriera lunare che combatte usando il potere della luna.",
-    Ruolo: "Combattente",
-    Vita: 2493,
-    Mana: 800,
-    Attacco: 108,
-    Velocità_di_movimento: 345,
-    Armatura: 104.1,
-    Resistenza_magica: 66.85,
-    Velocità_di_attacco: 0.861,
-    Gittata: 150,
-  },
+    IdCampione: "akali",
+    Nome: "DRX Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_16.jpg"
+  }
 });
 
-await prisma.campione.upsert({
-  where: { nome: "Jhin" },
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Coven Akali"
+    }
+  },
   update: {},
   create: {
-    ID: "jhin",
-    nome: "Jhin",
-    Icona: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/jhin/Jhin_p.jpg",
-    Titolo: "Il Virtuoso",
-    Descrizione: "Jhin è un meticoloso criminale ossessionato dalla perfezione.",
-    Ruolo: "Tiratore",
-    Vita: 2474,
-    Mana: 1150,
-    Attacco: 133.8,
-    Velocità_di_movimento: 330,
-    Armatura: 103.9,
-    Resistenza_magica: 52.1,
-    Velocità_di_attacco: 0.944,
-    Gittata: 550,
-  },
+    IdCampione: "akali",
+    Nome: "Coven Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_17.jpg"
+  }
 });
 
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Prestige Coven Akali"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "akali",
+    Nome: "Prestige Coven Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_18.jpg"
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Empyrean Akali"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "akali",
+    Nome: "Empyrean Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_19.jpg"
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Spirit Blossom Akali"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "akali",
+    Nome: "Spirit Blossom Akali",
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_20.jpg"
+  }
+});
+
+
+// ZOE
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "zoe",
+      Nome: "Arcanist Zoe"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "zoe",
+    Nome: "Arcanist Zoe",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "zoe",
+      Nome: "Prestige Arcanist Zoe"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "zoe",
+    Nome: "Prestige Arcanist Zoe",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "zoe",
+      Nome: "EDG Zoe"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "zoe",
+    Nome: "EDG Zoe",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "zoe",
+      Nome: "Winterblessed Zoe"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "zoe",
+    Nome: "Winterblessed Zoe",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "zoe",
+      Nome: "Dark Star Zoe"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "zoe",
+    Nome: "Dark Star Zoe",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "zoe",
+      Nome: "Prestige Eternal Aspect Zoe"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "zoe",
+    Nome: "Prestige Eternal Aspect Zoe",
+    Immagine: ""
+  }
+});
+
+
+// LILLIA
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "lillia",
+      Nome: "Faerie Court Lillia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "lillia",
+    Nome: "Faerie Court Lillia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "lillia",
+      Nome: "Bowling League Lillia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "lillia",
+    Nome: "Bowling League Lillia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "lillia",
+      Nome: "Petals of Spring Lillia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "lillia",
+    Nome: "Petals of Spring Lillia",
+    Immagine: ""
+  }
+});
+
+
+// TALIYAH
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "taliyah",
+      Nome: "Crystalis Motus Taliyah"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "taliyah",
+    Nome: "Crystalis Motus Taliyah",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "taliyah",
+      Nome: "Durand's Legacy Taliyah"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "taliyah",
+    Nome: "Durand's Legacy Taliyah",
+    Immagine: ""
+  }
+});
+
+
+// KINDRED
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "kindred",
+      Nome: "Woof and Lamb Kindred"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "kindred",
+    Nome: "Woof and Lamb Kindred",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "kindred",
+      Nome: "DRX Kindred"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "kindred",
+    Nome: "DRX Kindred",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "kindred",
+      Nome: "Prestige Porcelain Kindred"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "kindred",
+    Nome: "Prestige Porcelain Kindred",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "kindred",
+      Nome: "Chosen of the Wolf Kindred"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "kindred",
+    Nome: "Chosen of the Wolf Kindred",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "kindred",
+      Nome: "Pandemonium Kindred"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "kindred",
+    Nome: "Pandemonium Kindred",
+    Immagine: ""
+  }
+});
+
+
+// NAMI
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "SKT T1 Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "SKT T1 Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Splendid Staff Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Splendid Staff Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Cosmic Destiny Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Cosmic Destiny Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Bewitching Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Bewitching Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Space Groove Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Space Groove Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Prestige Space Groove Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Prestige Space Groove Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Coven Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Coven Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Mythmaker Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Mythmaker Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Sunken Shadows Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Sunken Shadows Nami",
+    Immagine: ""
+  }
+});
+
+
+// AURORA
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "aurora",
+      Nome: "Arcana Aurora"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "aurora",
+    Nome: "Arcana Aurora",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "aurora",
+      Nome: "Broken Covenant Aurora"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "aurora",
+    Nome: "Broken Covenant Aurora",
+    Immagine: ""
+  }
+});
+
+
+// IRELIA
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Infiltrator Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Infiltrator Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "iG Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "iG Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Prestige PROJECT: Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Prestige PROJECT: Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "High Noon Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "High Noon Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Sentinel Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Sentinel Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Prestige PROJECT: Irelia (2022)"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Prestige PROJECT: Irelia (2022)",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Mythmaker Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Mythmaker Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Porcelain Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Porcelain Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Spirit Blossom Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Spirit Blossom Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Breadsticks Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Breadsticks Irelia",
+    Immagine: ""
+  }
+});
+
+
+// GWEN
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "gwen",
+      Nome: "Battle Queen Gwen"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "gwen",
+    Nome: "Battle Queen Gwen",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "gwen",
+      Nome: "Rain Shepherd Gwen"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "gwen",
+    Nome: "Rain Shepherd Gwen",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "gwen",
+      Nome: "Faerie Court Gwen"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "gwen",
+    Nome: "Faerie Court Gwen",
+    Immagine: ""
+  }
+});
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Infernal Akali"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "akali",
+    Nome: "Infernal Akali",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "Blood Moon Akali"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "akali",
+    Nome: "Blood Moon Akali",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "K/DA Akali"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "akali",
+    Nome: "K/DA Akali",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "akali",
+      Nome: "PROJECT: Akali"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "akali",
+    Nome: "PROJECT: Akali",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "zoe",
+      Nome: "Cyber Pop Zoe"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "zoe",
+    Nome: "Cyber Pop Zoe",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "zoe",
+      Nome: "Pool Party Zoe"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "zoe",
+    Nome: "Pool Party Zoe",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "zoe",
+      Nome: "Star Guardian Zoe"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "zoe",
+    Nome: "Star Guardian Zoe",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "lillia",
+      Nome: "Nightbringer Lillia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "lillia",
+    Nome: "Nightbringer Lillia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "lillia",
+      Nome: "Spirit Blossom Lillia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "lillia",
+    Nome: "Spirit Blossom Lillia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "lillia",
+      Nome: "Shan Hai Scrolls Lillia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "lillia",
+    Nome: "Shan Hai Scrolls Lillia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "taliyah",
+      Nome: "Freljord Taliyah"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "taliyah",
+    Nome: "Freljord Taliyah",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "taliyah",
+      Nome: "SSG Taliyah"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "taliyah",
+    Nome: "SSG Taliyah",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "taliyah",
+      Nome: "Pool Party Taliyah"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "taliyah",
+    Nome: "Pool Party Taliyah",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "taliyah",
+      Nome: "Star Guardian Taliyah"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "taliyah",
+    Nome: "Star Guardian Taliyah",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "kindred",
+      Nome: "Shadowfire Kindred"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "kindred",
+    Nome: "Shadowfire Kindred",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "kindred",
+      Nome: "Super Galaxy Kindred"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "kindred",
+    Nome: "Super Galaxy Kindred",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "kindred",
+      Nome: "Spirit Blossom Kindred"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "kindred",
+    Nome: "Spirit Blossom Kindred",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "kindred",
+      Nome: "Porcelain Kindred"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "kindred",
+    Nome: "Porcelain Kindred",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Koi Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Koi Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "River Spirit Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "River Spirit Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Urf the Nami-tee"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Urf the Nami-tee",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Program Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Program Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "nami",
+      Nome: "Deep Sea Nami"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "nami",
+    Nome: "Deep Sea Nami",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "aurora",
+      Nome: "Battle Bunny Aurora"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "aurora",
+    Nome: "Battle Bunny Aurora",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "aurora",
+      Nome: "Bewitching Aurora"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "aurora",
+    Nome: "Bewitching Aurora",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Nightblade Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Nightblade Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Aviator Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Aviator Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Frostblade Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Frostblade Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Order of the Lotus Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Order of the Lotus Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "Divine Sword Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "Divine Sword Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "irelia",
+      Nome: "PROJECT: Irelia"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "irelia",
+    Nome: "PROJECT: Irelia",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "gwen",
+      Nome: "Space Groove Gwen"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "gwen",
+    Nome: "Space Groove Gwen",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "gwen",
+      Nome: "Café Cuties Gwen"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "gwen",
+    Nome: "Café Cuties Gwen",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "gwen",
+      Nome: "Soul Fighter Gwen"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "gwen",
+    Nome: "Soul Fighter Gwen",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "pantheon",
+      Nome: "Myrmidon Pantheon"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "pantheon",
+    Nome: "Myrmidon Pantheon",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "pantheon",
+      Nome: "Ruthless Pantheon"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "pantheon",
+    Nome: "Ruthless Pantheon",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "pantheon",
+      Nome: "Perseus Pantheon"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "pantheon",
+    Nome: "Perseus Pantheon",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "pantheon",
+      Nome: "Dragonslayer Pantheon"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "pantheon",
+    Nome: "Dragonslayer Pantheon",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "pantheon",
+      Nome: "Pulsefire Pantheon"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "pantheon",
+    Nome: "Pulsefire Pantheon",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "pantheon",
+      Nome: "Ruined Pantheon"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "pantheon",
+    Nome: "Ruined Pantheon",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "orianna",
+      Nome: "Sewn Chaos Orianna"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "orianna",
+    Nome: "Sewn Chaos Orianna",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "orianna",
+      Nome: "Bladecraft Orianna"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "orianna",
+    Nome: "Bladecraft Orianna",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "orianna",
+      Nome: "TPA Orianna"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "orianna",
+    Nome: "TPA Orianna",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "orianna",
+      Nome: "Winter Wonder Orianna"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "orianna",
+    Nome: "Winter Wonder Orianna",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "orianna",
+      Nome: "Heartseeker Orianna"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "orianna",
+    Nome: "Heartseeker Orianna",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "orianna",
+      Nome: "Pool Party Orianna"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "orianna",
+    Nome: "Pool Party Orianna",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "mel",
+      Nome: "Default Mel"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "mel",
+    Nome: "Default Mel",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "syndra",
+      Nome: "Justicar Syndra"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "syndra",
+    Nome: "Justicar Syndra",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "syndra",
+      Nome: "Atlantean Syndra"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "syndra",
+    Nome: "Atlantean Syndra",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "syndra",
+      Nome: "Queen of Diamonds Syndra"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "syndra",
+    Nome: "Queen of Diamonds Syndra",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "syndra",
+      Nome: "Snow Day Syndra"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "syndra",
+    Nome: "Snow Day Syndra",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "syndra",
+      Nome: "SKT T1 Syndra"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "syndra",
+    Nome: "SKT T1 Syndra",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "syndra",
+      Nome: "Star Guardian Syndra"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "syndra",
+    Nome: "Star Guardian Syndra",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "diana",
+      Nome: "Dark Valkyrie Diana"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "diana",
+    Nome: "Dark Valkyrie Diana",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "diana",
+      Nome: "Lunar Goddess Diana"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "diana",
+    Nome: "Lunar Goddess Diana",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "diana",
+      Nome: "Blood Moon Diana"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "diana",
+    Nome: "Blood Moon Diana",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "diana",
+      Nome: "Infernal Diana"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "diana",
+    Nome: "Infernal Diana",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "diana",
+      Nome: "Prestige Lunar Goddess Diana"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "diana",
+    Nome: "Prestige Lunar Goddess Diana",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "jhin",
+      Nome: "High Noon Jhin"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "jhin",
+    Nome: "High Noon Jhin",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "jhin",
+      Nome: "Blood Moon Jhin"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "jhin",
+    Nome: "Blood Moon Jhin",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "jhin",
+      Nome: "SKT T1 Jhin"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "jhin",
+    Nome: "SKT T1 Jhin",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "jhin",
+      Nome: "PROJECT: Jhin"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "jhin",
+    Nome: "PROJECT: Jhin",
+    Immagine: ""
+  }
+});
+
+await prisma.cosmetico.upsert({
+  where: {
+    IdCampione_Nome: {
+      IdCampione: "jhin",
+      Nome: "Dark Cosmic Jhin"
+    }
+  },
+  update: {},
+  create: {
+    IdCampione: "jhin",
+    Nome: "Dark Cosmic Jhin",
+    Immagine: ""
+  }
+});
 }
 
 main()

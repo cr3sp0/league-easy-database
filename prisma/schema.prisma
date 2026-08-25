@@ -39,13 +39,12 @@ model Campione {
 }
 
 model Cosmetico{
-  Id Int @id @default(autoincrement()) 
+  NomeCosmetico String @unique
   IdCampione String
   Immagine String //? not sure
  // Modello 
-  Nome String
   champ Campione  @relation(fields: [IdCampione], references: [ID])
-  @@unique([IdCampione, Nome])
+  @@id([IdCampione, NomeCosmetico])
 }
 
 model Ruolo{
@@ -140,8 +139,8 @@ model Inventario{
 }
 
 model Account{
-  Nome String
-  AccountId Int @id 
+  Nome String @unique
+  AccountId Int @id @default(autoincrement())
   Password String 
   Descrizione String 
   Immagine String //?

@@ -29,22 +29,24 @@ export type AggregateCampione = {
 export type CampioneAvgAggregateOutputType = {
   Vita: number | null
   Mana: number | null
-  Attacco: number | null
+  Attacco: runtime.Decimal | null
+  AttaccoMagico: number | null
   Velocità_di_movimento: number | null
-  Armatura: number | null
-  Resistenza_magica: number | null
-  Velocità_di_attacco: number | null
+  Armatura: runtime.Decimal | null
+  Resistenza_magica: runtime.Decimal | null
+  Velocità_di_attacco: runtime.Decimal | null
   Gittata: number | null
 }
 
 export type CampioneSumAggregateOutputType = {
   Vita: number | null
   Mana: number | null
-  Attacco: number | null
+  Attacco: runtime.Decimal | null
+  AttaccoMagico: number | null
   Velocità_di_movimento: number | null
-  Armatura: number | null
-  Resistenza_magica: number | null
-  Velocità_di_attacco: number | null
+  Armatura: runtime.Decimal | null
+  Resistenza_magica: runtime.Decimal | null
+  Velocità_di_attacco: runtime.Decimal | null
   Gittata: number | null
 }
 
@@ -57,11 +59,12 @@ export type CampioneMinAggregateOutputType = {
   Ruolo: string | null
   Vita: number | null
   Mana: number | null
-  Attacco: number | null
+  Attacco: runtime.Decimal | null
+  AttaccoMagico: number | null
   Velocità_di_movimento: number | null
-  Armatura: number | null
-  Resistenza_magica: number | null
-  Velocità_di_attacco: number | null
+  Armatura: runtime.Decimal | null
+  Resistenza_magica: runtime.Decimal | null
+  Velocità_di_attacco: runtime.Decimal | null
   Gittata: number | null
 }
 
@@ -74,11 +77,12 @@ export type CampioneMaxAggregateOutputType = {
   Ruolo: string | null
   Vita: number | null
   Mana: number | null
-  Attacco: number | null
+  Attacco: runtime.Decimal | null
+  AttaccoMagico: number | null
   Velocità_di_movimento: number | null
-  Armatura: number | null
-  Resistenza_magica: number | null
-  Velocità_di_attacco: number | null
+  Armatura: runtime.Decimal | null
+  Resistenza_magica: runtime.Decimal | null
+  Velocità_di_attacco: runtime.Decimal | null
   Gittata: number | null
 }
 
@@ -92,6 +96,7 @@ export type CampioneCountAggregateOutputType = {
   Vita: number
   Mana: number
   Attacco: number
+  AttaccoMagico: number
   Velocità_di_movimento: number
   Armatura: number
   Resistenza_magica: number
@@ -105,6 +110,7 @@ export type CampioneAvgAggregateInputType = {
   Vita?: true
   Mana?: true
   Attacco?: true
+  AttaccoMagico?: true
   Velocità_di_movimento?: true
   Armatura?: true
   Resistenza_magica?: true
@@ -116,6 +122,7 @@ export type CampioneSumAggregateInputType = {
   Vita?: true
   Mana?: true
   Attacco?: true
+  AttaccoMagico?: true
   Velocità_di_movimento?: true
   Armatura?: true
   Resistenza_magica?: true
@@ -133,6 +140,7 @@ export type CampioneMinAggregateInputType = {
   Vita?: true
   Mana?: true
   Attacco?: true
+  AttaccoMagico?: true
   Velocità_di_movimento?: true
   Armatura?: true
   Resistenza_magica?: true
@@ -150,6 +158,7 @@ export type CampioneMaxAggregateInputType = {
   Vita?: true
   Mana?: true
   Attacco?: true
+  AttaccoMagico?: true
   Velocità_di_movimento?: true
   Armatura?: true
   Resistenza_magica?: true
@@ -167,6 +176,7 @@ export type CampioneCountAggregateInputType = {
   Vita?: true
   Mana?: true
   Attacco?: true
+  AttaccoMagico?: true
   Velocità_di_movimento?: true
   Armatura?: true
   Resistenza_magica?: true
@@ -270,11 +280,12 @@ export type CampioneGroupByOutputType = {
   Ruolo: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal
+  AttaccoMagico: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal
+  Resistenza_magica: runtime.Decimal
+  Velocità_di_attacco: runtime.Decimal
   Gittata: number
   _count: CampioneCountAggregateOutputType | null
   _avg: CampioneAvgAggregateOutputType | null
@@ -310,12 +321,14 @@ export type CampioneWhereInput = {
   Ruolo?: Prisma.StringFilter<"Campione"> | string
   Vita?: Prisma.IntFilter<"Campione"> | number
   Mana?: Prisma.IntFilter<"Campione"> | number
-  Attacco?: Prisma.IntFilter<"Campione"> | number
+  Attacco?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFilter<"Campione"> | number
   Velocità_di_movimento?: Prisma.IntFilter<"Campione"> | number
-  Armatura?: Prisma.IntFilter<"Campione"> | number
-  Resistenza_magica?: Prisma.IntFilter<"Campione"> | number
-  Velocità_di_attacco?: Prisma.IntFilter<"Campione"> | number
+  Armatura?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFilter<"Campione"> | number
+  Kit?: Prisma.KitListRelationFilter
   Cosmetico?: Prisma.CosmeticoListRelationFilter
   Regione?: Prisma.Campione_RegioneListRelationFilter
   Razza?: Prisma.Campione_RazzaListRelationFilter
@@ -334,11 +347,13 @@ export type CampioneOrderByWithRelationInput = {
   Vita?: Prisma.SortOrder
   Mana?: Prisma.SortOrder
   Attacco?: Prisma.SortOrder
+  AttaccoMagico?: Prisma.SortOrder
   Velocità_di_movimento?: Prisma.SortOrder
   Armatura?: Prisma.SortOrder
   Resistenza_magica?: Prisma.SortOrder
   Velocità_di_attacco?: Prisma.SortOrder
   Gittata?: Prisma.SortOrder
+  Kit?: Prisma.KitOrderByRelationAggregateInput
   Cosmetico?: Prisma.CosmeticoOrderByRelationAggregateInput
   Regione?: Prisma.Campione_RegioneOrderByRelationAggregateInput
   Razza?: Prisma.Campione_RazzaOrderByRelationAggregateInput
@@ -359,12 +374,14 @@ export type CampioneWhereUniqueInput = Prisma.AtLeast<{
   Ruolo?: Prisma.StringFilter<"Campione"> | string
   Vita?: Prisma.IntFilter<"Campione"> | number
   Mana?: Prisma.IntFilter<"Campione"> | number
-  Attacco?: Prisma.IntFilter<"Campione"> | number
+  Attacco?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFilter<"Campione"> | number
   Velocità_di_movimento?: Prisma.IntFilter<"Campione"> | number
-  Armatura?: Prisma.IntFilter<"Campione"> | number
-  Resistenza_magica?: Prisma.IntFilter<"Campione"> | number
-  Velocità_di_attacco?: Prisma.IntFilter<"Campione"> | number
+  Armatura?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFilter<"Campione"> | number
+  Kit?: Prisma.KitListRelationFilter
   Cosmetico?: Prisma.CosmeticoListRelationFilter
   Regione?: Prisma.Campione_RegioneListRelationFilter
   Razza?: Prisma.Campione_RazzaListRelationFilter
@@ -383,6 +400,7 @@ export type CampioneOrderByWithAggregationInput = {
   Vita?: Prisma.SortOrder
   Mana?: Prisma.SortOrder
   Attacco?: Prisma.SortOrder
+  AttaccoMagico?: Prisma.SortOrder
   Velocità_di_movimento?: Prisma.SortOrder
   Armatura?: Prisma.SortOrder
   Resistenza_magica?: Prisma.SortOrder
@@ -407,11 +425,12 @@ export type CampioneScalarWhereWithAggregatesInput = {
   Ruolo?: Prisma.StringWithAggregatesFilter<"Campione"> | string
   Vita?: Prisma.IntWithAggregatesFilter<"Campione"> | number
   Mana?: Prisma.IntWithAggregatesFilter<"Campione"> | number
-  Attacco?: Prisma.IntWithAggregatesFilter<"Campione"> | number
+  Attacco?: Prisma.DecimalWithAggregatesFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntWithAggregatesFilter<"Campione"> | number
   Velocità_di_movimento?: Prisma.IntWithAggregatesFilter<"Campione"> | number
-  Armatura?: Prisma.IntWithAggregatesFilter<"Campione"> | number
-  Resistenza_magica?: Prisma.IntWithAggregatesFilter<"Campione"> | number
-  Velocità_di_attacco?: Prisma.IntWithAggregatesFilter<"Campione"> | number
+  Armatura?: Prisma.DecimalWithAggregatesFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalWithAggregatesFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalWithAggregatesFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntWithAggregatesFilter<"Campione"> | number
 }
 
@@ -423,12 +442,14 @@ export type CampioneCreateInput = {
   Descrizione: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
@@ -446,12 +467,14 @@ export type CampioneUncheckedCreateInput = {
   Ruolo: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
@@ -467,12 +490,14 @@ export type CampioneUpdateInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
@@ -490,12 +515,14 @@ export type CampioneUncheckedUpdateInput = {
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
@@ -512,11 +539,12 @@ export type CampioneCreateManyInput = {
   Ruolo: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
 }
 
@@ -528,11 +556,12 @@ export type CampioneUpdateManyMutationInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -545,11 +574,12 @@ export type CampioneUncheckedUpdateManyInput = {
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -563,6 +593,7 @@ export type CampioneCountOrderByAggregateInput = {
   Vita?: Prisma.SortOrder
   Mana?: Prisma.SortOrder
   Attacco?: Prisma.SortOrder
+  AttaccoMagico?: Prisma.SortOrder
   Velocità_di_movimento?: Prisma.SortOrder
   Armatura?: Prisma.SortOrder
   Resistenza_magica?: Prisma.SortOrder
@@ -574,6 +605,7 @@ export type CampioneAvgOrderByAggregateInput = {
   Vita?: Prisma.SortOrder
   Mana?: Prisma.SortOrder
   Attacco?: Prisma.SortOrder
+  AttaccoMagico?: Prisma.SortOrder
   Velocità_di_movimento?: Prisma.SortOrder
   Armatura?: Prisma.SortOrder
   Resistenza_magica?: Prisma.SortOrder
@@ -591,6 +623,7 @@ export type CampioneMaxOrderByAggregateInput = {
   Vita?: Prisma.SortOrder
   Mana?: Prisma.SortOrder
   Attacco?: Prisma.SortOrder
+  AttaccoMagico?: Prisma.SortOrder
   Velocità_di_movimento?: Prisma.SortOrder
   Armatura?: Prisma.SortOrder
   Resistenza_magica?: Prisma.SortOrder
@@ -608,6 +641,7 @@ export type CampioneMinOrderByAggregateInput = {
   Vita?: Prisma.SortOrder
   Mana?: Prisma.SortOrder
   Attacco?: Prisma.SortOrder
+  AttaccoMagico?: Prisma.SortOrder
   Velocità_di_movimento?: Prisma.SortOrder
   Armatura?: Prisma.SortOrder
   Resistenza_magica?: Prisma.SortOrder
@@ -619,6 +653,7 @@ export type CampioneSumOrderByAggregateInput = {
   Vita?: Prisma.SortOrder
   Mana?: Prisma.SortOrder
   Attacco?: Prisma.SortOrder
+  AttaccoMagico?: Prisma.SortOrder
   Velocità_di_movimento?: Prisma.SortOrder
   Armatura?: Prisma.SortOrder
   Resistenza_magica?: Prisma.SortOrder
@@ -651,6 +686,14 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type DecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type CampioneCreateNestedOneWithoutCosmeticoInput = {
@@ -765,6 +808,20 @@ export type CampioneUpdateOneRequiredWithoutConfigNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CampioneUpdateToOneWithWhereWithoutConfigInput, Prisma.CampioneUpdateWithoutConfigInput>, Prisma.CampioneUncheckedUpdateWithoutConfigInput>
 }
 
+export type CampioneCreateNestedOneWithoutKitInput = {
+  create?: Prisma.XOR<Prisma.CampioneCreateWithoutKitInput, Prisma.CampioneUncheckedCreateWithoutKitInput>
+  connectOrCreate?: Prisma.CampioneCreateOrConnectWithoutKitInput
+  connect?: Prisma.CampioneWhereUniqueInput
+}
+
+export type CampioneUpdateOneRequiredWithoutKitNestedInput = {
+  create?: Prisma.XOR<Prisma.CampioneCreateWithoutKitInput, Prisma.CampioneUncheckedCreateWithoutKitInput>
+  connectOrCreate?: Prisma.CampioneCreateOrConnectWithoutKitInput
+  upsert?: Prisma.CampioneUpsertWithoutKitInput
+  connect?: Prisma.CampioneWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampioneUpdateToOneWithWhereWithoutKitInput, Prisma.CampioneUpdateWithoutKitInput>, Prisma.CampioneUncheckedUpdateWithoutKitInput>
+}
+
 export type CampioneCreateWithoutCosmeticoInput = {
   ID: string
   nome: string
@@ -773,12 +830,14 @@ export type CampioneCreateWithoutCosmeticoInput = {
   Descrizione: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
@@ -795,12 +854,14 @@ export type CampioneUncheckedCreateWithoutCosmeticoInput = {
   Ruolo: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
@@ -831,12 +892,14 @@ export type CampioneUpdateWithoutCosmeticoInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
@@ -853,12 +916,14 @@ export type CampioneUncheckedUpdateWithoutCosmeticoInput = {
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
@@ -873,12 +938,14 @@ export type CampioneCreateWithoutRoleInput = {
   Descrizione: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
@@ -894,12 +961,14 @@ export type CampioneUncheckedCreateWithoutRoleInput = {
   Descrizione: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
@@ -945,11 +1014,12 @@ export type CampioneScalarWhereInput = {
   Ruolo?: Prisma.StringFilter<"Campione"> | string
   Vita?: Prisma.IntFilter<"Campione"> | number
   Mana?: Prisma.IntFilter<"Campione"> | number
-  Attacco?: Prisma.IntFilter<"Campione"> | number
+  Attacco?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFilter<"Campione"> | number
   Velocità_di_movimento?: Prisma.IntFilter<"Campione"> | number
-  Armatura?: Prisma.IntFilter<"Campione"> | number
-  Resistenza_magica?: Prisma.IntFilter<"Campione"> | number
-  Velocità_di_attacco?: Prisma.IntFilter<"Campione"> | number
+  Armatura?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFilter<"Campione"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFilter<"Campione"> | number
 }
 
@@ -961,12 +1031,14 @@ export type CampioneCreateWithoutRazzaInput = {
   Descrizione: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
@@ -983,12 +1055,14 @@ export type CampioneUncheckedCreateWithoutRazzaInput = {
   Ruolo: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
@@ -1019,12 +1093,14 @@ export type CampioneUpdateWithoutRazzaInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
@@ -1041,12 +1117,14 @@ export type CampioneUncheckedUpdateWithoutRazzaInput = {
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
@@ -1061,12 +1139,14 @@ export type CampioneCreateWithoutPosizioneInput = {
   Descrizione: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
@@ -1083,12 +1163,14 @@ export type CampioneUncheckedCreateWithoutPosizioneInput = {
   Ruolo: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
@@ -1119,12 +1201,14 @@ export type CampioneUpdateWithoutPosizioneInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
@@ -1141,12 +1225,14 @@ export type CampioneUncheckedUpdateWithoutPosizioneInput = {
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
@@ -1161,12 +1247,14 @@ export type CampioneCreateWithoutRegioneInput = {
   Descrizione: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
@@ -1183,12 +1271,14 @@ export type CampioneUncheckedCreateWithoutRegioneInput = {
   Ruolo: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
@@ -1219,12 +1309,14 @@ export type CampioneUpdateWithoutRegioneInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
@@ -1241,12 +1333,14 @@ export type CampioneUncheckedUpdateWithoutRegioneInput = {
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
@@ -1261,12 +1355,14 @@ export type CampioneCreateWithoutConfigInput = {
   Descrizione: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
@@ -1283,12 +1379,14 @@ export type CampioneUncheckedCreateWithoutConfigInput = {
   Ruolo: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
   Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
   Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
@@ -1319,12 +1417,14 @@ export type CampioneUpdateWithoutConfigInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
@@ -1341,16 +1441,126 @@ export type CampioneUncheckedUpdateWithoutConfigInput = {
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
+  Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
+}
+
+export type CampioneCreateWithoutKitInput = {
+  ID: string
+  nome: string
+  Icona: string
+  Titolo: string
+  Descrizione: string
+  Vita: number
+  Mana: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
+  Velocità_di_movimento: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Gittata: number
+  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
+  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
+  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
+  Role: Prisma.RuoloCreateNestedOneWithoutCampioneInput
+}
+
+export type CampioneUncheckedCreateWithoutKitInput = {
+  ID: string
+  nome: string
+  Icona: string
+  Titolo: string
+  Descrizione: string
+  Ruolo: string
+  Vita: number
+  Mana: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
+  Velocità_di_movimento: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Gittata: number
+  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
+  Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
+  Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutChampInput
+}
+
+export type CampioneCreateOrConnectWithoutKitInput = {
+  where: Prisma.CampioneWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampioneCreateWithoutKitInput, Prisma.CampioneUncheckedCreateWithoutKitInput>
+}
+
+export type CampioneUpsertWithoutKitInput = {
+  update: Prisma.XOR<Prisma.CampioneUpdateWithoutKitInput, Prisma.CampioneUncheckedUpdateWithoutKitInput>
+  create: Prisma.XOR<Prisma.CampioneCreateWithoutKitInput, Prisma.CampioneUncheckedCreateWithoutKitInput>
+  where?: Prisma.CampioneWhereInput
+}
+
+export type CampioneUpdateToOneWithWhereWithoutKitInput = {
+  where?: Prisma.CampioneWhereInput
+  data: Prisma.XOR<Prisma.CampioneUpdateWithoutKitInput, Prisma.CampioneUncheckedUpdateWithoutKitInput>
+}
+
+export type CampioneUpdateWithoutKitInput = {
+  ID?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  Icona?: Prisma.StringFieldUpdateOperationsInput | string
+  Titolo?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Vita?: Prisma.IntFieldUpdateOperationsInput | number
+  Mana?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
+  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
+  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
+  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
+  Role?: Prisma.RuoloUpdateOneRequiredWithoutCampioneNestedInput
+}
+
+export type CampioneUncheckedUpdateWithoutKitInput = {
+  ID?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  Icona?: Prisma.StringFieldUpdateOperationsInput | string
+  Titolo?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
+  Vita?: Prisma.IntFieldUpdateOperationsInput | number
+  Mana?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
+  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
+  Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneCreateManyRoleInput = {
@@ -1361,11 +1571,12 @@ export type CampioneCreateManyRoleInput = {
   Descrizione: string
   Vita: number
   Mana: number
-  Attacco: number
+  Attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: number
   Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
+  Armatura: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco: runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata: number
 }
 
@@ -1377,12 +1588,14 @@ export type CampioneUpdateWithoutRoleInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
@@ -1398,12 +1611,14 @@ export type CampioneUncheckedUpdateWithoutRoleInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
   Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
   Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
@@ -1419,11 +1634,12 @@ export type CampioneUncheckedUpdateManyWithoutRoleInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.IntFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Resistenza_magica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Velocità_di_attacco?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -1433,6 +1649,7 @@ export type CampioneUncheckedUpdateManyWithoutRoleInput = {
  */
 
 export type CampioneCountOutputType = {
+  Kit: number
   Cosmetico: number
   Regione: number
   Razza: number
@@ -1441,6 +1658,7 @@ export type CampioneCountOutputType = {
 }
 
 export type CampioneCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Kit?: boolean | CampioneCountOutputTypeCountKitArgs
   Cosmetico?: boolean | CampioneCountOutputTypeCountCosmeticoArgs
   Regione?: boolean | CampioneCountOutputTypeCountRegioneArgs
   Razza?: boolean | CampioneCountOutputTypeCountRazzaArgs
@@ -1456,6 +1674,13 @@ export type CampioneCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
    * Select specific fields to fetch from the CampioneCountOutputType
    */
   select?: Prisma.CampioneCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * CampioneCountOutputType without action
+ */
+export type CampioneCountOutputTypeCountKitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KitWhereInput
 }
 
 /**
@@ -1504,11 +1729,13 @@ export type CampioneSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   Vita?: boolean
   Mana?: boolean
   Attacco?: boolean
+  AttaccoMagico?: boolean
   Velocità_di_movimento?: boolean
   Armatura?: boolean
   Resistenza_magica?: boolean
   Velocità_di_attacco?: boolean
   Gittata?: boolean
+  Kit?: boolean | Prisma.Campione$KitArgs<ExtArgs>
   Cosmetico?: boolean | Prisma.Campione$CosmeticoArgs<ExtArgs>
   Regione?: boolean | Prisma.Campione$RegioneArgs<ExtArgs>
   Razza?: boolean | Prisma.Campione$RazzaArgs<ExtArgs>
@@ -1528,6 +1755,7 @@ export type CampioneSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   Vita?: boolean
   Mana?: boolean
   Attacco?: boolean
+  AttaccoMagico?: boolean
   Velocità_di_movimento?: boolean
   Armatura?: boolean
   Resistenza_magica?: boolean
@@ -1546,6 +1774,7 @@ export type CampioneSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   Vita?: boolean
   Mana?: boolean
   Attacco?: boolean
+  AttaccoMagico?: boolean
   Velocità_di_movimento?: boolean
   Armatura?: boolean
   Resistenza_magica?: boolean
@@ -1564,6 +1793,7 @@ export type CampioneSelectScalar = {
   Vita?: boolean
   Mana?: boolean
   Attacco?: boolean
+  AttaccoMagico?: boolean
   Velocità_di_movimento?: boolean
   Armatura?: boolean
   Resistenza_magica?: boolean
@@ -1571,8 +1801,9 @@ export type CampioneSelectScalar = {
   Gittata?: boolean
 }
 
-export type CampioneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ID" | "nome" | "Icona" | "Titolo" | "Descrizione" | "Ruolo" | "Vita" | "Mana" | "Attacco" | "Velocità_di_movimento" | "Armatura" | "Resistenza_magica" | "Velocità_di_attacco" | "Gittata", ExtArgs["result"]["campione"]>
+export type CampioneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ID" | "nome" | "Icona" | "Titolo" | "Descrizione" | "Ruolo" | "Vita" | "Mana" | "Attacco" | "AttaccoMagico" | "Velocità_di_movimento" | "Armatura" | "Resistenza_magica" | "Velocità_di_attacco" | "Gittata", ExtArgs["result"]["campione"]>
 export type CampioneInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Kit?: boolean | Prisma.Campione$KitArgs<ExtArgs>
   Cosmetico?: boolean | Prisma.Campione$CosmeticoArgs<ExtArgs>
   Regione?: boolean | Prisma.Campione$RegioneArgs<ExtArgs>
   Razza?: boolean | Prisma.Campione$RazzaArgs<ExtArgs>
@@ -1591,6 +1822,7 @@ export type CampioneIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $CampionePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Campione"
   objects: {
+    Kit: Prisma.$KitPayload<ExtArgs>[]
     Cosmetico: Prisma.$CosmeticoPayload<ExtArgs>[]
     Regione: Prisma.$Campione_RegionePayload<ExtArgs>[]
     Razza: Prisma.$Campione_RazzaPayload<ExtArgs>[]
@@ -1607,11 +1839,12 @@ export type $CampionePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     Ruolo: string
     Vita: number
     Mana: number
-    Attacco: number
+    Attacco: runtime.Decimal
+    AttaccoMagico: number
     Velocità_di_movimento: number
-    Armatura: number
-    Resistenza_magica: number
-    Velocità_di_attacco: number
+    Armatura: runtime.Decimal
+    Resistenza_magica: runtime.Decimal
+    Velocità_di_attacco: runtime.Decimal
     Gittata: number
   }, ExtArgs["result"]["campione"]>
   composites: {}
@@ -2007,6 +2240,7 @@ readonly fields: CampioneFieldRefs;
  */
 export interface Prisma__CampioneClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  Kit<T extends Prisma.Campione$KitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$KitArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Cosmetico<T extends Prisma.Campione$CosmeticoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$CosmeticoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CosmeticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Regione<T extends Prisma.Campione$RegioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$RegioneArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Campione_RegionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Razza<T extends Prisma.Campione$RazzaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$RazzaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Campione_RazzaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2050,11 +2284,12 @@ export interface CampioneFieldRefs {
   readonly Ruolo: Prisma.FieldRef<"Campione", 'String'>
   readonly Vita: Prisma.FieldRef<"Campione", 'Int'>
   readonly Mana: Prisma.FieldRef<"Campione", 'Int'>
-  readonly Attacco: Prisma.FieldRef<"Campione", 'Int'>
+  readonly Attacco: Prisma.FieldRef<"Campione", 'Decimal'>
+  readonly AttaccoMagico: Prisma.FieldRef<"Campione", 'Int'>
   readonly Velocità_di_movimento: Prisma.FieldRef<"Campione", 'Int'>
-  readonly Armatura: Prisma.FieldRef<"Campione", 'Int'>
-  readonly Resistenza_magica: Prisma.FieldRef<"Campione", 'Int'>
-  readonly Velocità_di_attacco: Prisma.FieldRef<"Campione", 'Int'>
+  readonly Armatura: Prisma.FieldRef<"Campione", 'Decimal'>
+  readonly Resistenza_magica: Prisma.FieldRef<"Campione", 'Decimal'>
+  readonly Velocità_di_attacco: Prisma.FieldRef<"Campione", 'Decimal'>
   readonly Gittata: Prisma.FieldRef<"Campione", 'Int'>
 }
     
@@ -2454,6 +2689,30 @@ export type CampioneDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Campiones to delete.
    */
   limit?: number
+}
+
+/**
+ * Campione.Kit
+ */
+export type Campione$KitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Kit
+   */
+  select?: Prisma.KitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Kit
+   */
+  omit?: Prisma.KitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KitInclude<ExtArgs> | null
+  where?: Prisma.KitWhereInput
+  orderBy?: Prisma.KitOrderByWithRelationInput | Prisma.KitOrderByWithRelationInput[]
+  cursor?: Prisma.KitWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KitScalarFieldEnum | Prisma.KitScalarFieldEnum[]
 }
 
 /**

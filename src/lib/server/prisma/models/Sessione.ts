@@ -28,19 +28,17 @@ export type AggregateSessione = {
 
 export type SessioneAvgAggregateOutputType = {
   Id: number | null
-  guid_id: number | null
   user_id: number | null
 }
 
 export type SessioneSumAggregateOutputType = {
   Id: number | null
-  guid_id: number | null
   user_id: number | null
 }
 
 export type SessioneMinAggregateOutputType = {
   Id: number | null
-  guid_id: number | null
+  guid_id: string | null
   user_id: number | null
   date_created: Date | null
   date_expired: Date | null
@@ -48,7 +46,7 @@ export type SessioneMinAggregateOutputType = {
 
 export type SessioneMaxAggregateOutputType = {
   Id: number | null
-  guid_id: number | null
+  guid_id: string | null
   user_id: number | null
   date_created: Date | null
   date_expired: Date | null
@@ -66,13 +64,11 @@ export type SessioneCountAggregateOutputType = {
 
 export type SessioneAvgAggregateInputType = {
   Id?: true
-  guid_id?: true
   user_id?: true
 }
 
 export type SessioneSumAggregateInputType = {
   Id?: true
-  guid_id?: true
   user_id?: true
 }
 
@@ -189,7 +185,7 @@ export type SessioneGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type SessioneGroupByOutputType = {
   Id: number
-  guid_id: number
+  guid_id: string
   user_id: number
   date_created: Date
   date_expired: Date
@@ -220,7 +216,7 @@ export type SessioneWhereInput = {
   OR?: Prisma.SessioneWhereInput[]
   NOT?: Prisma.SessioneWhereInput | Prisma.SessioneWhereInput[]
   Id?: Prisma.IntFilter<"Sessione"> | number
-  guid_id?: Prisma.IntFilter<"Sessione"> | number
+  guid_id?: Prisma.StringFilter<"Sessione"> | string
   user_id?: Prisma.IntFilter<"Sessione"> | number
   date_created?: Prisma.DateTimeFilter<"Sessione"> | Date | string
   date_expired?: Prisma.DateTimeFilter<"Sessione"> | Date | string
@@ -238,15 +234,15 @@ export type SessioneOrderByWithRelationInput = {
 
 export type SessioneWhereUniqueInput = Prisma.AtLeast<{
   Id?: number
+  guid_id?: string
   AND?: Prisma.SessioneWhereInput | Prisma.SessioneWhereInput[]
   OR?: Prisma.SessioneWhereInput[]
   NOT?: Prisma.SessioneWhereInput | Prisma.SessioneWhereInput[]
-  guid_id?: Prisma.IntFilter<"Sessione"> | number
   user_id?: Prisma.IntFilter<"Sessione"> | number
   date_created?: Prisma.DateTimeFilter<"Sessione"> | Date | string
   date_expired?: Prisma.DateTimeFilter<"Sessione"> | Date | string
   user?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
-}, "Id">
+}, "Id" | "guid_id">
 
 export type SessioneOrderByWithAggregationInput = {
   Id?: Prisma.SortOrder
@@ -266,7 +262,7 @@ export type SessioneScalarWhereWithAggregatesInput = {
   OR?: Prisma.SessioneScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SessioneScalarWhereWithAggregatesInput | Prisma.SessioneScalarWhereWithAggregatesInput[]
   Id?: Prisma.IntWithAggregatesFilter<"Sessione"> | number
-  guid_id?: Prisma.IntWithAggregatesFilter<"Sessione"> | number
+  guid_id?: Prisma.StringWithAggregatesFilter<"Sessione"> | string
   user_id?: Prisma.IntWithAggregatesFilter<"Sessione"> | number
   date_created?: Prisma.DateTimeWithAggregatesFilter<"Sessione"> | Date | string
   date_expired?: Prisma.DateTimeWithAggregatesFilter<"Sessione"> | Date | string
@@ -274,7 +270,7 @@ export type SessioneScalarWhereWithAggregatesInput = {
 
 export type SessioneCreateInput = {
   Id: number
-  guid_id: number
+  guid_id: string
   date_created?: Date | string
   date_expired: Date | string
   user: Prisma.AccountCreateNestedOneWithoutSessioneInput
@@ -282,7 +278,7 @@ export type SessioneCreateInput = {
 
 export type SessioneUncheckedCreateInput = {
   Id: number
-  guid_id: number
+  guid_id: string
   user_id: number
   date_created?: Date | string
   date_expired: Date | string
@@ -290,7 +286,7 @@ export type SessioneUncheckedCreateInput = {
 
 export type SessioneUpdateInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
-  guid_id?: Prisma.IntFieldUpdateOperationsInput | number
+  guid_id?: Prisma.StringFieldUpdateOperationsInput | string
   date_created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   date_expired?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.AccountUpdateOneRequiredWithoutSessioneNestedInput
@@ -298,7 +294,7 @@ export type SessioneUpdateInput = {
 
 export type SessioneUncheckedUpdateInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
-  guid_id?: Prisma.IntFieldUpdateOperationsInput | number
+  guid_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   date_created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   date_expired?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -306,7 +302,7 @@ export type SessioneUncheckedUpdateInput = {
 
 export type SessioneCreateManyInput = {
   Id: number
-  guid_id: number
+  guid_id: string
   user_id: number
   date_created?: Date | string
   date_expired: Date | string
@@ -314,14 +310,14 @@ export type SessioneCreateManyInput = {
 
 export type SessioneUpdateManyMutationInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
-  guid_id?: Prisma.IntFieldUpdateOperationsInput | number
+  guid_id?: Prisma.StringFieldUpdateOperationsInput | string
   date_created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   date_expired?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SessioneUncheckedUpdateManyInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
-  guid_id?: Prisma.IntFieldUpdateOperationsInput | number
+  guid_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   date_created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   date_expired?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -347,7 +343,6 @@ export type SessioneCountOrderByAggregateInput = {
 
 export type SessioneAvgOrderByAggregateInput = {
   Id?: Prisma.SortOrder
-  guid_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
 }
 
@@ -369,7 +364,6 @@ export type SessioneMinOrderByAggregateInput = {
 
 export type SessioneSumOrderByAggregateInput = {
   Id?: Prisma.SortOrder
-  guid_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
 }
 
@@ -421,14 +415,14 @@ export type DateTimeFieldUpdateOperationsInput = {
 
 export type SessioneCreateWithoutUserInput = {
   Id: number
-  guid_id: number
+  guid_id: string
   date_created?: Date | string
   date_expired: Date | string
 }
 
 export type SessioneUncheckedCreateWithoutUserInput = {
   Id: number
-  guid_id: number
+  guid_id: string
   date_created?: Date | string
   date_expired: Date | string
 }
@@ -464,7 +458,7 @@ export type SessioneScalarWhereInput = {
   OR?: Prisma.SessioneScalarWhereInput[]
   NOT?: Prisma.SessioneScalarWhereInput | Prisma.SessioneScalarWhereInput[]
   Id?: Prisma.IntFilter<"Sessione"> | number
-  guid_id?: Prisma.IntFilter<"Sessione"> | number
+  guid_id?: Prisma.StringFilter<"Sessione"> | string
   user_id?: Prisma.IntFilter<"Sessione"> | number
   date_created?: Prisma.DateTimeFilter<"Sessione"> | Date | string
   date_expired?: Prisma.DateTimeFilter<"Sessione"> | Date | string
@@ -472,28 +466,28 @@ export type SessioneScalarWhereInput = {
 
 export type SessioneCreateManyUserInput = {
   Id: number
-  guid_id: number
+  guid_id: string
   date_created?: Date | string
   date_expired: Date | string
 }
 
 export type SessioneUpdateWithoutUserInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
-  guid_id?: Prisma.IntFieldUpdateOperationsInput | number
+  guid_id?: Prisma.StringFieldUpdateOperationsInput | string
   date_created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   date_expired?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SessioneUncheckedUpdateWithoutUserInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
-  guid_id?: Prisma.IntFieldUpdateOperationsInput | number
+  guid_id?: Prisma.StringFieldUpdateOperationsInput | string
   date_created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   date_expired?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SessioneUncheckedUpdateManyWithoutUserInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
-  guid_id?: Prisma.IntFieldUpdateOperationsInput | number
+  guid_id?: Prisma.StringFieldUpdateOperationsInput | string
   date_created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   date_expired?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -553,7 +547,7 @@ export type $SessionePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Id: number
-    guid_id: number
+    guid_id: string
     user_id: number
     date_created: Date
     date_expired: Date
@@ -982,7 +976,7 @@ export interface Prisma__SessioneClient<T, Null = never, ExtArgs extends runtime
  */
 export interface SessioneFieldRefs {
   readonly Id: Prisma.FieldRef<"Sessione", 'Int'>
-  readonly guid_id: Prisma.FieldRef<"Sessione", 'Int'>
+  readonly guid_id: Prisma.FieldRef<"Sessione", 'String'>
   readonly user_id: Prisma.FieldRef<"Sessione", 'Int'>
   readonly date_created: Prisma.FieldRef<"Sessione", 'DateTime'>
   readonly date_expired: Prisma.FieldRef<"Sessione", 'DateTime'>

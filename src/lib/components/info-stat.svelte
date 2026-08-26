@@ -1,28 +1,38 @@
+<script lang="ts">
+  import type { Campione, Prisma } from "$lib/server/prisma/client";
+
+  interface Props {
+    champion: Campione;
+  }
+
+  let { champion }: Props = $props();
+</script>
+
 <div class="stats-container">
   <div class="stats-column left-stats">
     <div class="stat-item">
       <span class="stat-label">HP</span>
-      <span class="stat-value">600</span>
+      <span class="stat-value">{champion.Vita}</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">HP Regen</span>
-      <span class="stat-value">9</span>
+      <span class="stat-value">placeholder</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">AR</span>
-      <span class="stat-value">23</span>
+      <span class="stat-value">{champion.Armatura}</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">MR</span>
-      <span class="stat-value">37</span>
+      <span class="stat-value">{champion.Resistenza_magica}</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">MS</span>
-      <span class="stat-value">345</span>
+      <span class="stat-value">{champion.Velocità_di_movimento}</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">Base AS</span>
-      <span class="stat-value">0.625</span>
+      <span class="stat-value">{champion.Velocità_di_attacco}</span>
     </div>
   </div>
 
@@ -32,28 +42,28 @@
 
   <div class="stats-column right-stats">
     <div class="stat-item">
-      <span class="stat-label">Energy</span>
-      <span class="stat-value">200</span>
+      <span class="stat-label">Mana</span>
+      <span class="stat-value">{champion.Mana}</span>
     </div>
     <div class="stat-item">
-      <span class="stat-label">Energy Regen</span>
-      <span class="stat-value">50</span>
+      <span class="stat-label">Mana Regen</span>
+      <span class="stat-value">placeholder</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">AD</span>
-      <span class="stat-value">62</span>
+      <span class="stat-value">{champion.Attacco}</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">Crit. DMG</span>
-      <span class="stat-value">200%</span>
+      <span class="stat-value">placeholder</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">Attack Range</span>
-      <span class="stat-value">125</span>
+      <span class="stat-value">{champion.Gittata}</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">Windup%</span>
-      <span class="stat-value">13.9%</span>
+      <span class="stat-value">placeholder</span>
     </div>
   </div>
 </div>

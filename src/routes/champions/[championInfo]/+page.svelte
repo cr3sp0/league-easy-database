@@ -12,7 +12,7 @@
   <div class="info-container">
     <div
       class="info-cover"
-      style="background-image: url('https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_3.jpg');"
+      style="background-image: url({data.champion?.Cosmetico[0].Immagine});"
     >
       <Navbar profile={data.profile} />
       <div class="champ-name">
@@ -23,20 +23,16 @@
     </div>
 
     <div class="info-content">
-      <div class="title">Sottotitolo</div>
-      <div class="description section">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae beatae
-        ipsum animi, ipsam amet similique voluptatem nisi itaque dolorum aut ab
-        facilis culpa natus a nobis quae hic possimus maxime! Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Eaque illum totam quo a?
-        Perspiciatis, molestiae. Mollitia culpa maiores at laborum eos iure
-        perferendis architecto aspernatur consectetur, corrupti, quibusdam ab
-        nihil.
-      </div>
-      <div class="title">Statistiche</div>
+      <div class="title">{data.champion?.Titolo}</div>
+      <div class="description section">{data.champion?.Descrizione}</div>
+      <div class="title">Stats</div>
       <Sectionheader />
-      <div class="info-stat section"><InfoStat /></div>
-      <div class="title">Migliori Build</div>
+      {#if data.champion}
+        <div class="info-stat section">
+          <InfoStat champion={data.champion} />
+        </div>
+      {/if}
+      <div class="title">Best Builds</div>
       <Search />
       <BuildcardHolder />
     </div>
@@ -51,7 +47,7 @@
 
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 3rem;
     align-items: center;
 
     border: 1px var(--white-20) solid;
@@ -65,6 +61,10 @@
 
     display: flex;
     flex-direction: column;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    box-shadow: inset 0 0 150px 50px rgba(0, 0, 0, 0.9);
   }
 
   .info-content {
@@ -97,6 +97,7 @@
   }
 
   .description {
+    text-align: center;
     font-size: var(--text-md);
     font-family: var(--font-mono);
   }

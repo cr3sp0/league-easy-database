@@ -32,6 +32,10 @@
     display: contents;
   }
 
+  form {
+    display: contents;
+  }
+
   .champion-content {
     display: flex;
     flex-direction: column;

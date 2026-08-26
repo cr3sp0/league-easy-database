@@ -1,5 +1,6 @@
 import prisma from '$lib/server/prisma';
 import type { Campione, Prisma } from './prisma/client';
+import { CosmeticoScalarFieldEnum } from './prisma/internal/prismaNamespace';
 
 let championsCache: Campione[] | null = null;
 type CampioniConCosmetici = Prisma.CampioneGetPayload<{
@@ -22,12 +23,16 @@ async function getFullChampionsAndCosmeticsCache() {
     return champAndCosmeticsCache; 
   }
 
-  //SELECT * FROM campione JOIN cosmetico ON IdCampione
+  //SELECT * FROM campione JOIN cosmetico ON IdCampione ORDERBY cosmetico.Immagine
   champAndCosmeticsCache = await prisma.campione.findMany({
-    include: {
-      Cosmetico: true
+  include: {
+    Cosmetico: {
+      orderBy: {
+        Immagine: 'asc'
+      }
     }
-  });
+  },
+});
   
   return champAndCosmeticsCache;
 }

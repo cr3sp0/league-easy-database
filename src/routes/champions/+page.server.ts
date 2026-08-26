@@ -2,11 +2,11 @@ import { type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getChampionsBasicInfo } from '$lib/server/championsManager';
 
-export const load: PageServerLoad = async ({params, cookies}) => {
+export const load: PageServerLoad = async ({params, cookies, locals}) => {
   const champions = await getChampionsBasicInfo();
 
   return {
-    profile: cookies.get('ledb_session'),
+    profile: locals.user.username,
     champions: champions
   };
 };

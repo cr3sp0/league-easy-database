@@ -323,9 +323,9 @@ export type Pagina_RunaUncheckedUpdateManyInput = {
   Frammenti?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type Pagina_RunaScalarRelationFilter = {
-  is?: Prisma.Pagina_RunaWhereInput
-  isNot?: Prisma.Pagina_RunaWhereInput
+export type Pagina_RunaNullableScalarRelationFilter = {
+  is?: Prisma.Pagina_RunaWhereInput | null
+  isNot?: Prisma.Pagina_RunaWhereInput | null
 }
 
 export type Pagina_RunaCountOrderByAggregateInput = {
@@ -379,10 +379,12 @@ export type Pagina_RunaCreateNestedOneWithoutConfInput = {
   connect?: Prisma.Pagina_RunaWhereUniqueInput
 }
 
-export type Pagina_RunaUpdateOneRequiredWithoutConfNestedInput = {
+export type Pagina_RunaUpdateOneWithoutConfNestedInput = {
   create?: Prisma.XOR<Prisma.Pagina_RunaCreateWithoutConfInput, Prisma.Pagina_RunaUncheckedCreateWithoutConfInput>
   connectOrCreate?: Prisma.Pagina_RunaCreateOrConnectWithoutConfInput
   upsert?: Prisma.Pagina_RunaUpsertWithoutConfInput
+  disconnect?: Prisma.Pagina_RunaWhereInput | boolean
+  delete?: Prisma.Pagina_RunaWhereInput | boolean
   connect?: Prisma.Pagina_RunaWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.Pagina_RunaUpdateToOneWithWhereWithoutConfInput, Prisma.Pagina_RunaUpdateWithoutConfInput>, Prisma.Pagina_RunaUncheckedUpdateWithoutConfInput>
 }

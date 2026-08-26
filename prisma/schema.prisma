@@ -111,12 +111,12 @@ model Configurazione{
   Incantesimo1 String
   Incantesimo2 String
   Account Int
-  Runa Int
+  Runa Int?
   champ Campione @relation(fields: [IdCampione], references: [ID])
   Inc1 Incantesimo @relation(fields: [Incantesimo1], references: [Nome], name: "Inc1")
   Inc2 Incantesimo @relation(fields: [Incantesimo2], references: [Nome], name: "Inc2") 
   User Account @relation(fields: [Account], references: [AccountId]) 
-  Pag_Runa Pagina_Runa @relation(fields: [Runa], references: [Id])
+  Pag_Runa Pagina_Runa? @relation(fields: [Runa], references: [Id])
   Partite Partita[]
   Inv Inventario[]
 }

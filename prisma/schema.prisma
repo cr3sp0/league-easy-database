@@ -152,7 +152,7 @@ model Account{
 }
 
 model Sessione{
-  Id Int @id 
+  Id Int @id @default(autoincrement())
   guid_id String @unique
   user_id Int 
   date_created DateTime @default(now())
@@ -273,10 +273,8 @@ model Storico{
   Modif Modifica[]
 }
 
-
 model Statistica{
   Id Int @id
   Nome String 
-  Livello Int 
   Stat Modifica[]
 }

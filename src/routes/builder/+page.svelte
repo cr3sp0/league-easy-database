@@ -1,32 +1,118 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import Buildcard from "$lib/components/buildcard.svelte";
   import BuildcardHolder from "$lib/components/buildcardHolder.svelte";
   import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
-    import type { Item, Rune, RuneConfiguration, Build, Champion } from "$lib/types.js";
+  import type {
+    Item,
+    Rune,
+    RuneConfiguration,
+    Build,
+    Champion,
+  } from "$lib/types.js";
 
-  let { data } = $props()
+  let { data, form } = $props();
 
-  	let primary: Rune[] = [
-		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: "keystone", image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 1, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 2, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 3, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"}
-	]
-	let secondary: Rune[] = [
-		{path: {id: "precision", name:"Domination", color:"green"}, name: "ppp", level: 1, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "precision", name:"Domination", color:"green"}, name: "ppp", level: 3, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"}
-	]
-	let shards: Rune[] = [
-		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 1, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 2, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 3, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"}
-	]
+  let indices = $derived(form?.indices ?? data.randomIndices);
 
-	let runes: RuneConfiguration = {primary: primary, secondary: secondary, shards: shards}
-	let items: Item[] = [{name: "asd", description: "lorem ipsum", image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gragas/Gragas_p.jpg", cost: 3000}]
-	let champ: Champion = {name: "Akali", title:"someone"}
-	let build1: Build = {name: "FantoBuild", author: "Faker", champion: champ, runes: runes, items: items, kills: 25, deaths: 10, assists: 50, wins: 65, losses: 10}
+  let primary: Rune[] = [
+    {
+      path: { id: "domination", name: "Domination", color: "red" },
+      name: "llll",
+      level: "keystone",
+      image:
+        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg",
+    },
+    {
+      path: { id: "domination", name: "Domination", color: "red" },
+      name: "llll",
+      level: 1,
+      image:
+        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg",
+    },
+    {
+      path: { id: "domination", name: "Domination", color: "red" },
+      name: "llll",
+      level: 2,
+      image:
+        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg",
+    },
+    {
+      path: { id: "domination", name: "Domination", color: "red" },
+      name: "llll",
+      level: 3,
+      image:
+        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg",
+    },
+  ];
+  let secondary: Rune[] = [
+    {
+      path: { id: "precision", name: "Domination", color: "green" },
+      name: "ppp",
+      level: 1,
+      image:
+        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg",
+    },
+    {
+      path: { id: "precision", name: "Domination", color: "green" },
+      name: "ppp",
+      level: 3,
+      image:
+        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg",
+    },
+  ];
+  let shards: Rune[] = [
+    {
+      path: { id: "shard", name: "Shard", color: "rgb(255, 255, 255, 0.2)" },
+      name: "hh",
+      level: 1,
+      image:
+        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg",
+    },
+    {
+      path: { id: "shard", name: "Shard", color: "rgb(255, 255, 255, 0.2)" },
+      name: "hh",
+      level: 2,
+      image:
+        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg",
+    },
+    {
+      path: { id: "shard", name: "Shard", color: "rgb(255, 255, 255, 0.2)" },
+      name: "hh",
+      level: 3,
+      image:
+        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg",
+    },
+  ];
+
+  let runes: RuneConfiguration = {
+    primary: primary,
+    secondary: secondary,
+    shards: shards,
+  };
+  let items: Item[] = [
+    {
+      name: "asd",
+      description: "lorem ipsum",
+      image:
+        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gragas/Gragas_p.jpg",
+      cost: 3000,
+    },
+  ];
+  let champ: Champion = { name: "Akali", title: "someone" };
+  let build1: Build = {
+    name: "FantoBuild",
+    author: "Faker",
+    champion: champ,
+    runes: runes,
+    items: items,
+    kills: 25,
+    deaths: 10,
+    assists: 50,
+    wins: 65,
+    losses: 10,
+  };
 </script>
 
 <div class="container">
@@ -39,25 +125,32 @@
         <b>Champion!</b>
       </div>
       <div class="builder-search section">
-        <input
-          type="search"
-          class="search"
-          id="champ-search"
-          placeholder="Search for your Champion"
-        />
+        <form action="?/filterByName" method="post" use:enhance>
+          <input
+            type="search"
+            name="championName"
+            class="search"
+            id="champ-search"
+            placeholder="Search for your Champion"
+          />
+        </form>
       </div>
       <div class="builder-most-used section">
-        <a href="/builder/newbuild" class="element">
-          {#if data.champion}
-            <Champcard name={data.champion.nome} />
-          {:else}
-            <Champcard name={"champion"} />
-          {/if}
-        </a>
-
-        <Champcard name={"champion"} />
-        <Champcard name={"champion"} />
-        <Champcard name={"champion"} />
+        {#each indices as i}
+          <a
+            href={"/builder/" + data.champions[i].nome + "-new-build"}
+            class="element"
+          >
+            {#if data.champions && data.champions[i]}
+              <Champcard
+                name={data.champions[i].nome}
+                Icon={data.champions[i].Icona}
+              />
+            {:else}
+              <Champcard name={"champion"} Icon={"*"} />
+            {/if}
+          </a>
+        {/each}
       </div>
     </div>
 
@@ -75,7 +168,7 @@
           placeholder="Search for a Build"
         />
       </div>
-      <BuildcardHolder comunityBuilds={[build1]}/>
+      <BuildcardHolder comunityBuilds={[build1]} />
     </div>
   </div>
 </div>
@@ -137,6 +230,8 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 25px;
   }
 

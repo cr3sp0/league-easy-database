@@ -4,18 +4,18 @@
   import Search from "$lib/components/search.svelte";
   import { redirect } from "@sveltejs/kit";
 
-  let { data } = $props()
+  let { data } = $props();
 </script>
 
 <div class="container">
   <div class="champion-content">
-    <Navbar profile={data.profile}/>
+    <Navbar profile={data.profile} />
     <div class="title">Champions</div>
     <Search />
     <div class="grid-content">
-      {#each ["akali", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso", "supercalifragilistichespiralidoso"] as champion}
-        <a href="/champions/{champion}" class="element">
-          <Champcard name={champion} />
+      {#each data.champions as champ}
+        <a href="/champions/{champ.nome}" class="element">
+          <Champcard name={champ.nome} Icon={champ.Icona} />
         </a>
       {/each}
     </div>
@@ -23,6 +23,10 @@
 </div>
 
 <style>
+  a {
+    display: contents;
+  }
+
   .champion-content {
     display: flex;
     flex-direction: column;
@@ -40,18 +44,14 @@
 
   .grid-content {
     width: 100%;
-    display: grid;
-    row-gap: 10px;
-
-    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-
-    column-gap: clamp(0.5rem, 3vw, 3rem);
-    row-gap: inherit;
+    gap: 25px;
   }
 
   .element {
-    display: flex;
     overflow-wrap: anywhere;
     word-break: break-word;
     hyphens: auto;

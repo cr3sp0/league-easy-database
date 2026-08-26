@@ -154,7 +154,7 @@ model Account{
 model Sessione{
   Id Int @id @default(autoincrement())
   guid_id String @unique
-  user_id Int 
+  user_id Int @unique
   date_created DateTime @default(now())
   date_expired DateTime
   user Account @relation(fields: [user_id], references: [AccountId], onDelete: Cascade)  

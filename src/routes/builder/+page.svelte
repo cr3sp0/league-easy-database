@@ -178,6 +178,10 @@
     display: contents;
   }
 
+  form {
+    display: contents;
+  }
+
   .builder-content {
     height: 100%;
     width: 100%;

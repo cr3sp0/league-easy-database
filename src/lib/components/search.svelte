@@ -2,7 +2,7 @@
 </script>
 
 <div class="search-container" id="head-section">
-  <input type="text" class="search" placeholder="Search..." />
+  <input type="text" class="search" placeholder="Search..." name="search" />
   <div class="filler"></div>
   <div class="filter" id="filter">
     <svg

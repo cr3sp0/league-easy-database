@@ -1,19 +1,24 @@
 <script>
+  import { enhance } from "$app/forms";
   import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
   import Search from "$lib/components/search.svelte";
   import { redirect } from "@sveltejs/kit";
 
-  let { data } = $props();
+  let { data, form } = $props();
+
+  let champions = $derived(form?.champions ?? data.champions);
 </script>
 
 <div class="container">
   <div class="champion-content">
     <Navbar profile={data.profile} />
     <div class="title">Champions</div>
-    <Search />
+    <form action="?/filterByName" method="post" use:enhance>
+      <Search />
+    </form>
     <div class="grid-content">
-      {#each data.champions as champ}
+      {#each champions as champ}
         <a href="/champions/{champ.nome}" class="element">
           <Champcard name={champ.nome} Icon={champ.Icona} />
         </a>

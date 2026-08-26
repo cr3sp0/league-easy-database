@@ -7,7 +7,6 @@ async function getFullChampionsCache() {
     return championsCache; 
   }
 
-  console.log("Fetching champions dal Database...");
   //SELECT * FROM campione
   championsCache = await prisma.campione.findMany();
   

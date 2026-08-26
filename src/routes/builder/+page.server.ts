@@ -36,7 +36,6 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 export const actions = {
   filterByName: async ({ request }) => {
-    console.log("qui ci arrivo");
     
     const formData = await request.formData();
     

@@ -2,8 +2,9 @@
 export interface IUser {
   userID: number,
   username: string,
-  riotID?: string,
-  role: "Admin" | "User"
+  pfp: string,
+  isAdmin: boolean,
+  riotID?: string
 }
 
 export interface ISession {

@@ -36,9 +36,9 @@ export async function handle({event, resolve}) {
     }
     
     if(
-        (event.url.pathname.startsWith("/account") 
+        !event.locals.user
+        && (event.url.pathname.startsWith("/account") 
             || event.url.pathname === "/builder/newbuild") 
-        && !event.locals.user
     ) {
         throw redirect(303, '/login')
     }

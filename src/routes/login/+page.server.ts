@@ -1,4 +1,5 @@
 import { popup } from "$lib/components/store/popup.svelte";
+import { hashPassword, verifyPassword } from "$lib/server/auth";
 import prisma from "$lib/server/prisma";
 import type { ISession } from "$lib/types";
 import { fail, type Action, type Actions } from "@sveltejs/kit";
@@ -27,16 +28,20 @@ const login : Action = async ({ request, cookies }) => {
 		//SELECT * FROM Account 
 		// WHERE Nome = username 
 		// AND Password = password
-		let user = await prisma.account.findFirst({ 
+		let user = await prisma.account.findUnique({ 
 			where: {
-				AND: [
-					{ Nome: username },
-					{ Password: password }
-				]
+				Nome: username
 			}
 		})
 
-		if (!user) { // resp.rowCount === 0
+		if (!user) {
+			throw { message: "Account missing" }
+		}
+
+		if (
+			user
+			&& !await verifyPassword(password, user?.Password)
+		) { // resp.rowCount === 0
 			throw { message: "User or Password incorrect." }
 		}
 
@@ -119,6 +124,7 @@ const signup : Action = async ({ request, cookies, locals }) => {
 	}
 
 	try {
+		const hashedPassword = await hashPassword(password)
 
 		//TODO: write explicit sql query
 		let uniqueAccount = await prisma.account.findUnique({
@@ -135,7 +141,7 @@ const signup : Action = async ({ request, cookies, locals }) => {
 		let createAccount = await prisma.account.create({
 			data: {
 				Nome: username,
-				Password: password, //TODO: hash it
+				Password: hashedPassword, //TODO: hash it
 				Descrizione: "",
 				IsAdmin: false,
 				Immagine: ""

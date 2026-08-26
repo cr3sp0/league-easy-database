@@ -39,7 +39,7 @@ model Campione {
 }
 
 model Cosmetico{
-  NomeCosmetico String @unique
+  NomeCosmetico String
   IdCampione String
   Immagine String //? not sure
  // Modello 

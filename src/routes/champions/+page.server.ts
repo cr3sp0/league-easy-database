@@ -6,7 +6,8 @@ export const load: PageServerLoad = async ({params, cookies, locals}) => {
   const champions = await getChampionsBasicInfo();
 
   return {
-    profile: locals.user.username,
+    profile: locals.user 
+      ? locals.user.username : undefined,
     champions: champions
   };
 };

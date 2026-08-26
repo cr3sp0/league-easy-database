@@ -269,7 +269,6 @@ export type SessioneScalarWhereWithAggregatesInput = {
 }
 
 export type SessioneCreateInput = {
-  Id: number
   guid_id: string
   date_created?: Date | string
   date_expired: Date | string
@@ -277,7 +276,7 @@ export type SessioneCreateInput = {
 }
 
 export type SessioneUncheckedCreateInput = {
-  Id: number
+  Id?: number
   guid_id: string
   user_id: number
   date_created?: Date | string
@@ -285,7 +284,6 @@ export type SessioneUncheckedCreateInput = {
 }
 
 export type SessioneUpdateInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   guid_id?: Prisma.StringFieldUpdateOperationsInput | string
   date_created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   date_expired?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -301,7 +299,7 @@ export type SessioneUncheckedUpdateInput = {
 }
 
 export type SessioneCreateManyInput = {
-  Id: number
+  Id?: number
   guid_id: string
   user_id: number
   date_created?: Date | string
@@ -309,7 +307,6 @@ export type SessioneCreateManyInput = {
 }
 
 export type SessioneUpdateManyMutationInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   guid_id?: Prisma.StringFieldUpdateOperationsInput | string
   date_created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   date_expired?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -414,14 +411,13 @@ export type DateTimeFieldUpdateOperationsInput = {
 }
 
 export type SessioneCreateWithoutUserInput = {
-  Id: number
   guid_id: string
   date_created?: Date | string
   date_expired: Date | string
 }
 
 export type SessioneUncheckedCreateWithoutUserInput = {
-  Id: number
+  Id?: number
   guid_id: string
   date_created?: Date | string
   date_expired: Date | string
@@ -465,14 +461,13 @@ export type SessioneScalarWhereInput = {
 }
 
 export type SessioneCreateManyUserInput = {
-  Id: number
+  Id?: number
   guid_id: string
   date_created?: Date | string
   date_expired: Date | string
 }
 
 export type SessioneUpdateWithoutUserInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   guid_id?: Prisma.StringFieldUpdateOperationsInput | string
   date_created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   date_expired?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string

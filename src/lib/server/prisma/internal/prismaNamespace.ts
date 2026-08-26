@@ -2638,8 +2638,7 @@ export type StoricoScalarFieldEnum = (typeof StoricoScalarFieldEnum)[keyof typeo
 
 export const StatisticaScalarFieldEnum = {
   Id: 'Id',
-  Nome: 'Nome',
-  Livello: 'Livello'
+  Nome: 'Nome'
 } as const
 
 export type StatisticaScalarFieldEnum = (typeof StatisticaScalarFieldEnum)[keyof typeof StatisticaScalarFieldEnum]

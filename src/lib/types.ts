@@ -1,15 +1,18 @@
 // Types for the handling of a user's session
 export interface IUser {
-  userID: number,
-  username: string,
-  pfp: string,
-  isAdmin: boolean,
+  userID: number
+  username: string
+  pfp: string
+  isAdmin: boolean
   riotID?: string
 }
 
 export interface ISession {
-  guid: string,
-  role: "Admin" | "User",
+  id: number
+  guid: string
+  user_id: number
+  date_created: Date
+  date_expired: Date
 }
 
 // Types for Rune selection, #TODO: create a db import for this.

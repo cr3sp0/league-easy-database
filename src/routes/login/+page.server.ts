@@ -96,7 +96,7 @@ const login : Action = async ({ request, cookies }) => {
 	}
 }
 
-const signup : Action = async ({ request, cookies }) => {
+const signup : Action = async ({ request, cookies, locals }) => {
 	const data = await request.formData()
 
 	const username = data.get('user')
@@ -117,41 +117,64 @@ const signup : Action = async ({ request, cookies }) => {
 	if(password.localeCompare(confirmPassword)) {
 		return fail(400, { msg: "The Password doesn't match." })
 	}
-/*
-	//TODO: Add info to the database, use a "users" and a "session" table.
-	const sql = "";
-	const resp = null; //await PostgreSQL().query(sql, [username, password]);
 
-	const user : IUser = {
-		userID: 0, //TODO: generate next id from the db
-		username: username,
-		role: username === "Fanto" ? "Admin" : "User" //TODO: check status inside the db
-	};
+	try {
 
-	const sessionSQL = ""; // TODO: query to insert user and expiration date
-	const sessionResp = null; //await PostgreSQL().query(sql, [user.id]);
+		//TODO: write explicit sql query
+		let uniqueAccount = await prisma.account.findUnique({
+			where: {
+				Nome: username
+			}
+		})
 
-	let session : ISession = { guid: username, role: "User" }; //= {...sessionResp.row[0]} TODO: get the user from the query response
-	cookies.set(
-		'ledb_session',
-		session.guid,
-		{
-			path: "/",
-			maxAge: 60 * 60 * 5 //5 hours
+		if (uniqueAccount) {
+			throw { message: "This Account already exists" }
 		}
-	)
-	cookies.set(
-		'ledb_role',
-		session.role,
-		{
-			path: "/",
-			maxAge: 60 * 60 * 5 //5 hours
-		}
-	)*/
 
-	return {
-		success: true,
-		user: username
+		//TODO: write explicit sql query
+		let createAccount = await prisma.account.create({
+			data: {
+				Nome: username,
+				Password: password, //TODO: hash it
+				Descrizione: "",
+				IsAdmin: false,
+				Immagine: ""
+			}
+		})
+
+		if (!createAccount) {
+			throw { message: "Something went wrong" }
+		}
+		
+		//TODO: write explicit sql query
+		let session = await prisma.sessione.create({
+			data: {
+				guid_id: createAccount.Nome,
+				user_id: createAccount.AccountId,
+				date_created: new Date(Date.now()),
+				date_expired: new Date(Date.now() + TimeLimit_h_m_s_ms)
+			}
+		})
+		
+		if (!session) {
+			throw { message: "Something went wrong" }
+		}
+
+		cookies.set(
+			'ledb_session',
+			session.guid_id,
+			{
+				path: "/",
+				maxAge: TimeLimit_h_m_s
+			}
+		)
+
+		return {
+			success: true,
+			user: username
+		}
+	} catch (error: any) {
+		return fail(400, { msg: error.message })
 	}
 }
 

@@ -59,6 +59,9 @@ export async function verifyPassword(password: string, storedHash: string): Prom
 
     const hashHex = Buffer.from(derivedKey).toString('hex');
 
-    return encoder.encode(hashHex) === encoder.encode(originalHashHex)
+    return Buffer.compare(    
+        encoder.encode(hashHex),
+        encoder.encode(originalHashHex)
+    ) === 0
 
 }

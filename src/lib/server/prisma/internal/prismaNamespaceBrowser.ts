@@ -117,10 +117,9 @@ export type CampioneScalarFieldEnum = (typeof CampioneScalarFieldEnum)[keyof typ
 
 
 export const CosmeticoScalarFieldEnum = {
-  Id: 'Id',
+  NomeCosmetico: 'NomeCosmetico',
   IdCampione: 'IdCampione',
-  Immagine: 'Immagine',
-  Nome: 'Nome'
+  Immagine: 'Immagine'
 } as const
 
 export type CosmeticoScalarFieldEnum = (typeof CosmeticoScalarFieldEnum)[keyof typeof CosmeticoScalarFieldEnum]
@@ -296,6 +295,7 @@ export const RunaScalarFieldEnum = {
   Descrizione: 'Descrizione',
   CamminoId: 'CamminoId',
   Grado: 'Grado',
+  Immagine: 'Immagine',
   Deprecata: 'Deprecata'
 } as const
 
@@ -362,4 +362,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

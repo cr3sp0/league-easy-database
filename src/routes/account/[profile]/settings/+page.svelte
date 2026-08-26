@@ -7,12 +7,9 @@
 
     let { data } = $props()
 
-    // svelte-ignore state_referenced_locally
-    const imagesLinkList = $state(data.imageList)
-    // svelte-ignore state_referenced_locally
-    let pfp = $state(data.currentImage)
-    // svelte-ignore state_referenced_locally
-    let username = $state(data.profile)
+    const imagesLinkList = $derived(data.imageList)
+    let pfp = $derived(data.currentImage)
+    let username = $derived(data.profile)
     let riotID : string | undefined = $state()
 
     let isPickerOpen : boolean = $state(false)

@@ -3,7 +3,6 @@
     import BuildcardHolder from '$lib/components/buildcardHolder.svelte';
     import Search from '$lib/components/search.svelte';
     import CreateReport from '$lib/components/createReport.svelte';
-    import type { Build } from '$lib/types.js';
     import { enhance } from '$app/forms';
     
     let { data } = $props();
@@ -11,8 +10,7 @@
     let isMenuOpen = $state(false);
     let isReportOpen = $state(false);
 
-    // svelte-ignore state_referenced_locally
-    let personalBuilds : Build[] = $state(data.baseBuilds);
+    let personalBuilds = $derived(data.baseBuilds);
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -85,7 +83,7 @@
         <div class="builds-content">
             <Search />
             <div class="builds-grid">
-                <BuildcardHolder personalBuilds={personalBuilds} />
+                <BuildcardHolder personalBuilds={[]} />
             </div>
 
             <form
@@ -94,7 +92,7 @@
             action="?/moreBuilds"
             use:enhance = {() => async ({result}) => {
                 if(result.type === 'success' && result.data?.builds){
-                    personalBuilds = (result.data as {builds : Build[]}).builds
+//TODO: fix 'Build' type                     personalBuilds = (result.data as {builds : Build[]}).builds
                 }
             }}
             >

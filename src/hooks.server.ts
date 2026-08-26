@@ -1,16 +1,12 @@
-// on EVERY request do:
+// hooks.server.ts
 
 import prisma from '$lib/server/prisma';
-import { redirect } from '@sveltejs/kit';
+import { redirect, type Handle } from '@sveltejs/kit'; 
 
-export async function handle({event, resolve}) {
+export const handle: Handle = async ({ event, resolve }) => {
 
-    const sessionGUID = event.cookies.get('ledb_session') //gets the username
+    const sessionGUID = event.cookies.get('ledb_session')
     if(sessionGUID) {
-        // SELECT * FROM sessione 
-        // JOIN account ON sessione.user_id = account.AccountID
-        // WHERE Id = $1
-        // AND date_expired > $2
         let dbSession = await prisma.sessione.findFirst({
             where: {
                 AND: [

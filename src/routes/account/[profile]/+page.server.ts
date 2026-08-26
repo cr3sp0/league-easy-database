@@ -2,79 +2,84 @@ import { error, fail, type Action, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from "./$types";
 import prisma from '$lib/server/prisma';
 import type { Build, Champion, Item, Rune, RuneConfiguration, Report, ReportReason, IUser } from '$lib/types';
+import { popup } from '$lib/components/store/popup.svelte';
 
-//dummy values
-  	let primary: Rune[] = [
-		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: "keystone", image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 1, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 2, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "domination", name:"Domination", color:"red"}, name: "llll", level: 3, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"}
-	]
-	let secondary: Rune[] = [
-		{path: {id: "precision", name:"Domination", color:"green"}, name: "ppp", level: 1, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "precision", name:"Domination", color:"green"}, name: "ppp", level: 3, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"}
-	]
-	let shards: Rune[] = [
-		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 1, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 2, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"},
-		{path: {id: "shard", name:"Shard", color:"rgb(255, 255, 255, 0.2)"}, name: "hh", level: 3, image: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gwen/Gwen_p.jpg"}
-	]
+export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 
-	let runes: RuneConfiguration = {primary: primary, secondary: secondary, shards: shards}
-	let items: Item[] = [{name: "asd", description: "lorem ipsum", image:"https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/gragas/Gragas_p.jpg", cost: 3000}]
-	let champ: Champion = {name: "Akali", title:"someone"}
-//dummy values
+	try {		
+		//TODO: write explicit sql query
+		const profile = await prisma.account.findUnique({
+			where: {
+				AccountId: locals.user.userID
+			},
+			include: {
+				Config: {
+					where: {
+						Account: locals.user.userID
+					},
+					take: 5
+				}
+			}
+		})
 
-export const load: PageServerLoad = ({ params, cookies }) => {
+		if (!profile) {
+			throw { message: "Profile missing or banned" }
+		}
+		
+			return {
+				profile: profile.Nome,
+				id: profile.RiotID,
+				profileRole: profile.IsAdmin 
+					? "Admin" : "User",
+				user: {
+					userProfile: locals.user.username,
+					userRole: locals.user.isAdmin 
+						? "Admin" : "User",
+				},
+				baseBuilds: profile.Config
+			}
+	} catch (error : any) {
+		console.error(error.message)
 
-	const profile = params.profile
+		popup.color = "red"
+		popup.text = error.message
 
-	if(!profile) {
-		error(400, "Profile is missing")
-	}
-
-	let account : IUser = {
-		userID: 0,
-		username: profile,
-		riotID: profile + "#EUW",
-		role: profile === "Fanto" ? "Admin" : "User"
-	}
-
-	// query: https://www.youtube.com/watch?v=E9J2VXd-bzE
-	let build1: Build = {name: "FantoBuild", author: profile, champion: champ, runes: runes, items: items, kills: 25, deaths: 10, assists: 50, wins:65, losses: 2}
-
-	let builds : Build[] = [];
-
-	const startingLimit = 5
-	for (let index = 0; index < startingLimit; index++) {
-		builds = builds.concat(build1);
-	}
-
-	const user = cookies.get('ledb_session')
-	const userRole = user === "Fanto" ? "Admin" : "User" //TODO: put actual role, this allows every user to access admin level actions
-
-	return {
-		profile: account.username,
-		id: account.riotID,
-		profileRole: account.role,
-		user: {
-			userProfile: user,
-			userRole: userRole
-		},
-		baseBuilds: builds
+		throw error(error)
 	}
 }
 
-const logout : Action = ({ cookies }) => {
-  cookies.delete('ledb_session', {path: "/"});
+const logout : Action = async ({ cookies }) => {
+	
+	try {
+		//TODO: Delete session from the DB.
+		let currentSession = new Number(cookies.get("ledb_session")).valueOf()
+		
+		//TODO: write explicit sql query
+		const session = await prisma.sessione.delete({
+			where: {
+				Id: currentSession
+			}
+		})
+		
+		if(!session) {
+			throw { message: "Error when deleting the current session" }
+		}
 
-  //TODO: Delete session from the DB.
+		cookies.delete('ledb_session', {path: "/"});
+	} catch (error : any) {
+		console.error(error.message)
+
+		popup.color = "red"
+		popup.text = error.message
+		
+		throw error(error)
+	}
 
   return {success: true}
 }
 
 const moreBuilds : Action = async ({ request, params }) => {
-
+/*
 	let profile = params.profile
 	if(!profile) {
 		error(400, "Profile is missing")
@@ -92,7 +97,7 @@ const moreBuilds : Action = async ({ request, params }) => {
 	return {
 		success: true,
 		builds: builds
-	}
+	}*/
 }
 
 const sendReport : Action = async ({ request, params, cookies }) => {

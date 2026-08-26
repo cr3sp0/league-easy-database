@@ -9,13 +9,13 @@ export async function handle({event, resolve}) {
     if(sessionGUID) {
         // SELECT * FROM sessione 
         // JOIN account ON sessione.user_id = account.AccountID
-        // WHERE guid_id = $1
-        // AND date_expired < $2
+        // WHERE Id = $1
+        // AND date_expired > $2
         let dbSession = await prisma.sessione.findFirst({
             where: {
                 AND: [
-                    { guid_id: sessionGUID },
-                    { date_expired: { lt: new Date(Date.now()) } }
+                    { Id: new Number(sessionGUID).valueOf() },
+                    { date_expired: { gt: new Date(Date.now()) } }
                 ]
             },
             include: {

@@ -41,7 +41,7 @@ const login : Action = async ({ request, cookies }) => {
 		if (
 			user
 			&& !await verifyPassword(password, user?.Password)
-		) { // resp.rowCount === 0
+		) {
 			throw { message: "User or Password incorrect." }
 		}
 
@@ -86,17 +86,17 @@ const login : Action = async ({ request, cookies }) => {
 				maxAge: TimeLimit_h_m_s
 			}
 		)
-		
+
 		return {
 			success: true,
 			userLocation: "/account/" + user.Nome
 		}
 	} catch (error : any) {
 		console.error("Error: ", error.message)
-
+		
 		popup.color = "red"
 		popup.text = "" + error.message
-
+		
 		return fail(400, { msg: error.message })
 	}
 }
@@ -177,7 +177,7 @@ const signup : Action = async ({ request, cookies, locals }) => {
 
 		return {
 			success: true,
-			user: "/account/" + createAccount.Nome
+			userLocation: "/account/" + createAccount.Nome
 		}
 	} catch (error: any) {
 		return fail(400, { msg: error.message })

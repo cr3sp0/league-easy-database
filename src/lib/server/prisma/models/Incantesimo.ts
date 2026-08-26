@@ -27,23 +27,23 @@ export type AggregateIncantesimo = {
 }
 
 export type IncantesimoAvgAggregateOutputType = {
-  Ricarica: runtime.Decimal | null
+  Ricarica: number | null
 }
 
 export type IncantesimoSumAggregateOutputType = {
-  Ricarica: runtime.Decimal | null
+  Ricarica: number | null
 }
 
 export type IncantesimoMinAggregateOutputType = {
   Nome: string | null
   Descrizione: string | null
-  Ricarica: runtime.Decimal | null
+  Ricarica: number | null
 }
 
 export type IncantesimoMaxAggregateOutputType = {
   Nome: string | null
   Descrizione: string | null
-  Ricarica: runtime.Decimal | null
+  Ricarica: number | null
 }
 
 export type IncantesimoCountAggregateOutputType = {
@@ -170,7 +170,7 @@ export type IncantesimoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type IncantesimoGroupByOutputType = {
   Nome: string
   Descrizione: string
-  Ricarica: runtime.Decimal
+  Ricarica: number
   _count: IncantesimoCountAggregateOutputType | null
   _avg: IncantesimoAvgAggregateOutputType | null
   _sum: IncantesimoSumAggregateOutputType | null
@@ -199,7 +199,7 @@ export type IncantesimoWhereInput = {
   NOT?: Prisma.IncantesimoWhereInput | Prisma.IncantesimoWhereInput[]
   Nome?: Prisma.StringFilter<"Incantesimo"> | string
   Descrizione?: Prisma.StringFilter<"Incantesimo"> | string
-  Ricarica?: Prisma.DecimalFilter<"Incantesimo"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatFilter<"Incantesimo"> | number
   Incant1?: Prisma.ConfigurazioneListRelationFilter
   Incant2?: Prisma.ConfigurazioneListRelationFilter
 }
@@ -218,7 +218,7 @@ export type IncantesimoWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.IncantesimoWhereInput[]
   NOT?: Prisma.IncantesimoWhereInput | Prisma.IncantesimoWhereInput[]
   Descrizione?: Prisma.StringFilter<"Incantesimo"> | string
-  Ricarica?: Prisma.DecimalFilter<"Incantesimo"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatFilter<"Incantesimo"> | number
   Incant1?: Prisma.ConfigurazioneListRelationFilter
   Incant2?: Prisma.ConfigurazioneListRelationFilter
 }, "Nome">
@@ -240,13 +240,13 @@ export type IncantesimoScalarWhereWithAggregatesInput = {
   NOT?: Prisma.IncantesimoScalarWhereWithAggregatesInput | Prisma.IncantesimoScalarWhereWithAggregatesInput[]
   Nome?: Prisma.StringWithAggregatesFilter<"Incantesimo"> | string
   Descrizione?: Prisma.StringWithAggregatesFilter<"Incantesimo"> | string
-  Ricarica?: Prisma.DecimalWithAggregatesFilter<"Incantesimo"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatWithAggregatesFilter<"Incantesimo"> | number
 }
 
 export type IncantesimoCreateInput = {
   Nome: string
   Descrizione: string
-  Ricarica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica: number
   Incant1?: Prisma.ConfigurazioneCreateNestedManyWithoutInc1Input
   Incant2?: Prisma.ConfigurazioneCreateNestedManyWithoutInc2Input
 }
@@ -254,7 +254,7 @@ export type IncantesimoCreateInput = {
 export type IncantesimoUncheckedCreateInput = {
   Nome: string
   Descrizione: string
-  Ricarica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica: number
   Incant1?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutInc1Input
   Incant2?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutInc2Input
 }
@@ -262,7 +262,7 @@ export type IncantesimoUncheckedCreateInput = {
 export type IncantesimoUpdateInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Ricarica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
   Incant1?: Prisma.ConfigurazioneUpdateManyWithoutInc1NestedInput
   Incant2?: Prisma.ConfigurazioneUpdateManyWithoutInc2NestedInput
 }
@@ -270,7 +270,7 @@ export type IncantesimoUpdateInput = {
 export type IncantesimoUncheckedUpdateInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Ricarica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
   Incant1?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutInc1NestedInput
   Incant2?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutInc2NestedInput
 }
@@ -278,19 +278,19 @@ export type IncantesimoUncheckedUpdateInput = {
 export type IncantesimoCreateManyInput = {
   Nome: string
   Descrizione: string
-  Ricarica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica: number
 }
 
 export type IncantesimoUpdateManyMutationInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Ricarica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type IncantesimoUncheckedUpdateManyInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Ricarica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type IncantesimoCountOrderByAggregateInput = {
@@ -355,14 +355,14 @@ export type IncantesimoUpdateOneRequiredWithoutIncant2NestedInput = {
 export type IncantesimoCreateWithoutIncant1Input = {
   Nome: string
   Descrizione: string
-  Ricarica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica: number
   Incant2?: Prisma.ConfigurazioneCreateNestedManyWithoutInc2Input
 }
 
 export type IncantesimoUncheckedCreateWithoutIncant1Input = {
   Nome: string
   Descrizione: string
-  Ricarica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica: number
   Incant2?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutInc2Input
 }
 
@@ -374,14 +374,14 @@ export type IncantesimoCreateOrConnectWithoutIncant1Input = {
 export type IncantesimoCreateWithoutIncant2Input = {
   Nome: string
   Descrizione: string
-  Ricarica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica: number
   Incant1?: Prisma.ConfigurazioneCreateNestedManyWithoutInc1Input
 }
 
 export type IncantesimoUncheckedCreateWithoutIncant2Input = {
   Nome: string
   Descrizione: string
-  Ricarica: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica: number
   Incant1?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutInc1Input
 }
 
@@ -404,14 +404,14 @@ export type IncantesimoUpdateToOneWithWhereWithoutIncant1Input = {
 export type IncantesimoUpdateWithoutIncant1Input = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Ricarica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
   Incant2?: Prisma.ConfigurazioneUpdateManyWithoutInc2NestedInput
 }
 
 export type IncantesimoUncheckedUpdateWithoutIncant1Input = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Ricarica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
   Incant2?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutInc2NestedInput
 }
 
@@ -429,14 +429,14 @@ export type IncantesimoUpdateToOneWithWhereWithoutIncant2Input = {
 export type IncantesimoUpdateWithoutIncant2Input = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Ricarica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
   Incant1?: Prisma.ConfigurazioneUpdateManyWithoutInc1NestedInput
 }
 
 export type IncantesimoUncheckedUpdateWithoutIncant2Input = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Ricarica?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
   Incant1?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutInc1NestedInput
 }
 
@@ -525,7 +525,7 @@ export type $IncantesimoPayload<ExtArgs extends runtime.Types.Extensions.Interna
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Nome: string
     Descrizione: string
-    Ricarica: runtime.Decimal
+    Ricarica: number
   }, ExtArgs["result"]["incantesimo"]>
   composites: {}
 }
@@ -953,7 +953,7 @@ export interface Prisma__IncantesimoClient<T, Null = never, ExtArgs extends runt
 export interface IncantesimoFieldRefs {
   readonly Nome: Prisma.FieldRef<"Incantesimo", 'String'>
   readonly Descrizione: Prisma.FieldRef<"Incantesimo", 'String'>
-  readonly Ricarica: Prisma.FieldRef<"Incantesimo", 'Decimal'>
+  readonly Ricarica: Prisma.FieldRef<"Incantesimo", 'Float'>
 }
     
 

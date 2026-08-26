@@ -28,60 +28,50 @@ export type AggregateStatistica = {
 
 export type StatisticaAvgAggregateOutputType = {
   Id: number | null
-  Livello: number | null
 }
 
 export type StatisticaSumAggregateOutputType = {
   Id: number | null
-  Livello: number | null
 }
 
 export type StatisticaMinAggregateOutputType = {
   Id: number | null
   Nome: string | null
-  Livello: number | null
 }
 
 export type StatisticaMaxAggregateOutputType = {
   Id: number | null
   Nome: string | null
-  Livello: number | null
 }
 
 export type StatisticaCountAggregateOutputType = {
   Id: number
   Nome: number
-  Livello: number
   _all: number
 }
 
 
 export type StatisticaAvgAggregateInputType = {
   Id?: true
-  Livello?: true
 }
 
 export type StatisticaSumAggregateInputType = {
   Id?: true
-  Livello?: true
 }
 
 export type StatisticaMinAggregateInputType = {
   Id?: true
   Nome?: true
-  Livello?: true
 }
 
 export type StatisticaMaxAggregateInputType = {
   Id?: true
   Nome?: true
-  Livello?: true
 }
 
 export type StatisticaCountAggregateInputType = {
   Id?: true
   Nome?: true
-  Livello?: true
   _all?: true
 }
 
@@ -174,7 +164,6 @@ export type StatisticaGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type StatisticaGroupByOutputType = {
   Id: number
   Nome: string
-  Livello: number
   _count: StatisticaCountAggregateOutputType | null
   _avg: StatisticaAvgAggregateOutputType | null
   _sum: StatisticaSumAggregateOutputType | null
@@ -203,14 +192,12 @@ export type StatisticaWhereInput = {
   NOT?: Prisma.StatisticaWhereInput | Prisma.StatisticaWhereInput[]
   Id?: Prisma.IntFilter<"Statistica"> | number
   Nome?: Prisma.StringFilter<"Statistica"> | string
-  Livello?: Prisma.IntFilter<"Statistica"> | number
   Stat?: Prisma.ModificaListRelationFilter
 }
 
 export type StatisticaOrderByWithRelationInput = {
   Id?: Prisma.SortOrder
   Nome?: Prisma.SortOrder
-  Livello?: Prisma.SortOrder
   Stat?: Prisma.ModificaOrderByRelationAggregateInput
 }
 
@@ -220,14 +207,12 @@ export type StatisticaWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.StatisticaWhereInput[]
   NOT?: Prisma.StatisticaWhereInput | Prisma.StatisticaWhereInput[]
   Nome?: Prisma.StringFilter<"Statistica"> | string
-  Livello?: Prisma.IntFilter<"Statistica"> | number
   Stat?: Prisma.ModificaListRelationFilter
 }, "Id">
 
 export type StatisticaOrderByWithAggregationInput = {
   Id?: Prisma.SortOrder
   Nome?: Prisma.SortOrder
-  Livello?: Prisma.SortOrder
   _count?: Prisma.StatisticaCountOrderByAggregateInput
   _avg?: Prisma.StatisticaAvgOrderByAggregateInput
   _max?: Prisma.StatisticaMaxOrderByAggregateInput
@@ -241,53 +226,45 @@ export type StatisticaScalarWhereWithAggregatesInput = {
   NOT?: Prisma.StatisticaScalarWhereWithAggregatesInput | Prisma.StatisticaScalarWhereWithAggregatesInput[]
   Id?: Prisma.IntWithAggregatesFilter<"Statistica"> | number
   Nome?: Prisma.StringWithAggregatesFilter<"Statistica"> | string
-  Livello?: Prisma.IntWithAggregatesFilter<"Statistica"> | number
 }
 
 export type StatisticaCreateInput = {
   Id: number
   Nome: string
-  Livello: number
   Stat?: Prisma.ModificaCreateNestedManyWithoutStatInput
 }
 
 export type StatisticaUncheckedCreateInput = {
   Id: number
   Nome: string
-  Livello: number
   Stat?: Prisma.ModificaUncheckedCreateNestedManyWithoutStatInput
 }
 
 export type StatisticaUpdateInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  Livello?: Prisma.IntFieldUpdateOperationsInput | number
   Stat?: Prisma.ModificaUpdateManyWithoutStatNestedInput
 }
 
 export type StatisticaUncheckedUpdateInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  Livello?: Prisma.IntFieldUpdateOperationsInput | number
   Stat?: Prisma.ModificaUncheckedUpdateManyWithoutStatNestedInput
 }
 
 export type StatisticaCreateManyInput = {
   Id: number
   Nome: string
-  Livello: number
 }
 
 export type StatisticaUpdateManyMutationInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  Livello?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type StatisticaUncheckedUpdateManyInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  Livello?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type StatisticaScalarRelationFilter = {
@@ -298,29 +275,24 @@ export type StatisticaScalarRelationFilter = {
 export type StatisticaCountOrderByAggregateInput = {
   Id?: Prisma.SortOrder
   Nome?: Prisma.SortOrder
-  Livello?: Prisma.SortOrder
 }
 
 export type StatisticaAvgOrderByAggregateInput = {
   Id?: Prisma.SortOrder
-  Livello?: Prisma.SortOrder
 }
 
 export type StatisticaMaxOrderByAggregateInput = {
   Id?: Prisma.SortOrder
   Nome?: Prisma.SortOrder
-  Livello?: Prisma.SortOrder
 }
 
 export type StatisticaMinOrderByAggregateInput = {
   Id?: Prisma.SortOrder
   Nome?: Prisma.SortOrder
-  Livello?: Prisma.SortOrder
 }
 
 export type StatisticaSumOrderByAggregateInput = {
   Id?: Prisma.SortOrder
-  Livello?: Prisma.SortOrder
 }
 
 export type StatisticaCreateNestedOneWithoutStatInput = {
@@ -340,13 +312,11 @@ export type StatisticaUpdateOneRequiredWithoutStatNestedInput = {
 export type StatisticaCreateWithoutStatInput = {
   Id: number
   Nome: string
-  Livello: number
 }
 
 export type StatisticaUncheckedCreateWithoutStatInput = {
   Id: number
   Nome: string
-  Livello: number
 }
 
 export type StatisticaCreateOrConnectWithoutStatInput = {
@@ -368,13 +338,11 @@ export type StatisticaUpdateToOneWithWhereWithoutStatInput = {
 export type StatisticaUpdateWithoutStatInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  Livello?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type StatisticaUncheckedUpdateWithoutStatInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  Livello?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -411,7 +379,6 @@ export type StatisticaCountOutputTypeCountStatArgs<ExtArgs extends runtime.Types
 export type StatisticaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   Id?: boolean
   Nome?: boolean
-  Livello?: boolean
   Stat?: boolean | Prisma.Statistica$StatArgs<ExtArgs>
   _count?: boolean | Prisma.StatisticaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["statistica"]>
@@ -419,22 +386,19 @@ export type StatisticaSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type StatisticaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   Id?: boolean
   Nome?: boolean
-  Livello?: boolean
 }, ExtArgs["result"]["statistica"]>
 
 export type StatisticaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   Id?: boolean
   Nome?: boolean
-  Livello?: boolean
 }, ExtArgs["result"]["statistica"]>
 
 export type StatisticaSelectScalar = {
   Id?: boolean
   Nome?: boolean
-  Livello?: boolean
 }
 
-export type StatisticaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "Nome" | "Livello", ExtArgs["result"]["statistica"]>
+export type StatisticaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "Nome", ExtArgs["result"]["statistica"]>
 export type StatisticaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Stat?: boolean | Prisma.Statistica$StatArgs<ExtArgs>
   _count?: boolean | Prisma.StatisticaCountOutputTypeDefaultArgs<ExtArgs>
@@ -450,7 +414,6 @@ export type $StatisticaPayload<ExtArgs extends runtime.Types.Extensions.Internal
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Id: number
     Nome: string
-    Livello: number
   }, ExtArgs["result"]["statistica"]>
   composites: {}
 }
@@ -877,7 +840,6 @@ export interface Prisma__StatisticaClient<T, Null = never, ExtArgs extends runti
 export interface StatisticaFieldRefs {
   readonly Id: Prisma.FieldRef<"Statistica", 'Int'>
   readonly Nome: Prisma.FieldRef<"Statistica", 'String'>
-  readonly Livello: Prisma.FieldRef<"Statistica", 'Int'>
 }
     
 

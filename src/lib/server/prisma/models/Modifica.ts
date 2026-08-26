@@ -28,25 +28,25 @@ export type AggregateModifica = {
 
 export type ModificaAvgAggregateOutputType = {
   Id_Statistica: number | null
-  Nuovo_Valore: runtime.Decimal | null
+  Nuovo_Valore: number | null
 }
 
 export type ModificaSumAggregateOutputType = {
   Id_Statistica: number | null
-  Nuovo_Valore: runtime.Decimal | null
+  Nuovo_Valore: number | null
 }
 
 export type ModificaMinAggregateOutputType = {
   Soggetto_modifica: string | null
   Id_Statistica: number | null
-  Nuovo_Valore: runtime.Decimal | null
+  Nuovo_Valore: number | null
   Versione: string | null
 }
 
 export type ModificaMaxAggregateOutputType = {
   Soggetto_modifica: string | null
   Id_Statistica: number | null
-  Nuovo_Valore: runtime.Decimal | null
+  Nuovo_Valore: number | null
   Versione: string | null
 }
 
@@ -180,7 +180,7 @@ export type ModificaGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type ModificaGroupByOutputType = {
   Soggetto_modifica: string
   Id_Statistica: number
-  Nuovo_Valore: runtime.Decimal
+  Nuovo_Valore: number
   Versione: string
   _count: ModificaCountAggregateOutputType | null
   _avg: ModificaAvgAggregateOutputType | null
@@ -210,7 +210,7 @@ export type ModificaWhereInput = {
   NOT?: Prisma.ModificaWhereInput | Prisma.ModificaWhereInput[]
   Soggetto_modifica?: Prisma.StringFilter<"Modifica"> | string
   Id_Statistica?: Prisma.IntFilter<"Modifica"> | number
-  Nuovo_Valore?: Prisma.DecimalFilter<"Modifica"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFilter<"Modifica"> | number
   Versione?: Prisma.StringFilter<"Modifica"> | string
   Vers?: Prisma.XOR<Prisma.StoricoScalarRelationFilter, Prisma.StoricoWhereInput>
   Stat?: Prisma.XOR<Prisma.StatisticaScalarRelationFilter, Prisma.StatisticaWhereInput>
@@ -232,7 +232,7 @@ export type ModificaWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ModificaWhereInput | Prisma.ModificaWhereInput[]
   Soggetto_modifica?: Prisma.StringFilter<"Modifica"> | string
   Id_Statistica?: Prisma.IntFilter<"Modifica"> | number
-  Nuovo_Valore?: Prisma.DecimalFilter<"Modifica"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFilter<"Modifica"> | number
   Versione?: Prisma.StringFilter<"Modifica"> | string
   Vers?: Prisma.XOR<Prisma.StoricoScalarRelationFilter, Prisma.StoricoWhereInput>
   Stat?: Prisma.XOR<Prisma.StatisticaScalarRelationFilter, Prisma.StatisticaWhereInput>
@@ -256,13 +256,13 @@ export type ModificaScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ModificaScalarWhereWithAggregatesInput | Prisma.ModificaScalarWhereWithAggregatesInput[]
   Soggetto_modifica?: Prisma.StringWithAggregatesFilter<"Modifica"> | string
   Id_Statistica?: Prisma.IntWithAggregatesFilter<"Modifica"> | number
-  Nuovo_Valore?: Prisma.DecimalWithAggregatesFilter<"Modifica"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatWithAggregatesFilter<"Modifica"> | number
   Versione?: Prisma.StringWithAggregatesFilter<"Modifica"> | string
 }
 
 export type ModificaCreateInput = {
   Soggetto_modifica: string
-  Nuovo_Valore: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore: number
   Vers: Prisma.StoricoCreateNestedOneWithoutModifInput
   Stat: Prisma.StatisticaCreateNestedOneWithoutStatInput
 }
@@ -270,13 +270,13 @@ export type ModificaCreateInput = {
 export type ModificaUncheckedCreateInput = {
   Soggetto_modifica: string
   Id_Statistica: number
-  Nuovo_Valore: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore: number
   Versione: string
 }
 
 export type ModificaUpdateInput = {
   Soggetto_modifica?: Prisma.StringFieldUpdateOperationsInput | string
-  Nuovo_Valore?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
   Vers?: Prisma.StoricoUpdateOneRequiredWithoutModifNestedInput
   Stat?: Prisma.StatisticaUpdateOneRequiredWithoutStatNestedInput
 }
@@ -284,26 +284,26 @@ export type ModificaUpdateInput = {
 export type ModificaUncheckedUpdateInput = {
   Soggetto_modifica?: Prisma.StringFieldUpdateOperationsInput | string
   Id_Statistica?: Prisma.IntFieldUpdateOperationsInput | number
-  Nuovo_Valore?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
   Versione?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ModificaCreateManyInput = {
   Soggetto_modifica: string
   Id_Statistica: number
-  Nuovo_Valore: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore: number
   Versione: string
 }
 
 export type ModificaUpdateManyMutationInput = {
   Soggetto_modifica?: Prisma.StringFieldUpdateOperationsInput | string
-  Nuovo_Valore?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type ModificaUncheckedUpdateManyInput = {
   Soggetto_modifica?: Prisma.StringFieldUpdateOperationsInput | string
   Id_Statistica?: Prisma.IntFieldUpdateOperationsInput | number
-  Nuovo_Valore?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
   Versione?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -440,14 +440,14 @@ export type ModificaUncheckedUpdateManyWithoutStatNestedInput = {
 
 export type ModificaCreateWithoutVersInput = {
   Soggetto_modifica: string
-  Nuovo_Valore: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore: number
   Stat: Prisma.StatisticaCreateNestedOneWithoutStatInput
 }
 
 export type ModificaUncheckedCreateWithoutVersInput = {
   Soggetto_modifica: string
   Id_Statistica: number
-  Nuovo_Valore: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore: number
 }
 
 export type ModificaCreateOrConnectWithoutVersInput = {
@@ -482,19 +482,19 @@ export type ModificaScalarWhereInput = {
   NOT?: Prisma.ModificaScalarWhereInput | Prisma.ModificaScalarWhereInput[]
   Soggetto_modifica?: Prisma.StringFilter<"Modifica"> | string
   Id_Statistica?: Prisma.IntFilter<"Modifica"> | number
-  Nuovo_Valore?: Prisma.DecimalFilter<"Modifica"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFilter<"Modifica"> | number
   Versione?: Prisma.StringFilter<"Modifica"> | string
 }
 
 export type ModificaCreateWithoutStatInput = {
   Soggetto_modifica: string
-  Nuovo_Valore: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore: number
   Vers: Prisma.StoricoCreateNestedOneWithoutModifInput
 }
 
 export type ModificaUncheckedCreateWithoutStatInput = {
   Soggetto_modifica: string
-  Nuovo_Valore: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore: number
   Versione: string
 }
 
@@ -527,48 +527,48 @@ export type ModificaUpdateManyWithWhereWithoutStatInput = {
 export type ModificaCreateManyVersInput = {
   Soggetto_modifica: string
   Id_Statistica: number
-  Nuovo_Valore: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore: number
 }
 
 export type ModificaUpdateWithoutVersInput = {
   Soggetto_modifica?: Prisma.StringFieldUpdateOperationsInput | string
-  Nuovo_Valore?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
   Stat?: Prisma.StatisticaUpdateOneRequiredWithoutStatNestedInput
 }
 
 export type ModificaUncheckedUpdateWithoutVersInput = {
   Soggetto_modifica?: Prisma.StringFieldUpdateOperationsInput | string
   Id_Statistica?: Prisma.IntFieldUpdateOperationsInput | number
-  Nuovo_Valore?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type ModificaUncheckedUpdateManyWithoutVersInput = {
   Soggetto_modifica?: Prisma.StringFieldUpdateOperationsInput | string
   Id_Statistica?: Prisma.IntFieldUpdateOperationsInput | number
-  Nuovo_Valore?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type ModificaCreateManyStatInput = {
   Soggetto_modifica: string
-  Nuovo_Valore: runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore: number
   Versione: string
 }
 
 export type ModificaUpdateWithoutStatInput = {
   Soggetto_modifica?: Prisma.StringFieldUpdateOperationsInput | string
-  Nuovo_Valore?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
   Vers?: Prisma.StoricoUpdateOneRequiredWithoutModifNestedInput
 }
 
 export type ModificaUncheckedUpdateWithoutStatInput = {
   Soggetto_modifica?: Prisma.StringFieldUpdateOperationsInput | string
-  Nuovo_Valore?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
   Versione?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ModificaUncheckedUpdateManyWithoutStatInput = {
   Soggetto_modifica?: Prisma.StringFieldUpdateOperationsInput | string
-  Nuovo_Valore?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
   Versione?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -631,7 +631,7 @@ export type $ModificaPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Soggetto_modifica: string
     Id_Statistica: number
-    Nuovo_Valore: runtime.Decimal
+    Nuovo_Valore: number
     Versione: string
   }, ExtArgs["result"]["modifica"]>
   composites: {}
@@ -1060,7 +1060,7 @@ export interface Prisma__ModificaClient<T, Null = never, ExtArgs extends runtime
 export interface ModificaFieldRefs {
   readonly Soggetto_modifica: Prisma.FieldRef<"Modifica", 'String'>
   readonly Id_Statistica: Prisma.FieldRef<"Modifica", 'Int'>
-  readonly Nuovo_Valore: Prisma.FieldRef<"Modifica", 'Decimal'>
+  readonly Nuovo_Valore: Prisma.FieldRef<"Modifica", 'Float'>
   readonly Versione: Prisma.FieldRef<"Modifica", 'String'>
 }
     

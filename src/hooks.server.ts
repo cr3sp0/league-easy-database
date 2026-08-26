@@ -1,32 +1,54 @@
 // on EVERY request do:
 
+import prisma from '$lib/server/prisma';
 import { redirect } from '@sveltejs/kit';
 
 export async function handle({event, resolve}) {
 
-    // check that the user already logged in.
     const sessionGUID = event.cookies.get('ledb_session') //gets the username
     if(sessionGUID) {
-        //check in the DB.
-        const sql = "";
-        const resp = ""; //await PostgreSQL().query(sql, [sessionGUID])
+        // SELECT * FROM sessione 
+        // JOIN account ON sessione.user_id = account.AccountID
+        // WHERE guid_id = $1
+        // AND date_expired < $2
+        let dbSession = await prisma.sessione.findFirst({
+            where: {
+                AND: [
+                    { guid_id: sessionGUID },
+                    { date_expired: { lt: new Date(Date.now()) } }
+                ]
+            },
+            include: {
+                user: true
+            }
+        })
 
-        if(true) { // TODO: create local user based on the 'resp' rows from the DB
+        if(dbSession && dbSession.user) {
             event.locals.user = {
-                userID: 1,
-                username: "kk"
+                userID: dbSession.user_id,
+                username: dbSession.user.Nome,
+                pfp: dbSession.user.Immagine,
+                isAdmin: dbSession.user.IsAdmin,
+                riotID: dbSession.user.RiotID === null 
+                    ? undefined : dbSession.user.RiotID 
             }
         }
-
-        //TODO: Check what else to do here.
     }
-
+    
     if(
-        (event.url.pathname.startsWith("/account") || event.url.pathname === "/builder/newbuild") 
-        && !event.locals.user
+        !event.locals.user
+        && (event.url.pathname.startsWith("/account") 
+            || event.url.pathname === "/builder/newbuild") 
     ) {
         throw redirect(303, '/login')
     }
 
+    if(
+        event.url.pathname === "/login"
+        && event.locals.user
+    ) {
+        throw redirect(303, "/account/" + event.locals.user.username)
+    }
+    
     return await resolve(event)
 }

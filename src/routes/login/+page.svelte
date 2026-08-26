@@ -20,7 +20,7 @@
 
       popup.color = 'green'
       popup.text = "Access Successful"
-      goto("/account/" + result.data?.user)
+      goto(result.data?.userLocation)
     
     } else if (result.type === 'redirect' ) {
 

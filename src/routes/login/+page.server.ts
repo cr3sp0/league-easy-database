@@ -1,8 +1,14 @@
+import { popup } from "$lib/components/store/popup.svelte";
 import prisma from "$lib/server/prisma";
-import type { IUser, ISession } from "$lib/types";
+import type { ISession } from "$lib/types";
 import { fail, type Action, type Actions } from "@sveltejs/kit";
 
-const login : Action = async ({request, cookies}) => {
+const TimeLimit_h = 5
+const TimeLimit_h_m = TimeLimit_h * 60
+const TimeLimit_h_m_s = TimeLimit_h_m * 60
+const TimeLimit_h_m_s_ms = TimeLimit_h_m_s * 1000
+
+const login : Action = async ({ request, cookies }) => {
 	const data = await request.formData()
 
 	const username = data.get('user')
@@ -17,49 +23,80 @@ const login : Action = async ({request, cookies}) => {
 		return fail(400, { msg: "Provide a valid User and/or Password." })
 	}
 
-	//TODO: Check database info, use a "users" and a "session" table.
-	let g = prisma.account.findFirst({ // SELECT * FROM Account WHERE Nome = username AND Password = password
-		where: { 
-			Nome: username,
-			Password: password
+	try{
+		//SELECT * FROM Account 
+		// WHERE Nome = username 
+		// AND Password = password
+		let user = await prisma.account.findFirst({ 
+			where: {
+				AND: [
+					{ Nome: username },
+					{ Password: password }
+				]
+			}
+		})
+
+		if (!user) { // resp.rowCount === 0
+			throw { message: "User or Password incorrect." }
 		}
-	})
-	const sql = "";
-	const resp = null; //await PostgreSQL().query(sql, [username, password]);
-	
-	if (!g) { // resp.rowCount === 0
-		return fail(400, { msg: "User or Password incorrect." })
-	}
 
-	let id = Number(g.then((elem) => {return elem?.AccountId})) // Prendi il valore dell'id
-	let name = String(g.then((elem) => {return elem?.Nome})) // Prendi il valore del nome
+		let sessione = await prisma.sessione.findFirst({
+            where: {
+                AND: [
+                    { guid_id: username },
+                    { date_expired: { lt: new Date(Date.now()) } }
+                ]
+            },
+		})
 
-	const user : IUser | null = { 
-		userID: id,
-		username: name,
-		role: username === "Fanto" ? "Admin" : "User"
-	};
+		if (!sessione || !cookies.get("ledb_session")) {
+			//TODO: write explicit sql query
+			sessione = await prisma.sessione.upsert({
+				where: {
+					user_id: user.AccountId,
+					guid_id: username
+				},
+				update: {
+					date_created: new Date(Date.now()),
+					date_expired: new Date(Date.now() + TimeLimit_h_m_s_ms)
+				},
+				create: {
+					user_id: user.AccountId,
+					guid_id: username,
+					date_created: new Date(Date.now()),
+					date_expired: new Date(Date.now() + TimeLimit_h_m_s_ms)
+				}
+			})
 
-	const sessionSQL = ""; // TODO: query to insert user and expiration date
-	const sessionResp = null; //await PostgreSQL().query(sql, [user.id]);
-
-	let session : ISession = { guid: username, role: "User" } //= {...sessionResp.row[0]}
-	cookies.set(
-		'ledb_session',
-		session.guid,
-		{
-			path: "/",
-			maxAge: 60 * 60 //1 hour
+			if (!sessione) {
+				throw { message: "Error during the registration of the Session" }
+			}
 		}
-	)
 
-	return {
-		success: true,
-		user: username
+		cookies.set(
+			'ledb_session',
+			"" + sessione?.Id,
+			{
+				path: "/",
+				maxAge: TimeLimit_h_m_s
+			}
+		)
+		
+		return {
+			success: true,
+			userLocation: "/account/" + user.Nome
+		}
+	} catch (error : any) {
+		console.error("Error: ", error.message)
+
+		popup.color = "red"
+		popup.text = "" + error.message
+
+		return fail(400, { msg: error.message })
 	}
 }
 
-const signup : Action = async ({request, cookies}) => {
+const signup : Action = async ({ request, cookies }) => {
 	const data = await request.formData()
 
 	const username = data.get('user')
@@ -80,7 +117,7 @@ const signup : Action = async ({request, cookies}) => {
 	if(password.localeCompare(confirmPassword)) {
 		return fail(400, { msg: "The Password doesn't match." })
 	}
-
+/*
 	//TODO: Add info to the database, use a "users" and a "session" table.
 	const sql = "";
 	const resp = null; //await PostgreSQL().query(sql, [username, password]);
@@ -100,9 +137,17 @@ const signup : Action = async ({request, cookies}) => {
 		session.guid,
 		{
 			path: "/",
-			maxAge: 60 * 60 //1 hour
+			maxAge: 60 * 60 * 5 //5 hours
 		}
 	)
+	cookies.set(
+		'ledb_role',
+		session.role,
+		{
+			path: "/",
+			maxAge: 60 * 60 * 5 //5 hours
+		}
+	)*/
 
 	return {
 		success: true,

@@ -10,7 +10,7 @@ export const handle: Handle = async ({ event, resolve }) => {
         let dbSession = await prisma.sessione.findFirst({
             where: {
                 AND: [
-                    { Id: new Number(sessionGUID).valueOf() },
+                    { Id: parseInt(sessionGUID) },
                     { date_expired: { gt: new Date(Date.now()) } }
                 ]
             },

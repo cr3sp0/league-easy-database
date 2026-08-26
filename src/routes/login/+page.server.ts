@@ -168,7 +168,7 @@ const signup : Action = async ({ request, cookies, locals }) => {
 
 		cookies.set(
 			'ledb_session',
-			session.guid_id,
+			"" + session.Id,
 			{
 				path: "/",
 				maxAge: TimeLimit_h_m_s

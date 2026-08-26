@@ -52,17 +52,19 @@ const logout : Action = async ({ cookies }) => {
 	
 	try {
 		//TODO: Delete session from the DB.
-		let currentSession = new Number(cookies.get("ledb_session")).valueOf()
+		let currentSession = cookies.get("ledb_session")
 		
-		//TODO: write explicit sql query
-		const session = await prisma.sessione.delete({
-			where: {
-				Id: currentSession
+		if (currentSession) {
+			//TODO: write explicit sql query
+			const session = await prisma.sessione.delete({
+				where: {
+					Id: parseInt(currentSession)
+				}
+			})
+
+			if(!session) {
+				throw { message: "Error when deleting the current session" }
 			}
-		})
-		
-		if(!session) {
-			throw { message: "Error when deleting the current session" }
 		}
 
 		cookies.delete('ledb_session', {path: "/"});

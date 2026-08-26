@@ -1,8 +1,15 @@
+import { popup } from "$lib/components/store/popup.svelte";
+import { hashPassword, verifyPassword } from "$lib/server/auth";
 import prisma from "$lib/server/prisma";
-import type { IUser, ISession } from "$lib/types";
+import type { ISession } from "$lib/types";
 import { fail, type Action, type Actions } from "@sveltejs/kit";
 
-const login : Action = async ({request, cookies}) => {
+const TimeLimit_h = 5
+const TimeLimit_h_m = TimeLimit_h * 60
+const TimeLimit_h_m_s = TimeLimit_h_m * 60
+const TimeLimit_h_m_s_ms = TimeLimit_h_m_s * 1000
+
+const login : Action = async ({ request, cookies }) => {
 	const data = await request.formData()
 
 	const username = data.get('user')
@@ -17,49 +24,84 @@ const login : Action = async ({request, cookies}) => {
 		return fail(400, { msg: "Provide a valid User and/or Password." })
 	}
 
-	//TODO: Check database info, use a "users" and a "session" table.
-	let g = prisma.account.findFirst({ // SELECT * FROM Account WHERE Nome = username AND Password = password
-		where: { 
-			Nome: username,
-			Password: password
+	try{
+		//SELECT * FROM Account 
+		// WHERE Nome = username 
+		// AND Password = password
+		let user = await prisma.account.findUnique({ 
+			where: {
+				Nome: username
+			}
+		})
+
+		if (!user) {
+			throw { message: "Account missing" }
 		}
-	})
-	const sql = "";
-	const resp = null; //await PostgreSQL().query(sql, [username, password]);
-	
-	if (!g) { // resp.rowCount === 0
-		return fail(400, { msg: "User or Password incorrect." })
-	}
 
-	let id = Number(g.then((elem) => {return elem?.AccountId})) // Prendi il valore dell'id
-	let name = String(g.then((elem) => {return elem?.Nome})) // Prendi il valore del nome
-
-	const user : IUser | null = { 
-		userID: id,
-		username: name,
-		role: username === "Fanto" ? "Admin" : "User"
-	};
-
-	const sessionSQL = ""; // TODO: query to insert user and expiration date
-	const sessionResp = null; //await PostgreSQL().query(sql, [user.id]);
-
-	let session : ISession = { guid: username, role: "User" } //= {...sessionResp.row[0]}
-	cookies.set(
-		'ledb_session',
-		session.guid,
-		{
-			path: "/",
-			maxAge: 60 * 60 //1 hour
+		if (
+			user
+			&& !await verifyPassword(password, user?.Password)
+		) {
+			throw { message: "User or Password incorrect." }
 		}
-	)
 
-	return {
-		success: true,
-		user: username
+		let sessione = await prisma.sessione.findFirst({
+            where: {
+                AND: [
+                    { guid_id: username },
+                    { date_expired: { lt: new Date(Date.now()) } }
+                ]
+            },
+		})
+
+		if (!sessione || !cookies.get("ledb_session")) {
+			//TODO: write explicit sql query
+			sessione = await prisma.sessione.upsert({
+				where: {
+					user_id: user.AccountId,
+					guid_id: username
+				},
+				update: {
+					date_created: new Date(Date.now()),
+					date_expired: new Date(Date.now() + TimeLimit_h_m_s_ms)
+				},
+				create: {
+					user_id: user.AccountId,
+					guid_id: username,
+					date_created: new Date(Date.now()),
+					date_expired: new Date(Date.now() + TimeLimit_h_m_s_ms)
+				}
+			})
+
+			if (!sessione) {
+				throw { message: "Error during the registration of the Session" }
+			}
+		}
+
+		cookies.set(
+			'ledb_session',
+			"" + sessione?.Id,
+			{
+				path: "/",
+				maxAge: TimeLimit_h_m_s
+			}
+		)
+
+		return {
+			success: true,
+			userLocation: "/account/" + user.Nome
+		}
+	} catch (error : any) {
+		console.error("Error: ", error.message)
+		
+		popup.color = "red"
+		popup.text = "" + error.message
+		
+		return fail(400, { msg: error.message })
 	}
 }
 
-const signup : Action = async ({request, cookies}) => {
+const signup : Action = async ({ request, cookies, locals }) => {
 	const data = await request.formData()
 
 	const username = data.get('user')
@@ -81,32 +123,64 @@ const signup : Action = async ({request, cookies}) => {
 		return fail(400, { msg: "The Password doesn't match." })
 	}
 
-	//TODO: Add info to the database, use a "users" and a "session" table.
-	const sql = "";
-	const resp = null; //await PostgreSQL().query(sql, [username, password]);
+	try {
+		const hashedPassword = await hashPassword(password)
 
-	const user : IUser = {
-		userID: 0, //TODO: generate next id from the db
-		username: username,
-		role: username === "Fanto" ? "Admin" : "User" //TODO: check status inside the db
-	};
+		//TODO: write explicit sql query
+		let uniqueAccount = await prisma.account.findUnique({
+			where: {
+				Nome: username
+			}
+		})
 
-	const sessionSQL = ""; // TODO: query to insert user and expiration date
-	const sessionResp = null; //await PostgreSQL().query(sql, [user.id]);
-
-	let session : ISession = { guid: username, role: "User" }; //= {...sessionResp.row[0]} TODO: get the user from the query response
-	cookies.set(
-		'ledb_session',
-		session.guid,
-		{
-			path: "/",
-			maxAge: 60 * 60 //1 hour
+		if (uniqueAccount) {
+			throw { message: "This Account already exists" }
 		}
-	)
 
-	return {
-		success: true,
-		user: username
+		//TODO: write explicit sql query
+		let createAccount = await prisma.account.create({
+			data: {
+				Nome: username,
+				Password: hashedPassword, //TODO: hash it
+				Descrizione: "",
+				IsAdmin: false,
+				Immagine: ""
+			}
+		})
+
+		if (!createAccount) {
+			throw { message: "Something went wrong" }
+		}
+		
+		//TODO: write explicit sql query
+		let session = await prisma.sessione.create({
+			data: {
+				guid_id: createAccount.Nome,
+				user_id: createAccount.AccountId,
+				date_created: new Date(Date.now()),
+				date_expired: new Date(Date.now() + TimeLimit_h_m_s_ms)
+			}
+		})
+		
+		if (!session) {
+			throw { message: "Something went wrong" }
+		}
+
+		cookies.set(
+			'ledb_session',
+			session.guid_id,
+			{
+				path: "/",
+				maxAge: TimeLimit_h_m_s
+			}
+		)
+
+		return {
+			success: true,
+			userLocation: "/account/" + createAccount.Nome
+		}
+	} catch (error: any) {
+		return fail(400, { msg: error.message })
 	}
 }
 

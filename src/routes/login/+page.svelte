@@ -2,8 +2,8 @@
   import Logo from "$lib/components/logo.svelte";
   import { enhance } from "$app/forms";
   import { goto } from "$app/navigation";
-  import { text, type ActionResult } from "@sveltejs/kit";
-    import { popup } from "$lib/components/store/popup.svelte";
+  import type { ActionResult } from "@sveltejs/kit";
+  import { popup } from "$lib/components/store/popup.svelte";
 
   let registration: Boolean = $state(false);
 
@@ -15,12 +15,12 @@
     if (
       result.type === 'success' && 
       result.status === 200 && 
-      result.data?.user
+      result.data?.userLocation
     ) {
 
       popup.color = 'green'
       popup.text = "Access Successful"
-      goto("/account/" + result.data?.user)
+      goto(result.data.userLocation)
     
     } else if (result.type === 'redirect' ) {
 

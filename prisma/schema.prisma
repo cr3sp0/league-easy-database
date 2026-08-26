@@ -39,13 +39,12 @@ model Campione {
 }
 
 model Cosmetico{
-  Id Int @id @default(autoincrement()) 
+  NomeCosmetico String @unique
   IdCampione String
   Immagine String //? not sure
  // Modello 
-  Nome String
   champ Campione  @relation(fields: [IdCampione], references: [ID])
-  @@unique([IdCampione, Nome])
+  @@id([IdCampione, NomeCosmetico])
 }
 
 model Ruolo{
@@ -140,13 +139,13 @@ model Inventario{
 }
 
 model Account{
-  Nome String
-  AccountId Int @id 
+  Nome String @unique
+  AccountId Int @id @default(autoincrement())
   Password String 
   Descrizione String 
   Immagine String //?
-  RiotID String @db.VarChar(50) @unique
-  IsAdmin String
+  RiotID String? @db.VarChar(50) @unique
+  IsAdmin Boolean
   sessione Sessione[]
   Config Configurazione[]
   Partita Partita[] 
@@ -178,11 +177,10 @@ enum Tipo_Abilita{
 }
 
 model Abilita{
-  Id  Int @id
+  Id  Int @id @default(autoincrement())
   NomeAbilità String @unique
   Descrizione String
   KitAb Kit_Abilita[]
-
 }
 
 model Kit_Abilita {
@@ -228,6 +226,7 @@ model Runa {
   Descrizione String
   CamminoId Int
   Grado Int
+  Immagine String
   Deprecata Boolean @default(false)
   Camm Tipologia_runa @relation(fields: [CamminoId], references: [Id])
   keystone Sezione_Runa[] @relation("Keystone")

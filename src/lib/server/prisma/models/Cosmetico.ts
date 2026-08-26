@@ -20,70 +20,46 @@ export type CosmeticoModel = runtime.Types.Result.DefaultSelection<Prisma.$Cosme
 
 export type AggregateCosmetico = {
   _count: CosmeticoCountAggregateOutputType | null
-  _avg: CosmeticoAvgAggregateOutputType | null
-  _sum: CosmeticoSumAggregateOutputType | null
   _min: CosmeticoMinAggregateOutputType | null
   _max: CosmeticoMaxAggregateOutputType | null
 }
 
-export type CosmeticoAvgAggregateOutputType = {
-  Id: number | null
-}
-
-export type CosmeticoSumAggregateOutputType = {
-  Id: number | null
-}
-
 export type CosmeticoMinAggregateOutputType = {
-  Id: number | null
+  NomeCosmetico: string | null
   IdCampione: string | null
   Immagine: string | null
-  Nome: string | null
 }
 
 export type CosmeticoMaxAggregateOutputType = {
-  Id: number | null
+  NomeCosmetico: string | null
   IdCampione: string | null
   Immagine: string | null
-  Nome: string | null
 }
 
 export type CosmeticoCountAggregateOutputType = {
-  Id: number
+  NomeCosmetico: number
   IdCampione: number
   Immagine: number
-  Nome: number
   _all: number
 }
 
 
-export type CosmeticoAvgAggregateInputType = {
-  Id?: true
-}
-
-export type CosmeticoSumAggregateInputType = {
-  Id?: true
-}
-
 export type CosmeticoMinAggregateInputType = {
-  Id?: true
+  NomeCosmetico?: true
   IdCampione?: true
   Immagine?: true
-  Nome?: true
 }
 
 export type CosmeticoMaxAggregateInputType = {
-  Id?: true
+  NomeCosmetico?: true
   IdCampione?: true
   Immagine?: true
-  Nome?: true
 }
 
 export type CosmeticoCountAggregateInputType = {
-  Id?: true
+  NomeCosmetico?: true
   IdCampione?: true
   Immagine?: true
-  Nome?: true
   _all?: true
 }
 
@@ -125,18 +101,6 @@ export type CosmeticoAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inte
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: CosmeticoAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: CosmeticoSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: CosmeticoMinAggregateInputType
@@ -167,20 +131,15 @@ export type CosmeticoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   _count?: CosmeticoCountAggregateInputType | true
-  _avg?: CosmeticoAvgAggregateInputType
-  _sum?: CosmeticoSumAggregateInputType
   _min?: CosmeticoMinAggregateInputType
   _max?: CosmeticoMaxAggregateInputType
 }
 
 export type CosmeticoGroupByOutputType = {
-  Id: number
+  NomeCosmetico: string
   IdCampione: string
   Immagine: string
-  Nome: string
   _count: CosmeticoCountAggregateOutputType | null
-  _avg: CosmeticoAvgAggregateOutputType | null
-  _sum: CosmeticoSumAggregateOutputType | null
   _min: CosmeticoMinAggregateOutputType | null
   _max: CosmeticoMaxAggregateOutputType | null
 }
@@ -204,98 +163,87 @@ export type CosmeticoWhereInput = {
   AND?: Prisma.CosmeticoWhereInput | Prisma.CosmeticoWhereInput[]
   OR?: Prisma.CosmeticoWhereInput[]
   NOT?: Prisma.CosmeticoWhereInput | Prisma.CosmeticoWhereInput[]
-  Id?: Prisma.IntFilter<"Cosmetico"> | number
+  NomeCosmetico?: Prisma.StringFilter<"Cosmetico"> | string
   IdCampione?: Prisma.StringFilter<"Cosmetico"> | string
   Immagine?: Prisma.StringFilter<"Cosmetico"> | string
-  Nome?: Prisma.StringFilter<"Cosmetico"> | string
   champ?: Prisma.XOR<Prisma.CampioneScalarRelationFilter, Prisma.CampioneWhereInput>
 }
 
 export type CosmeticoOrderByWithRelationInput = {
-  Id?: Prisma.SortOrder
+  NomeCosmetico?: Prisma.SortOrder
   IdCampione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
-  Nome?: Prisma.SortOrder
   champ?: Prisma.CampioneOrderByWithRelationInput
 }
 
 export type CosmeticoWhereUniqueInput = Prisma.AtLeast<{
-  Id?: number
-  IdCampione_Nome?: Prisma.CosmeticoIdCampioneNomeCompoundUniqueInput
+  NomeCosmetico?: string
+  IdCampione_NomeCosmetico?: Prisma.CosmeticoIdCampioneNomeCosmeticoCompoundUniqueInput
   AND?: Prisma.CosmeticoWhereInput | Prisma.CosmeticoWhereInput[]
   OR?: Prisma.CosmeticoWhereInput[]
   NOT?: Prisma.CosmeticoWhereInput | Prisma.CosmeticoWhereInput[]
   IdCampione?: Prisma.StringFilter<"Cosmetico"> | string
   Immagine?: Prisma.StringFilter<"Cosmetico"> | string
-  Nome?: Prisma.StringFilter<"Cosmetico"> | string
   champ?: Prisma.XOR<Prisma.CampioneScalarRelationFilter, Prisma.CampioneWhereInput>
-}, "Id" | "IdCampione_Nome">
+}, "IdCampione_NomeCosmetico" | "NomeCosmetico">
 
 export type CosmeticoOrderByWithAggregationInput = {
-  Id?: Prisma.SortOrder
+  NomeCosmetico?: Prisma.SortOrder
   IdCampione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
-  Nome?: Prisma.SortOrder
   _count?: Prisma.CosmeticoCountOrderByAggregateInput
-  _avg?: Prisma.CosmeticoAvgOrderByAggregateInput
   _max?: Prisma.CosmeticoMaxOrderByAggregateInput
   _min?: Prisma.CosmeticoMinOrderByAggregateInput
-  _sum?: Prisma.CosmeticoSumOrderByAggregateInput
 }
 
 export type CosmeticoScalarWhereWithAggregatesInput = {
   AND?: Prisma.CosmeticoScalarWhereWithAggregatesInput | Prisma.CosmeticoScalarWhereWithAggregatesInput[]
   OR?: Prisma.CosmeticoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CosmeticoScalarWhereWithAggregatesInput | Prisma.CosmeticoScalarWhereWithAggregatesInput[]
-  Id?: Prisma.IntWithAggregatesFilter<"Cosmetico"> | number
+  NomeCosmetico?: Prisma.StringWithAggregatesFilter<"Cosmetico"> | string
   IdCampione?: Prisma.StringWithAggregatesFilter<"Cosmetico"> | string
   Immagine?: Prisma.StringWithAggregatesFilter<"Cosmetico"> | string
-  Nome?: Prisma.StringWithAggregatesFilter<"Cosmetico"> | string
 }
 
 export type CosmeticoCreateInput = {
+  NomeCosmetico: string
   Immagine: string
-  Nome: string
   champ: Prisma.CampioneCreateNestedOneWithoutCosmeticoInput
 }
 
 export type CosmeticoUncheckedCreateInput = {
-  Id?: number
+  NomeCosmetico: string
   IdCampione: string
   Immagine: string
-  Nome: string
 }
 
 export type CosmeticoUpdateInput = {
+  NomeCosmetico?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  Nome?: Prisma.StringFieldUpdateOperationsInput | string
   champ?: Prisma.CampioneUpdateOneRequiredWithoutCosmeticoNestedInput
 }
 
 export type CosmeticoUncheckedUpdateInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
+  NomeCosmetico?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  Nome?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CosmeticoCreateManyInput = {
-  Id?: number
+  NomeCosmetico: string
   IdCampione: string
   Immagine: string
-  Nome: string
 }
 
 export type CosmeticoUpdateManyMutationInput = {
+  NomeCosmetico?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  Nome?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CosmeticoUncheckedUpdateManyInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
+  NomeCosmetico?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  Nome?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CosmeticoListRelationFilter = {
@@ -308,38 +256,27 @@ export type CosmeticoOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type CosmeticoIdCampioneNomeCompoundUniqueInput = {
+export type CosmeticoIdCampioneNomeCosmeticoCompoundUniqueInput = {
   IdCampione: string
-  Nome: string
+  NomeCosmetico: string
 }
 
 export type CosmeticoCountOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
+  NomeCosmetico?: Prisma.SortOrder
   IdCampione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
-  Nome?: Prisma.SortOrder
-}
-
-export type CosmeticoAvgOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
 }
 
 export type CosmeticoMaxOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
+  NomeCosmetico?: Prisma.SortOrder
   IdCampione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
-  Nome?: Prisma.SortOrder
 }
 
 export type CosmeticoMinOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
+  NomeCosmetico?: Prisma.SortOrder
   IdCampione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
-  Nome?: Prisma.SortOrder
-}
-
-export type CosmeticoSumOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
 }
 
 export type CosmeticoCreateNestedManyWithoutChampInput = {
@@ -385,14 +322,13 @@ export type CosmeticoUncheckedUpdateManyWithoutChampNestedInput = {
 }
 
 export type CosmeticoCreateWithoutChampInput = {
+  NomeCosmetico: string
   Immagine: string
-  Nome: string
 }
 
 export type CosmeticoUncheckedCreateWithoutChampInput = {
-  Id?: number
+  NomeCosmetico: string
   Immagine: string
-  Nome: string
 }
 
 export type CosmeticoCreateOrConnectWithoutChampInput = {
@@ -425,69 +361,61 @@ export type CosmeticoScalarWhereInput = {
   AND?: Prisma.CosmeticoScalarWhereInput | Prisma.CosmeticoScalarWhereInput[]
   OR?: Prisma.CosmeticoScalarWhereInput[]
   NOT?: Prisma.CosmeticoScalarWhereInput | Prisma.CosmeticoScalarWhereInput[]
-  Id?: Prisma.IntFilter<"Cosmetico"> | number
+  NomeCosmetico?: Prisma.StringFilter<"Cosmetico"> | string
   IdCampione?: Prisma.StringFilter<"Cosmetico"> | string
   Immagine?: Prisma.StringFilter<"Cosmetico"> | string
-  Nome?: Prisma.StringFilter<"Cosmetico"> | string
 }
 
 export type CosmeticoCreateManyChampInput = {
-  Id?: number
+  NomeCosmetico: string
   Immagine: string
-  Nome: string
 }
 
 export type CosmeticoUpdateWithoutChampInput = {
+  NomeCosmetico?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  Nome?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CosmeticoUncheckedUpdateWithoutChampInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
+  NomeCosmetico?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  Nome?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CosmeticoUncheckedUpdateManyWithoutChampInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
+  NomeCosmetico?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  Nome?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type CosmeticoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  Id?: boolean
+  NomeCosmetico?: boolean
   IdCampione?: boolean
   Immagine?: boolean
-  Nome?: boolean
   champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cosmetico"]>
 
 export type CosmeticoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  Id?: boolean
+  NomeCosmetico?: boolean
   IdCampione?: boolean
   Immagine?: boolean
-  Nome?: boolean
   champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cosmetico"]>
 
 export type CosmeticoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  Id?: boolean
+  NomeCosmetico?: boolean
   IdCampione?: boolean
   Immagine?: boolean
-  Nome?: boolean
   champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cosmetico"]>
 
 export type CosmeticoSelectScalar = {
-  Id?: boolean
+  NomeCosmetico?: boolean
   IdCampione?: boolean
   Immagine?: boolean
-  Nome?: boolean
 }
 
-export type CosmeticoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "IdCampione" | "Immagine" | "Nome", ExtArgs["result"]["cosmetico"]>
+export type CosmeticoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"NomeCosmetico" | "IdCampione" | "Immagine", ExtArgs["result"]["cosmetico"]>
 export type CosmeticoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
 }
@@ -504,10 +432,9 @@ export type $CosmeticoPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     champ: Prisma.$CampionePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    Id: number
+    NomeCosmetico: string
     IdCampione: string
     Immagine: string
-    Nome: string
   }, ExtArgs["result"]["cosmetico"]>
   composites: {}
 }
@@ -591,8 +518,8 @@ export interface CosmeticoDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * // Get first 10 Cosmeticos
    * const cosmeticos = await prisma.cosmetico.findMany({ take: 10 })
    * 
-   * // Only select the `Id`
-   * const cosmeticoWithIdOnly = await prisma.cosmetico.findMany({ select: { Id: true } })
+   * // Only select the `NomeCosmetico`
+   * const cosmeticoWithNomeCosmeticoOnly = await prisma.cosmetico.findMany({ select: { NomeCosmetico: true } })
    * 
    */
   findMany<T extends CosmeticoFindManyArgs>(args?: Prisma.SelectSubset<T, CosmeticoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CosmeticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -636,9 +563,9 @@ export interface CosmeticoDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Create many Cosmeticos and only return the `Id`
-   * const cosmeticoWithIdOnly = await prisma.cosmetico.createManyAndReturn({
-   *   select: { Id: true },
+   * // Create many Cosmeticos and only return the `NomeCosmetico`
+   * const cosmeticoWithNomeCosmeticoOnly = await prisma.cosmetico.createManyAndReturn({
+   *   select: { NomeCosmetico: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -727,9 +654,9 @@ export interface CosmeticoDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Update zero or more Cosmeticos and only return the `Id`
-   * const cosmeticoWithIdOnly = await prisma.cosmetico.updateManyAndReturn({
-   *   select: { Id: true },
+   * // Update zero or more Cosmeticos and only return the `NomeCosmetico`
+   * const cosmeticoWithNomeCosmeticoOnly = await prisma.cosmetico.updateManyAndReturn({
+   *   select: { NomeCosmetico: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -932,10 +859,9 @@ export interface Prisma__CosmeticoClient<T, Null = never, ExtArgs extends runtim
  * Fields of the Cosmetico model
  */
 export interface CosmeticoFieldRefs {
-  readonly Id: Prisma.FieldRef<"Cosmetico", 'Int'>
+  readonly NomeCosmetico: Prisma.FieldRef<"Cosmetico", 'String'>
   readonly IdCampione: Prisma.FieldRef<"Cosmetico", 'String'>
   readonly Immagine: Prisma.FieldRef<"Cosmetico", 'String'>
-  readonly Nome: Prisma.FieldRef<"Cosmetico", 'String'>
 }
     
 

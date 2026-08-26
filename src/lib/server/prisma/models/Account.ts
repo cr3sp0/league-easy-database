@@ -41,7 +41,7 @@ export type AccountMinAggregateOutputType = {
   Descrizione: string | null
   Immagine: string | null
   RiotID: string | null
-  IsAdmin: string | null
+  IsAdmin: boolean | null
 }
 
 export type AccountMaxAggregateOutputType = {
@@ -51,7 +51,7 @@ export type AccountMaxAggregateOutputType = {
   Descrizione: string | null
   Immagine: string | null
   RiotID: string | null
-  IsAdmin: string | null
+  IsAdmin: boolean | null
 }
 
 export type AccountCountAggregateOutputType = {
@@ -197,8 +197,8 @@ export type AccountGroupByOutputType = {
   Password: string
   Descrizione: string
   Immagine: string
-  RiotID: string
-  IsAdmin: string
+  RiotID: string | null
+  IsAdmin: boolean
   _count: AccountCountAggregateOutputType | null
   _avg: AccountAvgAggregateOutputType | null
   _sum: AccountSumAggregateOutputType | null
@@ -230,8 +230,8 @@ export type AccountWhereInput = {
   Password?: Prisma.StringFilter<"Account"> | string
   Descrizione?: Prisma.StringFilter<"Account"> | string
   Immagine?: Prisma.StringFilter<"Account"> | string
-  RiotID?: Prisma.StringFilter<"Account"> | string
-  IsAdmin?: Prisma.StringFilter<"Account"> | string
+  RiotID?: Prisma.StringNullableFilter<"Account"> | string | null
+  IsAdmin?: Prisma.BoolFilter<"Account"> | boolean
   sessione?: Prisma.SessioneListRelationFilter
   Config?: Prisma.ConfigurazioneListRelationFilter
   Partita?: Prisma.PartitaListRelationFilter
@@ -243,7 +243,7 @@ export type AccountOrderByWithRelationInput = {
   Password?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
-  RiotID?: Prisma.SortOrder
+  RiotID?: Prisma.SortOrderInput | Prisma.SortOrder
   IsAdmin?: Prisma.SortOrder
   sessione?: Prisma.SessioneOrderByRelationAggregateInput
   Config?: Prisma.ConfigurazioneOrderByRelationAggregateInput
@@ -251,20 +251,20 @@ export type AccountOrderByWithRelationInput = {
 }
 
 export type AccountWhereUniqueInput = Prisma.AtLeast<{
+  Nome?: string
   AccountId?: number
   RiotID?: string
   AND?: Prisma.AccountWhereInput | Prisma.AccountWhereInput[]
   OR?: Prisma.AccountWhereInput[]
   NOT?: Prisma.AccountWhereInput | Prisma.AccountWhereInput[]
-  Nome?: Prisma.StringFilter<"Account"> | string
   Password?: Prisma.StringFilter<"Account"> | string
   Descrizione?: Prisma.StringFilter<"Account"> | string
   Immagine?: Prisma.StringFilter<"Account"> | string
-  IsAdmin?: Prisma.StringFilter<"Account"> | string
+  IsAdmin?: Prisma.BoolFilter<"Account"> | boolean
   sessione?: Prisma.SessioneListRelationFilter
   Config?: Prisma.ConfigurazioneListRelationFilter
   Partita?: Prisma.PartitaListRelationFilter
-}, "AccountId" | "RiotID">
+}, "AccountId" | "Nome" | "RiotID">
 
 export type AccountOrderByWithAggregationInput = {
   Nome?: Prisma.SortOrder
@@ -272,7 +272,7 @@ export type AccountOrderByWithAggregationInput = {
   Password?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
-  RiotID?: Prisma.SortOrder
+  RiotID?: Prisma.SortOrderInput | Prisma.SortOrder
   IsAdmin?: Prisma.SortOrder
   _count?: Prisma.AccountCountOrderByAggregateInput
   _avg?: Prisma.AccountAvgOrderByAggregateInput
@@ -290,18 +290,17 @@ export type AccountScalarWhereWithAggregatesInput = {
   Password?: Prisma.StringWithAggregatesFilter<"Account"> | string
   Descrizione?: Prisma.StringWithAggregatesFilter<"Account"> | string
   Immagine?: Prisma.StringWithAggregatesFilter<"Account"> | string
-  RiotID?: Prisma.StringWithAggregatesFilter<"Account"> | string
-  IsAdmin?: Prisma.StringWithAggregatesFilter<"Account"> | string
+  RiotID?: Prisma.StringNullableWithAggregatesFilter<"Account"> | string | null
+  IsAdmin?: Prisma.BoolWithAggregatesFilter<"Account"> | boolean
 }
 
 export type AccountCreateInput = {
   Nome: string
-  AccountId: number
   Password: string
   Descrizione: string
   Immagine: string
-  RiotID: string
-  IsAdmin: string
+  RiotID?: string | null
+  IsAdmin: boolean
   sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccInput
@@ -309,12 +308,12 @@ export type AccountCreateInput = {
 
 export type AccountUncheckedCreateInput = {
   Nome: string
-  AccountId: number
+  AccountId?: number
   Password: string
   Descrizione: string
   Immagine: string
-  RiotID: string
-  IsAdmin: string
+  RiotID?: string | null
+  IsAdmin: boolean
   sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccInput
@@ -322,12 +321,11 @@ export type AccountUncheckedCreateInput = {
 
 export type AccountUpdateInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  AccountId?: Prisma.IntFieldUpdateOperationsInput | number
   Password?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.StringFieldUpdateOperationsInput | string
-  IsAdmin?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUpdateManyWithoutAccNestedInput
@@ -339,8 +337,8 @@ export type AccountUncheckedUpdateInput = {
   Password?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.StringFieldUpdateOperationsInput | string
-  IsAdmin?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccNestedInput
@@ -348,22 +346,21 @@ export type AccountUncheckedUpdateInput = {
 
 export type AccountCreateManyInput = {
   Nome: string
-  AccountId: number
+  AccountId?: number
   Password: string
   Descrizione: string
   Immagine: string
-  RiotID: string
-  IsAdmin: string
+  RiotID?: string | null
+  IsAdmin: boolean
 }
 
 export type AccountUpdateManyMutationInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  AccountId?: Prisma.IntFieldUpdateOperationsInput | number
   Password?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.StringFieldUpdateOperationsInput | string
-  IsAdmin?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type AccountUncheckedUpdateManyInput = {
@@ -372,8 +369,8 @@ export type AccountUncheckedUpdateManyInput = {
   Password?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.StringFieldUpdateOperationsInput | string
-  IsAdmin?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type AccountScalarRelationFilter = {
@@ -433,6 +430,14 @@ export type AccountUpdateOneRequiredWithoutConfigNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccountUpdateToOneWithWhereWithoutConfigInput, Prisma.AccountUpdateWithoutConfigInput>, Prisma.AccountUncheckedUpdateWithoutConfigInput>
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type AccountCreateNestedOneWithoutSessioneInput = {
   create?: Prisma.XOR<Prisma.AccountCreateWithoutSessioneInput, Prisma.AccountUncheckedCreateWithoutSessioneInput>
   connectOrCreate?: Prisma.AccountCreateOrConnectWithoutSessioneInput
@@ -463,24 +468,23 @@ export type AccountUpdateOneRequiredWithoutPartitaNestedInput = {
 
 export type AccountCreateWithoutConfigInput = {
   Nome: string
-  AccountId: number
   Password: string
   Descrizione: string
   Immagine: string
-  RiotID: string
-  IsAdmin: string
+  RiotID?: string | null
+  IsAdmin: boolean
   sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccInput
 }
 
 export type AccountUncheckedCreateWithoutConfigInput = {
   Nome: string
-  AccountId: number
+  AccountId?: number
   Password: string
   Descrizione: string
   Immagine: string
-  RiotID: string
-  IsAdmin: string
+  RiotID?: string | null
+  IsAdmin: boolean
   sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccInput
 }
@@ -503,12 +507,11 @@ export type AccountUpdateToOneWithWhereWithoutConfigInput = {
 
 export type AccountUpdateWithoutConfigInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  AccountId?: Prisma.IntFieldUpdateOperationsInput | number
   Password?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.StringFieldUpdateOperationsInput | string
-  IsAdmin?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUpdateManyWithoutAccNestedInput
 }
@@ -519,32 +522,31 @@ export type AccountUncheckedUpdateWithoutConfigInput = {
   Password?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.StringFieldUpdateOperationsInput | string
-  IsAdmin?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccNestedInput
 }
 
 export type AccountCreateWithoutSessioneInput = {
   Nome: string
-  AccountId: number
   Password: string
   Descrizione: string
   Immagine: string
-  RiotID: string
-  IsAdmin: string
+  RiotID?: string | null
+  IsAdmin: boolean
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccInput
 }
 
 export type AccountUncheckedCreateWithoutSessioneInput = {
   Nome: string
-  AccountId: number
+  AccountId?: number
   Password: string
   Descrizione: string
   Immagine: string
-  RiotID: string
-  IsAdmin: string
+  RiotID?: string | null
+  IsAdmin: boolean
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccInput
 }
@@ -567,12 +569,11 @@ export type AccountUpdateToOneWithWhereWithoutSessioneInput = {
 
 export type AccountUpdateWithoutSessioneInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  AccountId?: Prisma.IntFieldUpdateOperationsInput | number
   Password?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.StringFieldUpdateOperationsInput | string
-  IsAdmin?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUpdateManyWithoutAccNestedInput
 }
@@ -583,32 +584,31 @@ export type AccountUncheckedUpdateWithoutSessioneInput = {
   Password?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.StringFieldUpdateOperationsInput | string
-  IsAdmin?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccNestedInput
 }
 
 export type AccountCreateWithoutPartitaInput = {
   Nome: string
-  AccountId: number
   Password: string
   Descrizione: string
   Immagine: string
-  RiotID: string
-  IsAdmin: string
+  RiotID?: string | null
+  IsAdmin: boolean
   sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
 }
 
 export type AccountUncheckedCreateWithoutPartitaInput = {
   Nome: string
-  AccountId: number
+  AccountId?: number
   Password: string
   Descrizione: string
   Immagine: string
-  RiotID: string
-  IsAdmin: string
+  RiotID?: string | null
+  IsAdmin: boolean
   sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
 }
@@ -631,12 +631,11 @@ export type AccountUpdateToOneWithWhereWithoutPartitaInput = {
 
 export type AccountUpdateWithoutPartitaInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  AccountId?: Prisma.IntFieldUpdateOperationsInput | number
   Password?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.StringFieldUpdateOperationsInput | string
-  IsAdmin?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
 }
@@ -647,8 +646,8 @@ export type AccountUncheckedUpdateWithoutPartitaInput = {
   Password?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.StringFieldUpdateOperationsInput | string
-  IsAdmin?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -769,8 +768,8 @@ export type $AccountPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     Password: string
     Descrizione: string
     Immagine: string
-    RiotID: string
-    IsAdmin: string
+    RiotID: string | null
+    IsAdmin: boolean
   }, ExtArgs["result"]["account"]>
   composites: {}
 }
@@ -1203,7 +1202,7 @@ export interface AccountFieldRefs {
   readonly Descrizione: Prisma.FieldRef<"Account", 'String'>
   readonly Immagine: Prisma.FieldRef<"Account", 'String'>
   readonly RiotID: Prisma.FieldRef<"Account", 'String'>
-  readonly IsAdmin: Prisma.FieldRef<"Account", 'String'>
+  readonly IsAdmin: Prisma.FieldRef<"Account", 'Boolean'>
 }
     
 

@@ -2414,10 +2414,9 @@ export type CampioneScalarFieldEnum = (typeof CampioneScalarFieldEnum)[keyof typ
 
 
 export const CosmeticoScalarFieldEnum = {
-  Id: 'Id',
+  NomeCosmetico: 'NomeCosmetico',
   IdCampione: 'IdCampione',
-  Immagine: 'Immagine',
-  Nome: 'Nome'
+  Immagine: 'Immagine'
 } as const
 
 export type CosmeticoScalarFieldEnum = (typeof CosmeticoScalarFieldEnum)[keyof typeof CosmeticoScalarFieldEnum]
@@ -2593,6 +2592,7 @@ export const RunaScalarFieldEnum = {
   Descrizione: 'Descrizione',
   CamminoId: 'CamminoId',
   Grado: 'Grado',
+  Immagine: 'Immagine',
   Deprecata: 'Deprecata'
 } as const
 
@@ -2661,6 +2661,14 @@ export const QueryMode = {
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
 
 /**
  * Field references
@@ -2710,6 +2718,13 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2734,13 +2749,6 @@ export type EnumTipo_AbilitaFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'Tipo_Abilita[]'
  */
 export type ListEnumTipo_AbilitaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Tipo_Abilita[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

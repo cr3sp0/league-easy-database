@@ -41,6 +41,7 @@ export type RunaMinAggregateOutputType = {
   Descrizione: string | null
   CamminoId: number | null
   Grado: number | null
+  Immagine: string | null
   Deprecata: boolean | null
 }
 
@@ -49,6 +50,7 @@ export type RunaMaxAggregateOutputType = {
   Descrizione: string | null
   CamminoId: number | null
   Grado: number | null
+  Immagine: string | null
   Deprecata: boolean | null
 }
 
@@ -57,6 +59,7 @@ export type RunaCountAggregateOutputType = {
   Descrizione: number
   CamminoId: number
   Grado: number
+  Immagine: number
   Deprecata: number
   _all: number
 }
@@ -77,6 +80,7 @@ export type RunaMinAggregateInputType = {
   Descrizione?: true
   CamminoId?: true
   Grado?: true
+  Immagine?: true
   Deprecata?: true
 }
 
@@ -85,6 +89,7 @@ export type RunaMaxAggregateInputType = {
   Descrizione?: true
   CamminoId?: true
   Grado?: true
+  Immagine?: true
   Deprecata?: true
 }
 
@@ -93,6 +98,7 @@ export type RunaCountAggregateInputType = {
   Descrizione?: true
   CamminoId?: true
   Grado?: true
+  Immagine?: true
   Deprecata?: true
   _all?: true
 }
@@ -188,6 +194,7 @@ export type RunaGroupByOutputType = {
   Descrizione: string
   CamminoId: number
   Grado: number
+  Immagine: string
   Deprecata: boolean
   _count: RunaCountAggregateOutputType | null
   _avg: RunaAvgAggregateOutputType | null
@@ -219,6 +226,7 @@ export type RunaWhereInput = {
   Descrizione?: Prisma.StringFilter<"Runa"> | string
   CamminoId?: Prisma.IntFilter<"Runa"> | number
   Grado?: Prisma.IntFilter<"Runa"> | number
+  Immagine?: Prisma.StringFilter<"Runa"> | string
   Deprecata?: Prisma.BoolFilter<"Runa"> | boolean
   Camm?: Prisma.XOR<Prisma.Tipologia_runaScalarRelationFilter, Prisma.Tipologia_runaWhereInput>
   keystone?: Prisma.Sezione_RunaListRelationFilter
@@ -232,6 +240,7 @@ export type RunaOrderByWithRelationInput = {
   Descrizione?: Prisma.SortOrder
   CamminoId?: Prisma.SortOrder
   Grado?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
   Deprecata?: Prisma.SortOrder
   Camm?: Prisma.Tipologia_runaOrderByWithRelationInput
   keystone?: Prisma.Sezione_RunaOrderByRelationAggregateInput
@@ -248,6 +257,7 @@ export type RunaWhereUniqueInput = Prisma.AtLeast<{
   Descrizione?: Prisma.StringFilter<"Runa"> | string
   CamminoId?: Prisma.IntFilter<"Runa"> | number
   Grado?: Prisma.IntFilter<"Runa"> | number
+  Immagine?: Prisma.StringFilter<"Runa"> | string
   Deprecata?: Prisma.BoolFilter<"Runa"> | boolean
   Camm?: Prisma.XOR<Prisma.Tipologia_runaScalarRelationFilter, Prisma.Tipologia_runaWhereInput>
   keystone?: Prisma.Sezione_RunaListRelationFilter
@@ -261,6 +271,7 @@ export type RunaOrderByWithAggregationInput = {
   Descrizione?: Prisma.SortOrder
   CamminoId?: Prisma.SortOrder
   Grado?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
   Deprecata?: Prisma.SortOrder
   _count?: Prisma.RunaCountOrderByAggregateInput
   _avg?: Prisma.RunaAvgOrderByAggregateInput
@@ -277,6 +288,7 @@ export type RunaScalarWhereWithAggregatesInput = {
   Descrizione?: Prisma.StringWithAggregatesFilter<"Runa"> | string
   CamminoId?: Prisma.IntWithAggregatesFilter<"Runa"> | number
   Grado?: Prisma.IntWithAggregatesFilter<"Runa"> | number
+  Immagine?: Prisma.StringWithAggregatesFilter<"Runa"> | string
   Deprecata?: Prisma.BoolWithAggregatesFilter<"Runa"> | boolean
 }
 
@@ -284,6 +296,7 @@ export type RunaCreateInput = {
   Nome: string
   Descrizione: string
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   Camm: Prisma.Tipologia_runaCreateNestedOneWithoutCammInput
   keystone?: Prisma.Sezione_RunaCreateNestedManyWithoutKeystoneInput
@@ -297,6 +310,7 @@ export type RunaUncheckedCreateInput = {
   Descrizione: string
   CamminoId: number
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   keystone?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutKeystoneInput
   Prima?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutFirstInput
@@ -308,6 +322,7 @@ export type RunaUpdateInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Camm?: Prisma.Tipologia_runaUpdateOneRequiredWithoutCammNestedInput
   keystone?: Prisma.Sezione_RunaUpdateManyWithoutKeystoneNestedInput
@@ -321,6 +336,7 @@ export type RunaUncheckedUpdateInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   CamminoId?: Prisma.IntFieldUpdateOperationsInput | number
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   keystone?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutKeystoneNestedInput
   Prima?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutFirstNestedInput
@@ -333,6 +349,7 @@ export type RunaCreateManyInput = {
   Descrizione: string
   CamminoId: number
   Grado: number
+  Immagine: string
   Deprecata?: boolean
 }
 
@@ -340,6 +357,7 @@ export type RunaUpdateManyMutationInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -348,6 +366,7 @@ export type RunaUncheckedUpdateManyInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   CamminoId?: Prisma.IntFieldUpdateOperationsInput | number
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -361,6 +380,7 @@ export type RunaCountOrderByAggregateInput = {
   Descrizione?: Prisma.SortOrder
   CamminoId?: Prisma.SortOrder
   Grado?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
   Deprecata?: Prisma.SortOrder
 }
 
@@ -374,6 +394,7 @@ export type RunaMaxOrderByAggregateInput = {
   Descrizione?: Prisma.SortOrder
   CamminoId?: Prisma.SortOrder
   Grado?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
   Deprecata?: Prisma.SortOrder
 }
 
@@ -382,6 +403,7 @@ export type RunaMinOrderByAggregateInput = {
   Descrizione?: Prisma.SortOrder
   CamminoId?: Prisma.SortOrder
   Grado?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
   Deprecata?: Prisma.SortOrder
 }
 
@@ -456,10 +478,6 @@ export type RunaUpdateOneRequiredWithoutUltimaNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RunaUpdateToOneWithWhereWithoutUltimaInput, Prisma.RunaUpdateWithoutUltimaInput>, Prisma.RunaUncheckedUpdateWithoutUltimaInput>
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type RunaCreateNestedManyWithoutCammInput = {
   create?: Prisma.XOR<Prisma.RunaCreateWithoutCammInput, Prisma.RunaUncheckedCreateWithoutCammInput> | Prisma.RunaCreateWithoutCammInput[] | Prisma.RunaUncheckedCreateWithoutCammInput[]
   connectOrCreate?: Prisma.RunaCreateOrConnectWithoutCammInput | Prisma.RunaCreateOrConnectWithoutCammInput[]
@@ -506,6 +524,7 @@ export type RunaCreateWithoutKeystoneInput = {
   Nome: string
   Descrizione: string
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   Camm: Prisma.Tipologia_runaCreateNestedOneWithoutCammInput
   Prima?: Prisma.Sezione_RunaCreateNestedManyWithoutFirstInput
@@ -518,6 +537,7 @@ export type RunaUncheckedCreateWithoutKeystoneInput = {
   Descrizione: string
   CamminoId: number
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   Prima?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutFirstInput
   Centrale?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutMiddleInput
@@ -533,6 +553,7 @@ export type RunaCreateWithoutPrimaInput = {
   Nome: string
   Descrizione: string
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   Camm: Prisma.Tipologia_runaCreateNestedOneWithoutCammInput
   keystone?: Prisma.Sezione_RunaCreateNestedManyWithoutKeystoneInput
@@ -545,6 +566,7 @@ export type RunaUncheckedCreateWithoutPrimaInput = {
   Descrizione: string
   CamminoId: number
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   keystone?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutKeystoneInput
   Centrale?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutMiddleInput
@@ -560,6 +582,7 @@ export type RunaCreateWithoutCentraleInput = {
   Nome: string
   Descrizione: string
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   Camm: Prisma.Tipologia_runaCreateNestedOneWithoutCammInput
   keystone?: Prisma.Sezione_RunaCreateNestedManyWithoutKeystoneInput
@@ -572,6 +595,7 @@ export type RunaUncheckedCreateWithoutCentraleInput = {
   Descrizione: string
   CamminoId: number
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   keystone?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutKeystoneInput
   Prima?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutFirstInput
@@ -587,6 +611,7 @@ export type RunaCreateWithoutUltimaInput = {
   Nome: string
   Descrizione: string
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   Camm: Prisma.Tipologia_runaCreateNestedOneWithoutCammInput
   keystone?: Prisma.Sezione_RunaCreateNestedManyWithoutKeystoneInput
@@ -599,6 +624,7 @@ export type RunaUncheckedCreateWithoutUltimaInput = {
   Descrizione: string
   CamminoId: number
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   keystone?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutKeystoneInput
   Prima?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutFirstInput
@@ -625,6 +651,7 @@ export type RunaUpdateWithoutKeystoneInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Camm?: Prisma.Tipologia_runaUpdateOneRequiredWithoutCammNestedInput
   Prima?: Prisma.Sezione_RunaUpdateManyWithoutFirstNestedInput
@@ -637,6 +664,7 @@ export type RunaUncheckedUpdateWithoutKeystoneInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   CamminoId?: Prisma.IntFieldUpdateOperationsInput | number
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Prima?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutFirstNestedInput
   Centrale?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutMiddleNestedInput
@@ -658,6 +686,7 @@ export type RunaUpdateWithoutPrimaInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Camm?: Prisma.Tipologia_runaUpdateOneRequiredWithoutCammNestedInput
   keystone?: Prisma.Sezione_RunaUpdateManyWithoutKeystoneNestedInput
@@ -670,6 +699,7 @@ export type RunaUncheckedUpdateWithoutPrimaInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   CamminoId?: Prisma.IntFieldUpdateOperationsInput | number
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   keystone?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutKeystoneNestedInput
   Centrale?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutMiddleNestedInput
@@ -691,6 +721,7 @@ export type RunaUpdateWithoutCentraleInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Camm?: Prisma.Tipologia_runaUpdateOneRequiredWithoutCammNestedInput
   keystone?: Prisma.Sezione_RunaUpdateManyWithoutKeystoneNestedInput
@@ -703,6 +734,7 @@ export type RunaUncheckedUpdateWithoutCentraleInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   CamminoId?: Prisma.IntFieldUpdateOperationsInput | number
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   keystone?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutKeystoneNestedInput
   Prima?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutFirstNestedInput
@@ -724,6 +756,7 @@ export type RunaUpdateWithoutUltimaInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Camm?: Prisma.Tipologia_runaUpdateOneRequiredWithoutCammNestedInput
   keystone?: Prisma.Sezione_RunaUpdateManyWithoutKeystoneNestedInput
@@ -736,6 +769,7 @@ export type RunaUncheckedUpdateWithoutUltimaInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   CamminoId?: Prisma.IntFieldUpdateOperationsInput | number
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   keystone?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutKeystoneNestedInput
   Prima?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutFirstNestedInput
@@ -746,6 +780,7 @@ export type RunaCreateWithoutCammInput = {
   Nome: string
   Descrizione: string
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   keystone?: Prisma.Sezione_RunaCreateNestedManyWithoutKeystoneInput
   Prima?: Prisma.Sezione_RunaCreateNestedManyWithoutFirstInput
@@ -757,6 +792,7 @@ export type RunaUncheckedCreateWithoutCammInput = {
   Nome: string
   Descrizione: string
   Grado: number
+  Immagine: string
   Deprecata?: boolean
   keystone?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutKeystoneInput
   Prima?: Prisma.Sezione_RunaUncheckedCreateNestedManyWithoutFirstInput
@@ -798,6 +834,7 @@ export type RunaScalarWhereInput = {
   Descrizione?: Prisma.StringFilter<"Runa"> | string
   CamminoId?: Prisma.IntFilter<"Runa"> | number
   Grado?: Prisma.IntFilter<"Runa"> | number
+  Immagine?: Prisma.StringFilter<"Runa"> | string
   Deprecata?: Prisma.BoolFilter<"Runa"> | boolean
 }
 
@@ -805,6 +842,7 @@ export type RunaCreateManyCammInput = {
   Nome: string
   Descrizione: string
   Grado: number
+  Immagine: string
   Deprecata?: boolean
 }
 
@@ -812,6 +850,7 @@ export type RunaUpdateWithoutCammInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   keystone?: Prisma.Sezione_RunaUpdateManyWithoutKeystoneNestedInput
   Prima?: Prisma.Sezione_RunaUpdateManyWithoutFirstNestedInput
@@ -823,6 +862,7 @@ export type RunaUncheckedUpdateWithoutCammInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
   keystone?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutKeystoneNestedInput
   Prima?: Prisma.Sezione_RunaUncheckedUpdateManyWithoutFirstNestedInput
@@ -834,6 +874,7 @@ export type RunaUncheckedUpdateManyWithoutCammInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Grado?: Prisma.IntFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Deprecata?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -900,6 +941,7 @@ export type RunaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   Descrizione?: boolean
   CamminoId?: boolean
   Grado?: boolean
+  Immagine?: boolean
   Deprecata?: boolean
   Camm?: boolean | Prisma.Tipologia_runaDefaultArgs<ExtArgs>
   keystone?: boolean | Prisma.Runa$keystoneArgs<ExtArgs>
@@ -914,6 +956,7 @@ export type RunaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   Descrizione?: boolean
   CamminoId?: boolean
   Grado?: boolean
+  Immagine?: boolean
   Deprecata?: boolean
   Camm?: boolean | Prisma.Tipologia_runaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["runa"]>
@@ -923,6 +966,7 @@ export type RunaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   Descrizione?: boolean
   CamminoId?: boolean
   Grado?: boolean
+  Immagine?: boolean
   Deprecata?: boolean
   Camm?: boolean | Prisma.Tipologia_runaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["runa"]>
@@ -932,10 +976,11 @@ export type RunaSelectScalar = {
   Descrizione?: boolean
   CamminoId?: boolean
   Grado?: boolean
+  Immagine?: boolean
   Deprecata?: boolean
 }
 
-export type RunaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Nome" | "Descrizione" | "CamminoId" | "Grado" | "Deprecata", ExtArgs["result"]["runa"]>
+export type RunaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Nome" | "Descrizione" | "CamminoId" | "Grado" | "Immagine" | "Deprecata", ExtArgs["result"]["runa"]>
 export type RunaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Camm?: boolean | Prisma.Tipologia_runaDefaultArgs<ExtArgs>
   keystone?: boolean | Prisma.Runa$keystoneArgs<ExtArgs>
@@ -965,6 +1010,7 @@ export type $RunaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     Descrizione: string
     CamminoId: number
     Grado: number
+    Immagine: string
     Deprecata: boolean
   }, ExtArgs["result"]["runa"]>
   composites: {}
@@ -1398,6 +1444,7 @@ export interface RunaFieldRefs {
   readonly Descrizione: Prisma.FieldRef<"Runa", 'String'>
   readonly CamminoId: Prisma.FieldRef<"Runa", 'Int'>
   readonly Grado: Prisma.FieldRef<"Runa", 'Int'>
+  readonly Immagine: Prisma.FieldRef<"Runa", 'String'>
   readonly Deprecata: Prisma.FieldRef<"Runa", 'Boolean'>
 }
     

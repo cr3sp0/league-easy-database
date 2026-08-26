@@ -241,21 +241,19 @@ export type AbilitaScalarWhereWithAggregatesInput = {
 }
 
 export type AbilitaCreateInput = {
-  Id: number
   NomeAbilità: string
   Descrizione: string
   KitAb?: Prisma.Kit_AbilitaCreateNestedManyWithoutAbilitaInput
 }
 
 export type AbilitaUncheckedCreateInput = {
-  Id: number
+  Id?: number
   NomeAbilità: string
   Descrizione: string
   KitAb?: Prisma.Kit_AbilitaUncheckedCreateNestedManyWithoutAbilitaInput
 }
 
 export type AbilitaUpdateInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   NomeAbilità?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   KitAb?: Prisma.Kit_AbilitaUpdateManyWithoutAbilitaNestedInput
@@ -269,13 +267,12 @@ export type AbilitaUncheckedUpdateInput = {
 }
 
 export type AbilitaCreateManyInput = {
-  Id: number
+  Id?: number
   NomeAbilità: string
   Descrizione: string
 }
 
 export type AbilitaUpdateManyMutationInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   NomeAbilità?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -332,13 +329,12 @@ export type AbilitaUpdateOneRequiredWithoutKitAbNestedInput = {
 }
 
 export type AbilitaCreateWithoutKitAbInput = {
-  Id: number
   NomeAbilità: string
   Descrizione: string
 }
 
 export type AbilitaUncheckedCreateWithoutKitAbInput = {
-  Id: number
+  Id?: number
   NomeAbilità: string
   Descrizione: string
 }
@@ -360,7 +356,6 @@ export type AbilitaUpdateToOneWithWhereWithoutKitAbInput = {
 }
 
 export type AbilitaUpdateWithoutKitAbInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   NomeAbilità?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
 }

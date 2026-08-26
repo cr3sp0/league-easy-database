@@ -7,12 +7,16 @@ export async function handle({event, resolve}) {
 
     const sessionGUID = event.cookies.get('ledb_session') //gets the username
     if(sessionGUID) {
+        // SELECT * FROM sessione 
+        // JOIN account ON sessione.user_id = account.AccountID
+        // WHERE guid_id = $1
+        // AND date_expired < $2
         let dbSession = await prisma.sessione.findFirst({
             where: {
-                guid_id: sessionGUID,
-                date_expired: {
-                    lt: new Date(Date.now())
-                }
+                AND: [
+                    { guid_id: sessionGUID },
+                    { date_expired: { lt: new Date(Date.now()) } }
+                ]
             },
             include: {
                 user: true

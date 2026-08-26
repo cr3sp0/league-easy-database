@@ -22,12 +22,12 @@ model Campione {
   Ruolo String
   Vita  Int
   Mana  Int
-  Attacco Decimal
+  Attacco Float
   AttaccoMagico Int @default(0)
   Velocità_di_movimento Int
-  Armatura  Decimal
-  Resistenza_magica Decimal
-  Velocità_di_attacco Decimal
+  Armatura  Float
+  Resistenza_magica Float
+  Velocità_di_attacco Float
   Gittata Int
   Kit Kit[]
   Cosmetico Cosmetico[]
@@ -100,7 +100,7 @@ model Campione_Regione {
 model Incantesimo{
   Nome String @id
   Descrizione String 
-  Ricarica Decimal
+  Ricarica Float
   Incant1 Configurazione[] @relation("Inc1")
   Incant2 Configurazione[] @relation("Inc2")
 }
@@ -260,7 +260,7 @@ enum Risultato{
 model Modifica{
   Soggetto_modifica String 
   Id_Statistica Int
-  Nuovo_Valore Decimal 
+  Nuovo_Valore Float 
   Versione String
   Vers Storico @relation(fields: [Versione], references: [Versione])
   Stat Statistica @relation(fields: [Id_Statistica], references: [Id])

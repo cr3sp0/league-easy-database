@@ -177,15 +177,15 @@ export type CosmeticoOrderByWithRelationInput = {
 }
 
 export type CosmeticoWhereUniqueInput = Prisma.AtLeast<{
-  NomeCosmetico?: string
   IdCampione_NomeCosmetico?: Prisma.CosmeticoIdCampioneNomeCosmeticoCompoundUniqueInput
   AND?: Prisma.CosmeticoWhereInput | Prisma.CosmeticoWhereInput[]
   OR?: Prisma.CosmeticoWhereInput[]
   NOT?: Prisma.CosmeticoWhereInput | Prisma.CosmeticoWhereInput[]
+  NomeCosmetico?: Prisma.StringFilter<"Cosmetico"> | string
   IdCampione?: Prisma.StringFilter<"Cosmetico"> | string
   Immagine?: Prisma.StringFilter<"Cosmetico"> | string
   champ?: Prisma.XOR<Prisma.CampioneScalarRelationFilter, Prisma.CampioneWhereInput>
-}, "IdCampione_NomeCosmetico" | "NomeCosmetico">
+}, "IdCampione_NomeCosmetico">
 
 export type CosmeticoOrderByWithAggregationInput = {
   NomeCosmetico?: Prisma.SortOrder

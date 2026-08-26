@@ -10,10 +10,13 @@
 
 <div class="container">
   <div class="info-container">
-    <div class="info-cover">
+    <div
+      class="info-cover"
+      style="background-image: url('https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_3.jpg');"
+    >
       <Navbar profile={data.profile} />
       <div class="champ-name">
-        {data.champName}
+        {data.champion?.nome}
         <br />
         <div class="ruolo">ruolo</div>
       </div>

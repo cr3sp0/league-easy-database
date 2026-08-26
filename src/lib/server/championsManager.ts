@@ -1,6 +1,10 @@
 import prisma from '$lib/server/prisma';
+import type { Campione, Prisma } from './prisma/client';
 
-let championsCache: any[] | null = null;
+let championsCache: Campione[] | null = null;
+type CampioniConCosmetici = Prisma.CampioneGetPayload<{
+  include: { Cosmetico: true} }>;
+let champAndCosmeticsCache: CampioniConCosmetici[] | null = null; 
 
 async function getFullChampionsCache() {
   if (championsCache) {
@@ -11,6 +15,21 @@ async function getFullChampionsCache() {
   championsCache = await prisma.campione.findMany();
   
   return championsCache;
+}
+
+async function getFullChampionsAndCosmeticsCache() {
+  if (champAndCosmeticsCache) {
+    return champAndCosmeticsCache; 
+  }
+
+  //SELECT * FROM campione JOIN cosmetico ON IdCampione
+  champAndCosmeticsCache = await prisma.campione.findMany({
+    include: {
+      Cosmetico: true
+    }
+  });
+  
+  return champAndCosmeticsCache;
 }
 
 export async function getChampionsBasicInfo() {
@@ -27,7 +46,13 @@ export async function getChampionByName(nomeCercato: string) {
   return allChampions.find(champ => champ.nome.toLowerCase() === nomeCercato.toLowerCase());
 }
 
+export async function getChampionAndCosmeticsByName(nomeCercato: string) {
+  const allChampionsAndCosmetics = await getFullChampionsAndCosmeticsCache();
+  return allChampionsAndCosmetics.find(champ => champ.nome.toLowerCase() === nomeCercato.toLowerCase());
+}
+
 //Empty Cache
 export function invalidateChampionsCache() {
   championsCache = null;
+  champAndCosmeticsCache = null;
 }

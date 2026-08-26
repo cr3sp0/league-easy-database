@@ -177,7 +177,7 @@ const signup : Action = async ({ request, cookies, locals }) => {
 
 		return {
 			success: true,
-			user: username
+			user: "/account/" + createAccount.Nome
 		}
 	} catch (error: any) {
 		return fail(400, { msg: error.message })

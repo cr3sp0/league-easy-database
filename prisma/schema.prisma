@@ -144,7 +144,7 @@ model Account{
   Password String 
   Descrizione String 
   Immagine String //?
-  RiotID String @db.VarChar(50) @unique
+  RiotID String? @db.VarChar(50) @unique
   IsAdmin Boolean
   sessione Sessione[]
   Config Configurazione[]
@@ -177,11 +177,10 @@ enum Tipo_Abilita{
 }
 
 model Abilita{
-  Id  Int @id
+  Id  Int @id @default(autoincrement())
   NomeAbilità String @unique
   Descrizione String
   KitAb Kit_Abilita[]
-
 }
 
 model Kit_Abilita {

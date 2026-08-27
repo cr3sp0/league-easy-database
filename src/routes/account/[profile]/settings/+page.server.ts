@@ -1,64 +1,123 @@
 import { error, fail, redirect, type Action, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "../$types";
+import prisma from "$lib/server/prisma";
+import { goto } from "$app/navigation";
+import { popup } from "$lib/components/store/popup.svelte";
 
-export const load : PageServerLoad = async ({ params, cookies, request, url }) => {
+export const load : PageServerLoad = async ({ params, cookies, locals, url }) => {
+    try {
+        let profile = locals.user
+        const path = url.href.split(url.origin).reduce((a, b) => a + b)
 
-    let profile = cookies.get("ledb_session")
+        if ("/account/" + profile.username + "/settings" !== path) {
+            throw { message: "Only the owner of this Account has access to this page" }
+        }
 
-    const path = url.href.split(url.origin).reduce((a, b) => a + b)
+        //SELECT icona FROM Campioni
+        let images = await prisma.campione.findMany({
+            select: {
+                Icona: true
+            }
+        })
 
-    if ("/account/" + profile + "/settings" !== path) {
-        error(404)
-    }
+        // TODO: Add explicit query sql
+        let accountInfo = await prisma.account.findFirst({
+            select: {
+                AccountId: true,
+                Nome: true,
+                RiotID: true,
+                Immagine: true,
+            },
+            where: {
+                AccountId: profile.userID
+            }
+        })
 
-    let imageList : string[] = [
-        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/akali/Akali_p.jpg",
-        "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/champions/aurora/Aurora_p.jpg",
-        ]    //TODO: get all images
-    const currentImage = imageList[1]
+        if(!accountInfo) {
+            throw { message: "Account Missing." }
+        }
+        
+        //images.map(i => i.Icona).forEach(i => console.log(i))
 
-    return {
-        profile: profile,
-        currentImage: currentImage,
-        imageList: imageList
+        return {
+            profile: profile,
+            profileRole: profile.isAdmin
+                ? "Admin" : "User",
+            imageList: images.map(i => i.Icona)
+        }
+
+    } catch(error : any) {
+        console.error("Error: ", error.message)
+
+        popup.color = "red"
+        popup.text = "" + error.message
+        
+        return redirect(303, "/")
     }
 }
 
-const sendEdit : Action = async({ request, params, cookies }) => {
+const sendEdit : Action = async ({ request, params, cookies, locals }) => {
+    try{
+        const formData = await request.formData()
+        
+        let newPfp = formData.get("newImage")?.toString()
+        let newUsername = formData.get("newUsername")?.toString()
+        let newID = formData.get("newID")?.toString()
+        let newDescription = formData.get("newDescription")?.toString()
+        
+        if(!newPfp || newPfp.length === 0) {
+            throw { message: "Unkown Error" }
+        }
 
-    const formData = await request.formData()
+        if(
+            !newUsername 
+            || newUsername.length === 0
+        ) {
+            throw { message: "Invalid Username" }
+        }
 
-    let newPfp = formData.get("newImage")?.toString()
-    let newUsername = formData.get("newUsername")?.toString()
-    let newID = formData.get("newID")?.toString()
+        if(newID && newID.indexOf('#') <= 0) {
+            throw { message: "Invalid RiotID" }
+        }
 
-    if(!newPfp || !newUsername) {
-        return fail(400, { msg: "Unkown Error" })
+        console.log(newUsername)
+        if (await prisma.account.findUnique({where: { Nome: newUsername }})) {
+            throw { message: "This Username has already been taken" }
+        }
+        
+        //TODO: Add explicit query sql
+        const update = await prisma.account.update({
+            data: {
+                Immagine: newPfp,
+                Nome: newUsername,
+                RiotID: newID,
+                Descrizione: newDescription
+            },
+            where: {
+                AccountId: locals.user.userID
+            }
+        })
+        console.log(update.Nome)
+        
+        if(!update) {
+            throw { message: "Connection Error" }
+        }
+        
+        return {
+            success: true,
+            msg: "Your Profile has been edited successfully."
+        }
+    } catch(error : any) {
+        console.error("Error: ", error.message)
+
+        popup.color = "red"
+        popup.text = "" + error.message
+
+        return fail(400, { msg: error.message })
     }
-
-    if(newID && newID.indexOf('#') <= 0) {
-        return fail(400, { msg: "Invalid RiotID" })
-    }
-
-    //TODO: update values inside the databse
-
-    if(false) { //TODO: unsuccessful update
-        return fail(400, { msg: "Connection Error" })
-    }
-
-    cookies.delete("ledb_session", { path: "/" })
-    cookies.set(
-		'ledb_session',
-		newUsername,
-		{
-			path: "/",
-			maxAge: 60 * 60 //1 hour
-		}
-	)
 
     return {
-        success: true,
-        msg: "Your Profile has been edited successfully."
+        success: false
     }
 }
 

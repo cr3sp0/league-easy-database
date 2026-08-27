@@ -8,16 +8,16 @@
     let { data } = $props()
 
     const imagesLinkList = $derived(data.imageList)
-    let pfp = $derived(data.currentImage)
-    let username = $derived(data.profile)
-    let riotID : string | undefined = $state()
+    let pfp = $derived(data.profile.pfp)
+    let username = $derived(data.profile.username)
+    let riotID : string | undefined = $derived(data.profile.riotID)
 
     let isPickerOpen : boolean = $state(false)
 </script>
 
 <div class="container">
     <div class="content">
-        <Navbar profile={data.profile} />
+        <Navbar profile={data.profile.username} role={data.profileRole} />
 
         <div class="title">Settings</div>
         

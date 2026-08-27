@@ -31,12 +31,13 @@ export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 				id: profile.RiotID,
 				profileRole: profile.IsAdmin 
 					? "Admin" : "User",
+				baseBuilds: profile.Config,
+				pfp: profile.Immagine,
 				user: {
 					userProfile: locals.user.username,
 					userRole: locals.user.isAdmin 
 						? "Admin" : "User",
-				},
-				baseBuilds: profile.Config
+				}
 			}
 	} catch (error : any) {
 		console.error(error.message)
@@ -87,7 +88,11 @@ const moreBuilds : Action = async ({ request, locals, params }) => {
 			throw { message: "Profile is missing" }
 		}
 
-		let limit : number = (await request.formData()).get("limit")?.valueOf() as number
+		let limit = (await request.formData()).get("limit")?.toString()
+
+		if (!limit) {
+			throw { message: "Button not working" }
+		}
 
 		// SELECT * FROM configurazione
 		// JOIN Account ON Account.id = Configurazione.Account
@@ -99,7 +104,7 @@ const moreBuilds : Action = async ({ request, locals, params }) => {
 			where: {
 				Account: profile.userID
 			},
-			take: limit
+			take: parseInt(limit)
 		})
 
 		console.log(builds)
@@ -117,43 +122,53 @@ const moreBuilds : Action = async ({ request, locals, params }) => {
 	}
 }
 
-const sendReport : Action = async ({ request, params, cookies }) => {
+const sendReport : Action = async ({ request, params, cookies, locals }) => {
 
-	const formData = await request.formData()
-	const target = params.profile
-	const author = cookies.get("ledb_session")
+	try {
+		
+		const formData = await request.formData()
+		const target = params.profile
+		const author = locals.user
+		
+		const reason = formData.get("reason")?.toString()
+		const description = formData.get("description")?.valueOf() as string
+		
+		if(!author) {
+			throw { message: "You must be logged-in to Report someone" }
+		}
+		
+		if(!target || !reason) {
+			throw { message: "Missing values of the Report" }
+		}
+		if(target === author.username){
+			throw { message: "You cannot Report your own account" }
+		}
+		
+		if(target === "Pippo") { //TODO: Check actual banned accounts.
+			return fail(400, {msg: "This Account has already been Banned"})
+		}
+		
+		const report : Report = {
+			date: new Date(Date.now()),
+			target: target,
+			author: author.username,
+			reason: reason,
+			description: description
+		}
+		
+		//TODO: send the report to the db
+		
+		return {
+			success: true,
+			msg: "Successfully sent a Report for " + target
+		}
+	} catch (error : any) {
+		console.error(error.message)
 
-	const reason = formData.get("reason")?.toString()
-	const description = formData.get("description")?.valueOf() as string
-
-	if(!author) {
-		return error(400)
-	}
-
-	if(!target || !reason) {
-		return fail(400, {msg: "Missing values of the Report"})
-	}
-	if(target === cookies.get("ledb_session")){
-		return fail(400, {msg: "You cannot Report your own account"})
-	}
-
-	if(target === "Pippo") { //TODO: Check actual banned accounts.
-		return fail(400, {msg: "This Account has already been Banned"})
-	}
-
-	const report : Report = {
-		date: new Date(Date.now()),
-		target: target,
-		author: author,
-		reason: reason,
-		description: description
-	}
-
-	//TODO: send the report to the db
-
-	return {
-		success: true,
-		msg: "Successfully sent a Report for " + target
+		popup.color = "red"
+		popup.text = error.message
+		
+		throw error(error)
 	}
 }
 

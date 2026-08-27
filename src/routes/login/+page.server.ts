@@ -83,7 +83,8 @@ const login : Action = async ({ request, cookies }) => {
 			"" + sessione?.Id,
 			{
 				path: "/",
-				maxAge: TimeLimit_h_m_s
+				maxAge: TimeLimit_h_m_s,
+				expires: new Date(Date.now() + TimeLimit_h_m_s)
 			}
 		)
 
@@ -171,7 +172,8 @@ const signup : Action = async ({ request, cookies, locals }) => {
 			"" + session.Id,
 			{
 				path: "/",
-				maxAge: TimeLimit_h_m_s
+				maxAge: TimeLimit_h_m_s,
+				expires: new Date(Date.now() + TimeLimit_h_m_s)
 			}
 		)
 

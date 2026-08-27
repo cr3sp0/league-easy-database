@@ -68,6 +68,7 @@ const logout : Action = async ({ cookies }) => {
 		}
 
 		cookies.delete('ledb_session', {path: "/"});
+		return {success: true}
 	} catch (error : any) {
 		console.error(error.message)
 
@@ -76,30 +77,44 @@ const logout : Action = async ({ cookies }) => {
 		
 		throw error(error)
 	}
-
-  return {success: true}
 }
 
-const moreBuilds : Action = async ({ request, params }) => {
-/*
-	let profile = params.profile
-	if(!profile) {
-		error(400, "Profile is missing")
+const moreBuilds : Action = async ({ request, locals, params }) => {
+	
+	try {		
+		let profile = locals.user
+		if(!profile) {
+			throw { message: "Profile is missing" }
+		}
+
+		let limit : number = (await request.formData()).get("limit")?.valueOf() as number
+
+		// SELECT * FROM configurazione
+		// JOIN Account ON Account.id = Configurazione.Account
+		// TOP $1
+		const builds = await prisma.configurazione.findMany({
+			include: {
+				User: true
+			},
+			where: {
+				Account: profile.userID
+			},
+			take: limit
+		})
+
+		console.log(builds)
+		return {
+			success: true,
+			builds: builds
+		}
+	} catch (error : any) {
+		console.error(error.message)
+
+		popup.color = "red"
+		popup.text = error.message
+		
+		throw error(error)
 	}
-
-	let build1: Build = {name: "FantoBuild", author: profile, champion: champ, runes: runes, items: items, kills: 25, deaths: 10, assists: 50, wins: 65, losses: 5}
-	let builds : Build[] = []//TODO: get actual builds
-
-	let limit : number = (await request.formData()).get("limit")?.valueOf() as number
-
-	for (let index = builds.length; index < limit; index++) {
-		builds = builds.concat(build1);
-	}
-
-	return {
-		success: true,
-		builds: builds
-	}*/
 }
 
 const sendReport : Action = async ({ request, params, cookies }) => {

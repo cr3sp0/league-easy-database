@@ -31,12 +31,13 @@ export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 				id: profile.RiotID,
 				profileRole: profile.IsAdmin 
 					? "Admin" : "User",
+				baseBuilds: profile.Config,
+				pfp: profile.Immagine,
 				user: {
 					userProfile: locals.user.username,
 					userRole: locals.user.isAdmin 
 						? "Admin" : "User",
-				},
-				baseBuilds: profile.Config
+				}
 			}
 	} catch (error : any) {
 		console.error(error.message)
@@ -68,6 +69,7 @@ const logout : Action = async ({ cookies }) => {
 		}
 
 		cookies.delete('ledb_session', {path: "/"});
+		return {success: true}
 	} catch (error : any) {
 		console.error(error.message)
 
@@ -76,69 +78,97 @@ const logout : Action = async ({ cookies }) => {
 		
 		throw error(error)
 	}
-
-  return {success: true}
 }
 
-const moreBuilds : Action = async ({ request, params }) => {
-/*
-	let profile = params.profile
-	if(!profile) {
-		error(400, "Profile is missing")
+const moreBuilds : Action = async ({ request, locals, params }) => {
+	
+	try {		
+		let profile = locals.user
+		if(!profile) {
+			throw { message: "Profile is missing" }
+		}
+
+		let limit = (await request.formData()).get("limit")?.toString()
+
+		if (!limit) {
+			throw { message: "Button not working" }
+		}
+
+		// SELECT * FROM configurazione
+		// JOIN Account ON Account.id = Configurazione.Account
+		// TOP $1
+		const builds = await prisma.configurazione.findMany({
+			include: {
+				User: true
+			},
+			where: {
+				Account: profile.userID
+			},
+			take: parseInt(limit)
+		})
+
+		console.log(builds)
+		return {
+			success: true,
+			builds: builds
+		}
+	} catch (error : any) {
+		console.error(error.message)
+
+		popup.color = "red"
+		popup.text = error.message
+		
+		throw error(error)
 	}
-
-	let build1: Build = {name: "FantoBuild", author: profile, champion: champ, runes: runes, items: items, kills: 25, deaths: 10, assists: 50, wins: 65, losses: 5}
-	let builds : Build[] = []//TODO: get actual builds
-
-	let limit : number = (await request.formData()).get("limit")?.valueOf() as number
-
-	for (let index = builds.length; index < limit; index++) {
-		builds = builds.concat(build1);
-	}
-
-	return {
-		success: true,
-		builds: builds
-	}*/
 }
 
-const sendReport : Action = async ({ request, params, cookies }) => {
+const sendReport : Action = async ({ request, params, cookies, locals }) => {
 
-	const formData = await request.formData()
-	const target = params.profile
-	const author = cookies.get("ledb_session")
+	try {
+		
+		const formData = await request.formData()
+		const target = params.profile
+		const author = locals.user
+		
+		const reason = formData.get("reason")?.toString()
+		const description = formData.get("description")?.valueOf() as string
+		
+		if(!author) {
+			throw { message: "You must be logged-in to Report someone" }
+		}
+		
+		if(!target || !reason) {
+			throw { message: "Missing values of the Report" }
+		}
+		if(target === author.username){
+			throw { message: "You cannot Report your own account" }
+		}
+		
+		if(target === "Pippo") { //TODO: Check actual banned accounts.
+			return fail(400, {msg: "This Account has already been Banned"})
+		}
+		
+		const report : Report = {
+			date: new Date(Date.now()),
+			target: target,
+			author: author.username,
+			reason: reason,
+			description: description
+		}
+		
+		//TODO: send the report to the db
+		
+		return {
+			success: true,
+			msg: "Successfully sent a Report for " + target
+		}
+	} catch (error : any) {
+		console.error(error.message)
 
-	const reason = formData.get("reason")?.toString()
-	const description = formData.get("description")?.valueOf() as string
-
-	if(!author) {
-		return error(400)
-	}
-
-	if(!target || !reason) {
-		return fail(400, {msg: "Missing values of the Report"})
-	}
-	if(target === cookies.get("ledb_session")){
-		return fail(400, {msg: "You cannot Report your own account"})
-	}
-
-	if(target === "Pippo") { //TODO: Check actual banned accounts.
-		return fail(400, {msg: "This Account has already been Banned"})
-	}
-
-	const report : Report = {
-		date: new Date(Date.now()),
-		target: target,
-		author: author,
-		reason: reason,
-		description: description
-	}
-
-	//TODO: send the report to the db
-
-	return {
-		success: true,
-		msg: "Successfully sent a Report for " + target
+		popup.color = "red"
+		popup.text = error.message
+		
+		throw error(error)
 	}
 }
 

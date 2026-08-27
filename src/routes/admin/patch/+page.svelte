@@ -4,6 +4,12 @@
   let { data } = $props();
 
   let dropdownOpen = $state(false);
+  let selectedOption = $state("Filtri");
+
+  function handleSelect(option: string) {
+    selectedOption = option;
+    dropdownOpen = false;
+  }
 </script>
 
 <div class="container">
@@ -19,18 +25,18 @@
           class="dropdown-btn"
           onclick={() => (dropdownOpen = !dropdownOpen)}
         >
-          Filters ▼
+          {selectedOption} ▼
         </button>
 
         {#if dropdownOpen}
           <div class="dropdown-content">
-            <button type="button" onclick={() => (dropdownOpen = false)}
+            <button type="button" onclick={() => handleSelect("Champions")}
               >Champions</button
             >
-            <button type="button" onclick={() => (dropdownOpen = false)}
+            <button type="button" onclick={() => handleSelect("Items")}
               >Items</button
             >
-            <button type="button" onclick={() => (dropdownOpen = false)}
+            <button type="button" onclick={() => handleSelect("Runes")}
               >Runes</button
             >
           </div>

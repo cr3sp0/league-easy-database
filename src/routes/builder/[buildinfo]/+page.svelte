@@ -18,6 +18,9 @@
     { id: 8, name: "Lethality", value: "18" },
     { id: 9, name: "Move Speed", value: "345" },
   ];
+
+  let wins = $state(0)
+  let losses = $state(0)
 </script>
 
 <div class="container">
@@ -60,6 +63,23 @@
             <span class="stat-value">{stat.value}</span>
           </div>
         {/each}
+      </div>
+    </div>
+    <div class="buildinfo-results">
+      <div class="buildinfo-sectiontitle">Results</div>
+      <div class="result-container">
+        <div class="result-content">
+          <div class="buildinfo-section-column">Victories</div>
+          <div class="result-value">
+            <input type="number" name="wins" bind:value={wins} />
+          </div>
+        </div>
+        <div class="result-content">
+          <div class="buildinfo-section-column">Losses</div>
+          <div class="result-value">
+            <input type="number" name="losses" bind:value={losses} />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -107,6 +127,10 @@
     font-size: var(--text-xlm);
     font-family: var(--font-mono);
   }
+  .buildinfo-section-column {
+    font-size: var(--text-md);
+    font-family: var(--font-mono);
+  }
 
   .buildinfo-runes {
     width: 100%;
@@ -139,14 +163,14 @@
 
     gap: 50px;
   }
-
+  
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     width: 100%;
   }
-
+  
   .stat-card {
     font-family: var(--font-mono);
     border-radius: 4px;
@@ -157,11 +181,11 @@
     justify-content: center;
     text-align: center;
     transition:
-      background 0.2s,
-      border-color 0.2s,
-      transform 0.2s;
+    background 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
   }
-
+  
   .stat-name {
     color: #8a93a0;
     font-size: 0.7rem;
@@ -173,11 +197,34 @@
     text-overflow: ellipsis;
     width: 100%;
   }
-
+  
   .stat-value {
     color: #ffffff;
     font-size: 1.2rem;
     font-weight: bold;
+  }
+  
+  .buildinfo-results {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+  
+  .result-container {
+    display: flex;
+    flex-direction: row;
+    
+    gap: clamp(20vw, 50px, 80vw);
+  }
+
+  .result-content {
+
+  }
+
+  .result-value {
+
   }
 
   @media (max-width: 500px) {

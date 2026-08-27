@@ -3,7 +3,7 @@
   import { slide } from "svelte/transition";
   import Itemsgrid from "./itemsgrid.svelte";
 
-  let { name, author, champion, runes, items, wins, losses, kills, deaths, assists }
+  let { name, author, champion, runes, items, wins, losses, kills, deaths, assists, isEditable = false }
   : {
     name: string, 
     author: string, 
@@ -14,7 +14,8 @@
     losses: number,
     kills: number,
     deaths: number,
-    assists: number
+    assists: number,
+    isEditable?: boolean
   } = $props();
   // TODO: More parameters are required for this component, add them once the dbms is ready.
 
@@ -46,6 +47,9 @@
       <a href="/account/{author}" class="buildcard-header-title-auth">{author}</a>
     </div>
     <div class="buildcard-header-winrate">{winPerc}</div>
+    {#if isOpen && isEditable}
+      <button type="button" class="btn">Edit</button>
+    {/if}
     <div class="buildcard-header-button">
       <span class="arrow" class:rotated={isOpen}
         ><svg
@@ -185,6 +189,25 @@
     justify-content: center;
     width: 40px;
     height: 40px;
+  }
+
+  .btn {
+    height: fit-content;
+    padding: 1.5vh 2vw;
+
+    background-color: var(--black-20);
+    border: 1px var(--white-20) solid;
+    
+    color: white;
+    
+    font-family: var(--font-mono);
+    font-size: var(--text-md);
+    cursor: pointer;
+  }
+  .btn:hover, .btn:focus {
+    background-color: #2a2323;
+    border-color: #4a3f3f;
+    text-decoration: underline;
   }
 
   .arrow {

@@ -83,7 +83,7 @@
         <div class="builds-content">
             <Search />
             <div class="builds-grid">
-                <BuildcardHolder personalBuilds={[]} />
+                <BuildcardHolder personalBuilds={[]} isEditable={data.profile === data.user.userProfile} />
             </div>
 
             <form

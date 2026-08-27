@@ -2,7 +2,7 @@
     import type { Build } from "$lib/types";
     import Buildcard from "./buildcard.svelte";
 
-    let { personalBuilds = [], comunityBuilds = [] } : { personalBuilds?: Build[], comunityBuilds?: Build[] } = $props();
+    let { personalBuilds = [], comunityBuilds = [], isEditable = false } : { personalBuilds?: Build[], comunityBuilds?: Build[], isEditable?: boolean } = $props();
 
 </script>
 
@@ -22,6 +22,7 @@
           kills={build.kills}
           deaths={build.deaths}
           assists={build.assists}
+          isEditable={isEditable}
         />
         {/each}
     </div>

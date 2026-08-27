@@ -4,7 +4,7 @@
   import Runeselector from "$lib/components/runeselector.svelte";
   import type { StatItem } from "$lib/types";
 
-  let { data } = $props()
+  let { data } = $props();
 
   // PLACEHOLDER
   const stats: StatItem[] = [
@@ -19,13 +19,13 @@
     { id: 9, name: "Move Speed", value: "345" },
   ];
 
-  let wins = $state(0)
-  let losses = $state(0)
+  let wins = $state(0);
+  let losses = $state(0);
 </script>
 
 <div class="container">
   <div class="buildinfo-content">
-    <Navbar profile={data.profile}/>
+    <Navbar profile={data.profile} />
     <div class="buildinfo-header">
       <div class="champpic"></div>
       <div class="title">New build</div>
@@ -65,19 +65,42 @@
         {/each}
       </div>
     </div>
+
     <div class="buildinfo-results">
       <div class="buildinfo-sectiontitle">Results</div>
       <div class="result-container">
         <div class="result-content">
           <div class="buildinfo-section-column">Victories</div>
           <div class="result-value">
-            <input type="number" name="wins" bind:value={wins} />
+            <button class="stepper-btn" onclick={() => (wins > 0 ? wins-- : 0)}
+              >-</button
+            >
+            <input
+              type="number"
+              name="wins"
+              min="0"
+              bind:value={wins}
+              class="winloss"
+            />
+            <button class="stepper-btn" onclick={() => wins++}>+</button>
           </div>
         </div>
+
         <div class="result-content">
           <div class="buildinfo-section-column">Losses</div>
           <div class="result-value">
-            <input type="number" name="losses" bind:value={losses} />
+            <button
+              class="stepper-btn"
+              onclick={() => (losses > 0 ? losses-- : 0)}>-</button
+            >
+            <input
+              type="number"
+              name="losses"
+              min="0"
+              bind:value={losses}
+              class="winloss"
+            />
+            <button class="stepper-btn" onclick={() => losses++}>+</button>
           </div>
         </div>
       </div>
@@ -163,14 +186,14 @@
 
     gap: 50px;
   }
-  
+
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     width: 100%;
   }
-  
+
   .stat-card {
     font-family: var(--font-mono);
     border-radius: 4px;
@@ -181,11 +204,11 @@
     justify-content: center;
     text-align: center;
     transition:
-    background 0.2s,
-    border-color 0.2s,
-    transform 0.2s;
+      background 0.2s,
+      border-color 0.2s,
+      transform 0.2s;
   }
-  
+
   .stat-name {
     color: #8a93a0;
     font-size: 0.7rem;
@@ -197,34 +220,84 @@
     text-overflow: ellipsis;
     width: 100%;
   }
-  
+
   .stat-value {
     color: #ffffff;
     font-size: 1.2rem;
     font-weight: bold;
   }
-  
+
   .buildinfo-results {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
   }
-  
+
   .result-container {
     display: flex;
     flex-direction: row;
-    
-    gap: clamp(20vw, 50px, 80vw);
+
+    box-sizing: border-box;
   }
 
   .result-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 
+    box-sizing: border-box;
   }
 
   .result-value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
 
+  .stepper-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: var(--text-xlm);
+    font-family: var(--font-mono);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stepper-btn:hover {
+    opacity: 0.7;
+  }
+
+  .winloss {
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-family: var(--font-mono);
+    font-size: var(--text-xlm);
+    text-align: center;
+    max-width: 30%;
+  }
+
+  .winloss:focus {
+    outline: none;
+    border-bottom: 1px solid white;
+  }
+
+  /*Default arrows hiding*/
+  .winloss::-webkit-outer-spin-button,
+  .winloss::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .winloss[type="number"] {
+    -moz-appearance: textfield;
   }
 
   @media (max-width: 500px) {

@@ -114,7 +114,6 @@
   }
 
   .dropdown-content button:hover {
-    border-radius: 6px;
     background: #202329;
   }
 

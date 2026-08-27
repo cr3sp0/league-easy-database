@@ -92,3 +92,35 @@ option:focus-visible, option:hover {
     border: none;
     z-index: 10;
 }
+
+
+/* Animation styles */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(root) {
+  animation-name: fade-out, slide-up-out;
+}
+
+::view-transition-new(root) {
+  animation-name: fade-in, slide-up-in;
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes slide-up-out {
+  to { transform: translateY(-15px); }
+}
+
+@keyframes slide-up-in {
+  from { transform: translateY(15px); }
+}

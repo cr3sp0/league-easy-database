@@ -399,6 +399,8 @@ export const ModelName = {
   Inventario: 'Inventario',
   Account: 'Account',
   Sessione: 'Sessione',
+  Report: 'Report',
+  Banned_Account: 'Banned_Account',
   Kit: 'Kit',
   Abilita: 'Abilita',
   Kit_Abilita: 'Kit_Abilita',
@@ -425,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "campione" | "cosmetico" | "ruolo" | "razza" | "campione_Razza" | "posizione" | "campione_Posizione" | "regione" | "campione_Regione" | "incantesimo" | "configurazione" | "oggetto" | "inventario" | "account" | "sessione" | "kit" | "abilita" | "kit_Abilita" | "pagina_Runa" | "sezione_Runa" | "runa" | "tipologia_runa" | "partita" | "modifica" | "storico" | "statistica"
+    modelProps: "campione" | "cosmetico" | "ruolo" | "razza" | "campione_Razza" | "posizione" | "campione_Posizione" | "regione" | "campione_Regione" | "incantesimo" | "configurazione" | "oggetto" | "inventario" | "account" | "sessione" | "report" | "banned_Account" | "kit" | "abilita" | "kit_Abilita" | "pagina_Runa" | "sezione_Runa" | "runa" | "tipologia_runa" | "partita" | "modifica" | "storico" | "statistica"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1539,6 +1541,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Report: {
+      payload: Prisma.$ReportPayload<ExtArgs>
+      fields: Prisma.ReportFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReportFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReportFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>
+        }
+        findFirst: {
+          args: Prisma.ReportFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReportFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>
+        }
+        findMany: {
+          args: Prisma.ReportFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>[]
+        }
+        create: {
+          args: Prisma.ReportCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>
+        }
+        createMany: {
+          args: Prisma.ReportCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ReportCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>[]
+        }
+        delete: {
+          args: Prisma.ReportDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>
+        }
+        update: {
+          args: Prisma.ReportUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>
+        }
+        deleteMany: {
+          args: Prisma.ReportDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReportUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ReportUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>[]
+        }
+        upsert: {
+          args: Prisma.ReportUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>
+        }
+        aggregate: {
+          args: Prisma.ReportAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReport>
+        }
+        groupBy: {
+          args: Prisma.ReportGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReportCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportCountAggregateOutputType> | number
+        }
+      }
+    }
+    Banned_Account: {
+      payload: Prisma.$Banned_AccountPayload<ExtArgs>
+      fields: Prisma.Banned_AccountFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.Banned_AccountFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.Banned_AccountFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload>
+        }
+        findFirst: {
+          args: Prisma.Banned_AccountFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.Banned_AccountFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload>
+        }
+        findMany: {
+          args: Prisma.Banned_AccountFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload>[]
+        }
+        create: {
+          args: Prisma.Banned_AccountCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload>
+        }
+        createMany: {
+          args: Prisma.Banned_AccountCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.Banned_AccountCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload>[]
+        }
+        delete: {
+          args: Prisma.Banned_AccountDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload>
+        }
+        update: {
+          args: Prisma.Banned_AccountUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload>
+        }
+        deleteMany: {
+          args: Prisma.Banned_AccountDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.Banned_AccountUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.Banned_AccountUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload>[]
+        }
+        upsert: {
+          args: Prisma.Banned_AccountUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Banned_AccountPayload>
+        }
+        aggregate: {
+          args: Prisma.Banned_AccountAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBanned_Account>
+        }
+        groupBy: {
+          args: Prisma.Banned_AccountGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Banned_AccountGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.Banned_AccountCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Banned_AccountCountAggregateOutputType> | number
+        }
+      }
+    }
     Kit: {
       payload: Prisma.$KitPayload<ExtArgs>
       fields: Prisma.KitFieldRefs
@@ -2540,6 +2690,29 @@ export const SessioneScalarFieldEnum = {
 export type SessioneScalarFieldEnum = (typeof SessioneScalarFieldEnum)[keyof typeof SessioneScalarFieldEnum]
 
 
+export const ReportScalarFieldEnum = {
+  Id: 'Id',
+  TargetId: 'TargetId',
+  AuthorId: 'AuthorId',
+  Motivazione: 'Motivazione',
+  Descrizione: 'Descrizione',
+  BanId: 'BanId'
+} as const
+
+export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum]
+
+
+export const Banned_AccountScalarFieldEnum = {
+  Id: 'Id',
+  AccountId: 'AccountId',
+  Motivazione: 'Motivazione',
+  Descrizione: 'Descrizione',
+  ReportOrigineId: 'ReportOrigineId'
+} as const
+
+export type Banned_AccountScalarFieldEnum = (typeof Banned_AccountScalarFieldEnum)[keyof typeof Banned_AccountScalarFieldEnum]
+
+
 export const KitScalarFieldEnum = {
   IdKit: 'IdKit',
   IdCampione: 'IdCampione'
@@ -2889,6 +3062,8 @@ export type GlobalOmitConfig = {
   inventario?: Prisma.InventarioOmit
   account?: Prisma.AccountOmit
   sessione?: Prisma.SessioneOmit
+  report?: Prisma.ReportOmit
+  banned_Account?: Prisma.Banned_AccountOmit
   kit?: Prisma.KitOmit
   abilita?: Prisma.AbilitaOmit
   kit_Abilita?: Prisma.Kit_AbilitaOmit

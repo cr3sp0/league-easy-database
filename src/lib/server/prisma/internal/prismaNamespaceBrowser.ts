@@ -66,6 +66,8 @@ export const ModelName = {
   Inventario: 'Inventario',
   Account: 'Account',
   Sessione: 'Sessione',
+  Report: 'Report',
+  Banned_Account: 'Banned_Account',
   Kit: 'Kit',
   Abilita: 'Abilita',
   Kit_Abilita: 'Kit_Abilita',
@@ -241,6 +243,29 @@ export const SessioneScalarFieldEnum = {
 } as const
 
 export type SessioneScalarFieldEnum = (typeof SessioneScalarFieldEnum)[keyof typeof SessioneScalarFieldEnum]
+
+
+export const ReportScalarFieldEnum = {
+  Id: 'Id',
+  TargetId: 'TargetId',
+  AuthorId: 'AuthorId',
+  Motivazione: 'Motivazione',
+  Descrizione: 'Descrizione',
+  BanId: 'BanId'
+} as const
+
+export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum]
+
+
+export const Banned_AccountScalarFieldEnum = {
+  Id: 'Id',
+  AccountId: 'AccountId',
+  Motivazione: 'Motivazione',
+  Descrizione: 'Descrizione',
+  ReportOrigineId: 'ReportOrigineId'
+} as const
+
+export type Banned_AccountScalarFieldEnum = (typeof Banned_AccountScalarFieldEnum)[keyof typeof Banned_AccountScalarFieldEnum]
 
 
 export const KitScalarFieldEnum = {

@@ -143,12 +143,14 @@ model Account{
   AccountId Int @id @default(autoincrement())
   Password String 
   Descrizione String 
-  Immagine String //?
+  Immagine String @default("https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/items/Poro-Snax_item_HD.png")
   RiotID String? @db.VarChar(50) @unique
   IsAdmin Boolean
   sessione Sessione[]
   Config Configurazione[]
-  Partita Partita[] 
+  Partita Partita[]
+  ReportCreati Report[] @relation("Target")
+  ReportRicev Report[] @relation("Author")
 }
 
 model Sessione{
@@ -158,6 +160,26 @@ model Sessione{
   date_created DateTime @default(now())
   date_expired DateTime
   user Account @relation(fields: [user_id], references: [AccountId], onDelete: Cascade)  
+}
+
+model Report {
+  Id Int @id @default(autoincrement())
+  TargetId Int
+  AuthorId Int
+  Motivazione String
+  Descrizione String?
+  BanId Int
+  Target Account @relation(fields: [TargetId], references: [AccountId], name: "Target")
+  Author Account @relation(fields: [AuthorId], references: [AccountId], name: "Author")
+}
+
+model Banned_Account {
+  Id Int @id @default(autoincrement())
+  AccountId Int @unique
+  Motivazione String
+  Descrizione String?
+  ReportOrigineId Int @unique
+  //TODO: Handle Relation
 }
 
 model Kit {

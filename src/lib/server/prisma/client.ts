@@ -117,6 +117,16 @@ export type Account = Prisma.AccountModel
  */
 export type Sessione = Prisma.SessioneModel
 /**
+ * Model Report
+ * 
+ */
+export type Report = Prisma.ReportModel
+/**
+ * Model Banned_Account
+ * 
+ */
+export type Banned_Account = Prisma.Banned_AccountModel
+/**
  * Model Kit
  * 
  */

@@ -3,10 +3,12 @@ import type { PageServerLoad } from "./$types";
 import prisma from '$lib/server/prisma';
 import type { Build, Champion, Item, Rune, RuneConfiguration, Report, ReportReason, IUser } from '$lib/types';
 import { popup } from '$lib/components/store/popup.svelte';
+import { equal } from 'node:assert';
 
 export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 
 	try {		
+		//TODO: Add filter removing banned accounts
 		//TODO: write explicit sql query
 		const profile = await prisma.account.findUnique({
 			where: {
@@ -144,7 +146,11 @@ const sendReport : Action = async ({ request, params, cookies, locals }) => {
 			throw { message: "You cannot Report your own account" }
 		}
 		
-		if(target === "Pippo") { //TODO: Check actual banned accounts.
+		const bannedAccount = await prisma.account.findFirst({
+			
+		})
+
+		if(bannedAccount) { //TODO: Check actual banned accounts.
 			return fail(400, {msg: "This Account has already been Banned"})
 		}
 		

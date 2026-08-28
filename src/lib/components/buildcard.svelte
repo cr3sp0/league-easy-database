@@ -2,22 +2,25 @@
   import type { Champion, Item, RuneConfiguration } from "$lib/types";
   import { slide } from "svelte/transition";
   import Itemsgrid from "./itemsgrid.svelte";
+  import type { completeBuild } from "$lib/server/buildManager";
 
-  let { name, author, champion, runes, items, wins, losses, kills, deaths, assists, isEditable = false }
+  let { Build, isEditable = false }
   : {
-    name: string, 
-    author: string, 
-    champion: Champion, 
-    runes: RuneConfiguration, 
-    items: Item[],
-    wins: number,
-    losses: number,
-    kills: number,
-    deaths: number,
-    assists: number,
+    Build : completeBuild
     isEditable?: boolean
   } = $props();
   // TODO: More parameters are required for this component, add them once the dbms is ready.
+  
+  const name = $derived(Build.build.ID) 
+  const author = $derived(Build.author) 
+  const champion = $derived(Build.champion) 
+  const runes = $derived(Build) 
+  const items = $derived(Build)
+  const wins = $derived(0)
+  const losses = $derived(0)
+  const kills = $derived(0)
+  const deaths = $derived(0)
+  const assists = $derived(0)
 
   let isOpen = $state(false);
   let winPerc: string | undefined = $state()
@@ -41,15 +44,14 @@
     tabindex="0"
     onkeydown={(e) => e.key === "Enter" && toggleCard()}
   >
-    <div class="buildcard-header-icon"></div>
+    <div class="buildcard-header-icon">
+      <img src={champion.Icona} alt="champion-icon" />
+    </div>
     <div class="buildcard-header-title">
-      <div class="buildcard-header-title-name">{champion.name}, {name}</div>
-      <a href="/account/{author}" class="buildcard-header-title-auth">{author}</a>
+      <div class="buildcard-header-title-name">{champion}, {name}</div>
+      <a href="/account/{author}" class="buildcard-header-title-auth">{author.Nome}</a>
     </div>
     <div class="buildcard-header-winrate">{winPerc}</div>
-    {#if isOpen && isEditable}
-      <button type="button" class="btn">Edit</button>
-    {/if}
     <div class="buildcard-header-button">
       <span class="arrow" class:rotated={isOpen}
         ><svg
@@ -75,17 +77,17 @@
       <div class="buildcard-section-title">Runes</div>
       <div class="buildcard-runes">
         <div class="buildcard-body-column">
-          <img src="" alt={ runes.primary.find((rune) => rune.level === "keystone")?.name } />
+          <!--<img src="" alt={ runes.primary.find((rune) => rune.level === "keystone")?.name } />
           <div class="buildcard-body-row">
             {#each runes.primary as rune}
               {#if rune.level !== "keystone"}
                 <img src={rune.image} alt={ rune.name }/>
               {/if}
             {/each}
-          </div>
+          </div>-->
         </div>
         <div class="buildcard-body-column">
-          <img src="" alt={ runes.secondary.find((rune) => rune.path)?.path.name } />
+          <!--<img src="" alt={ runes.secondary.find((rune) => rune.path)?.path.name } />
           <div class="buildcard-body-row">
             {#each runes.secondary as rune}
               <img src={rune.image} alt={ rune.name }/>
@@ -95,7 +97,7 @@
             {#each runes.shards as rune}
                 <img src={rune.image} alt={ rune.name }/>
             {/each}
-          </div>
+          </div>-->
         </div>
       </div>
 
@@ -127,6 +129,12 @@
           <div class="total">{wins + losses}</div>
         </div>
       </div>
+      <form 
+      method="get"
+      action="/builder/{name}"
+      >
+        <button type="submit" class="btn">Edit</button>
+      </form>
     </div>
   {/if}
 </div>
@@ -160,10 +168,15 @@
   }
 
   .buildcard-header-icon {
-    border-radius: 100px;
     height: 100%;
     aspect-ratio: 1;
-    background-color: red;
+  }
+  .buildcard-header-icon img {
+    border-radius: 100px;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
   }
 
   .buildcard-header-title {

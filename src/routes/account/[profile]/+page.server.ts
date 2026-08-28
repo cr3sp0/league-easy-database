@@ -4,6 +4,7 @@ import prisma from '$lib/server/prisma';
 import type { Build, Champion, Item, Rune, RuneConfiguration, Report, ReportReason, IUser } from '$lib/types';
 import { popup } from '$lib/components/store/popup.svelte';
 import { equal } from 'node:assert';
+import { getBuilds } from '$lib/server/buildManager';
 
 export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 
@@ -12,34 +13,24 @@ export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 		//TODO: write explicit sql query
 		const profile = await prisma.account.findUnique({
 			where: {
-				AccountId: locals.user.userID
-			},
-			include: {
-				Config: {
-					where: {
-						Account: locals.user.userID
-					},
-					take: 5
-				}
+				Nome: params.profile
 			}
 		})
-
 		if (!profile) {
 			throw { message: "Profile missing or banned" }
 		}
-		
+		const builds = await getBuilds({username: profile.Nome})
+
 			return {
-				profile: profile.Nome,
-				id: profile.RiotID,
+				profile: profile,
 				profileRole: profile.IsAdmin 
 					? "Admin" : "User",
-				baseBuilds: profile.Config,
-				pfp: profile.Immagine,
 				user: {
-					userProfile: locals.user.username,
+					userProfile: locals.user,
 					userRole: locals.user.isAdmin 
 						? "Admin" : "User",
-				}
+				},
+				builds: builds
 			}
 	} catch (error : any) {
 		console.error(error.message)
@@ -82,37 +73,25 @@ const logout : Action = async ({ cookies }) => {
 	}
 }
 
-const moreBuilds : Action = async ({ request, locals, params }) => {
+const moreBuilds : Action = async ({ request, params }) => {
 	
-	try {		
-		let profile = locals.user
-		if(!profile) {
-			throw { message: "Profile is missing" }
+	try {
+		if (!params.profile) {
+			throw { message: "Missing the profile" }
 		}
 
 		let limit = (await request.formData()).get("limit")?.toString()
 
 		if (!limit) {
-			throw { message: "Button not working" }
+			throw { message: "Invalid Request" }
 		}
 
-		// SELECT * FROM configurazione
-		// JOIN Account ON Account.id = Configurazione.Account
-		// TOP $1
-		const builds = await prisma.configurazione.findMany({
-			include: {
-				User: true
-			},
-			where: {
-				Account: profile.userID
-			},
-			take: parseInt(limit)
-		})
-
-		console.log(builds)
 		return {
 			success: true,
-			builds: builds
+			builds: await getBuilds({
+					username: params.profile,
+					limit: parseInt(limit)
+				})
 		}
 	} catch (error : any) {
 		console.error(error.message)

@@ -4,31 +4,32 @@
     import Search from '$lib/components/search.svelte';
     import CreateReport from '$lib/components/createReport.svelte';
     import { enhance } from '$app/forms';
+    import type { completeBuild } from '$lib/server/buildManager.js';
     
     let { data } = $props();
 
     let isMenuOpen = $state(false);
     let isReportOpen = $state(false);
 
-    let personalBuilds = $derived(data.baseBuilds);
+    let personalBuilds = $derived(data.builds);
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="container">
     <div class="profile-content">
-        <Navbar profile={data.user.userProfile} role={data.user.userRole}/>
+        <Navbar profile={data.user.userProfile.username} role={data.user.userRole}/>
 
         <div class="profile-header">
             <div class="pfp">
-                <img src={data.pfp} alt="pfp"/>
+                <img src={data.profile.Immagine} alt="pfp"/>
             </div>
 
             <div class="header-info">
                 <div class="profile-role">{data.profileRole}</div>
                     <div class="profile-title">
-                        <div>{data.profile}</div>
-                        <div class="id">{data.id}</div>
+                        <div>{data.profile.Nome}</div>
+                        <div class="id">{data.profile.RiotID}</div>
                     </div>  
             </div>
             <div class="options" class:open={isMenuOpen}>
@@ -44,11 +45,11 @@
                         <div>
                             <button class="option-content-btn" onclick={() => {isMenuOpen = false; isReportOpen = true}}>Report</button>
                         </div>
-                        {#if data.user.userProfile === data.profile}
+                        {#if data.user.userProfile.username === data.profile.Nome}
                             <div>
                                 <form
                                 method="get"
-                                action="/account/{data.profile}/settings"
+                                action="/account/{data.profile.Nome}/settings"
                                 >
                                     <button type="submit" class="option-content-btn">Edit</button>
                                 </form>
@@ -60,7 +61,7 @@
                                 method="get"
                                 action="/account/reports"
                                 >
-                                    <input name="target" type="hidden" value={data.profile} />
+                                    <input name="target" type="hidden" value={data.profile.Nome} />
                                     <button type="submit" class="option-content-btn">Report List</button>
                                 </form>
                             </div>
@@ -69,21 +70,21 @@
                                 method="get"
                                 action="/account/ban"
                                 >
-                                    <input name="target" type="hidden" value={data.profile} />
+                                    <input name="target" type="hidden" value={data.profile.Nome} />
                                     <button type="submit" class="option-content-btn">Block Account</button>
                                 </form>
                             </div>
                         {/if}
                     </div>
                 {/if}
-                <CreateReport bind:visible={isReportOpen} target={data.profile} />
+                <CreateReport bind:visible={isReportOpen} target={data.profile.Nome} />
             </div>
         </div>
         <br />
         <div class="builds-content">
             <Search />
             <div class="builds-grid">
-                <BuildcardHolder personalBuilds={[]} isEditable={data.profile === data.user.userProfile} />
+                <BuildcardHolder personalBuilds={personalBuilds} isEditable={data.profile.Nome === data.user.userProfile.username} />
             </div>
 
             <form
@@ -92,7 +93,7 @@
             action="?/moreBuilds"
             use:enhance = {() => async ({result}) => {
                 if(result.type === 'success' && result.data?.builds){
-//TODO: fix 'Build' type                     personalBuilds = (result.data as {builds : Build[]}).builds
+                    personalBuilds = (result.data as {builds : completeBuild[]}).builds
                 }
             }}
             >

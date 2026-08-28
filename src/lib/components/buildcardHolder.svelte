@@ -1,8 +1,13 @@
 <script lang="ts">
+    import type { completeBuild } from "$lib/server/buildManager";
+    import type { Configurazione } from "$lib/server/prisma/client";
     import type { Build } from "$lib/types";
     import Buildcard from "./buildcard.svelte";
 
-    let { personalBuilds = [], comunityBuilds = [], isEditable = false } : { personalBuilds?: Build[], comunityBuilds?: Build[], isEditable?: boolean } = $props();
+    // OK. BISOGNA inizializzare i tipi personalizzati con i valori letti, perché altrimenti 
+    // diventa ingestibile la situazione in questo tipo di componenti.
+    let { personalBuilds = [], comunityBuilds = [], isEditable = false } 
+    : { personalBuilds?: completeBuild[], comunityBuilds?: completeBuild[], isEditable?: boolean } = $props();
 
 </script>
 
@@ -12,16 +17,7 @@
         <span>Your Builds</span>
         {#each personalBuilds as build}
         <Buildcard
-          name={build.name}
-          author={build.author}
-          champion={build.champion}
-          runes={build.runes}
-          items={build.items}
-          wins={build.wins}
-          losses={build.losses}
-          kills={build.kills}
-          deaths={build.deaths}
-          assists={build.assists}
+          Build={build}
           isEditable={isEditable}
         />
         {/each}
@@ -31,18 +27,7 @@
     <div class="build-content">
         <span>Other's Builds</span>
         {#each comunityBuilds as build}
-        <Buildcard
-          name={build.name}
-          author={build.author}
-          champion={build.champion}
-          runes={build.runes}
-          items={build.items}
-          wins={build.wins}
-          losses={build.losses}
-          kills={build.kills}
-          deaths={build.deaths}
-          assists={build.assists}
-        />
+        <Buildcard Build={build} />
         {/each}
     </div>
     {/if}

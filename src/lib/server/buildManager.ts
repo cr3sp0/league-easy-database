@@ -1,12 +1,13 @@
-import { build } from "$service-worker";
 import prisma from "./prisma";
-import type { Account, Campione, Configurazione, Pagina_Runa, Runa } from "./prisma/browser";
+import type { Account, Campione, Configurazione, Pagina_Runa, Partita, Risultato, Runa } from "./prisma/browser";
+import { createResults } from "./resultsManager";
 
 // Unisce i valori delle tabelle in modo da ricostruire una singola Build
 export interface completeBuild {
   build: Configurazione
   champion: Campione
   author: Account
+  results: Partita[]
 }
 
 export async function getBuilds({username = "", champion = "", limit = 5}) 
@@ -21,7 +22,8 @@ export async function getBuilds({username = "", champion = "", limit = 5})
       Inc2: true,
       Pag_Runa: true,
       Inv: true,
-      User: true
+      User: true,
+      Partite: true
     },
     where: {
       AND: [
@@ -52,7 +54,8 @@ export async function getBuilds({username = "", champion = "", limit = 5})
     output.push({
       build: b,
       champion: b.champ,
-      author: b.User
+      author: b.User,
+      results: b.Partite
     })
   })
 
@@ -65,16 +68,14 @@ export async function createBuild({
     runesID = undefined,
     inc1 = undefined,
     inc2 = undefined,
-    wins = undefined,
-    losses = undefined
+    gameResults = undefined
   } : {
     userID?: number,
     championID?: string,
     runesID?: number,
     inc1?: string,
     inc2?: string,
-    wins?: number,
-    losses?: number
+    gameResults?: Risultato[]
   }
 ) : Promise<completeBuild | undefined> {
   
@@ -89,24 +90,34 @@ export async function createBuild({
   }
   // TODO: add query to confirm the related values already exist
 
-  const creation = await prisma.configurazione.create({
+  let creation = await prisma.configurazione.create({
     data: {
       Account: userID,
       IdCampione: championID,
       Runa: runesID,
       Incantesimo1: inc1,
-      Incantesimo2: inc2 
+      Incantesimo2: inc2
     },
     include: {
       User: true,
-      champ: true
+      champ: true,
+      Partite: true
     }
   })
 
-  return build ? {
+  if(gameResults) {
+    createResults({
+      userID: userID,
+      buildID: creation.ID,
+      results: gameResults
+    })
+  }
+
+  return creation ? {
     build: creation,
     champion: creation.champ,
-    author: creation.User
+    author: creation.User,
+    results: creation.Partite
   } : undefined
 }
 
@@ -140,13 +151,15 @@ export async function updateBuild(
     },
     include: {
       User: true,
-      champ: true
+      champ: true,
+      Partite: true
     }
   })
 
   return build ? {
     build: build,
     champion: build.champ,
-    author: build.User
+    author: build.User,
+    results: build.Partite
   } : undefined
 }

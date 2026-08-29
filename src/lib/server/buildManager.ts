@@ -59,32 +59,47 @@ export async function getBuilds({username = "", champion = "", limit = 5})
   return output;
 }
 
-export async function createBuild(
-  userID: number,
-  championID: string,
-  runesID: number,
-  inc1: string,
-  inc2: string,
-  wins = 0,
-  losses = 0
+export async function createBuild({
+    userID = undefined,
+    championID = undefined,
+    runesID = undefined,
+    inc1 = undefined,
+    inc2 = undefined,
+    wins = undefined,
+    losses = undefined
+  } : {
+    userID?: number,
+    championID?: string,
+    runesID?: number,
+    inc1?: string,
+    inc2?: string,
+    wins?: number,
+    losses?: number
+  }
 ) : Promise<completeBuild | undefined> {
   
-  if(!userID || !championID || !runesID) {
+  if(
+    !userID 
+    || !championID 
+    || !runesID
+    || !inc1
+    || !inc2
+  ) {
     throw { message: "Invalid input" }
   }
   // TODO: add query to confirm the related values already exist
 
   const creation = await prisma.configurazione.create({
-    include: {
-      User: true,
-      champ: true
-    },
     data: {
       Account: userID,
       IdCampione: championID,
       Runa: runesID,
       Incantesimo1: inc1,
       Incantesimo2: inc2 
+    },
+    include: {
+      User: true,
+      champ: true
     }
   })
 
@@ -92,5 +107,46 @@ export async function createBuild(
     build: creation,
     champion: creation.champ,
     author: creation.User
+  } : undefined
+}
+
+export async function updateBuild(
+  buildID : number, {
+    championID = undefined,
+    runesID = undefined,
+    inc1 = undefined,
+    inc2 = undefined,
+    wins = undefined,
+    losses = undefined
+  } : {
+    championID?: string,
+    runesID?: number,
+    inc1?: string,
+    inc2?: string,
+    wins?: number,
+    losses?: number
+  }
+) : Promise<completeBuild | undefined> {
+
+  const build = await prisma.configurazione.update({
+    where: {
+      ID: buildID
+    },
+    data: {
+      IdCampione: championID,
+      Runa: runesID,
+      Incantesimo1: inc1,
+      Incantesimo2: inc2 
+    },
+    include: {
+      User: true,
+      champ: true
+    }
+  })
+
+  return build ? {
+    build: build,
+    champion: build.champ,
+    author: build.User
   } : undefined
 }

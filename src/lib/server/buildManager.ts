@@ -1,58 +1,96 @@
+import { build } from "$service-worker";
 import prisma from "./prisma";
-import type { Account, Campione, Configurazione } from "./prisma/browser";
+import type { Account, Campione, Configurazione, Pagina_Runa, Runa } from "./prisma/browser";
 
 // Unisce i valori delle tabelle in modo da ricostruire una singola Build
 export interface completeBuild {
-    build: Configurazione
-    champion: Campione
-    author: Account
+  build: Configurazione
+  champion: Campione
+  author: Account
 }
 
-export async function getBuilds({username = "", champion = "", limit = 5}) : Promise<completeBuild[]> {
+export async function getBuilds({username = "", champion = "", limit = 5}) 
+: Promise<completeBuild[]> {
 
-    // TODO: add explicit query sql
-    //TODO: fix select to return only the valueable info of the Build
-    const builds = await prisma.configurazione.findMany({
-        include: {
-            champ: true,
-            Inc1: true,
-            Inc2: true,
-            Pag_Runa: true,
-            Inv: true,
-            User: true
+  // TODO: add explicit query sql
+  //TODO: fix select to return only the valueable info of the Build
+  const builds = await prisma.configurazione.findMany({
+    include: {
+      champ: true,
+      Inc1: true,
+      Inc2: true,
+      Pag_Runa: true,
+      Inv: true,
+      User: true
+    },
+    where: {
+      AND: [
+        {
+          User: {
+            Nome: username.length === 0 
+                ? undefined : username
+          }
         },
-        where: {
-            AND: [
-                {
-                    User: {
-                        Nome: username.length === 0 
-                                ? undefined : username
-                    }
-                },
-                {
-                    champ: {
-                        nome: champion.length === 0
-                                ? undefined : champion
-                    }
-                }
-            ]
-        },
-        take: limit
+        {
+          champ: {
+            nome: champion.length === 0
+                ? undefined : champion
+          }
+        }
+      ]
+    },
+    take: limit
+  })
+
+  if(!builds) {
+    throw { message: "This user doesn't own any Build" }
+  }
+
+  let output : completeBuild[] = []
+
+  builds.forEach(b => {
+    output.push({
+      build: b,
+      champion: b.champ,
+      author: b.User
     })
+  })
 
-    if(!builds) {
-        throw { message: "This user doesn't own any Build" }
+  return output;
+}
+
+export async function createBuild(
+  userID: number,
+  championID: string,
+  runesID: number,
+  inc1: string,
+  inc2: string,
+  wins = 0,
+  losses = 0
+) : Promise<completeBuild | undefined> {
+  
+  if(!userID || !championID || !runesID) {
+    throw { message: "Invalid input" }
+  }
+  // TODO: add query to confirm the related values already exist
+
+  const creation = await prisma.configurazione.create({
+    include: {
+      User: true,
+      champ: true
+    },
+    data: {
+      Account: userID,
+      IdCampione: championID,
+      Runa: runesID,
+      Incantesimo1: inc1,
+      Incantesimo2: inc2 
     }
+  })
 
-    let output : completeBuild[] = []
-
-    builds.forEach(b => {
-        output.push({
-            build: b,
-            champion: b.champ,
-            author: b.User
-        })
-    })
-
-    return output;
+  return build ? {
+    build: creation,
+    champion: creation.champ,
+    author: creation.User
+  } : undefined
 }

@@ -2724,7 +2724,8 @@ export type KitScalarFieldEnum = (typeof KitScalarFieldEnum)[keyof typeof KitSca
 export const AbilitaScalarFieldEnum = {
   Id: 'Id',
   NomeAbilità: 'NomeAbilità',
-  Descrizione: 'Descrizione'
+  Descrizione: 'Descrizione',
+  Immagine: 'Immagine'
 } as const
 
 export type AbilitaScalarFieldEnum = (typeof AbilitaScalarFieldEnum)[keyof typeof AbilitaScalarFieldEnum]

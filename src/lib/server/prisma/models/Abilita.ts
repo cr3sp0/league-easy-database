@@ -38,18 +38,21 @@ export type AbilitaMinAggregateOutputType = {
   Id: number | null
   NomeAbilità: string | null
   Descrizione: string | null
+  Immagine: string | null
 }
 
 export type AbilitaMaxAggregateOutputType = {
   Id: number | null
   NomeAbilità: string | null
   Descrizione: string | null
+  Immagine: string | null
 }
 
 export type AbilitaCountAggregateOutputType = {
   Id: number
   NomeAbilità: number
   Descrizione: number
+  Immagine: number
   _all: number
 }
 
@@ -66,18 +69,21 @@ export type AbilitaMinAggregateInputType = {
   Id?: true
   NomeAbilità?: true
   Descrizione?: true
+  Immagine?: true
 }
 
 export type AbilitaMaxAggregateInputType = {
   Id?: true
   NomeAbilità?: true
   Descrizione?: true
+  Immagine?: true
 }
 
 export type AbilitaCountAggregateInputType = {
   Id?: true
   NomeAbilità?: true
   Descrizione?: true
+  Immagine?: true
   _all?: true
 }
 
@@ -171,6 +177,7 @@ export type AbilitaGroupByOutputType = {
   Id: number
   NomeAbilità: string
   Descrizione: string
+  Immagine: string
   _count: AbilitaCountAggregateOutputType | null
   _avg: AbilitaAvgAggregateOutputType | null
   _sum: AbilitaSumAggregateOutputType | null
@@ -200,6 +207,7 @@ export type AbilitaWhereInput = {
   Id?: Prisma.IntFilter<"Abilita"> | number
   NomeAbilità?: Prisma.StringFilter<"Abilita"> | string
   Descrizione?: Prisma.StringFilter<"Abilita"> | string
+  Immagine?: Prisma.StringFilter<"Abilita"> | string
   KitAb?: Prisma.Kit_AbilitaListRelationFilter
 }
 
@@ -207,6 +215,7 @@ export type AbilitaOrderByWithRelationInput = {
   Id?: Prisma.SortOrder
   NomeAbilità?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
   KitAb?: Prisma.Kit_AbilitaOrderByRelationAggregateInput
 }
 
@@ -217,6 +226,7 @@ export type AbilitaWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AbilitaWhereInput[]
   NOT?: Prisma.AbilitaWhereInput | Prisma.AbilitaWhereInput[]
   Descrizione?: Prisma.StringFilter<"Abilita"> | string
+  Immagine?: Prisma.StringFilter<"Abilita"> | string
   KitAb?: Prisma.Kit_AbilitaListRelationFilter
 }, "Id" | "NomeAbilità">
 
@@ -224,6 +234,7 @@ export type AbilitaOrderByWithAggregationInput = {
   Id?: Prisma.SortOrder
   NomeAbilità?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
   _count?: Prisma.AbilitaCountOrderByAggregateInput
   _avg?: Prisma.AbilitaAvgOrderByAggregateInput
   _max?: Prisma.AbilitaMaxOrderByAggregateInput
@@ -238,11 +249,13 @@ export type AbilitaScalarWhereWithAggregatesInput = {
   Id?: Prisma.IntWithAggregatesFilter<"Abilita"> | number
   NomeAbilità?: Prisma.StringWithAggregatesFilter<"Abilita"> | string
   Descrizione?: Prisma.StringWithAggregatesFilter<"Abilita"> | string
+  Immagine?: Prisma.StringWithAggregatesFilter<"Abilita"> | string
 }
 
 export type AbilitaCreateInput = {
   NomeAbilità: string
   Descrizione: string
+  Immagine: string
   KitAb?: Prisma.Kit_AbilitaCreateNestedManyWithoutAbilitaInput
 }
 
@@ -250,12 +263,14 @@ export type AbilitaUncheckedCreateInput = {
   Id?: number
   NomeAbilità: string
   Descrizione: string
+  Immagine: string
   KitAb?: Prisma.Kit_AbilitaUncheckedCreateNestedManyWithoutAbilitaInput
 }
 
 export type AbilitaUpdateInput = {
   NomeAbilità?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   KitAb?: Prisma.Kit_AbilitaUpdateManyWithoutAbilitaNestedInput
 }
 
@@ -263,6 +278,7 @@ export type AbilitaUncheckedUpdateInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
   NomeAbilità?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   KitAb?: Prisma.Kit_AbilitaUncheckedUpdateManyWithoutAbilitaNestedInput
 }
 
@@ -270,23 +286,27 @@ export type AbilitaCreateManyInput = {
   Id?: number
   NomeAbilità: string
   Descrizione: string
+  Immagine: string
 }
 
 export type AbilitaUpdateManyMutationInput = {
   NomeAbilità?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AbilitaUncheckedUpdateManyInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
   NomeAbilità?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AbilitaCountOrderByAggregateInput = {
   Id?: Prisma.SortOrder
   NomeAbilità?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
 }
 
 export type AbilitaAvgOrderByAggregateInput = {
@@ -297,12 +317,14 @@ export type AbilitaMaxOrderByAggregateInput = {
   Id?: Prisma.SortOrder
   NomeAbilità?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
 }
 
 export type AbilitaMinOrderByAggregateInput = {
   Id?: Prisma.SortOrder
   NomeAbilità?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
 }
 
 export type AbilitaSumOrderByAggregateInput = {
@@ -331,12 +353,14 @@ export type AbilitaUpdateOneRequiredWithoutKitAbNestedInput = {
 export type AbilitaCreateWithoutKitAbInput = {
   NomeAbilità: string
   Descrizione: string
+  Immagine: string
 }
 
 export type AbilitaUncheckedCreateWithoutKitAbInput = {
   Id?: number
   NomeAbilità: string
   Descrizione: string
+  Immagine: string
 }
 
 export type AbilitaCreateOrConnectWithoutKitAbInput = {
@@ -358,12 +382,14 @@ export type AbilitaUpdateToOneWithWhereWithoutKitAbInput = {
 export type AbilitaUpdateWithoutKitAbInput = {
   NomeAbilità?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AbilitaUncheckedUpdateWithoutKitAbInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
   NomeAbilità?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -401,6 +427,7 @@ export type AbilitaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   Id?: boolean
   NomeAbilità?: boolean
   Descrizione?: boolean
+  Immagine?: boolean
   KitAb?: boolean | Prisma.Abilita$KitAbArgs<ExtArgs>
   _count?: boolean | Prisma.AbilitaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["abilita"]>
@@ -409,21 +436,24 @@ export type AbilitaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   Id?: boolean
   NomeAbilità?: boolean
   Descrizione?: boolean
+  Immagine?: boolean
 }, ExtArgs["result"]["abilita"]>
 
 export type AbilitaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   Id?: boolean
   NomeAbilità?: boolean
   Descrizione?: boolean
+  Immagine?: boolean
 }, ExtArgs["result"]["abilita"]>
 
 export type AbilitaSelectScalar = {
   Id?: boolean
   NomeAbilità?: boolean
   Descrizione?: boolean
+  Immagine?: boolean
 }
 
-export type AbilitaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "NomeAbilità" | "Descrizione", ExtArgs["result"]["abilita"]>
+export type AbilitaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "NomeAbilità" | "Descrizione" | "Immagine", ExtArgs["result"]["abilita"]>
 export type AbilitaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   KitAb?: boolean | Prisma.Abilita$KitAbArgs<ExtArgs>
   _count?: boolean | Prisma.AbilitaCountOutputTypeDefaultArgs<ExtArgs>
@@ -440,6 +470,7 @@ export type $AbilitaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     Id: number
     NomeAbilità: string
     Descrizione: string
+    Immagine: string
   }, ExtArgs["result"]["abilita"]>
   composites: {}
 }
@@ -867,6 +898,7 @@ export interface AbilitaFieldRefs {
   readonly Id: Prisma.FieldRef<"Abilita", 'Int'>
   readonly NomeAbilità: Prisma.FieldRef<"Abilita", 'String'>
   readonly Descrizione: Prisma.FieldRef<"Abilita", 'String'>
+  readonly Immagine: Prisma.FieldRef<"Abilita", 'String'>
 }
     
 

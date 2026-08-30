@@ -168,7 +168,7 @@ model Report {
   AuthorId Int
   Motivazione String
   Descrizione String?
-  BanId Int
+  Banned Banned_Account?
   Target Account @relation(fields: [TargetId], references: [AccountId], name: "Target")
   Author Account @relation(fields: [AuthorId], references: [AccountId], name: "Author")
 }
@@ -179,7 +179,7 @@ model Banned_Account {
   Motivazione String
   Descrizione String?
   ReportOrigineId Int @unique
-  //TODO: Handle Relation
+  Origine Report @relation(fields: [ReportOrigineId], references: [Id])
 }
 
 model Kit {
@@ -270,6 +270,9 @@ model Partita{
   Data DateTime @default(now())
   Risultato Risultato
   AccountId Int
+  Uccisioni Int @default(0)
+  Morti Int @default(0)
+  Assist Int @default(0)
   Acc Account @relation(fields: [AccountId], references: [AccountId])
   Configurazione Configurazione @relation(fields: [ConfigurazioneId], references: [ID])
 }

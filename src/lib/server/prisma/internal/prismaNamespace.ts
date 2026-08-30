@@ -2695,8 +2695,7 @@ export const ReportScalarFieldEnum = {
   TargetId: 'TargetId',
   AuthorId: 'AuthorId',
   Motivazione: 'Motivazione',
-  Descrizione: 'Descrizione',
-  BanId: 'BanId'
+  Descrizione: 'Descrizione'
 } as const
 
 export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum]
@@ -2786,7 +2785,10 @@ export const PartitaScalarFieldEnum = {
   ConfigurazioneId: 'ConfigurazioneId',
   Data: 'Data',
   Risultato: 'Risultato',
-  AccountId: 'AccountId'
+  AccountId: 'AccountId',
+  Uccisioni: 'Uccisioni',
+  Morti: 'Morti',
+  Assist: 'Assist'
 } as const
 
 export type PartitaScalarFieldEnum = (typeof PartitaScalarFieldEnum)[keyof typeof PartitaScalarFieldEnum]

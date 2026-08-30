@@ -18,13 +18,16 @@ function getRandomIndices(champions: { nome: string; Icona: string;}[]) {
     return randomIndices;
 }
 
-export const load: PageServerLoad = async ({ cookies }) => {
+export const load: PageServerLoad = async ({ locals }) => {
   try {
     const champions = await getChampionsBasicInfo();
     const randomIndices = getRandomIndices(champions);
   
     return {
-      profile: cookies.get('ledb_session'),
+      profile: locals.user 
+        ? locals.user.username : undefined,
+      role: locals.user.isAdmin
+        ? "Admin" : "User",
       champions,
       randomIndices
     };

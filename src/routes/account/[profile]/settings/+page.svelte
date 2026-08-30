@@ -8,6 +8,7 @@
     let { data } = $props()
 
     const imagesLinkList = $derived(data.imageList)
+
     let pfp = $derived(data.profile.pfp)
     let username = $derived(data.profile.username)
     let riotID : string | undefined = $derived(data.profile.riotID)

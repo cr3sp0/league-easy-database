@@ -7,6 +7,9 @@
 
     let { data } = $props();
 
+    const profile = $derived(data.profile)
+    const reports = $derived(data.reports)
+
     let expandedId = $state<number | null>(null);
     const toggleExpand = (id: number) => {
         expandedId = expandedId === id ? null : id;
@@ -15,7 +18,7 @@
 
 <div class="container">
     <div class="reports-content">
-        <Navbar profile={data.profile} role={data.role} />
+        <Navbar profile={profile.username} role={data.role} />
 
         <div class="header">
             <div class="title">Reports List</div>
@@ -24,7 +27,7 @@
         <Search />
         <div class="body">
             <div class="report-list">
-                {#each data.reports as listItem, currIndex}
+                {#each reports as listItem, currIndex}
                 <!-- svelte-ignore a11y_click_events_have_key_events -->
                 <!-- svelte-ignore a11y_no_static_element_interactions -->
                 <div

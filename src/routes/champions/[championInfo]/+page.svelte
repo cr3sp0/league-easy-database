@@ -14,7 +14,7 @@
       class="info-cover"
       style="background-image: url({data.champion?.Cosmetico[0].Immagine});"
     >
-      <Navbar profile={data.profile} />
+      <Navbar profile={data.profile} role={data.role} />
       <div class="champ-name">
         {data.champion?.nome}
         <br />

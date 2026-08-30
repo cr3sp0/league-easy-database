@@ -12,7 +12,7 @@
 
 <div class="container">
   <div class="champion-content">
-    <Navbar profile={data.profile} />
+    <Navbar profile={data.profile} role={data.role} />
     <div class="title">Champions</div>
     <form action="?/filterByName" method="post" use:enhance>
       <Search />

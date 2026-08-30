@@ -8,10 +8,10 @@
 
 <div class="container">
   <div class="items-content">
-    <Navbar profile={data.profile}/>
+    <Navbar profile={data.profile} role={data.role} />
     <div class="title">Items</div>
     <Search />
-    <Itemsgrid />
+    <!--<Itemsgrid />-->
   </div>
 </div>
 

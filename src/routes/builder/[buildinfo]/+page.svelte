@@ -44,7 +44,7 @@
 
 <div class="container">
   <div class="buildinfo-content">
-    <Navbar profile={data.profile} />
+    <Navbar profile={data.profile} role={data.role} />
     <div class="buildinfo-header">
       <div class="champpic"></div>
 

@@ -1,32 +1,29 @@
 import { error, fail, redirect, type Action, type Actions } from "@sveltejs/kit";
-import type { PageServerLoad } from "../$types";
+import type { PageServerLoad } from "../../account/$types";
 
-export const load : PageServerLoad = async ({ params, cookies, request, url }) => {
+export const load : PageServerLoad = async ({ locals, url }) => {
 
     let target = url.searchParams.get("target")
     let reason = url.searchParams.get("reason")
 
-    let profile = cookies.get("ledb_session")
+    let profile = locals.user 
+      ? locals.user.username : undefined
+    let role = locals.user 
+      ? locals.user.isAdmin : undefined
 
-    let role = "Admin"
-    if(!profile || role != "Admin") {
-        return fail(400, "You shouldn't have access to this section.")
+    if(!profile || !role) {
+        return error(400, { message: "You shouldn't have access to this section." })
     }
 
     if (!target) {
-        return fail(400, "Missing a Target.");
-    }
-    if (!reason) {
-        return {
-            profile: profile,
-            target: target
-        }
+        return error(400, { message: "Missing a Target." });
     }
 
     return {
         profile: profile,
+        role: role ? "Admin" : "User",
         target: target,
-        reason: reason
+        reason: reason ? reason : undefined
     }
 }
 

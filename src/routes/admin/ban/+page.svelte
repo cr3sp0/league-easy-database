@@ -4,28 +4,23 @@
     import { popup } from '$lib/components/store/popup.svelte.js';
     import { BanDurations, ReportReason } from '$lib/types.js';
 
-    let { data } = $props();
+    let { data } = $props()
 
-    const target = () => data.target
-    let reason = $state()
+    const target = $derived(data.target)
+    let reason = $derived(data.reason)
     let duration = $state()
-
-    // svelte-ignore state_referenced_locally
-    if(data.reason) {
-        reason = data.reason
-    }
 </script>
 
 <div class="container">
     <div class="content">
-        <Navbar profile={data.profile}/>
+        <Navbar profile={data.profile} role={data.role} />
 
         <div class="title">Ban</div>
         
         <div class="header form-info">
             <div>Ban the Account:</div>
             <div class="filler"></div>
-            <div class="target">{target()}</div>
+            <div class="target">{target}</div>
         </div>
 
         <form
@@ -42,15 +37,15 @@
             }
         }}
         >
-            <input name="target" type="hidden" value={target()} />
+            <input name="target" type="hidden" value={target} />
 
             <div class="form-info">
                 <div>Reason:</div>
                 <select name="reason" class="drop-menu" bind:value={reason}>
                     <option value={undefined} selected hidden>Select</option>
                     <option value="Repeated Reports">Repeated Reports</option>
-                    {#each ReportReason as reason}
-                    <option value={reason}>{reason}</option>
+                    {#each ReportReason as reasonString}
+                    <option value={reasonString}>{reasonString}</option>
                     {/each}
                 </select>
             </div>

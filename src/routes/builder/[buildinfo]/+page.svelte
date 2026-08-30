@@ -40,6 +40,52 @@
 
   let wins = $state(0);
   let losses = $state(0);
+
+  //PLACE HOLDER
+  type MatchRecord = {
+    id: number;
+    date: string;
+    kda: string;
+    result: "Win" | "Loss";
+  };
+
+  let matches: MatchRecord[] = $state([]);
+
+  let isAddingGame = $state(false);
+
+  let newDate = $state(new Date().toLocaleDateString("it-IT"));
+  let newK = $state(0);
+  let newD = $state(0);
+  let newA = $state(0);
+  let newResult = $state<"Win" | "Loss">("Win");
+
+  function openAddGame() {
+    newDate = new Date().toLocaleDateString("it-IT");
+    newK = 0;
+    newD = 0;
+    newA = 0;
+    newResult = "Win";
+    isAddingGame = true;
+  }
+
+  function saveGame() {
+    const newMatch: MatchRecord = {
+      id: Date.now(),
+      date: newDate,
+      kda: `${newK}/${newD}/${newA}`,
+      result: newResult,
+    };
+
+    matches.push(newMatch);
+
+    if (newResult === "Win") {
+      wins++;
+    } else {
+      losses++;
+    }
+
+    isAddingGame = false;
+  }
 </script>
 
 <div class="container">
@@ -142,6 +188,75 @@
             />
             <button class="stepper-btn" onclick={() => losses++}>+</button>
           </div>
+        </div>
+      </div>
+
+      <div class="buildinfo-match">
+        <div class="buildinfo-sectiontitle">Match</div>
+
+        {#if isAddingGame}
+          <div class="add-game-form">
+            <div class="form-row">
+              <input
+                type="text"
+                class="form-input date-input"
+                bind:value={newDate}
+                placeholder="Data (es. 30/08/2026)"
+              />
+
+              <div class="kda-inputs">
+                <input
+                  type="number"
+                  class="form-input number-input"
+                  bind:value={newK}
+                  min="0"
+                />
+                /
+                <input
+                  type="number"
+                  class="form-input number-input"
+                  bind:value={newD}
+                  min="0"
+                />
+                /
+                <input
+                  type="number"
+                  class="form-input number-input"
+                  bind:value={newA}
+                  min="0"
+                />
+              </div>
+
+              <select class="form-input result-select" bind:value={newResult}>
+                <option value="Win">Win</option>
+                <option value="Loss">Loss</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button
+                class="action-btn cancel-btn"
+                onclick={() => (isAddingGame = false)}>cancel</button
+              >
+              <button class="action-btn save-btn" onclick={saveGame}
+                >save</button
+              >
+            </div>
+          </div>
+        {:else}
+          <button class="add-game-btn" onclick={openAddGame}>
+            + add game
+          </button>
+        {/if}
+
+        <div class="match-list">
+          {#each matches as match (match.id)}
+            <div class="match-item">
+              <span class="match-date">partita del {match.date}</span>
+              <span class="match-kda">{match.kda}</span>
+              <span class="match-result">{match.result}</span>
+            </div>
+          {/each}
         </div>
       </div>
     </div>
@@ -306,6 +421,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 50px;
   }
 
   .result-container {
@@ -372,6 +488,163 @@
 
   .winloss[type="number"] {
     -moz-appearance: textfield;
+  }
+
+  .buildinfo-match {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .add-game-btn {
+    width: 100%;
+    max-width: 700px;
+    padding: 15px;
+    background: transparent;
+    border: 1px dashed var(--white-20);
+    color: white;
+    font-family: var(--font-mono);
+    font-size: var(--text-md);
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      opacity 0.2s;
+    text-align: center;
+  }
+
+  .add-game-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .match-list {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .match-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--white-20);
+    font-family: var(--font-mono);
+    color: white;
+  }
+
+  .match-item span {
+    flex: 1;
+  }
+
+  .match-date {
+    text-align: left;
+  }
+
+  .match-kda {
+    text-align: center;
+  }
+
+  .match-result {
+    text-align: right;
+  }
+
+  .add-game-form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border: 1px dashed var(--white-20);
+  }
+
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .form-input {
+    background: transparent;
+    border: 1px solid var(--white-20);
+    color: white;
+    font-family: var(--font-mono);
+    font-size: var(--text-md);
+    padding: 5px 10px;
+    outline: none;
+  }
+
+  .form-input:focus {
+    border-color: white;
+  }
+
+  .date-input {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .kda-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    color: var(--white-20);
+  }
+
+  .number-input {
+    width: 50px;
+    text-align: center;
+  }
+
+  .number-input::-webkit-outer-spin-button,
+  .number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .number-input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .result-select {
+    width: 90px;
+    cursor: pointer;
+  }
+
+  .result-select option {
+    background-color: #111214;
+    color: white;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .action-btn {
+    background: transparent;
+    border: 1px solid var(--white-20);
+    color: white;
+    font-family: var(--font-mono);
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .cancel-btn:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-color: rgba(255, 0, 0, 0.5);
+  }
+
+  .save-btn:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    border-color: rgba(0, 255, 0, 0.5);
   }
 
   @media (max-width: 500px) {

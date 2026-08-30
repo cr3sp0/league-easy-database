@@ -34,7 +34,7 @@ export const handle: Handle = async ({ event, resolve }) => {
     if(
         !event.locals.user
         && (event.url.pathname.startsWith("/account") 
-            || event.url.pathname === "/builder/newbuild") 
+            || event.url.pathname.includes("/builder/")) 
     ) {
         throw redirect(303, '/login')
     }

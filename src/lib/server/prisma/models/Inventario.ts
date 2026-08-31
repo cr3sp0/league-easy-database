@@ -27,50 +27,56 @@ export type AggregateInventario = {
 }
 
 export type InventarioAvgAggregateOutputType = {
-  IdInventario: number | null
+  IdAccount: number | null
 }
 
 export type InventarioSumAggregateOutputType = {
-  IdInventario: number | null
+  IdAccount: number | null
 }
 
 export type InventarioMinAggregateOutputType = {
-  IdInventario: number | null
+  IdConfigurazione: string | null
+  IdAccount: number | null
   NomeOggetto: string | null
 }
 
 export type InventarioMaxAggregateOutputType = {
-  IdInventario: number | null
+  IdConfigurazione: string | null
+  IdAccount: number | null
   NomeOggetto: string | null
 }
 
 export type InventarioCountAggregateOutputType = {
-  IdInventario: number
+  IdConfigurazione: number
+  IdAccount: number
   NomeOggetto: number
   _all: number
 }
 
 
 export type InventarioAvgAggregateInputType = {
-  IdInventario?: true
+  IdAccount?: true
 }
 
 export type InventarioSumAggregateInputType = {
-  IdInventario?: true
+  IdAccount?: true
 }
 
 export type InventarioMinAggregateInputType = {
-  IdInventario?: true
+  IdConfigurazione?: true
+  IdAccount?: true
   NomeOggetto?: true
 }
 
 export type InventarioMaxAggregateInputType = {
-  IdInventario?: true
+  IdConfigurazione?: true
+  IdAccount?: true
   NomeOggetto?: true
 }
 
 export type InventarioCountAggregateInputType = {
-  IdInventario?: true
+  IdConfigurazione?: true
+  IdAccount?: true
   NomeOggetto?: true
   _all?: true
 }
@@ -162,7 +168,8 @@ export type InventarioGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type InventarioGroupByOutputType = {
-  IdInventario: number
+  IdConfigurazione: string
+  IdAccount: number
   NomeOggetto: string
   _count: InventarioCountAggregateOutputType | null
   _avg: InventarioAvgAggregateOutputType | null
@@ -190,32 +197,36 @@ export type InventarioWhereInput = {
   AND?: Prisma.InventarioWhereInput | Prisma.InventarioWhereInput[]
   OR?: Prisma.InventarioWhereInput[]
   NOT?: Prisma.InventarioWhereInput | Prisma.InventarioWhereInput[]
-  IdInventario?: Prisma.IntFilter<"Inventario"> | number
+  IdConfigurazione?: Prisma.StringFilter<"Inventario"> | string
+  IdAccount?: Prisma.IntFilter<"Inventario"> | number
   NomeOggetto?: Prisma.StringFilter<"Inventario"> | string
   Configurazione?: Prisma.XOR<Prisma.ConfigurazioneScalarRelationFilter, Prisma.ConfigurazioneWhereInput>
   Oggetto?: Prisma.XOR<Prisma.OggettoScalarRelationFilter, Prisma.OggettoWhereInput>
 }
 
 export type InventarioOrderByWithRelationInput = {
-  IdInventario?: Prisma.SortOrder
+  IdConfigurazione?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
   NomeOggetto?: Prisma.SortOrder
   Configurazione?: Prisma.ConfigurazioneOrderByWithRelationInput
   Oggetto?: Prisma.OggettoOrderByWithRelationInput
 }
 
 export type InventarioWhereUniqueInput = Prisma.AtLeast<{
-  IdInventario_NomeOggetto?: Prisma.InventarioIdInventarioNomeOggettoCompoundUniqueInput
+  IdConfigurazione_NomeOggetto?: Prisma.InventarioIdConfigurazioneNomeOggettoCompoundUniqueInput
   AND?: Prisma.InventarioWhereInput | Prisma.InventarioWhereInput[]
   OR?: Prisma.InventarioWhereInput[]
   NOT?: Prisma.InventarioWhereInput | Prisma.InventarioWhereInput[]
-  IdInventario?: Prisma.IntFilter<"Inventario"> | number
+  IdConfigurazione?: Prisma.StringFilter<"Inventario"> | string
+  IdAccount?: Prisma.IntFilter<"Inventario"> | number
   NomeOggetto?: Prisma.StringFilter<"Inventario"> | string
   Configurazione?: Prisma.XOR<Prisma.ConfigurazioneScalarRelationFilter, Prisma.ConfigurazioneWhereInput>
   Oggetto?: Prisma.XOR<Prisma.OggettoScalarRelationFilter, Prisma.OggettoWhereInput>
-}, "IdInventario_NomeOggetto">
+}, "IdConfigurazione_NomeOggetto">
 
 export type InventarioOrderByWithAggregationInput = {
-  IdInventario?: Prisma.SortOrder
+  IdConfigurazione?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
   NomeOggetto?: Prisma.SortOrder
   _count?: Prisma.InventarioCountOrderByAggregateInput
   _avg?: Prisma.InventarioAvgOrderByAggregateInput
@@ -228,7 +239,8 @@ export type InventarioScalarWhereWithAggregatesInput = {
   AND?: Prisma.InventarioScalarWhereWithAggregatesInput | Prisma.InventarioScalarWhereWithAggregatesInput[]
   OR?: Prisma.InventarioScalarWhereWithAggregatesInput[]
   NOT?: Prisma.InventarioScalarWhereWithAggregatesInput | Prisma.InventarioScalarWhereWithAggregatesInput[]
-  IdInventario?: Prisma.IntWithAggregatesFilter<"Inventario"> | number
+  IdConfigurazione?: Prisma.StringWithAggregatesFilter<"Inventario"> | string
+  IdAccount?: Prisma.IntWithAggregatesFilter<"Inventario"> | number
   NomeOggetto?: Prisma.StringWithAggregatesFilter<"Inventario"> | string
 }
 
@@ -238,7 +250,8 @@ export type InventarioCreateInput = {
 }
 
 export type InventarioUncheckedCreateInput = {
-  IdInventario: number
+  IdConfigurazione: string
+  IdAccount: number
   NomeOggetto: string
 }
 
@@ -248,12 +261,14 @@ export type InventarioUpdateInput = {
 }
 
 export type InventarioUncheckedUpdateInput = {
-  IdInventario?: Prisma.IntFieldUpdateOperationsInput | number
+  IdConfigurazione?: Prisma.StringFieldUpdateOperationsInput | string
+  IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
   NomeOggetto?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InventarioCreateManyInput = {
-  IdInventario: number
+  IdConfigurazione: string
+  IdAccount: number
   NomeOggetto: string
 }
 
@@ -262,7 +277,8 @@ export type InventarioUpdateManyMutationInput = {
 }
 
 export type InventarioUncheckedUpdateManyInput = {
-  IdInventario?: Prisma.IntFieldUpdateOperationsInput | number
+  IdConfigurazione?: Prisma.StringFieldUpdateOperationsInput | string
+  IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
   NomeOggetto?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -276,32 +292,35 @@ export type InventarioOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type InventarioIdInventarioNomeOggettoCompoundUniqueInput = {
-  IdInventario: number
+export type InventarioIdConfigurazioneNomeOggettoCompoundUniqueInput = {
+  IdConfigurazione: string
   NomeOggetto: string
 }
 
 export type InventarioCountOrderByAggregateInput = {
-  IdInventario?: Prisma.SortOrder
+  IdConfigurazione?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
   NomeOggetto?: Prisma.SortOrder
 }
 
 export type InventarioAvgOrderByAggregateInput = {
-  IdInventario?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
 }
 
 export type InventarioMaxOrderByAggregateInput = {
-  IdInventario?: Prisma.SortOrder
+  IdConfigurazione?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
   NomeOggetto?: Prisma.SortOrder
 }
 
 export type InventarioMinOrderByAggregateInput = {
-  IdInventario?: Prisma.SortOrder
+  IdConfigurazione?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
   NomeOggetto?: Prisma.SortOrder
 }
 
 export type InventarioSumOrderByAggregateInput = {
-  IdInventario?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
 }
 
 export type InventarioCreateNestedManyWithoutConfigurazioneInput = {
@@ -426,7 +445,8 @@ export type InventarioScalarWhereInput = {
   AND?: Prisma.InventarioScalarWhereInput | Prisma.InventarioScalarWhereInput[]
   OR?: Prisma.InventarioScalarWhereInput[]
   NOT?: Prisma.InventarioScalarWhereInput | Prisma.InventarioScalarWhereInput[]
-  IdInventario?: Prisma.IntFilter<"Inventario"> | number
+  IdConfigurazione?: Prisma.StringFilter<"Inventario"> | string
+  IdAccount?: Prisma.IntFilter<"Inventario"> | number
   NomeOggetto?: Prisma.StringFilter<"Inventario"> | string
 }
 
@@ -435,7 +455,8 @@ export type InventarioCreateWithoutOggettoInput = {
 }
 
 export type InventarioUncheckedCreateWithoutOggettoInput = {
-  IdInventario: number
+  IdConfigurazione: string
+  IdAccount: number
 }
 
 export type InventarioCreateOrConnectWithoutOggettoInput = {
@@ -481,7 +502,8 @@ export type InventarioUncheckedUpdateManyWithoutConfigurazioneInput = {
 }
 
 export type InventarioCreateManyOggettoInput = {
-  IdInventario: number
+  IdConfigurazione: string
+  IdAccount: number
 }
 
 export type InventarioUpdateWithoutOggettoInput = {
@@ -489,42 +511,48 @@ export type InventarioUpdateWithoutOggettoInput = {
 }
 
 export type InventarioUncheckedUpdateWithoutOggettoInput = {
-  IdInventario?: Prisma.IntFieldUpdateOperationsInput | number
+  IdConfigurazione?: Prisma.StringFieldUpdateOperationsInput | string
+  IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type InventarioUncheckedUpdateManyWithoutOggettoInput = {
-  IdInventario?: Prisma.IntFieldUpdateOperationsInput | number
+  IdConfigurazione?: Prisma.StringFieldUpdateOperationsInput | string
+  IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
 
 export type InventarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  IdInventario?: boolean
+  IdConfigurazione?: boolean
+  IdAccount?: boolean
   NomeOggetto?: boolean
   Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
   Oggetto?: boolean | Prisma.OggettoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["inventario"]>
 
 export type InventarioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  IdInventario?: boolean
+  IdConfigurazione?: boolean
+  IdAccount?: boolean
   NomeOggetto?: boolean
   Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
   Oggetto?: boolean | Prisma.OggettoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["inventario"]>
 
 export type InventarioSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  IdInventario?: boolean
+  IdConfigurazione?: boolean
+  IdAccount?: boolean
   NomeOggetto?: boolean
   Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
   Oggetto?: boolean | Prisma.OggettoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["inventario"]>
 
 export type InventarioSelectScalar = {
-  IdInventario?: boolean
+  IdConfigurazione?: boolean
+  IdAccount?: boolean
   NomeOggetto?: boolean
 }
 
-export type InventarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdInventario" | "NomeOggetto", ExtArgs["result"]["inventario"]>
+export type InventarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdConfigurazione" | "IdAccount" | "NomeOggetto", ExtArgs["result"]["inventario"]>
 export type InventarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
   Oggetto?: boolean | Prisma.OggettoDefaultArgs<ExtArgs>
@@ -545,7 +573,8 @@ export type $InventarioPayload<ExtArgs extends runtime.Types.Extensions.Internal
     Oggetto: Prisma.$OggettoPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    IdInventario: number
+    IdConfigurazione: string
+    IdAccount: number
     NomeOggetto: string
   }, ExtArgs["result"]["inventario"]>
   composites: {}
@@ -630,8 +659,8 @@ export interface InventarioDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 Inventarios
    * const inventarios = await prisma.inventario.findMany({ take: 10 })
    * 
-   * // Only select the `IdInventario`
-   * const inventarioWithIdInventarioOnly = await prisma.inventario.findMany({ select: { IdInventario: true } })
+   * // Only select the `IdConfigurazione`
+   * const inventarioWithIdConfigurazioneOnly = await prisma.inventario.findMany({ select: { IdConfigurazione: true } })
    * 
    */
   findMany<T extends InventarioFindManyArgs>(args?: Prisma.SelectSubset<T, InventarioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -675,9 +704,9 @@ export interface InventarioDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many Inventarios and only return the `IdInventario`
-   * const inventarioWithIdInventarioOnly = await prisma.inventario.createManyAndReturn({
-   *   select: { IdInventario: true },
+   * // Create many Inventarios and only return the `IdConfigurazione`
+   * const inventarioWithIdConfigurazioneOnly = await prisma.inventario.createManyAndReturn({
+   *   select: { IdConfigurazione: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -766,9 +795,9 @@ export interface InventarioDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more Inventarios and only return the `IdInventario`
-   * const inventarioWithIdInventarioOnly = await prisma.inventario.updateManyAndReturn({
-   *   select: { IdInventario: true },
+   * // Update zero or more Inventarios and only return the `IdConfigurazione`
+   * const inventarioWithIdConfigurazioneOnly = await prisma.inventario.updateManyAndReturn({
+   *   select: { IdConfigurazione: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -972,7 +1001,8 @@ export interface Prisma__InventarioClient<T, Null = never, ExtArgs extends runti
  * Fields of the Inventario model
  */
 export interface InventarioFieldRefs {
-  readonly IdInventario: Prisma.FieldRef<"Inventario", 'Int'>
+  readonly IdConfigurazione: Prisma.FieldRef<"Inventario", 'String'>
+  readonly IdAccount: Prisma.FieldRef<"Inventario", 'Int'>
   readonly NomeOggetto: Prisma.FieldRef<"Inventario", 'String'>
 }
     

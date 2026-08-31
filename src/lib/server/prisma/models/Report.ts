@@ -30,14 +30,12 @@ export type ReportAvgAggregateOutputType = {
   Id: number | null
   TargetId: number | null
   AuthorId: number | null
-  BanId: number | null
 }
 
 export type ReportSumAggregateOutputType = {
   Id: number | null
   TargetId: number | null
   AuthorId: number | null
-  BanId: number | null
 }
 
 export type ReportMinAggregateOutputType = {
@@ -46,7 +44,6 @@ export type ReportMinAggregateOutputType = {
   AuthorId: number | null
   Motivazione: string | null
   Descrizione: string | null
-  BanId: number | null
 }
 
 export type ReportMaxAggregateOutputType = {
@@ -55,7 +52,6 @@ export type ReportMaxAggregateOutputType = {
   AuthorId: number | null
   Motivazione: string | null
   Descrizione: string | null
-  BanId: number | null
 }
 
 export type ReportCountAggregateOutputType = {
@@ -64,7 +60,6 @@ export type ReportCountAggregateOutputType = {
   AuthorId: number
   Motivazione: number
   Descrizione: number
-  BanId: number
   _all: number
 }
 
@@ -73,14 +68,12 @@ export type ReportAvgAggregateInputType = {
   Id?: true
   TargetId?: true
   AuthorId?: true
-  BanId?: true
 }
 
 export type ReportSumAggregateInputType = {
   Id?: true
   TargetId?: true
   AuthorId?: true
-  BanId?: true
 }
 
 export type ReportMinAggregateInputType = {
@@ -89,7 +82,6 @@ export type ReportMinAggregateInputType = {
   AuthorId?: true
   Motivazione?: true
   Descrizione?: true
-  BanId?: true
 }
 
 export type ReportMaxAggregateInputType = {
@@ -98,7 +90,6 @@ export type ReportMaxAggregateInputType = {
   AuthorId?: true
   Motivazione?: true
   Descrizione?: true
-  BanId?: true
 }
 
 export type ReportCountAggregateInputType = {
@@ -107,7 +98,6 @@ export type ReportCountAggregateInputType = {
   AuthorId?: true
   Motivazione?: true
   Descrizione?: true
-  BanId?: true
   _all?: true
 }
 
@@ -203,7 +193,6 @@ export type ReportGroupByOutputType = {
   AuthorId: number
   Motivazione: string
   Descrizione: string | null
-  BanId: number
   _count: ReportCountAggregateOutputType | null
   _avg: ReportAvgAggregateOutputType | null
   _sum: ReportSumAggregateOutputType | null
@@ -235,7 +224,7 @@ export type ReportWhereInput = {
   AuthorId?: Prisma.IntFilter<"Report"> | number
   Motivazione?: Prisma.StringFilter<"Report"> | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
-  BanId?: Prisma.IntFilter<"Report"> | number
+  Banned?: Prisma.XOR<Prisma.Banned_AccountNullableScalarRelationFilter, Prisma.Banned_AccountWhereInput> | null
   Target?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   Author?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
 }
@@ -246,7 +235,7 @@ export type ReportOrderByWithRelationInput = {
   AuthorId?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrderInput | Prisma.SortOrder
-  BanId?: Prisma.SortOrder
+  Banned?: Prisma.Banned_AccountOrderByWithRelationInput
   Target?: Prisma.AccountOrderByWithRelationInput
   Author?: Prisma.AccountOrderByWithRelationInput
 }
@@ -260,7 +249,7 @@ export type ReportWhereUniqueInput = Prisma.AtLeast<{
   AuthorId?: Prisma.IntFilter<"Report"> | number
   Motivazione?: Prisma.StringFilter<"Report"> | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
-  BanId?: Prisma.IntFilter<"Report"> | number
+  Banned?: Prisma.XOR<Prisma.Banned_AccountNullableScalarRelationFilter, Prisma.Banned_AccountWhereInput> | null
   Target?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   Author?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
 }, "Id">
@@ -271,7 +260,6 @@ export type ReportOrderByWithAggregationInput = {
   AuthorId?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrderInput | Prisma.SortOrder
-  BanId?: Prisma.SortOrder
   _count?: Prisma.ReportCountOrderByAggregateInput
   _avg?: Prisma.ReportAvgOrderByAggregateInput
   _max?: Prisma.ReportMaxOrderByAggregateInput
@@ -288,13 +276,12 @@ export type ReportScalarWhereWithAggregatesInput = {
   AuthorId?: Prisma.IntWithAggregatesFilter<"Report"> | number
   Motivazione?: Prisma.StringWithAggregatesFilter<"Report"> | string
   Descrizione?: Prisma.StringNullableWithAggregatesFilter<"Report"> | string | null
-  BanId?: Prisma.IntWithAggregatesFilter<"Report"> | number
 }
 
 export type ReportCreateInput = {
   Motivazione: string
   Descrizione?: string | null
-  BanId: number
+  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutOrigineInput
   Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
   Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
 }
@@ -305,13 +292,13 @@ export type ReportUncheckedCreateInput = {
   AuthorId: number
   Motivazione: string
   Descrizione?: string | null
-  BanId: number
+  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutOrigineInput
 }
 
 export type ReportUpdateInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  BanId?: Prisma.IntFieldUpdateOperationsInput | number
+  Banned?: Prisma.Banned_AccountUpdateOneWithoutOrigineNestedInput
   Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
   Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
 }
@@ -322,7 +309,7 @@ export type ReportUncheckedUpdateInput = {
   AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  BanId?: Prisma.IntFieldUpdateOperationsInput | number
+  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutOrigineNestedInput
 }
 
 export type ReportCreateManyInput = {
@@ -331,13 +318,11 @@ export type ReportCreateManyInput = {
   AuthorId: number
   Motivazione: string
   Descrizione?: string | null
-  BanId: number
 }
 
 export type ReportUpdateManyMutationInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  BanId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ReportUncheckedUpdateManyInput = {
@@ -346,7 +331,6 @@ export type ReportUncheckedUpdateManyInput = {
   AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  BanId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ReportListRelationFilter = {
@@ -365,14 +349,12 @@ export type ReportCountOrderByAggregateInput = {
   AuthorId?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
-  BanId?: Prisma.SortOrder
 }
 
 export type ReportAvgOrderByAggregateInput = {
   Id?: Prisma.SortOrder
   TargetId?: Prisma.SortOrder
   AuthorId?: Prisma.SortOrder
-  BanId?: Prisma.SortOrder
 }
 
 export type ReportMaxOrderByAggregateInput = {
@@ -381,7 +363,6 @@ export type ReportMaxOrderByAggregateInput = {
   AuthorId?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
-  BanId?: Prisma.SortOrder
 }
 
 export type ReportMinOrderByAggregateInput = {
@@ -390,14 +371,17 @@ export type ReportMinOrderByAggregateInput = {
   AuthorId?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
-  BanId?: Prisma.SortOrder
 }
 
 export type ReportSumOrderByAggregateInput = {
   Id?: Prisma.SortOrder
   TargetId?: Prisma.SortOrder
   AuthorId?: Prisma.SortOrder
-  BanId?: Prisma.SortOrder
+}
+
+export type ReportScalarRelationFilter = {
+  is?: Prisma.ReportWhereInput
+  isNot?: Prisma.ReportWhereInput
 }
 
 export type ReportCreateNestedManyWithoutTargetInput = {
@@ -484,10 +468,24 @@ export type ReportUncheckedUpdateManyWithoutAuthorNestedInput = {
   deleteMany?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
 }
 
+export type ReportCreateNestedOneWithoutBannedInput = {
+  create?: Prisma.XOR<Prisma.ReportCreateWithoutBannedInput, Prisma.ReportUncheckedCreateWithoutBannedInput>
+  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutBannedInput
+  connect?: Prisma.ReportWhereUniqueInput
+}
+
+export type ReportUpdateOneRequiredWithoutBannedNestedInput = {
+  create?: Prisma.XOR<Prisma.ReportCreateWithoutBannedInput, Prisma.ReportUncheckedCreateWithoutBannedInput>
+  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutBannedInput
+  upsert?: Prisma.ReportUpsertWithoutBannedInput
+  connect?: Prisma.ReportWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ReportUpdateToOneWithWhereWithoutBannedInput, Prisma.ReportUpdateWithoutBannedInput>, Prisma.ReportUncheckedUpdateWithoutBannedInput>
+}
+
 export type ReportCreateWithoutTargetInput = {
   Motivazione: string
   Descrizione?: string | null
-  BanId: number
+  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutOrigineInput
   Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
 }
 
@@ -496,7 +494,7 @@ export type ReportUncheckedCreateWithoutTargetInput = {
   AuthorId: number
   Motivazione: string
   Descrizione?: string | null
-  BanId: number
+  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutOrigineInput
 }
 
 export type ReportCreateOrConnectWithoutTargetInput = {
@@ -512,7 +510,7 @@ export type ReportCreateManyTargetInputEnvelope = {
 export type ReportCreateWithoutAuthorInput = {
   Motivazione: string
   Descrizione?: string | null
-  BanId: number
+  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutOrigineInput
   Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
 }
 
@@ -521,7 +519,7 @@ export type ReportUncheckedCreateWithoutAuthorInput = {
   TargetId: number
   Motivazione: string
   Descrizione?: string | null
-  BanId: number
+  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutOrigineInput
 }
 
 export type ReportCreateOrConnectWithoutAuthorInput = {
@@ -559,7 +557,6 @@ export type ReportScalarWhereInput = {
   AuthorId?: Prisma.IntFilter<"Report"> | number
   Motivazione?: Prisma.StringFilter<"Report"> | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
-  BanId?: Prisma.IntFilter<"Report"> | number
 }
 
 export type ReportUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -578,12 +575,57 @@ export type ReportUpdateManyWithWhereWithoutAuthorInput = {
   data: Prisma.XOR<Prisma.ReportUpdateManyMutationInput, Prisma.ReportUncheckedUpdateManyWithoutAuthorInput>
 }
 
+export type ReportCreateWithoutBannedInput = {
+  Motivazione: string
+  Descrizione?: string | null
+  Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
+  Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
+}
+
+export type ReportUncheckedCreateWithoutBannedInput = {
+  Id?: number
+  TargetId: number
+  AuthorId: number
+  Motivazione: string
+  Descrizione?: string | null
+}
+
+export type ReportCreateOrConnectWithoutBannedInput = {
+  where: Prisma.ReportWhereUniqueInput
+  create: Prisma.XOR<Prisma.ReportCreateWithoutBannedInput, Prisma.ReportUncheckedCreateWithoutBannedInput>
+}
+
+export type ReportUpsertWithoutBannedInput = {
+  update: Prisma.XOR<Prisma.ReportUpdateWithoutBannedInput, Prisma.ReportUncheckedUpdateWithoutBannedInput>
+  create: Prisma.XOR<Prisma.ReportCreateWithoutBannedInput, Prisma.ReportUncheckedCreateWithoutBannedInput>
+  where?: Prisma.ReportWhereInput
+}
+
+export type ReportUpdateToOneWithWhereWithoutBannedInput = {
+  where?: Prisma.ReportWhereInput
+  data: Prisma.XOR<Prisma.ReportUpdateWithoutBannedInput, Prisma.ReportUncheckedUpdateWithoutBannedInput>
+}
+
+export type ReportUpdateWithoutBannedInput = {
+  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
+  Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
+}
+
+export type ReportUncheckedUpdateWithoutBannedInput = {
+  Id?: Prisma.IntFieldUpdateOperationsInput | number
+  TargetId?: Prisma.IntFieldUpdateOperationsInput | number
+  AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
+  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
 export type ReportCreateManyTargetInput = {
   Id?: number
   AuthorId: number
   Motivazione: string
   Descrizione?: string | null
-  BanId: number
 }
 
 export type ReportCreateManyAuthorInput = {
@@ -591,13 +633,12 @@ export type ReportCreateManyAuthorInput = {
   TargetId: number
   Motivazione: string
   Descrizione?: string | null
-  BanId: number
 }
 
 export type ReportUpdateWithoutTargetInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  BanId?: Prisma.IntFieldUpdateOperationsInput | number
+  Banned?: Prisma.Banned_AccountUpdateOneWithoutOrigineNestedInput
   Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
 }
 
@@ -606,7 +647,7 @@ export type ReportUncheckedUpdateWithoutTargetInput = {
   AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  BanId?: Prisma.IntFieldUpdateOperationsInput | number
+  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutOrigineNestedInput
 }
 
 export type ReportUncheckedUpdateManyWithoutTargetInput = {
@@ -614,13 +655,12 @@ export type ReportUncheckedUpdateManyWithoutTargetInput = {
   AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  BanId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ReportUpdateWithoutAuthorInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  BanId?: Prisma.IntFieldUpdateOperationsInput | number
+  Banned?: Prisma.Banned_AccountUpdateOneWithoutOrigineNestedInput
   Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
 }
 
@@ -629,7 +669,7 @@ export type ReportUncheckedUpdateWithoutAuthorInput = {
   TargetId?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  BanId?: Prisma.IntFieldUpdateOperationsInput | number
+  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutOrigineNestedInput
 }
 
 export type ReportUncheckedUpdateManyWithoutAuthorInput = {
@@ -637,7 +677,6 @@ export type ReportUncheckedUpdateManyWithoutAuthorInput = {
   TargetId?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  BanId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -648,7 +687,7 @@ export type ReportSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   AuthorId?: boolean
   Motivazione?: boolean
   Descrizione?: boolean
-  BanId?: boolean
+  Banned?: boolean | Prisma.Report$BannedArgs<ExtArgs>
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
@@ -659,7 +698,6 @@ export type ReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   AuthorId?: boolean
   Motivazione?: boolean
   Descrizione?: boolean
-  BanId?: boolean
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
@@ -670,7 +708,6 @@ export type ReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   AuthorId?: boolean
   Motivazione?: boolean
   Descrizione?: boolean
-  BanId?: boolean
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
@@ -681,11 +718,11 @@ export type ReportSelectScalar = {
   AuthorId?: boolean
   Motivazione?: boolean
   Descrizione?: boolean
-  BanId?: boolean
 }
 
-export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "TargetId" | "AuthorId" | "Motivazione" | "Descrizione" | "BanId", ExtArgs["result"]["report"]>
+export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "TargetId" | "AuthorId" | "Motivazione" | "Descrizione", ExtArgs["result"]["report"]>
 export type ReportInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Banned?: boolean | Prisma.Report$BannedArgs<ExtArgs>
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }
@@ -701,6 +738,7 @@ export type ReportIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Report"
   objects: {
+    Banned: Prisma.$Banned_AccountPayload<ExtArgs> | null
     Target: Prisma.$AccountPayload<ExtArgs>
     Author: Prisma.$AccountPayload<ExtArgs>
   }
@@ -710,7 +748,6 @@ export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     AuthorId: number
     Motivazione: string
     Descrizione: string | null
-    BanId: number
   }, ExtArgs["result"]["report"]>
   composites: {}
 }
@@ -1105,6 +1142,7 @@ readonly fields: ReportFieldRefs;
  */
 export interface Prisma__ReportClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  Banned<T extends Prisma.Report$BannedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Report$BannedArgs<ExtArgs>>): Prisma.Prisma__Banned_AccountClient<runtime.Types.Result.GetResult<Prisma.$Banned_AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   Target<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Author<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1141,7 +1179,6 @@ export interface ReportFieldRefs {
   readonly AuthorId: Prisma.FieldRef<"Report", 'Int'>
   readonly Motivazione: Prisma.FieldRef<"Report", 'String'>
   readonly Descrizione: Prisma.FieldRef<"Report", 'String'>
-  readonly BanId: Prisma.FieldRef<"Report", 'Int'>
 }
     
 
@@ -1540,6 +1577,25 @@ export type ReportDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Reports to delete.
    */
   limit?: number
+}
+
+/**
+ * Report.Banned
+ */
+export type Report$BannedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Banned_Account
+   */
+  select?: Prisma.Banned_AccountSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Banned_Account
+   */
+  omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
+  where?: Prisma.Banned_AccountWhereInput
 }
 
 /**

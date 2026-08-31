@@ -411,7 +411,8 @@ export const ModelName = {
   Partita: 'Partita',
   Modifica: 'Modifica',
   Storico: 'Storico',
-  Statistica: 'Statistica'
+  Statistica: 'Statistica',
+  SetBase: 'SetBase'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -427,7 +428,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "campione" | "cosmetico" | "ruolo" | "razza" | "campione_Razza" | "posizione" | "campione_Posizione" | "regione" | "campione_Regione" | "incantesimo" | "configurazione" | "oggetto" | "inventario" | "account" | "sessione" | "report" | "banned_Account" | "kit" | "abilita" | "kit_Abilita" | "pagina_Runa" | "sezione_Runa" | "runa" | "tipologia_runa" | "partita" | "modifica" | "storico" | "statistica"
+    modelProps: "campione" | "cosmetico" | "ruolo" | "razza" | "campione_Razza" | "posizione" | "campione_Posizione" | "regione" | "campione_Regione" | "incantesimo" | "configurazione" | "oggetto" | "inventario" | "account" | "sessione" | "report" | "banned_Account" | "kit" | "abilita" | "kit_Abilita" | "pagina_Runa" | "sezione_Runa" | "runa" | "tipologia_runa" | "partita" | "modifica" | "storico" | "statistica" | "setBase"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2503,6 +2504,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SetBase: {
+      payload: Prisma.$SetBasePayload<ExtArgs>
+      fields: Prisma.SetBaseFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SetBaseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SetBaseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload>
+        }
+        findFirst: {
+          args: Prisma.SetBaseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SetBaseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload>
+        }
+        findMany: {
+          args: Prisma.SetBaseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload>[]
+        }
+        create: {
+          args: Prisma.SetBaseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload>
+        }
+        createMany: {
+          args: Prisma.SetBaseCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SetBaseCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload>[]
+        }
+        delete: {
+          args: Prisma.SetBaseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload>
+        }
+        update: {
+          args: Prisma.SetBaseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload>
+        }
+        deleteMany: {
+          args: Prisma.SetBaseDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SetBaseUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SetBaseUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload>[]
+        }
+        upsert: {
+          args: Prisma.SetBaseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetBasePayload>
+        }
+        aggregate: {
+          args: Prisma.SetBaseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSetBase>
+        }
+        groupBy: {
+          args: Prisma.SetBaseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SetBaseGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SetBaseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SetBaseCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2557,7 +2632,8 @@ export const CampioneScalarFieldEnum = {
   Armatura: 'Armatura',
   Resistenza_magica: 'Resistenza_magica',
   Velocità_di_attacco: 'Velocità_di_attacco',
-  Gittata: 'Gittata'
+  Gittata: 'Gittata',
+  SetStatistiche: 'SetStatistiche'
 } as const
 
 export type CampioneScalarFieldEnum = (typeof CampioneScalarFieldEnum)[keyof typeof CampioneScalarFieldEnum]
@@ -2637,11 +2713,11 @@ export type IncantesimoScalarFieldEnum = (typeof IncantesimoScalarFieldEnum)[key
 
 
 export const ConfigurazioneScalarFieldEnum = {
-  ID: 'ID',
+  TitoloConf: 'TitoloConf',
   IdCampione: 'IdCampione',
   Incantesimo1: 'Incantesimo1',
   Incantesimo2: 'Incantesimo2',
-  Account: 'Account',
+  IdAccount: 'IdAccount',
   Runa: 'Runa'
 } as const
 
@@ -2652,14 +2728,16 @@ export const OggettoScalarFieldEnum = {
   Nome: 'Nome',
   Costo: 'Costo',
   Descrizione: 'Descrizione',
-  Immagine: 'Immagine'
+  Immagine: 'Immagine',
+  SetStatistiche: 'SetStatistiche'
 } as const
 
 export type OggettoScalarFieldEnum = (typeof OggettoScalarFieldEnum)[keyof typeof OggettoScalarFieldEnum]
 
 
 export const InventarioScalarFieldEnum = {
-  IdInventario: 'IdInventario',
+  IdConfigurazione: 'IdConfigurazione',
+  IdAccount: 'IdAccount',
   NomeOggetto: 'NomeOggetto'
 } as const
 
@@ -2695,15 +2773,13 @@ export const ReportScalarFieldEnum = {
   TargetId: 'TargetId',
   AuthorId: 'AuthorId',
   Motivazione: 'Motivazione',
-  Descrizione: 'Descrizione',
-  BanId: 'BanId'
+  Descrizione: 'Descrizione'
 } as const
 
 export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum]
 
 
 export const Banned_AccountScalarFieldEnum = {
-  Id: 'Id',
   AccountId: 'AccountId',
   Motivazione: 'Motivazione',
   Descrizione: 'Descrizione',
@@ -2782,11 +2858,13 @@ export type Tipologia_runaScalarFieldEnum = (typeof Tipologia_runaScalarFieldEnu
 
 
 export const PartitaScalarFieldEnum = {
-  Id: 'Id',
   ConfigurazioneId: 'ConfigurazioneId',
   Data: 'Data',
   Risultato: 'Risultato',
-  AccountId: 'AccountId'
+  AccountId: 'AccountId',
+  Uccisioni: 'Uccisioni',
+  Morti: 'Morti',
+  Assist: 'Assist'
 } as const
 
 export type PartitaScalarFieldEnum = (typeof PartitaScalarFieldEnum)[keyof typeof PartitaScalarFieldEnum]
@@ -2816,6 +2894,33 @@ export const StatisticaScalarFieldEnum = {
 } as const
 
 export type StatisticaScalarFieldEnum = (typeof StatisticaScalarFieldEnum)[keyof typeof StatisticaScalarFieldEnum]
+
+
+export const SetBaseScalarFieldEnum = {
+  IdStatistiche: 'IdStatistiche',
+  Vita: 'Vita',
+  VitaPerLivello: 'VitaPerLivello',
+  Mana: 'Mana',
+  ManaPerLivello: 'ManaPerLivello',
+  Velocità_di_movimento: 'Velocità_di_movimento',
+  Armatura: 'Armatura',
+  ArmaturaPerLivello: 'ArmaturaPerLivello',
+  ResistenzaMagica: 'ResistenzaMagica',
+  ResistenzaMagicaPerLivello: 'ResistenzaMagicaPerLivello',
+  Gittata: 'Gittata',
+  RigenerazioneVita: 'RigenerazioneVita',
+  RigenerazioneMana: 'RigenerazioneMana',
+  RigenerazioneManaPerLivello: 'RigenerazioneManaPerLivello',
+  Critico: 'Critico',
+  CriticoPerLivello: 'CriticoPerLivello',
+  Attacco: 'Attacco',
+  AttaccoPerLivello: 'AttaccoPerLivello',
+  VelocitàDiAttacco: 'VelocitàDiAttacco',
+  VelocitàDiAttaccoPerLivello: 'VelocitàDiAttaccoPerLivello',
+  AttaccoMagico: 'AttaccoMagico'
+} as const
+
+export type SetBaseScalarFieldEnum = (typeof SetBaseScalarFieldEnum)[keyof typeof SetBaseScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -3076,6 +3181,7 @@ export type GlobalOmitConfig = {
   modifica?: Prisma.ModificaOmit
   storico?: Prisma.StoricoOmit
   statistica?: Prisma.StatisticaOmit
+  setBase?: Prisma.SetBaseOmit
 }
 
 /* Types for Logging */

@@ -2,13 +2,17 @@
   import Itemselector from "$lib/components/Itemselector.svelte";
   import Navbar from "$lib/components/navbar.svelte";
   import Runeselector from "$lib/components/runeselector.svelte";
+  import type { Campione } from "$lib/server/prisma/client.js";
   import type { StatItem } from "$lib/types";
+  import { setContext } from "svelte";
 
   let { data } = $props();
 
-  const defaultTitle = $derived(data.champ.replaceAll("-", " "));
+  const champ: Campione = data.champ;
 
-  let currentTitle = $derived(data.champ.replaceAll("-", " "));
+  const defaultTitle = $derived(data.title.replaceAll("-", " "));
+
+  let currentTitle = $derived(data.title.replaceAll("-", " "));
   let isEditing = $state(false);
 
   function handleKeydown(event: KeyboardEvent) {
@@ -25,28 +29,124 @@
     node.focus();
   }
 
-  // PLACEHOLDER
   const stats: StatItem[] = [
-    { id: 1, name: "Attack Damage", value: "75" },
-    { id: 2, name: "Ability Power", value: "120" },
-    { id: 3, name: "Armor", value: "45" },
-    { id: 4, name: "Magic Resist", value: "38" },
-    { id: 5, name: "Attack Speed", value: "1.42" },
-    { id: 6, name: "Ability Haste", value: "25" },
-    { id: 7, name: "Critical Strike", value: "20%" },
-    { id: 8, name: "Lethality", value: "18" },
-    { id: 9, name: "Move Speed", value: "345" },
+    { id: 1, name: "Attack Damage", value: champ.Attacco },
+    { id: 2, name: "Ability Power", value: champ.AttaccoMagico },
+    { id: 3, name: "Armor", value: champ.Armatura },
+    { id: 4, name: "Magic Resist", value: champ.Resistenza_magica },
+    { id: 5, name: "Attack Speed", value: champ.Velocità_di_attacco },
+    { id: 6, name: "Range", value: champ.Gittata },
+    { id: 7, name: "Mana", value: champ.Vita },
+    { id: 8, name: "HP", value: champ.Mana },
+    { id: 9, name: "Move Speed", value: champ.Velocità_di_movimento },
   ];
 
   let wins = $state(0);
   let losses = $state(0);
+
+  //TODO: PLACE HOLDER
+  type MatchRecord = {
+    id: number;
+    date: string;
+    kda: string;
+    result: "Win" | "Loss";
+  };
+
+  let matches: MatchRecord[] = $state([]);
+
+  let isAddingGame = $state(false);
+
+  let editingMatchId = $state<number | null>(null);
+  let originalResult = $state<"Win" | "Loss" | null>(null);
+
+  let newDate = $state(new Date().toLocaleDateString("it-IT"));
+  let newK = $state(0);
+  let newD = $state(0);
+  let newA = $state(0);
+  let newResult = $state<"Win" | "Loss">("Win");
+
+  function openAddGame() {
+    editingMatchId = null;
+    originalResult = null;
+    newDate = new Date().toLocaleDateString("it-IT");
+    newK = 0;
+    newD = 0;
+    newA = 0;
+    newResult = "Win";
+    isAddingGame = true;
+  }
+
+  function cancelForm() {
+    isAddingGame = false;
+    editingMatchId = null;
+    originalResult = null;
+  }
+
+  function editGame(match: MatchRecord) {
+    editingMatchId = match.id;
+    originalResult = match.result;
+    newDate = match.date;
+
+    const [k, d, a] = match.kda.split("/");
+    newK = parseInt(k) || 0;
+    newD = parseInt(d) || 0;
+    newA = parseInt(a) || 0;
+
+    newResult = match.result;
+    isAddingGame = true;
+  }
+
+  function deleteGame(id: number) {
+    const matchIndex = matches.findIndex((m) => m.id === id);
+    if (matchIndex > -1) {
+      const match = matches[matchIndex];
+      if (match.result === "Win") wins--;
+      else losses--;
+
+      matches.splice(matchIndex, 1);
+    }
+  }
+
+  function saveGame() {
+    if (editingMatchId !== null) {
+      const matchIndex = matches.findIndex((m) => m.id === editingMatchId);
+      if (matchIndex > -1) {
+        matches[matchIndex].date = newDate;
+        matches[matchIndex].kda = `${newK}/${newD}/${newA}`;
+        matches[matchIndex].result = newResult;
+
+        if (originalResult !== newResult) {
+          if (originalResult === "Win") wins--;
+          else losses--;
+
+          if (newResult === "Win") wins++;
+          else losses++;
+        }
+      }
+    } else {
+      const newMatch: MatchRecord = {
+        id: Date.now(),
+        date: newDate,
+        kda: `${newK}/${newD}/${newA}`,
+        result: newResult,
+      };
+      matches.push(newMatch);
+
+      if (newResult === "Win") wins++;
+      else losses++;
+    }
+
+    cancelForm();
+  }
 </script>
 
 <div class="container">
   <div class="buildinfo-content">
-    <Navbar profile={data.profile} />
+    <Navbar profile={data.profile} role={data.role} />
     <div class="buildinfo-header">
-      <div class="champpic"></div>
+      <div class="champpic">
+        <img src={champ.Icona} alt="champ icon" />
+      </div>
 
       {#if isEditing}
         <input
@@ -108,40 +208,93 @@
 
     <div class="buildinfo-results">
       <div class="buildinfo-sectiontitle">Results</div>
+
       <div class="result-container">
         <div class="result-content">
           <div class="buildinfo-section-column">Victories</div>
-          <div class="result-value">
-            <button class="stepper-btn" onclick={() => (wins > 0 ? wins-- : 0)}
-              >-</button
-            >
-            <input
-              type="number"
-              name="wins"
-              min="0"
-              bind:value={wins}
-              class="winloss"
-            />
-            <button class="stepper-btn" onclick={() => wins++}>+</button>
-          </div>
+          <div class="winloss">{wins}</div>
         </div>
 
         <div class="result-content">
           <div class="buildinfo-section-column">Losses</div>
-          <div class="result-value">
-            <button
-              class="stepper-btn"
-              onclick={() => (losses > 0 ? losses-- : 0)}>-</button
-            >
-            <input
-              type="number"
-              name="losses"
-              min="0"
-              bind:value={losses}
-              class="winloss"
-            />
-            <button class="stepper-btn" onclick={() => losses++}>+</button>
+          <div class="winloss">{losses}</div>
+        </div>
+      </div>
+
+      <div class="buildinfo-match">
+        {#if isAddingGame}
+          <div class="add-game-form">
+            <div class="form-row">
+              <input
+                type="text"
+                class="form-input date-input"
+                bind:value={newDate}
+                placeholder="Data (es. 30/08/2026)"
+              />
+
+              <div class="kda-inputs">
+                <input
+                  type="number"
+                  class="form-input number-input"
+                  bind:value={newK}
+                  min="0"
+                />
+                /
+                <input
+                  type="number"
+                  class="form-input number-input"
+                  bind:value={newD}
+                  min="0"
+                />
+                /
+                <input
+                  type="number"
+                  class="form-input number-input"
+                  bind:value={newA}
+                  min="0"
+                />
+              </div>
+
+              <select class="form-input result-select" bind:value={newResult}>
+                <option value="Win">Win</option>
+                <option value="Loss">Loss</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button class="action-btn cancel-btn" onclick={cancelForm}
+                >cancel</button
+              >
+              <button class="action-btn save-btn" onclick={saveGame}
+                >save</button
+              >
+            </div>
           </div>
+        {:else}
+          <button class="add-game-btn" onclick={openAddGame}>
+            + add game
+          </button>
+        {/if}
+
+        <div class="match-list">
+          {#each matches as match (match.id)}
+            <div class="match-item">
+              <span class="match-date">partita del {match.date}</span>
+              <span class="match-kda">{match.kda}</span>
+              <span class="match-result">{match.result}</span>
+
+              <!-- Sezione azioni (Modifica / Elimina) -->
+              <div class="match-actions">
+                <button class="action-txt-btn" onclick={() => editGame(match)}
+                  >edit</button
+                >
+                <button
+                  class="action-txt-btn delete"
+                  onclick={() => deleteGame(match.id)}>x</button
+                >
+              </div>
+            </div>
+          {/each}
         </div>
       </div>
     </div>
@@ -194,10 +347,19 @@
   }
 
   .champpic {
-    background-color: red;
     height: 100%;
     aspect-ratio: 1;
-    border-radius: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #111214;
+    border: 1px solid var(--white-20);
+  }
+
+  .champpic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .pen {
@@ -306,6 +468,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 50px;
   }
 
   .result-container {
@@ -313,6 +476,7 @@
     flex-direction: row;
 
     box-sizing: border-box;
+    gap: 200px;
   }
 
   .result-content {
@@ -325,29 +489,6 @@
     box-sizing: border-box;
   }
 
-  .result-value {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .stepper-btn {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: var(--text-xlm);
-    font-family: var(--font-mono);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .stepper-btn:hover {
-    opacity: 0.7;
-  }
-
   .winloss {
     border: none;
     background-color: transparent;
@@ -358,20 +499,187 @@
     max-width: 30%;
   }
 
-  .winloss:focus {
-    outline: none;
-    border-bottom: 1px solid white;
+  .buildinfo-match {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
   }
 
-  /*Default arrows hiding*/
-  .winloss::-webkit-outer-spin-button,
-  .winloss::-webkit-inner-spin-button {
+  .add-game-btn {
+    width: 100%;
+    max-width: 700px;
+    padding: 15px;
+    background: transparent;
+    border: 1px dashed var(--white-20);
+    color: white;
+    font-family: var(--font-mono);
+    font-size: var(--text-md);
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      opacity 0.2s;
+    text-align: center;
+  }
+
+  .add-game-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .match-list {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .match-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--white-20);
+    font-family: var(--font-mono);
+    color: white;
+  }
+
+  .match-item > span {
+    flex: 1;
+  }
+
+  .match-date {
+    text-align: left;
+  }
+
+  .match-kda {
+    text-align: center;
+  }
+
+  .match-result {
+    text-align: right;
+  }
+
+  .match-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    min-width: 70px;
+    margin-left: 15px;
+  }
+
+  .action-txt-btn {
+    background: transparent;
+    border: none;
+    color: var(--white-20);
+    font-family: var(--font-mono);
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+  }
+
+  .action-txt-btn:hover {
+    color: white;
+  }
+
+  .action-txt-btn.delete:hover {
+    color: #ff4444;
+  }
+
+  .add-game-form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border: 1px dashed var(--white-20);
+  }
+
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .form-input {
+    background: transparent;
+    border: 1px solid var(--white-20);
+    color: white;
+    font-family: var(--font-mono);
+    font-size: var(--text-md);
+    padding: 5px 10px;
+    outline: none;
+  }
+
+  .form-input:focus {
+    border-color: white;
+  }
+
+  .date-input {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .kda-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    color: var(--white-20);
+  }
+
+  .number-input {
+    width: 50px;
+    text-align: center;
+  }
+
+  .number-input::-webkit-outer-spin-button,
+  .number-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-
-  .winloss[type="number"] {
+  .number-input[type="number"] {
     -moz-appearance: textfield;
+  }
+
+  .result-select {
+    width: 90px;
+    cursor: pointer;
+  }
+
+  .result-select option {
+    background-color: #111214;
+    color: white;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .action-btn {
+    background: transparent;
+    border: 1px solid var(--white-20);
+    color: white;
+    font-family: var(--font-mono);
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .cancel-btn:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-color: rgba(255, 0, 0, 0.5);
+  }
+
+  .save-btn:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    border-color: rgba(0, 255, 0, 0.5);
   }
 
   @media (max-width: 500px) {

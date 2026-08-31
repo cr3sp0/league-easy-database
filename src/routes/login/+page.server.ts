@@ -1,7 +1,6 @@
 import { popup } from "$lib/components/store/popup.svelte";
 import { hashPassword, verifyPassword } from "$lib/server/auth";
 import prisma from "$lib/server/prisma";
-import type { ISession } from "$lib/types";
 import { fail, type Action, type Actions } from "@sveltejs/kit";
 
 const TimeLimit_h = 5

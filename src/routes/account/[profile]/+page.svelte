@@ -5,6 +5,7 @@
     import CreateReport from '$lib/components/createReport.svelte';
     import { enhance } from '$app/forms';
     import type { completeBuild } from '$lib/server/buildManager.js';
+    import { popup } from '$lib/components/store/popup.svelte.js';
     
     let { data } = $props();
 

@@ -4,24 +4,27 @@ import prisma from "$lib/server/prisma";
 import { goto } from "$app/navigation";
 import { popup } from "$lib/components/store/popup.svelte";
 
-export const load : PageServerLoad = async ({ params, cookies, locals, url }) => {
-    try {
-        let profile = locals.user
-        const path = url.href.split(url.origin).reduce((a, b) => a + b)
+export const load : PageServerLoad = async ({ params, locals }) => {
+    const user = locals.user
 
-        if ("/account/" + profile.username + "/settings" !== path) {
+    let images
+    
+    try {
+        if(user === undefined) {
+            throw { message : "Access denied" }
+        }
+        if (user.username !== params.profile) {
             throw { message: "Only the owner of this Account has access to this page" }
         }
-
         //SELECT icona FROM Campioni
-        let images = await prisma.campione.findMany({
+        images = await prisma.campione.findMany({
             select: {
                 Icona: true
             }
         })
 
         // TODO: Add explicit query sql
-        let accountInfo = await prisma.account.findFirst({
+        let accountInfo = await prisma.account.findUnique({
             select: {
                 AccountId: true,
                 Nome: true,
@@ -29,7 +32,7 @@ export const load : PageServerLoad = async ({ params, cookies, locals, url }) =>
                 Immagine: true,
             },
             where: {
-                AccountId: profile.userID
+                AccountId: user.userID
             }
         })
 
@@ -37,22 +40,19 @@ export const load : PageServerLoad = async ({ params, cookies, locals, url }) =>
             throw { message: "Account Missing." }
         }
         
-        //images.map(i => i.Icona).forEach(i => console.log(i))
-
-        return {
-            profile: profile,
-            profileRole: profile.isAdmin
-                ? "Admin" : "User",
-            imageList: images.map(i => i.Icona)
-        }
-
     } catch(error : any) {
         console.error("Error: ", error.message)
-
+        
         popup.color = "red"
         popup.text = "" + error.message
         
         return redirect(303, "/")
+    }
+    return {
+        profile: user,
+        profileRole: user.isAdmin
+            ? "Admin" : "User",
+        imageList: images.map(i => i.Icona)
     }
 }
 

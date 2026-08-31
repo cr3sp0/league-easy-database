@@ -1,7 +1,7 @@
 <script lang="ts">
     import { fade } from "svelte/transition";
 
-    let { color, text = $bindable() } : { color? : 'green' | 'red', text? : String } = $props()
+    let { color = $bindable(), text = $bindable() } : { color? : 'green' | 'red', text? : String } = $props()
 
     $effect( () => {
         if (text !== "") {

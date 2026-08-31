@@ -20,7 +20,7 @@
 
 <div class="container">
   <div class="builder-content">
-    <Navbar profile={data.profile} />
+    <Navbar profile={data.profile} role={data.role} />
     <div class="builder-header-container">
       <div class="title">Builder</div>
       <div class="builder-message section">

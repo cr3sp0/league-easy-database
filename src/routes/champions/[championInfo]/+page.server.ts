@@ -6,7 +6,10 @@ export const load: PageServerLoad = async ({ params, cookies, locals }) => {
     const champion = await getChampionAndCosmeticsByName(params.championInfo);
 
     return {
-        profile: locals.user.username,
+        profile: locals.user 
+            ? locals.user.username : undefined,
+        role: locals.user.isAdmin
+            ? "Admin" : "User",
         champion: champion
     };
 }

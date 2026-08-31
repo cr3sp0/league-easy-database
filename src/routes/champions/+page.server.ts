@@ -8,6 +8,8 @@ export const load: PageServerLoad = async ({params, cookies, locals}) => {
   return {
     profile: locals.user 
       ? locals.user.username : undefined,
+    role: locals.user.isAdmin
+      ? "Admin" : "User",
     champions: champions
   };
 };

@@ -27,19 +27,16 @@ export type AggregateBanned_Account = {
 }
 
 export type Banned_AccountAvgAggregateOutputType = {
-  Id: number | null
   AccountId: number | null
   ReportOrigineId: number | null
 }
 
 export type Banned_AccountSumAggregateOutputType = {
-  Id: number | null
   AccountId: number | null
   ReportOrigineId: number | null
 }
 
 export type Banned_AccountMinAggregateOutputType = {
-  Id: number | null
   AccountId: number | null
   Motivazione: string | null
   Descrizione: string | null
@@ -47,7 +44,6 @@ export type Banned_AccountMinAggregateOutputType = {
 }
 
 export type Banned_AccountMaxAggregateOutputType = {
-  Id: number | null
   AccountId: number | null
   Motivazione: string | null
   Descrizione: string | null
@@ -55,7 +51,6 @@ export type Banned_AccountMaxAggregateOutputType = {
 }
 
 export type Banned_AccountCountAggregateOutputType = {
-  Id: number
   AccountId: number
   Motivazione: number
   Descrizione: number
@@ -65,19 +60,16 @@ export type Banned_AccountCountAggregateOutputType = {
 
 
 export type Banned_AccountAvgAggregateInputType = {
-  Id?: true
   AccountId?: true
   ReportOrigineId?: true
 }
 
 export type Banned_AccountSumAggregateInputType = {
-  Id?: true
   AccountId?: true
   ReportOrigineId?: true
 }
 
 export type Banned_AccountMinAggregateInputType = {
-  Id?: true
   AccountId?: true
   Motivazione?: true
   Descrizione?: true
@@ -85,7 +77,6 @@ export type Banned_AccountMinAggregateInputType = {
 }
 
 export type Banned_AccountMaxAggregateInputType = {
-  Id?: true
   AccountId?: true
   Motivazione?: true
   Descrizione?: true
@@ -93,7 +84,6 @@ export type Banned_AccountMaxAggregateInputType = {
 }
 
 export type Banned_AccountCountAggregateInputType = {
-  Id?: true
   AccountId?: true
   Motivazione?: true
   Descrizione?: true
@@ -188,7 +178,6 @@ export type Banned_AccountGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 export type Banned_AccountGroupByOutputType = {
-  Id: number
   AccountId: number
   Motivazione: string
   Descrizione: string | null
@@ -219,23 +208,22 @@ export type Banned_AccountWhereInput = {
   AND?: Prisma.Banned_AccountWhereInput | Prisma.Banned_AccountWhereInput[]
   OR?: Prisma.Banned_AccountWhereInput[]
   NOT?: Prisma.Banned_AccountWhereInput | Prisma.Banned_AccountWhereInput[]
-  Id?: Prisma.IntFilter<"Banned_Account"> | number
   AccountId?: Prisma.IntFilter<"Banned_Account"> | number
   Motivazione?: Prisma.StringFilter<"Banned_Account"> | string
   Descrizione?: Prisma.StringNullableFilter<"Banned_Account"> | string | null
   ReportOrigineId?: Prisma.IntFilter<"Banned_Account"> | number
+  Origine?: Prisma.XOR<Prisma.ReportScalarRelationFilter, Prisma.ReportWhereInput>
 }
 
 export type Banned_AccountOrderByWithRelationInput = {
-  Id?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrderInput | Prisma.SortOrder
   ReportOrigineId?: Prisma.SortOrder
+  Origine?: Prisma.ReportOrderByWithRelationInput
 }
 
 export type Banned_AccountWhereUniqueInput = Prisma.AtLeast<{
-  Id?: number
   AccountId?: number
   ReportOrigineId?: number
   AND?: Prisma.Banned_AccountWhereInput | Prisma.Banned_AccountWhereInput[]
@@ -243,10 +231,10 @@ export type Banned_AccountWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.Banned_AccountWhereInput | Prisma.Banned_AccountWhereInput[]
   Motivazione?: Prisma.StringFilter<"Banned_Account"> | string
   Descrizione?: Prisma.StringNullableFilter<"Banned_Account"> | string | null
-}, "Id" | "AccountId" | "ReportOrigineId">
+  Origine?: Prisma.XOR<Prisma.ReportScalarRelationFilter, Prisma.ReportWhereInput>
+}, "AccountId" | "ReportOrigineId">
 
 export type Banned_AccountOrderByWithAggregationInput = {
-  Id?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -262,7 +250,6 @@ export type Banned_AccountScalarWhereWithAggregatesInput = {
   AND?: Prisma.Banned_AccountScalarWhereWithAggregatesInput | Prisma.Banned_AccountScalarWhereWithAggregatesInput[]
   OR?: Prisma.Banned_AccountScalarWhereWithAggregatesInput[]
   NOT?: Prisma.Banned_AccountScalarWhereWithAggregatesInput | Prisma.Banned_AccountScalarWhereWithAggregatesInput[]
-  Id?: Prisma.IntWithAggregatesFilter<"Banned_Account"> | number
   AccountId?: Prisma.IntWithAggregatesFilter<"Banned_Account"> | number
   Motivazione?: Prisma.StringWithAggregatesFilter<"Banned_Account"> | string
   Descrizione?: Prisma.StringNullableWithAggregatesFilter<"Banned_Account"> | string | null
@@ -273,11 +260,10 @@ export type Banned_AccountCreateInput = {
   AccountId: number
   Motivazione: string
   Descrizione?: string | null
-  ReportOrigineId: number
+  Origine: Prisma.ReportCreateNestedOneWithoutBannedInput
 }
 
 export type Banned_AccountUncheckedCreateInput = {
-  Id?: number
   AccountId: number
   Motivazione: string
   Descrizione?: string | null
@@ -288,11 +274,10 @@ export type Banned_AccountUpdateInput = {
   AccountId?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ReportOrigineId?: Prisma.IntFieldUpdateOperationsInput | number
+  Origine?: Prisma.ReportUpdateOneRequiredWithoutBannedNestedInput
 }
 
 export type Banned_AccountUncheckedUpdateInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   AccountId?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -300,7 +285,6 @@ export type Banned_AccountUncheckedUpdateInput = {
 }
 
 export type Banned_AccountCreateManyInput = {
-  Id?: number
   AccountId: number
   Motivazione: string
   Descrizione?: string | null
@@ -311,19 +295,21 @@ export type Banned_AccountUpdateManyMutationInput = {
   AccountId?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ReportOrigineId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type Banned_AccountUncheckedUpdateManyInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   AccountId?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ReportOrigineId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
+export type Banned_AccountNullableScalarRelationFilter = {
+  is?: Prisma.Banned_AccountWhereInput | null
+  isNot?: Prisma.Banned_AccountWhereInput | null
+}
+
 export type Banned_AccountCountOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
@@ -331,13 +317,11 @@ export type Banned_AccountCountOrderByAggregateInput = {
 }
 
 export type Banned_AccountAvgOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
   ReportOrigineId?: Prisma.SortOrder
 }
 
 export type Banned_AccountMaxOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
@@ -345,7 +329,6 @@ export type Banned_AccountMaxOrderByAggregateInput = {
 }
 
 export type Banned_AccountMinOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
@@ -353,52 +336,132 @@ export type Banned_AccountMinOrderByAggregateInput = {
 }
 
 export type Banned_AccountSumOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
   ReportOrigineId?: Prisma.SortOrder
+}
+
+export type Banned_AccountCreateNestedOneWithoutOrigineInput = {
+  create?: Prisma.XOR<Prisma.Banned_AccountCreateWithoutOrigineInput, Prisma.Banned_AccountUncheckedCreateWithoutOrigineInput>
+  connectOrCreate?: Prisma.Banned_AccountCreateOrConnectWithoutOrigineInput
+  connect?: Prisma.Banned_AccountWhereUniqueInput
+}
+
+export type Banned_AccountUncheckedCreateNestedOneWithoutOrigineInput = {
+  create?: Prisma.XOR<Prisma.Banned_AccountCreateWithoutOrigineInput, Prisma.Banned_AccountUncheckedCreateWithoutOrigineInput>
+  connectOrCreate?: Prisma.Banned_AccountCreateOrConnectWithoutOrigineInput
+  connect?: Prisma.Banned_AccountWhereUniqueInput
+}
+
+export type Banned_AccountUpdateOneWithoutOrigineNestedInput = {
+  create?: Prisma.XOR<Prisma.Banned_AccountCreateWithoutOrigineInput, Prisma.Banned_AccountUncheckedCreateWithoutOrigineInput>
+  connectOrCreate?: Prisma.Banned_AccountCreateOrConnectWithoutOrigineInput
+  upsert?: Prisma.Banned_AccountUpsertWithoutOrigineInput
+  disconnect?: Prisma.Banned_AccountWhereInput | boolean
+  delete?: Prisma.Banned_AccountWhereInput | boolean
+  connect?: Prisma.Banned_AccountWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.Banned_AccountUpdateToOneWithWhereWithoutOrigineInput, Prisma.Banned_AccountUpdateWithoutOrigineInput>, Prisma.Banned_AccountUncheckedUpdateWithoutOrigineInput>
+}
+
+export type Banned_AccountUncheckedUpdateOneWithoutOrigineNestedInput = {
+  create?: Prisma.XOR<Prisma.Banned_AccountCreateWithoutOrigineInput, Prisma.Banned_AccountUncheckedCreateWithoutOrigineInput>
+  connectOrCreate?: Prisma.Banned_AccountCreateOrConnectWithoutOrigineInput
+  upsert?: Prisma.Banned_AccountUpsertWithoutOrigineInput
+  disconnect?: Prisma.Banned_AccountWhereInput | boolean
+  delete?: Prisma.Banned_AccountWhereInput | boolean
+  connect?: Prisma.Banned_AccountWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.Banned_AccountUpdateToOneWithWhereWithoutOrigineInput, Prisma.Banned_AccountUpdateWithoutOrigineInput>, Prisma.Banned_AccountUncheckedUpdateWithoutOrigineInput>
+}
+
+export type Banned_AccountCreateWithoutOrigineInput = {
+  AccountId: number
+  Motivazione: string
+  Descrizione?: string | null
+}
+
+export type Banned_AccountUncheckedCreateWithoutOrigineInput = {
+  AccountId: number
+  Motivazione: string
+  Descrizione?: string | null
+}
+
+export type Banned_AccountCreateOrConnectWithoutOrigineInput = {
+  where: Prisma.Banned_AccountWhereUniqueInput
+  create: Prisma.XOR<Prisma.Banned_AccountCreateWithoutOrigineInput, Prisma.Banned_AccountUncheckedCreateWithoutOrigineInput>
+}
+
+export type Banned_AccountUpsertWithoutOrigineInput = {
+  update: Prisma.XOR<Prisma.Banned_AccountUpdateWithoutOrigineInput, Prisma.Banned_AccountUncheckedUpdateWithoutOrigineInput>
+  create: Prisma.XOR<Prisma.Banned_AccountCreateWithoutOrigineInput, Prisma.Banned_AccountUncheckedCreateWithoutOrigineInput>
+  where?: Prisma.Banned_AccountWhereInput
+}
+
+export type Banned_AccountUpdateToOneWithWhereWithoutOrigineInput = {
+  where?: Prisma.Banned_AccountWhereInput
+  data: Prisma.XOR<Prisma.Banned_AccountUpdateWithoutOrigineInput, Prisma.Banned_AccountUncheckedUpdateWithoutOrigineInput>
+}
+
+export type Banned_AccountUpdateWithoutOrigineInput = {
+  AccountId?: Prisma.IntFieldUpdateOperationsInput | number
+  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type Banned_AccountUncheckedUpdateWithoutOrigineInput = {
+  AccountId?: Prisma.IntFieldUpdateOperationsInput | number
+  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
 
 export type Banned_AccountSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  Id?: boolean
   AccountId?: boolean
   Motivazione?: boolean
   Descrizione?: boolean
   ReportOrigineId?: boolean
+  Origine?: boolean | Prisma.ReportDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["banned_Account"]>
 
 export type Banned_AccountSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  Id?: boolean
   AccountId?: boolean
   Motivazione?: boolean
   Descrizione?: boolean
   ReportOrigineId?: boolean
+  Origine?: boolean | Prisma.ReportDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["banned_Account"]>
 
 export type Banned_AccountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  Id?: boolean
   AccountId?: boolean
   Motivazione?: boolean
   Descrizione?: boolean
   ReportOrigineId?: boolean
+  Origine?: boolean | Prisma.ReportDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["banned_Account"]>
 
 export type Banned_AccountSelectScalar = {
-  Id?: boolean
   AccountId?: boolean
   Motivazione?: boolean
   Descrizione?: boolean
   ReportOrigineId?: boolean
 }
 
-export type Banned_AccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "AccountId" | "Motivazione" | "Descrizione" | "ReportOrigineId", ExtArgs["result"]["banned_Account"]>
+export type Banned_AccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"AccountId" | "Motivazione" | "Descrizione" | "ReportOrigineId", ExtArgs["result"]["banned_Account"]>
+export type Banned_AccountInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Origine?: boolean | Prisma.ReportDefaultArgs<ExtArgs>
+}
+export type Banned_AccountIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Origine?: boolean | Prisma.ReportDefaultArgs<ExtArgs>
+}
+export type Banned_AccountIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Origine?: boolean | Prisma.ReportDefaultArgs<ExtArgs>
+}
 
 export type $Banned_AccountPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Banned_Account"
-  objects: {}
+  objects: {
+    Origine: Prisma.$ReportPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    Id: number
     AccountId: number
     Motivazione: string
     Descrizione: string | null
@@ -486,8 +549,8 @@ export interface Banned_AccountDelegate<ExtArgs extends runtime.Types.Extensions
    * // Get first 10 Banned_Accounts
    * const banned_Accounts = await prisma.banned_Account.findMany({ take: 10 })
    * 
-   * // Only select the `Id`
-   * const banned_AccountWithIdOnly = await prisma.banned_Account.findMany({ select: { Id: true } })
+   * // Only select the `AccountId`
+   * const banned_AccountWithAccountIdOnly = await prisma.banned_Account.findMany({ select: { AccountId: true } })
    * 
    */
   findMany<T extends Banned_AccountFindManyArgs>(args?: Prisma.SelectSubset<T, Banned_AccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Banned_AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -531,9 +594,9 @@ export interface Banned_AccountDelegate<ExtArgs extends runtime.Types.Extensions
    *   ]
    * })
    * 
-   * // Create many Banned_Accounts and only return the `Id`
-   * const banned_AccountWithIdOnly = await prisma.banned_Account.createManyAndReturn({
-   *   select: { Id: true },
+   * // Create many Banned_Accounts and only return the `AccountId`
+   * const banned_AccountWithAccountIdOnly = await prisma.banned_Account.createManyAndReturn({
+   *   select: { AccountId: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -622,9 +685,9 @@ export interface Banned_AccountDelegate<ExtArgs extends runtime.Types.Extensions
    *   ]
    * })
    * 
-   * // Update zero or more Banned_Accounts and only return the `Id`
-   * const banned_AccountWithIdOnly = await prisma.banned_Account.updateManyAndReturn({
-   *   select: { Id: true },
+   * // Update zero or more Banned_Accounts and only return the `AccountId`
+   * const banned_AccountWithAccountIdOnly = await prisma.banned_Account.updateManyAndReturn({
+   *   select: { AccountId: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -797,6 +860,7 @@ readonly fields: Banned_AccountFieldRefs;
  */
 export interface Prisma__Banned_AccountClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  Origine<T extends Prisma.ReportDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReportDefaultArgs<ExtArgs>>): Prisma.Prisma__ReportClient<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -826,7 +890,6 @@ export interface Prisma__Banned_AccountClient<T, Null = never, ExtArgs extends r
  * Fields of the Banned_Account model
  */
 export interface Banned_AccountFieldRefs {
-  readonly Id: Prisma.FieldRef<"Banned_Account", 'Int'>
   readonly AccountId: Prisma.FieldRef<"Banned_Account", 'Int'>
   readonly Motivazione: Prisma.FieldRef<"Banned_Account", 'String'>
   readonly Descrizione: Prisma.FieldRef<"Banned_Account", 'String'>
@@ -848,6 +911,10 @@ export type Banned_AccountFindUniqueArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
+  /**
    * Filter, which Banned_Account to fetch.
    */
   where: Prisma.Banned_AccountWhereUniqueInput
@@ -866,6 +933,10 @@ export type Banned_AccountFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ex
    */
   omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
+  /**
    * Filter, which Banned_Account to fetch.
    */
   where: Prisma.Banned_AccountWhereUniqueInput
@@ -883,6 +954,10 @@ export type Banned_AccountFindFirstArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the Banned_Account
    */
   omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
   /**
    * Filter, which Banned_Account to fetch.
    */
@@ -932,6 +1007,10 @@ export type Banned_AccountFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
+  /**
    * Filter, which Banned_Account to fetch.
    */
   where?: Prisma.Banned_AccountWhereInput
@@ -979,6 +1058,10 @@ export type Banned_AccountFindManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Omit specific fields from the Banned_Account
    */
   omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
   /**
    * Filter, which Banned_Accounts to fetch.
    */
@@ -1028,6 +1111,10 @@ export type Banned_AccountCreateArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
+  /**
    * The data needed to create a Banned_Account.
    */
   data: Prisma.XOR<Prisma.Banned_AccountCreateInput, Prisma.Banned_AccountUncheckedCreateInput>
@@ -1061,6 +1148,10 @@ export type Banned_AccountCreateManyAndReturnArgs<ExtArgs extends runtime.Types.
    */
   data: Prisma.Banned_AccountCreateManyInput | Prisma.Banned_AccountCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1075,6 +1166,10 @@ export type Banned_AccountUpdateArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the Banned_Account
    */
   omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
   /**
    * The data needed to update a Banned_Account.
    */
@@ -1127,6 +1222,10 @@ export type Banned_AccountUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.
    * Limit how many Banned_Accounts to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1141,6 +1240,10 @@ export type Banned_AccountUpsertArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the Banned_Account
    */
   omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
   /**
    * The filter to search for the Banned_Account to update in case it exists.
    */
@@ -1167,6 +1270,10 @@ export type Banned_AccountDeleteArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the Banned_Account
    */
   omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
   /**
    * Filter which Banned_Account to delete.
    */
@@ -1199,4 +1306,8 @@ export type Banned_AccountDefaultArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the Banned_Account
    */
   omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
 }

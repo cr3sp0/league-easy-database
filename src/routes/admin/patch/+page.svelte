@@ -14,7 +14,7 @@
 
 <div class="container">
   <div class="patch-content">
-    <Navbar profile={data.profile} />
+    <Navbar profile={data.profile} role={data.role} />
 
     <div class="title">Insert new Patch</div>
 

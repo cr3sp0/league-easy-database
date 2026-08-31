@@ -17,21 +17,20 @@ export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 			}
 		})
 		if (!profile) {
-			throw { message: "Profile missing or banned" }
+			throw  error(400, { message: "Profile missing or banned" })
 		}
-		const builds = await getBuilds({username: profile.Nome})
 
-			return {
-				profile: profile,
-				profileRole: profile.IsAdmin 
+		return {
+			profile: profile,
+			profileRole: profile.IsAdmin 
+				? "Admin" : "User",
+			user: {
+				userProfile: locals.user,
+				userRole: locals.user.isAdmin 
 					? "Admin" : "User",
-				user: {
-					userProfile: locals.user,
-					userRole: locals.user.isAdmin 
-						? "Admin" : "User",
-				},
-				builds: builds
-			}
+			},
+			builds: await getBuilds({username: profile.Nome})
+		}
 	} catch (error : any) {
 		console.error(error.message)
 

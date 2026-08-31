@@ -106,19 +106,20 @@ model Incantesimo{
 }
 
 model Configurazione{
-  ID Int @id @default(autoincrement())
+  TitoloConf String
   IdCampione String
   Incantesimo1 String
   Incantesimo2 String
-  Account Int
+  IdAccount Int
   Runa Int?
   champ Campione @relation(fields: [IdCampione], references: [ID])
   Inc1 Incantesimo @relation(fields: [Incantesimo1], references: [Nome], name: "Inc1")
   Inc2 Incantesimo @relation(fields: [Incantesimo2], references: [Nome], name: "Inc2") 
-  User Account @relation(fields: [Account], references: [AccountId]) 
+  User Account @relation(fields: [IdAccount], references: [AccountId]) 
   Pag_Runa Pagina_Runa? @relation(fields: [Runa], references: [Id])
   Partite Partita[]
   Inv Inventario[]
+  @@id([TitoloConf, IdAccount])
 }
 
 model Oggetto{
@@ -130,12 +131,12 @@ model Oggetto{
 }
 
 model Inventario{
-  IdInventario Int 
+  IdConfigurazione String
+  IdAccount Int
   NomeOggetto String
-  Configurazione Configurazione @relation(fields: [IdInventario],references: [ID])
+  Configurazione Configurazione @relation(fields: [IdConfigurazione, IdAccount], references: [TitoloConf, IdAccount])
   Oggetto Oggetto @relation(fields: [NomeOggetto],references: [Nome])
-  @@id([IdInventario,NomeOggetto])
-
+  @@id([IdConfigurazione,NomeOggetto])
 }
 
 model Account{
@@ -174,8 +175,7 @@ model Report {
 }
 
 model Banned_Account {
-  Id Int @id @default(autoincrement())
-  AccountId Int @unique
+  AccountId Int @id
   Motivazione String
   Descrizione String?
   ReportOrigineId Int @unique
@@ -243,7 +243,6 @@ model Sezione_Runa{
   Lower Runa @relation(fields: [RigaInferiore], references: [Nome], name: "Ultima")
 }
 
-
 model Runa {
   Nome String  @id
   Descrizione String
@@ -265,16 +264,16 @@ model Tipologia_runa{
 }
 
 model Partita{
-  Id Int @id @default(autoincrement())
-  ConfigurazioneId Int
+  ConfigurazioneId String
   Data DateTime @default(now())
   Risultato Risultato
   AccountId Int
   Uccisioni Int @default(0)
   Morti Int @default(0)
   Assist Int @default(0)
-  Acc Account @relation(fields: [AccountId], references: [AccountId])
-  Configurazione Configurazione @relation(fields: [ConfigurazioneId], references: [ID])
+  Configurazione Configurazione @relation(fields: [ConfigurazioneId, AccountId], references: [TitoloConf, IdAccount], onDelete: Cascade)
+  Account Account @relation(fields: [AccountId], references: [AccountId], onDelete: Cascade)
+  @@id([AccountId, Data])
 }
 
 enum Risultato{

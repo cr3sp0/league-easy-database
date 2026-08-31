@@ -1,17 +1,30 @@
 import prisma from "./prisma";
-import type { Account, Campione, Configurazione, Pagina_Runa, Partita, Risultato, Runa } from "./prisma/browser";
-import { createResults } from "./resultsManager";
+import { Risultato, type Account, type Campione, type Configurazione, type Inventario, type Pagina_Runa, type Partita, type Runa } from "./prisma/browser";
 
 // Unisce i valori delle tabelle in modo da ricostruire una singola Build
 export interface completeBuild {
-  build: Configurazione
-  champion: Campione
   author: Account
+  build: Configurazione
+  items?: Inventario[]
+  champion: Campione
   results: Partita[]
 }
 
-export async function getBuilds({username = "", champion = "", limit = 5}) 
-: Promise<completeBuild[]> {
+export async function getBuilds({
+  username = undefined,
+  buildTitle = undefined,
+  userID = undefined,
+  champion = undefined,
+  championID = undefined,
+  limit = 5
+} : {
+  username? : string,
+  userID? : number,
+  champion? : string,
+  championID? : string,
+  buildTitle? : number,
+  limit? : number
+}) : Promise<completeBuild[]> {
 
   // TODO: add explicit query sql
   //TODO: fix select to return only the valueable info of the Build
@@ -28,15 +41,18 @@ export async function getBuilds({username = "", champion = "", limit = 5})
     where: {
       AND: [
         {
+          ID: buildTitle
+        },
+        {
           User: {
-            Nome: username.length === 0 
-                ? undefined : username
+            Nome: username,
+            AccountId: userID
           }
         },
         {
           champ: {
-            nome: champion.length === 0
-                ? undefined : champion
+            nome: champion,
+            ID: championID
           }
         }
       ]
@@ -52,9 +68,10 @@ export async function getBuilds({username = "", champion = "", limit = 5})
 
   builds.forEach(b => {
     output.push({
-      build: b,
-      champion: b.champ,
       author: b.User,
+      build: b,
+      items: b.Inv,
+      champion: b.champ,
       results: b.Partite
     })
   })
@@ -62,23 +79,71 @@ export async function getBuilds({username = "", champion = "", limit = 5})
   return output;
 }
 
-export async function createBuild({
-    userID = undefined,
+export async function getUniqueBuild({
+  buildTitle = undefined,
+  userID = undefined
+} : {
+  buildTitle? : string,
+  userID? : number
+}) : Promise<completeBuild> {
+
+  if((!buildTitle || !userID)) {
+    throw { message: "Invalid input" }
+  }
+
+  // TODO: add explicit query sql
+  //TODO: fix select to return only the valueable info of the Build
+  const build = await prisma.configurazione.findUnique({
+    include: {
+      champ: true,
+      Inc1: true,
+      Inc2: true,
+      Pag_Runa: true,
+      Inv: true,
+      User: true,
+      Partite: true
+    },
+    where: {
+      TitoloConf_IdAccount: {
+        TitoloConf: buildTitle,
+        IdAccount: userID
+      }
+    }
+  })
+
+  if(!build) {
+    throw { message: "Build Missing" }
+  }
+
+  return {
+    author: build.User,
+    build: build,
+    champion: build.champ,
+    items: build.Inv,
+    results: build.Partite
+  };
+}
+
+export async function createBuild(
+  {
+    buildTitle,
+    userID,
     championID = undefined,
     runesID = undefined,
     inc1 = undefined,
     inc2 = undefined,
-    gameResults = undefined
+    matches = []
   } : {
-    userID?: number,
+    buildTitle: string,
+    userID: number,
     championID?: string,
     runesID?: number,
     inc1?: string,
     inc2?: string,
-    gameResults?: Risultato[]
+    matches: Partita[]
   }
 ) : Promise<completeBuild | undefined> {
-  
+
   if(
     !userID 
     || !championID 
@@ -88,11 +153,77 @@ export async function createBuild({
   ) {
     throw { message: "Invalid input" }
   }
-  // TODO: add query to confirm the related values already exist
 
   let creation = await prisma.configurazione.create({
     data: {
-      Account: userID,
+      TitoloConf: buildTitle,
+      IdAccount: userID,
+      IdCampione: championID,
+      Runa: runesID,
+      Incantesimo1: inc1,
+      Incantesimo2: inc2,
+      Partite: {
+        createMany: {
+          data: matches
+        }
+      }
+    },
+    include: {
+      User: true,
+      champ: true,
+      Partite: true,
+      Inv: true
+    }
+  })
+
+  return creation ? {
+    author: creation.User,
+    build: creation,
+    champion: creation.champ,
+    items: creation.Inv,
+    results: creation.Partite
+  } : undefined
+}
+
+export async function updateBuild(
+  {
+    buildTitle,
+    userID,
+    championID = undefined,
+    runesID = undefined,
+    inc1 = undefined,
+    inc2 = undefined,
+    newTitle = undefined
+  } : {
+    buildTitle: string,
+    userID: number,
+    championID?: string,
+    runesID?: number,
+    inc1?: string,
+    inc2?: string,
+    newTitle?: string
+  }
+) : Promise<completeBuild | undefined> {
+
+  if(newTitle && await prisma.configurazione.findUnique({
+    where: {
+      TitoloConf_IdAccount: {
+        TitoloConf: newTitle,
+        IdAccount: userID
+      }
+    }
+  })) {
+    throw { message: buildTitle + " already exists" }
+  }
+
+  const build = await prisma.configurazione.update({
+    where: {
+      TitoloConf_IdAccount: {
+        TitoloConf: buildTitle,
+        IdAccount: userID
+      }
+    },
+    data: {
       IdCampione: championID,
       Runa: runesID,
       Incantesimo1: inc1,
@@ -101,65 +232,16 @@ export async function createBuild({
     include: {
       User: true,
       champ: true,
-      Partite: true
-    }
-  })
-
-  if(gameResults) {
-    createResults({
-      userID: userID,
-      buildID: creation.ID,
-      results: gameResults
-    })
-  }
-
-  return creation ? {
-    build: creation,
-    champion: creation.champ,
-    author: creation.User,
-    results: creation.Partite
-  } : undefined
-}
-
-export async function updateBuild(
-  buildID : number, {
-    championID = undefined,
-    runesID = undefined,
-    inc1 = undefined,
-    inc2 = undefined,
-    wins = undefined,
-    losses = undefined
-  } : {
-    championID?: string,
-    runesID?: number,
-    inc1?: string,
-    inc2?: string,
-    wins?: number,
-    losses?: number
-  }
-) : Promise<completeBuild | undefined> {
-
-  const build = await prisma.configurazione.update({
-    where: {
-      ID: buildID
-    },
-    data: {
-      IdCampione: championID,
-      Runa: runesID,
-      Incantesimo1: inc1,
-      Incantesimo2: inc2 
-    },
-    include: {
-      User: true,
-      champ: true,
-      Partite: true
+      Partite: true,
+      Inv: true
     }
   })
 
   return build ? {
+    author: build.User,
     build: build,
     champion: build.champ,
-    author: build.User,
+    items: build.Inv,
     results: build.Partite
   } : undefined
 }

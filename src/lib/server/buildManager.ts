@@ -79,17 +79,10 @@ export async function getBuilds({
   return output;
 }
 
-export async function getUniqueBuild({
-  buildTitle = undefined,
-  userID = undefined
-} : {
-  buildTitle? : string,
-  userID? : number
-}) : Promise<completeBuild> {
-
-  if((!buildTitle || !userID)) {
-    throw { message: "Invalid input" }
-  }
+export async function getUniqueBuild(
+  buildTitle : string,
+  userID : number
+) : Promise<completeBuild> {
 
   // TODO: add explicit query sql
   //TODO: fix select to return only the valueable info of the Build
@@ -125,17 +118,15 @@ export async function getUniqueBuild({
 }
 
 export async function createBuild(
+  buildTitle: string,
+  userID: number,
   {
-    buildTitle,
-    userID,
     championID = undefined,
     runesID = undefined,
     inc1 = undefined,
     inc2 = undefined,
     matches = []
   } : {
-    buildTitle: string,
-    userID: number,
     championID?: string,
     runesID?: number,
     inc1?: string,
@@ -143,7 +134,6 @@ export async function createBuild(
     matches: Partita[]
   }
 ) : Promise<completeBuild | undefined> {
-
   if(
     !userID 
     || !championID 
@@ -186,17 +176,15 @@ export async function createBuild(
 }
 
 export async function updateBuild(
+  buildTitle: string,
+  userID: number,
   {
-    buildTitle,
-    userID,
     championID = undefined,
     runesID = undefined,
     inc1 = undefined,
     inc2 = undefined,
     newTitle = undefined
   } : {
-    buildTitle: string,
-    userID: number,
     championID?: string,
     runesID?: number,
     inc1?: string,

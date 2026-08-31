@@ -309,7 +309,7 @@ export type AccountCreateInput = {
   IsAdmin: boolean
   sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaCreateNestedManyWithoutAccInput
+  Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
 }
@@ -324,7 +324,7 @@ export type AccountUncheckedCreateInput = {
   IsAdmin: boolean
   sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccInput
+  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
 }
@@ -338,7 +338,7 @@ export type AccountUpdateInput = {
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUpdateManyWithoutAccNestedInput
+  Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
 }
@@ -353,7 +353,7 @@ export type AccountUncheckedUpdateInput = {
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccNestedInput
+  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
 }
@@ -516,7 +516,7 @@ export type AccountCreateWithoutConfigInput = {
   RiotID?: string | null
   IsAdmin: boolean
   sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaCreateNestedManyWithoutAccInput
+  Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
 }
@@ -530,7 +530,7 @@ export type AccountUncheckedCreateWithoutConfigInput = {
   RiotID?: string | null
   IsAdmin: boolean
   sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccInput
+  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
 }
@@ -559,7 +559,7 @@ export type AccountUpdateWithoutConfigInput = {
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUpdateManyWithoutAccNestedInput
+  Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
 }
@@ -573,7 +573,7 @@ export type AccountUncheckedUpdateWithoutConfigInput = {
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccNestedInput
+  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
 }
@@ -586,7 +586,7 @@ export type AccountCreateWithoutSessioneInput = {
   RiotID?: string | null
   IsAdmin: boolean
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaCreateNestedManyWithoutAccInput
+  Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
 }
@@ -600,7 +600,7 @@ export type AccountUncheckedCreateWithoutSessioneInput = {
   RiotID?: string | null
   IsAdmin: boolean
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccInput
+  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
 }
@@ -629,7 +629,7 @@ export type AccountUpdateWithoutSessioneInput = {
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUpdateManyWithoutAccNestedInput
+  Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
 }
@@ -643,7 +643,7 @@ export type AccountUncheckedUpdateWithoutSessioneInput = {
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccNestedInput
+  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
 }
@@ -657,7 +657,7 @@ export type AccountCreateWithoutReportCreatiInput = {
   IsAdmin: boolean
   sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaCreateNestedManyWithoutAccInput
+  Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
 }
 
@@ -671,7 +671,7 @@ export type AccountUncheckedCreateWithoutReportCreatiInput = {
   IsAdmin: boolean
   sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccInput
+  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -689,7 +689,7 @@ export type AccountCreateWithoutReportRicevInput = {
   IsAdmin: boolean
   sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaCreateNestedManyWithoutAccInput
+  Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
 }
 
@@ -703,7 +703,7 @@ export type AccountUncheckedCreateWithoutReportRicevInput = {
   IsAdmin: boolean
   sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccInput
+  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
 }
 
@@ -732,7 +732,7 @@ export type AccountUpdateWithoutReportCreatiInput = {
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUpdateManyWithoutAccNestedInput
+  Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
 }
 
@@ -746,7 +746,7 @@ export type AccountUncheckedUpdateWithoutReportCreatiInput = {
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccNestedInput
+  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -770,7 +770,7 @@ export type AccountUpdateWithoutReportRicevInput = {
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUpdateManyWithoutAccNestedInput
+  Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
 }
 
@@ -784,7 +784,7 @@ export type AccountUncheckedUpdateWithoutReportRicevInput = {
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccNestedInput
+  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
 }
 

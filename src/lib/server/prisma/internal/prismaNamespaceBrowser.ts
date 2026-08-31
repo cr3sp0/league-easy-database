@@ -192,11 +192,11 @@ export type IncantesimoScalarFieldEnum = (typeof IncantesimoScalarFieldEnum)[key
 
 
 export const ConfigurazioneScalarFieldEnum = {
-  ID: 'ID',
+  TitoloConf: 'TitoloConf',
   IdCampione: 'IdCampione',
   Incantesimo1: 'Incantesimo1',
   Incantesimo2: 'Incantesimo2',
-  Account: 'Account',
+  IdAccount: 'IdAccount',
   Runa: 'Runa'
 } as const
 
@@ -214,7 +214,8 @@ export type OggettoScalarFieldEnum = (typeof OggettoScalarFieldEnum)[keyof typeo
 
 
 export const InventarioScalarFieldEnum = {
-  IdInventario: 'IdInventario',
+  IdConfigurazione: 'IdConfigurazione',
+  IdAccount: 'IdAccount',
   NomeOggetto: 'NomeOggetto'
 } as const
 
@@ -257,7 +258,6 @@ export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof 
 
 
 export const Banned_AccountScalarFieldEnum = {
-  Id: 'Id',
   AccountId: 'AccountId',
   Motivazione: 'Motivazione',
   Descrizione: 'Descrizione',
@@ -336,7 +336,6 @@ export type Tipologia_runaScalarFieldEnum = (typeof Tipologia_runaScalarFieldEnu
 
 
 export const PartitaScalarFieldEnum = {
-  Id: 'Id',
   ConfigurazioneId: 'ConfigurazioneId',
   Data: 'Data',
   Risultato: 'Risultato',

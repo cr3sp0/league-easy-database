@@ -78,7 +78,8 @@ export const ModelName = {
   Partita: 'Partita',
   Modifica: 'Modifica',
   Storico: 'Storico',
-  Statistica: 'Statistica'
+  Statistica: 'Statistica',
+  SetBase: 'SetBase'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -112,7 +113,8 @@ export const CampioneScalarFieldEnum = {
   Armatura: 'Armatura',
   Resistenza_magica: 'Resistenza_magica',
   Velocità_di_attacco: 'Velocità_di_attacco',
-  Gittata: 'Gittata'
+  Gittata: 'Gittata',
+  SetStatistiche: 'SetStatistiche'
 } as const
 
 export type CampioneScalarFieldEnum = (typeof CampioneScalarFieldEnum)[keyof typeof CampioneScalarFieldEnum]
@@ -207,7 +209,8 @@ export const OggettoScalarFieldEnum = {
   Nome: 'Nome',
   Costo: 'Costo',
   Descrizione: 'Descrizione',
-  Immagine: 'Immagine'
+  Immagine: 'Immagine',
+  SetStatistiche: 'SetStatistiche'
 } as const
 
 export type OggettoScalarFieldEnum = (typeof OggettoScalarFieldEnum)[keyof typeof OggettoScalarFieldEnum]
@@ -372,6 +375,33 @@ export const StatisticaScalarFieldEnum = {
 } as const
 
 export type StatisticaScalarFieldEnum = (typeof StatisticaScalarFieldEnum)[keyof typeof StatisticaScalarFieldEnum]
+
+
+export const SetBaseScalarFieldEnum = {
+  IdStatistiche: 'IdStatistiche',
+  Vita: 'Vita',
+  VitaPerLivello: 'VitaPerLivello',
+  Mana: 'Mana',
+  ManaPerLivello: 'ManaPerLivello',
+  Velocità_di_movimento: 'Velocità_di_movimento',
+  Armatura: 'Armatura',
+  ArmaturaPerLivello: 'ArmaturaPerLivello',
+  ResistenzaMagica: 'ResistenzaMagica',
+  ResistenzaMagicaPerLivello: 'ResistenzaMagicaPerLivello',
+  Gittata: 'Gittata',
+  RigenerazioneVita: 'RigenerazioneVita',
+  RigenerazioneMana: 'RigenerazioneMana',
+  RigenerazioneManaPerLivello: 'RigenerazioneManaPerLivello',
+  Critico: 'Critico',
+  CriticoPerLivello: 'CriticoPerLivello',
+  Attacco: 'Attacco',
+  AttaccoPerLivello: 'AttaccoPerLivello',
+  VelocitàDiAttacco: 'VelocitàDiAttacco',
+  VelocitàDiAttaccoPerLivello: 'VelocitàDiAttaccoPerLivello',
+  AttaccoMagico: 'AttaccoMagico'
+} as const
+
+export type SetBaseScalarFieldEnum = (typeof SetBaseScalarFieldEnum)[keyof typeof SetBaseScalarFieldEnum]
 
 
 export const SortOrder = {

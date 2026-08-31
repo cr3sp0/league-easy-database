@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/lib/server/prisma"
@@ -12,185 +7,309 @@ datasource db {
   provider = "postgresql"
 }
 
-// Esempio di modello
 model Campione {
-  ID   String     @id 
-  nome String  @unique
-  Icona  String @unique
-  Titolo String @unique
-  Descrizione String 
-  Ruolo String
-  Vita  Int
-  Mana  Int
-  Attacco Float
-  AttaccoMagico Int @default(0)
-  Velocità_di_movimento Int
-  Armatura  Float
-  Resistenza_magica Float
-  Velocità_di_attacco Float
-  Gittata Int
-  Kit Kit[]
-  Cosmetico Cosmetico[]
-  Regione Campione_Regione[]
-  Razza Campione_Razza[]
-  Posizione Campione_Posizione[]
-  Config Configurazione[]
-  Role Ruolo @relation(fields: [Ruolo], references: [Nome]) 
+  ID                     String               @id
+  nome                   String               @unique
+  Icona                  String               @unique
+  Titolo                 String               @unique
+  Descrizione            String
+  Ruolo                  String
+  SetStatistiche         Int                  @default(0)
+  Role                   Ruolo                @relation(fields: [Ruolo], references: [Nome])
+  Stats                  SetBase              @relation(fields: [SetStatistiche], references: [IdStatistiche])
+  Posizione              Campione_Posizione[]
+  Razza                  Campione_Razza[]
+  Regione                Campione_Regione[]
+  Config                 Configurazione[]
+  Cosmetico              Cosmetico[]
+  Kit                    Kit[]
 }
 
-model Cosmetico{
+model Cosmetico {
+  IdCampione    String
+  Immagine      String
   NomeCosmetico String
-  IdCampione String
-  Immagine String //? not sure
- // Modello 
-  champ Campione  @relation(fields: [IdCampione], references: [ID])
+  champ         Campione @relation(fields: [IdCampione], references: [ID])
+
   @@id([IdCampione, NomeCosmetico])
 }
 
-model Ruolo{
-  Nome String @id
-  Descrizione String 
-  Campione Campione[]
-  }
-
-model Razza{
-  Nome String @id
-  Descrizione String 
-  relazione Campione_Razza[]
+model Ruolo {
+  Nome        String     @id
+  Descrizione String
+  Campione    Campione[]
 }
 
-model Campione_Razza{
+model Razza {
+  Nome        String           @id
+  Descrizione String
+  relazione   Campione_Razza[]
+}
+
+model Campione_Razza {
   IdCampione String
-  NomeRazza String
-  champ Campione @relation(fields: [IdCampione], references: [ID])
-  razza Razza @relation(fields: [NomeRazza], references: [Nome])
+  NomeRazza  String
+  champ      Campione @relation(fields: [IdCampione], references: [ID])
+  razza      Razza    @relation(fields: [NomeRazza], references: [Nome])
+
   @@id([IdCampione, NomeRazza])
 }
 
-model Posizione{
-  Nome String @id 
-  pos Campione_Posizione[]
+model Posizione {
+  Nome String               @id
+  pos  Campione_Posizione[]
 }
-
 
 model Campione_Posizione {
-  IdCampione String
+  IdCampione    String
   NomePosizione String
-  champ Campione @relation(fields:[IdCampione], references: [ID])
-  Pos Posizione @relation(fields: [NomePosizione], references: [Nome]) 
-  @@id([IdCampione, NomePosizione])
+  champ         Campione  @relation(fields: [IdCampione], references: [ID])
+  Pos           Posizione @relation(fields: [NomePosizione], references: [Nome])
 
+  @@id([IdCampione, NomePosizione])
 }
 
-model Regione{
-  Nome String @id 
+model Regione {
+  Nome        String             @id
   Descrizione String
-  Regi Campione_Regione[]
-  }
+  Regi        Campione_Regione[]
+}
 
 model Campione_Regione {
-  IdCampione String
+  IdCampione  String
   NomeRegione String
-  champ Campione @relation(fields: [IdCampione], references: [ID])
-  Regi Regione @relation(fields: [NomeRegione], references: [Nome]) 
+  champ       Campione @relation(fields: [IdCampione], references: [ID])
+  Regi        Regione  @relation(fields: [NomeRegione], references: [Nome])
+
   @@id([IdCampione, NomeRegione])
-
 }
 
-model Incantesimo{
-  Nome String @id
-  Descrizione String 
-  Ricarica Float
-  Incant1 Configurazione[] @relation("Inc1")
-  Incant2 Configurazione[] @relation("Inc2")
+model Incantesimo {
+  Nome        String           @id
+  Descrizione String
+  Ricarica    Float
+  Incant1     Configurazione[] @relation("Inc1")
+  Incant2     Configurazione[] @relation("Inc2")
 }
 
-model Configurazione{
-  TitoloConf String
-  IdCampione String
+model Configurazione {
+  IdCampione   String
   Incantesimo1 String
   Incantesimo2 String
-  IdAccount Int
-  Runa Int?
-  champ Campione @relation(fields: [IdCampione], references: [ID])
-  Inc1 Incantesimo @relation(fields: [Incantesimo1], references: [Nome], name: "Inc1")
-  Inc2 Incantesimo @relation(fields: [Incantesimo2], references: [Nome], name: "Inc2") 
-  User Account @relation(fields: [IdAccount], references: [AccountId]) 
-  Pag_Runa Pagina_Runa? @relation(fields: [Runa], references: [Id])
-  Partite Partita[]
-  Inv Inventario[]
+  Runa         Int?
+  IdAccount    Int
+  TitoloConf   String
+  User         Account      @relation(fields: [IdAccount], references: [AccountId])
+  champ        Campione     @relation(fields: [IdCampione], references: [ID])
+  Inc1         Incantesimo  @relation("Inc1", fields: [Incantesimo1], references: [Nome])
+  Inc2         Incantesimo  @relation("Inc2", fields: [Incantesimo2], references: [Nome])
+  Pag_Runa     Pagina_Runa? @relation(fields: [Runa], references: [Id])
+  Inv          Inventario[]
+  Partite      Partita[]
+
   @@id([TitoloConf, IdAccount])
 }
 
-model Oggetto{
-  Nome String @id
-  Costo Int
-  Descrizione String 
-  Immagine String
-  Inv Inventario[]
+model Oggetto {
+  Nome           String       @id
+  Costo          Int
+  Descrizione    String
+  Immagine       String
+  SetStatistiche Int          @default(0)
+  Stats        SetBase @relation(fields: [SetStatistiche], references: [IdStatistiche])
+  Inv            Inventario[]
 }
 
-model Inventario{
+model Inventario {
+  NomeOggetto      String
+  IdAccount        Int
   IdConfigurazione String
-  IdAccount Int
-  NomeOggetto String
-  Configurazione Configurazione @relation(fields: [IdConfigurazione, IdAccount], references: [TitoloConf, IdAccount])
-  Oggetto Oggetto @relation(fields: [NomeOggetto],references: [Nome])
-  @@id([IdConfigurazione,NomeOggetto])
+  Configurazione   Configurazione @relation(fields: [IdConfigurazione, IdAccount], references: [TitoloConf, IdAccount])
+  Oggetto          Oggetto        @relation(fields: [NomeOggetto], references: [Nome])
+
+  @@id([IdConfigurazione, NomeOggetto])
 }
 
-model Account{
-  Nome String @unique
-  AccountId Int @id @default(autoincrement())
-  Password String 
-  Descrizione String 
-  Immagine String @default("https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/items/Poro-Snax_item_HD.png")
-  RiotID String? @db.VarChar(50) @unique
-  IsAdmin Boolean
-  sessione Sessione[]
-  Config Configurazione[]
-  Partita Partita[]
-  ReportCreati Report[] @relation("Target")
-  ReportRicev Report[] @relation("Author")
+model Account {
+  Nome         String           @unique
+  AccountId    Int              @id @default(autoincrement())
+  Password     String
+  Descrizione  String
+  Immagine     String           @default("https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/items/Poro-Snax_item_HD.png")
+  RiotID       String?          @unique @db.VarChar(50)
+  IsAdmin      Boolean
+  Config       Configurazione[]
+  Partita      Partita[]
+  ReportRicev  Report[]         @relation("Author")
+  ReportCreati Report[]         @relation("Target")
+  sessione     Sessione?
 }
 
-model Sessione{
-  Id Int @id @default(autoincrement())
-  guid_id String @unique
-  user_id Int @unique
+model Sessione {
+  Id           Int      @id @default(autoincrement())
+  guid_id      String   @unique
+  user_id      Int      @unique
   date_created DateTime @default(now())
   date_expired DateTime
-  user Account @relation(fields: [user_id], references: [AccountId], onDelete: Cascade)  
+  user         Account  @relation(fields: [user_id], references: [AccountId], onDelete: Cascade)
 }
 
 model Report {
-  Id Int @id @default(autoincrement())
-  TargetId Int
-  AuthorId Int
+  Id          Int             @id @default(autoincrement())
+  TargetId    Int
+  AuthorId    Int
   Motivazione String
   Descrizione String?
-  Banned Banned_Account?
-  Target Account @relation(fields: [TargetId], references: [AccountId], name: "Target")
-  Author Account @relation(fields: [AuthorId], references: [AccountId], name: "Author")
+  Banned      Banned_Account?
+  Author      Account         @relation("Author", fields: [AuthorId], references: [AccountId])
+  Target      Account         @relation("Target", fields: [TargetId], references: [AccountId])
 }
 
 model Banned_Account {
-  AccountId Int @id
-  Motivazione String
-  Descrizione String?
-  ReportOrigineId Int @unique
-  Origine Report @relation(fields: [ReportOrigineId], references: [Id])
+  AccountId       Int     @id
+  Motivazione     String
+  Descrizione     String?
+  ReportOrigineId Int     @unique
+  Origine         Report  @relation(fields: [ReportOrigineId], references: [Id])
 }
 
 model Kit {
-  IdKit Int @id @default(autoincrement())
+  IdKit      Int           @id @default(autoincrement())
   IdCampione String
-  champ Campione    @relation(fields: [IdCampione], references: [ID])
-  abilita Kit_Abilita[]
+  champ      Campione      @relation(fields: [IdCampione], references: [ID])
+  abilita    Kit_Abilita[]
+
   @@index([IdCampione])
 }
 
-enum Tipo_Abilita{
+model Abilita {
+  Id           Int          @id @default(autoincrement())
+  NomeAbilità String       @unique
+  Descrizione  String
+  Immagine     String
+  KitAb        Kit_Abilita?
+}
+
+model Kit_Abilita {
+  IdKit     Int
+  IdAbilita Int          @unique
+  Tipo      Tipo_Abilita
+  abilita   Abilita      @relation(fields: [IdAbilita], references: [Id])
+  kit       Kit          @relation(fields: [IdKit], references: [IdKit])
+
+  @@id([IdKit, Tipo])
+}
+
+model Pagina_Runa {
+  Id             Int              @id
+  RunaPrimaria   Int
+  RunaSecondaria Int
+  Frammenti      Int
+  Conf           Configurazione[]
+  Shards         Sezione_Runa     @relation("Shards", fields: [Frammenti], references: [Id])
+  Principale     Sezione_Runa     @relation("Primaria", fields: [RunaPrimaria], references: [Id])
+  Secondaria     Sezione_Runa     @relation("Secondaria", fields: [RunaSecondaria], references: [Id])
+}
+
+model Sezione_Runa {
+  Id            Int           @id
+  Pietrachiave  String
+  RigaSuperiore String
+  RigaCentrale  String
+  RigaInferiore String
+  Shard         Pagina_Runa[] @relation("Shards")
+  Prim          Pagina_Runa[] @relation("Primaria")
+  Secon         Pagina_Runa[] @relation("Secondaria")
+  Keystone      Runa          @relation("Keystone", fields: [Pietrachiave], references: [Nome])
+  Middle        Runa          @relation("Centrale", fields: [RigaCentrale], references: [Nome])
+  Lower         Runa          @relation("Ultima", fields: [RigaInferiore], references: [Nome])
+  First         Runa          @relation("Prima", fields: [RigaSuperiore], references: [Nome])
+}
+
+model Runa {
+  Nome        String         @id
+  Descrizione String
+  CamminoId   Int
+  Grado       Int
+  Deprecata   Boolean        @default(false)
+  Immagine    String
+  Camm        Tipologia_runa @relation(fields: [CamminoId], references: [Id])
+  keystone    Sezione_Runa[] @relation("Keystone")
+  Centrale    Sezione_Runa[] @relation("Centrale")
+  Ultima      Sezione_Runa[] @relation("Ultima")
+  Prima       Sezione_Runa[] @relation("Prima")
+}
+
+model Tipologia_runa {
+  Id   Int    @id
+  Nome String
+  Camm Runa[]
+}
+
+model Partita {
+  ConfigurazioneId String
+  Data             DateTime       @default(now())
+  Risultato        Risultato
+  AccountId        Int
+  Assist           Int            @default(0)
+  Morti            Int            @default(0)
+  Uccisioni        Int            @default(0)
+  Account          Account        @relation(fields: [AccountId], references: [AccountId], onDelete: Cascade)
+  Configurazione   Configurazione @relation(fields: [ConfigurazioneId, AccountId], references: [TitoloConf, IdAccount], onDelete: Cascade)
+
+  @@id([AccountId, Data])
+}
+
+model Modifica {
+  Soggetto_modifica String
+  Id_Statistica     Int
+  Versione          String
+  Nuovo_Valore      Float
+  Stat              Statistica @relation(fields: [Id_Statistica], references: [Id])
+  Vers              Storico    @relation(fields: [Versione], references: [Versione])
+
+  @@id([Soggetto_modifica, Id_Statistica, Versione])
+}
+
+model Storico {
+  Versione String     @id
+  Data     DateTime
+  Modif    Modifica[]
+}
+
+model Statistica {
+  Id   Int        @id
+  Nome String
+  Stat Modifica[]
+}
+
+model SetBase {
+  IdStatistiche                Int   @id
+  Vita                         Int
+  VitaPerLivello               Int
+  Mana                         Int
+  ManaPerLivello               Int
+  Velocità_di_movimento       Int
+  Armatura                     Float
+  ArmaturaPerLivello           Float
+  ResistenzaMagica             Float
+  ResistenzaMagicaPerLivello   Float
+  Gittata                      Int
+  RigenerazioneVita            Float
+  RigenerazioneMana            Float
+  RigenerazioneManaPerLivello  Float
+  Critico                      Float
+  CriticoPerLivello            Float
+  Attacco                      Float
+  AttaccoPerLivello            Float
+  VelocitàDiAttacco           Float
+  VelocitàDiAttaccoPerLivello Float
+  AttaccoMagico                Int   @default(0)
+  Champ Campione[]
+  Item Oggetto[]
+}
+
+enum Tipo_Abilita {
   Passiva
   Abilità1
   Abilità2
@@ -198,108 +317,8 @@ enum Tipo_Abilita{
   Abilità4
 }
 
-model Abilita{
-  Id  Int @id @default(autoincrement())
-  NomeAbilità String @unique
-  Descrizione String
-  Immagine String
-  KitAb Kit_Abilita[]
-}
-
-model Kit_Abilita {
-  IdKit Int
-  IdAbilita Int @unique
-  Tipo Tipo_Abilita
-
-  kit Kit @relation(fields: [IdKit], references: [IdKit])
-  abilita Abilita @relation(fields: [IdAbilita], references: [Id])
-
-  @@id([IdKit, Tipo])
-}
-
-model Pagina_Runa{
-  Id Int @id
-  RunaPrimaria Int
-  RunaSecondaria Int
-  Frammenti Int
-  Principale Sezione_Runa @relation(fields: [RunaPrimaria], references: [Id], name: "Primaria")
-  Secondaria Sezione_Runa @relation(fields: [RunaSecondaria], references: [Id], name: "Secondaria")
-  Shards Sezione_Runa @relation(fields: [Frammenti], references: [Id], name: "Shards")
-  Conf Configurazione[]
-}
-
-model Sezione_Runa{
-  Id Int @id
-  Pietrachiave String
-  RigaSuperiore String
-  RigaCentrale  String
-  RigaInferiore String
-  Prim Pagina_Runa[]  @relation("Primaria")
-  Secon Pagina_Runa[] @relation("Secondaria")
-  Shard Pagina_Runa[] @relation("Shards")
-  Keystone Runa @relation(fields: [Pietrachiave], references: [Nome], name: "Keystone")
-  First Runa @relation(fields: [RigaSuperiore], references: [Nome], name: "Prima")
-  Middle Runa @relation(fields: [RigaCentrale], references: [Nome], name: "Centrale")
-  Lower Runa @relation(fields: [RigaInferiore], references: [Nome], name: "Ultima")
-}
-
-model Runa {
-  Nome String  @id
-  Descrizione String
-  CamminoId Int
-  Grado Int
-  Immagine String
-  Deprecata Boolean @default(false)
-  Camm Tipologia_runa @relation(fields: [CamminoId], references: [Id])
-  keystone Sezione_Runa[] @relation("Keystone")
-  Prima Sezione_Runa[] @relation("Prima")
-  Centrale Sezione_Runa[] @relation("Centrale")
-  Ultima Sezione_Runa[] @relation("Ultima")
-}
-
-model Tipologia_runa{
-  Id Int @id 
-  Nome String
-  Camm Runa[] 
-}
-
-model Partita{
-  ConfigurazioneId String
-  Data DateTime @default(now())
-  Risultato Risultato
-  AccountId Int
-  Uccisioni Int @default(0)
-  Morti Int @default(0)
-  Assist Int @default(0)
-  Configurazione Configurazione @relation(fields: [ConfigurazioneId, AccountId], references: [TitoloConf, IdAccount], onDelete: Cascade)
-  Account Account @relation(fields: [AccountId], references: [AccountId], onDelete: Cascade)
-  @@id([AccountId, Data])
-}
-
-enum Risultato{
-  Vittoria  
+enum Risultato {
+  Vittoria
   Sconfitta
-  Remake 
-}
-
-model Modifica{
-  Soggetto_modifica String 
-  Id_Statistica Int
-  Nuovo_Valore Float 
-  Versione String
-  Vers Storico @relation(fields: [Versione], references: [Versione])
-  Stat Statistica @relation(fields: [Id_Statistica], references: [Id])
-  @@id([Soggetto_modifica,Id_Statistica,Versione])
-}
-
-model Storico{
-  Versione String @id
-  Data DateTime
-  Modif Modifica[]
-}
-
-model Statistica{
-  Id Int @id
-  Nome String 
-  Stat Modifica[]
+  Remake
 }

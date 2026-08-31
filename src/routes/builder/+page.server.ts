@@ -23,9 +23,17 @@ export const load: PageServerLoad = async ({ locals }) => {
     const champions = await getChampionsBasicInfo();
     const randomIndices = getRandomIndices(champions);
   
+    if(!locals.user) {
+      return {
+        profile: undefined,
+        role: "User",
+        champions: champions,
+        randomIndices: randomIndices
+      }
+    }
+
     return {
-      profile: locals.user 
-        ? locals.user.username : undefined,
+      profile: locals.user.username,
       role: locals.user.isAdmin
         ? "Admin" : "User",
       champions,

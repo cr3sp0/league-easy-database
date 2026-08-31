@@ -28,10 +28,12 @@ export type AggregateOggetto = {
 
 export type OggettoAvgAggregateOutputType = {
   Costo: number | null
+  SetStatistiche: number | null
 }
 
 export type OggettoSumAggregateOutputType = {
   Costo: number | null
+  SetStatistiche: number | null
 }
 
 export type OggettoMinAggregateOutputType = {
@@ -39,6 +41,7 @@ export type OggettoMinAggregateOutputType = {
   Costo: number | null
   Descrizione: string | null
   Immagine: string | null
+  SetStatistiche: number | null
 }
 
 export type OggettoMaxAggregateOutputType = {
@@ -46,6 +49,7 @@ export type OggettoMaxAggregateOutputType = {
   Costo: number | null
   Descrizione: string | null
   Immagine: string | null
+  SetStatistiche: number | null
 }
 
 export type OggettoCountAggregateOutputType = {
@@ -53,16 +57,19 @@ export type OggettoCountAggregateOutputType = {
   Costo: number
   Descrizione: number
   Immagine: number
+  SetStatistiche: number
   _all: number
 }
 
 
 export type OggettoAvgAggregateInputType = {
   Costo?: true
+  SetStatistiche?: true
 }
 
 export type OggettoSumAggregateInputType = {
   Costo?: true
+  SetStatistiche?: true
 }
 
 export type OggettoMinAggregateInputType = {
@@ -70,6 +77,7 @@ export type OggettoMinAggregateInputType = {
   Costo?: true
   Descrizione?: true
   Immagine?: true
+  SetStatistiche?: true
 }
 
 export type OggettoMaxAggregateInputType = {
@@ -77,6 +85,7 @@ export type OggettoMaxAggregateInputType = {
   Costo?: true
   Descrizione?: true
   Immagine?: true
+  SetStatistiche?: true
 }
 
 export type OggettoCountAggregateInputType = {
@@ -84,6 +93,7 @@ export type OggettoCountAggregateInputType = {
   Costo?: true
   Descrizione?: true
   Immagine?: true
+  SetStatistiche?: true
   _all?: true
 }
 
@@ -178,6 +188,7 @@ export type OggettoGroupByOutputType = {
   Costo: number
   Descrizione: string
   Immagine: string
+  SetStatistiche: number
   _count: OggettoCountAggregateOutputType | null
   _avg: OggettoAvgAggregateOutputType | null
   _sum: OggettoSumAggregateOutputType | null
@@ -208,7 +219,9 @@ export type OggettoWhereInput = {
   Costo?: Prisma.IntFilter<"Oggetto"> | number
   Descrizione?: Prisma.StringFilter<"Oggetto"> | string
   Immagine?: Prisma.StringFilter<"Oggetto"> | string
+  SetStatistiche?: Prisma.IntFilter<"Oggetto"> | number
   Inv?: Prisma.InventarioListRelationFilter
+  Stats?: Prisma.XOR<Prisma.SetBaseScalarRelationFilter, Prisma.SetBaseWhereInput>
 }
 
 export type OggettoOrderByWithRelationInput = {
@@ -216,7 +229,9 @@ export type OggettoOrderByWithRelationInput = {
   Costo?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
+  SetStatistiche?: Prisma.SortOrder
   Inv?: Prisma.InventarioOrderByRelationAggregateInput
+  Stats?: Prisma.SetBaseOrderByWithRelationInput
 }
 
 export type OggettoWhereUniqueInput = Prisma.AtLeast<{
@@ -227,7 +242,9 @@ export type OggettoWhereUniqueInput = Prisma.AtLeast<{
   Costo?: Prisma.IntFilter<"Oggetto"> | number
   Descrizione?: Prisma.StringFilter<"Oggetto"> | string
   Immagine?: Prisma.StringFilter<"Oggetto"> | string
+  SetStatistiche?: Prisma.IntFilter<"Oggetto"> | number
   Inv?: Prisma.InventarioListRelationFilter
+  Stats?: Prisma.XOR<Prisma.SetBaseScalarRelationFilter, Prisma.SetBaseWhereInput>
 }, "Nome">
 
 export type OggettoOrderByWithAggregationInput = {
@@ -235,6 +252,7 @@ export type OggettoOrderByWithAggregationInput = {
   Costo?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
+  SetStatistiche?: Prisma.SortOrder
   _count?: Prisma.OggettoCountOrderByAggregateInput
   _avg?: Prisma.OggettoAvgOrderByAggregateInput
   _max?: Prisma.OggettoMaxOrderByAggregateInput
@@ -250,6 +268,7 @@ export type OggettoScalarWhereWithAggregatesInput = {
   Costo?: Prisma.IntWithAggregatesFilter<"Oggetto"> | number
   Descrizione?: Prisma.StringWithAggregatesFilter<"Oggetto"> | string
   Immagine?: Prisma.StringWithAggregatesFilter<"Oggetto"> | string
+  SetStatistiche?: Prisma.IntWithAggregatesFilter<"Oggetto"> | number
 }
 
 export type OggettoCreateInput = {
@@ -258,6 +277,7 @@ export type OggettoCreateInput = {
   Descrizione: string
   Immagine: string
   Inv?: Prisma.InventarioCreateNestedManyWithoutOggettoInput
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutOggettoInput
 }
 
 export type OggettoUncheckedCreateInput = {
@@ -265,6 +285,7 @@ export type OggettoUncheckedCreateInput = {
   Costo: number
   Descrizione: string
   Immagine: string
+  SetStatistiche?: number
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutOggettoInput
 }
 
@@ -274,6 +295,7 @@ export type OggettoUpdateInput = {
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Inv?: Prisma.InventarioUpdateManyWithoutOggettoNestedInput
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutOggettoNestedInput
 }
 
 export type OggettoUncheckedUpdateInput = {
@@ -281,6 +303,7 @@ export type OggettoUncheckedUpdateInput = {
   Costo?: Prisma.IntFieldUpdateOperationsInput | number
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
   Inv?: Prisma.InventarioUncheckedUpdateManyWithoutOggettoNestedInput
 }
 
@@ -289,6 +312,7 @@ export type OggettoCreateManyInput = {
   Costo: number
   Descrizione: string
   Immagine: string
+  SetStatistiche?: number
 }
 
 export type OggettoUpdateManyMutationInput = {
@@ -303,6 +327,7 @@ export type OggettoUncheckedUpdateManyInput = {
   Costo?: Prisma.IntFieldUpdateOperationsInput | number
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type OggettoCountOrderByAggregateInput = {
@@ -310,10 +335,12 @@ export type OggettoCountOrderByAggregateInput = {
   Costo?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
+  SetStatistiche?: Prisma.SortOrder
 }
 
 export type OggettoAvgOrderByAggregateInput = {
   Costo?: Prisma.SortOrder
+  SetStatistiche?: Prisma.SortOrder
 }
 
 export type OggettoMaxOrderByAggregateInput = {
@@ -321,6 +348,7 @@ export type OggettoMaxOrderByAggregateInput = {
   Costo?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
+  SetStatistiche?: Prisma.SortOrder
 }
 
 export type OggettoMinOrderByAggregateInput = {
@@ -328,15 +356,27 @@ export type OggettoMinOrderByAggregateInput = {
   Costo?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
+  SetStatistiche?: Prisma.SortOrder
 }
 
 export type OggettoSumOrderByAggregateInput = {
   Costo?: Prisma.SortOrder
+  SetStatistiche?: Prisma.SortOrder
 }
 
 export type OggettoScalarRelationFilter = {
   is?: Prisma.OggettoWhereInput
   isNot?: Prisma.OggettoWhereInput
+}
+
+export type OggettoListRelationFilter = {
+  every?: Prisma.OggettoWhereInput
+  some?: Prisma.OggettoWhereInput
+  none?: Prisma.OggettoWhereInput
+}
+
+export type OggettoOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type OggettoCreateNestedOneWithoutInvInput = {
@@ -353,11 +393,54 @@ export type OggettoUpdateOneRequiredWithoutInvNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OggettoUpdateToOneWithWhereWithoutInvInput, Prisma.OggettoUpdateWithoutInvInput>, Prisma.OggettoUncheckedUpdateWithoutInvInput>
 }
 
+export type OggettoCreateNestedManyWithoutStatsInput = {
+  create?: Prisma.XOR<Prisma.OggettoCreateWithoutStatsInput, Prisma.OggettoUncheckedCreateWithoutStatsInput> | Prisma.OggettoCreateWithoutStatsInput[] | Prisma.OggettoUncheckedCreateWithoutStatsInput[]
+  connectOrCreate?: Prisma.OggettoCreateOrConnectWithoutStatsInput | Prisma.OggettoCreateOrConnectWithoutStatsInput[]
+  createMany?: Prisma.OggettoCreateManyStatsInputEnvelope
+  connect?: Prisma.OggettoWhereUniqueInput | Prisma.OggettoWhereUniqueInput[]
+}
+
+export type OggettoUncheckedCreateNestedManyWithoutStatsInput = {
+  create?: Prisma.XOR<Prisma.OggettoCreateWithoutStatsInput, Prisma.OggettoUncheckedCreateWithoutStatsInput> | Prisma.OggettoCreateWithoutStatsInput[] | Prisma.OggettoUncheckedCreateWithoutStatsInput[]
+  connectOrCreate?: Prisma.OggettoCreateOrConnectWithoutStatsInput | Prisma.OggettoCreateOrConnectWithoutStatsInput[]
+  createMany?: Prisma.OggettoCreateManyStatsInputEnvelope
+  connect?: Prisma.OggettoWhereUniqueInput | Prisma.OggettoWhereUniqueInput[]
+}
+
+export type OggettoUpdateManyWithoutStatsNestedInput = {
+  create?: Prisma.XOR<Prisma.OggettoCreateWithoutStatsInput, Prisma.OggettoUncheckedCreateWithoutStatsInput> | Prisma.OggettoCreateWithoutStatsInput[] | Prisma.OggettoUncheckedCreateWithoutStatsInput[]
+  connectOrCreate?: Prisma.OggettoCreateOrConnectWithoutStatsInput | Prisma.OggettoCreateOrConnectWithoutStatsInput[]
+  upsert?: Prisma.OggettoUpsertWithWhereUniqueWithoutStatsInput | Prisma.OggettoUpsertWithWhereUniqueWithoutStatsInput[]
+  createMany?: Prisma.OggettoCreateManyStatsInputEnvelope
+  set?: Prisma.OggettoWhereUniqueInput | Prisma.OggettoWhereUniqueInput[]
+  disconnect?: Prisma.OggettoWhereUniqueInput | Prisma.OggettoWhereUniqueInput[]
+  delete?: Prisma.OggettoWhereUniqueInput | Prisma.OggettoWhereUniqueInput[]
+  connect?: Prisma.OggettoWhereUniqueInput | Prisma.OggettoWhereUniqueInput[]
+  update?: Prisma.OggettoUpdateWithWhereUniqueWithoutStatsInput | Prisma.OggettoUpdateWithWhereUniqueWithoutStatsInput[]
+  updateMany?: Prisma.OggettoUpdateManyWithWhereWithoutStatsInput | Prisma.OggettoUpdateManyWithWhereWithoutStatsInput[]
+  deleteMany?: Prisma.OggettoScalarWhereInput | Prisma.OggettoScalarWhereInput[]
+}
+
+export type OggettoUncheckedUpdateManyWithoutStatsNestedInput = {
+  create?: Prisma.XOR<Prisma.OggettoCreateWithoutStatsInput, Prisma.OggettoUncheckedCreateWithoutStatsInput> | Prisma.OggettoCreateWithoutStatsInput[] | Prisma.OggettoUncheckedCreateWithoutStatsInput[]
+  connectOrCreate?: Prisma.OggettoCreateOrConnectWithoutStatsInput | Prisma.OggettoCreateOrConnectWithoutStatsInput[]
+  upsert?: Prisma.OggettoUpsertWithWhereUniqueWithoutStatsInput | Prisma.OggettoUpsertWithWhereUniqueWithoutStatsInput[]
+  createMany?: Prisma.OggettoCreateManyStatsInputEnvelope
+  set?: Prisma.OggettoWhereUniqueInput | Prisma.OggettoWhereUniqueInput[]
+  disconnect?: Prisma.OggettoWhereUniqueInput | Prisma.OggettoWhereUniqueInput[]
+  delete?: Prisma.OggettoWhereUniqueInput | Prisma.OggettoWhereUniqueInput[]
+  connect?: Prisma.OggettoWhereUniqueInput | Prisma.OggettoWhereUniqueInput[]
+  update?: Prisma.OggettoUpdateWithWhereUniqueWithoutStatsInput | Prisma.OggettoUpdateWithWhereUniqueWithoutStatsInput[]
+  updateMany?: Prisma.OggettoUpdateManyWithWhereWithoutStatsInput | Prisma.OggettoUpdateManyWithWhereWithoutStatsInput[]
+  deleteMany?: Prisma.OggettoScalarWhereInput | Prisma.OggettoScalarWhereInput[]
+}
+
 export type OggettoCreateWithoutInvInput = {
   Nome: string
   Costo: number
   Descrizione: string
   Immagine: string
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutOggettoInput
 }
 
 export type OggettoUncheckedCreateWithoutInvInput = {
@@ -365,6 +448,7 @@ export type OggettoUncheckedCreateWithoutInvInput = {
   Costo: number
   Descrizione: string
   Immagine: string
+  SetStatistiche?: number
 }
 
 export type OggettoCreateOrConnectWithoutInvInput = {
@@ -388,9 +472,94 @@ export type OggettoUpdateWithoutInvInput = {
   Costo?: Prisma.IntFieldUpdateOperationsInput | number
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutOggettoNestedInput
 }
 
 export type OggettoUncheckedUpdateWithoutInvInput = {
+  Nome?: Prisma.StringFieldUpdateOperationsInput | string
+  Costo?: Prisma.IntFieldUpdateOperationsInput | number
+  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type OggettoCreateWithoutStatsInput = {
+  Nome: string
+  Costo: number
+  Descrizione: string
+  Immagine: string
+  Inv?: Prisma.InventarioCreateNestedManyWithoutOggettoInput
+}
+
+export type OggettoUncheckedCreateWithoutStatsInput = {
+  Nome: string
+  Costo: number
+  Descrizione: string
+  Immagine: string
+  Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutOggettoInput
+}
+
+export type OggettoCreateOrConnectWithoutStatsInput = {
+  where: Prisma.OggettoWhereUniqueInput
+  create: Prisma.XOR<Prisma.OggettoCreateWithoutStatsInput, Prisma.OggettoUncheckedCreateWithoutStatsInput>
+}
+
+export type OggettoCreateManyStatsInputEnvelope = {
+  data: Prisma.OggettoCreateManyStatsInput | Prisma.OggettoCreateManyStatsInput[]
+  skipDuplicates?: boolean
+}
+
+export type OggettoUpsertWithWhereUniqueWithoutStatsInput = {
+  where: Prisma.OggettoWhereUniqueInput
+  update: Prisma.XOR<Prisma.OggettoUpdateWithoutStatsInput, Prisma.OggettoUncheckedUpdateWithoutStatsInput>
+  create: Prisma.XOR<Prisma.OggettoCreateWithoutStatsInput, Prisma.OggettoUncheckedCreateWithoutStatsInput>
+}
+
+export type OggettoUpdateWithWhereUniqueWithoutStatsInput = {
+  where: Prisma.OggettoWhereUniqueInput
+  data: Prisma.XOR<Prisma.OggettoUpdateWithoutStatsInput, Prisma.OggettoUncheckedUpdateWithoutStatsInput>
+}
+
+export type OggettoUpdateManyWithWhereWithoutStatsInput = {
+  where: Prisma.OggettoScalarWhereInput
+  data: Prisma.XOR<Prisma.OggettoUpdateManyMutationInput, Prisma.OggettoUncheckedUpdateManyWithoutStatsInput>
+}
+
+export type OggettoScalarWhereInput = {
+  AND?: Prisma.OggettoScalarWhereInput | Prisma.OggettoScalarWhereInput[]
+  OR?: Prisma.OggettoScalarWhereInput[]
+  NOT?: Prisma.OggettoScalarWhereInput | Prisma.OggettoScalarWhereInput[]
+  Nome?: Prisma.StringFilter<"Oggetto"> | string
+  Costo?: Prisma.IntFilter<"Oggetto"> | number
+  Descrizione?: Prisma.StringFilter<"Oggetto"> | string
+  Immagine?: Prisma.StringFilter<"Oggetto"> | string
+  SetStatistiche?: Prisma.IntFilter<"Oggetto"> | number
+}
+
+export type OggettoCreateManyStatsInput = {
+  Nome: string
+  Costo: number
+  Descrizione: string
+  Immagine: string
+}
+
+export type OggettoUpdateWithoutStatsInput = {
+  Nome?: Prisma.StringFieldUpdateOperationsInput | string
+  Costo?: Prisma.IntFieldUpdateOperationsInput | number
+  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  Inv?: Prisma.InventarioUpdateManyWithoutOggettoNestedInput
+}
+
+export type OggettoUncheckedUpdateWithoutStatsInput = {
+  Nome?: Prisma.StringFieldUpdateOperationsInput | string
+  Costo?: Prisma.IntFieldUpdateOperationsInput | number
+  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  Inv?: Prisma.InventarioUncheckedUpdateManyWithoutOggettoNestedInput
+}
+
+export type OggettoUncheckedUpdateManyWithoutStatsInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Costo?: Prisma.IntFieldUpdateOperationsInput | number
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
@@ -433,7 +602,9 @@ export type OggettoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   Costo?: boolean
   Descrizione?: boolean
   Immagine?: boolean
+  SetStatistiche?: boolean
   Inv?: boolean | Prisma.Oggetto$InvArgs<ExtArgs>
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.OggettoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["oggetto"]>
 
@@ -442,6 +613,8 @@ export type OggettoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   Costo?: boolean
   Descrizione?: boolean
   Immagine?: boolean
+  SetStatistiche?: boolean
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["oggetto"]>
 
 export type OggettoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -449,6 +622,8 @@ export type OggettoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   Costo?: boolean
   Descrizione?: boolean
   Immagine?: boolean
+  SetStatistiche?: boolean
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["oggetto"]>
 
 export type OggettoSelectScalar = {
@@ -456,26 +631,34 @@ export type OggettoSelectScalar = {
   Costo?: boolean
   Descrizione?: boolean
   Immagine?: boolean
+  SetStatistiche?: boolean
 }
 
-export type OggettoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Nome" | "Costo" | "Descrizione" | "Immagine", ExtArgs["result"]["oggetto"]>
+export type OggettoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Nome" | "Costo" | "Descrizione" | "Immagine" | "SetStatistiche", ExtArgs["result"]["oggetto"]>
 export type OggettoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Inv?: boolean | Prisma.Oggetto$InvArgs<ExtArgs>
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.OggettoCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type OggettoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type OggettoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type OggettoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
+}
+export type OggettoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
+}
 
 export type $OggettoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Oggetto"
   objects: {
     Inv: Prisma.$InventarioPayload<ExtArgs>[]
+    Stats: Prisma.$SetBasePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Nome: string
     Costo: number
     Descrizione: string
     Immagine: string
+    SetStatistiche: number
   }, ExtArgs["result"]["oggetto"]>
   composites: {}
 }
@@ -871,6 +1054,7 @@ readonly fields: OggettoFieldRefs;
 export interface Prisma__OggettoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   Inv<T extends Prisma.Oggetto$InvArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Oggetto$InvArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Stats<T extends Prisma.SetBaseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBaseDefaultArgs<ExtArgs>>): Prisma.Prisma__SetBaseClient<runtime.Types.Result.GetResult<Prisma.$SetBasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -904,6 +1088,7 @@ export interface OggettoFieldRefs {
   readonly Costo: Prisma.FieldRef<"Oggetto", 'Int'>
   readonly Descrizione: Prisma.FieldRef<"Oggetto", 'String'>
   readonly Immagine: Prisma.FieldRef<"Oggetto", 'String'>
+  readonly SetStatistiche: Prisma.FieldRef<"Oggetto", 'Int'>
 }
     
 
@@ -1158,6 +1343,10 @@ export type OggettoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    */
   data: Prisma.OggettoCreateManyInput | Prisma.OggettoCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OggettoIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1228,6 +1417,10 @@ export type OggettoUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * Limit how many Oggettos to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OggettoIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

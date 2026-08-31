@@ -4,10 +4,17 @@ import { getChampionsBasicInfo } from '$lib/server/championsManager';
 
 export const load: PageServerLoad = async ({params, cookies, locals}) => {
   const champions = await getChampionsBasicInfo();
+  
+  if(!locals.user) {
+    return {
+      profile: undefined,
+      role: "User",
+      champions: champions
+    }
+  }
 
   return {
-    profile: locals.user 
-      ? locals.user.username : undefined,
+    profile: locals.user.username,
     role: locals.user.isAdmin
       ? "Admin" : "User",
     champions: champions

@@ -11,11 +11,20 @@ export const load: PageServerLoad = async ({params, locals}) => {
   const champ = await getChampionByName(champname[0]);
 
   if (!champ) {
-        throw error(404, 'Campione non trovato'); 
+    throw error(404, 'Campione non trovato'); 
+  }
+  
+  if(!locals.user) {
+    return {
+      profile: undefined,
+      role: "User",
+      champ: champ,
+      items: items
     }
+  }
 
   return {
-    profile: locals.user ? locals.user.username : undefined,
+    profile: locals.user.username,
     role: locals.user.isAdmin ? "Admin" : "User",
     title: params.buildinfo,
     champ: champ,

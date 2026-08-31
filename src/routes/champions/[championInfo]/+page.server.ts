@@ -5,9 +5,15 @@ import { getChampionAndCosmeticsByName, getChampionByName } from "$lib/server/ch
 export const load: PageServerLoad = async ({ params, cookies, locals }) => {
     const champion = await getChampionAndCosmeticsByName(params.championInfo);
 
+    if(!locals.user) {
+        return {
+            profile: undefined,
+            role: "User",
+            champion: champion
+        }
+    }
     return {
-        profile: locals.user 
-            ? locals.user.username : undefined,
+        profile: locals.user.username,
         role: locals.user.isAdmin
             ? "Admin" : "User",
         champion: champion

@@ -220,8 +220,8 @@ export type OggettoWhereInput = {
   Descrizione?: Prisma.StringFilter<"Oggetto"> | string
   Immagine?: Prisma.StringFilter<"Oggetto"> | string
   SetStatistiche?: Prisma.IntFilter<"Oggetto"> | number
-  Inv?: Prisma.InventarioListRelationFilter
   Stats?: Prisma.XOR<Prisma.SetBaseScalarRelationFilter, Prisma.SetBaseWhereInput>
+  Inv?: Prisma.InventarioListRelationFilter
 }
 
 export type OggettoOrderByWithRelationInput = {
@@ -230,8 +230,8 @@ export type OggettoOrderByWithRelationInput = {
   Descrizione?: Prisma.SortOrder
   Immagine?: Prisma.SortOrder
   SetStatistiche?: Prisma.SortOrder
-  Inv?: Prisma.InventarioOrderByRelationAggregateInput
   Stats?: Prisma.SetBaseOrderByWithRelationInput
+  Inv?: Prisma.InventarioOrderByRelationAggregateInput
 }
 
 export type OggettoWhereUniqueInput = Prisma.AtLeast<{
@@ -243,8 +243,8 @@ export type OggettoWhereUniqueInput = Prisma.AtLeast<{
   Descrizione?: Prisma.StringFilter<"Oggetto"> | string
   Immagine?: Prisma.StringFilter<"Oggetto"> | string
   SetStatistiche?: Prisma.IntFilter<"Oggetto"> | number
-  Inv?: Prisma.InventarioListRelationFilter
   Stats?: Prisma.XOR<Prisma.SetBaseScalarRelationFilter, Prisma.SetBaseWhereInput>
+  Inv?: Prisma.InventarioListRelationFilter
 }, "Nome">
 
 export type OggettoOrderByWithAggregationInput = {
@@ -276,8 +276,8 @@ export type OggettoCreateInput = {
   Costo: number
   Descrizione: string
   Immagine: string
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutItemInput
   Inv?: Prisma.InventarioCreateNestedManyWithoutOggettoInput
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutOggettoInput
 }
 
 export type OggettoUncheckedCreateInput = {
@@ -294,8 +294,8 @@ export type OggettoUpdateInput = {
   Costo?: Prisma.IntFieldUpdateOperationsInput | number
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutItemNestedInput
   Inv?: Prisma.InventarioUpdateManyWithoutOggettoNestedInput
-  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutOggettoNestedInput
 }
 
 export type OggettoUncheckedUpdateInput = {
@@ -440,7 +440,7 @@ export type OggettoCreateWithoutInvInput = {
   Costo: number
   Descrizione: string
   Immagine: string
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutOggettoInput
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutItemInput
 }
 
 export type OggettoUncheckedCreateWithoutInvInput = {
@@ -472,7 +472,7 @@ export type OggettoUpdateWithoutInvInput = {
   Costo?: Prisma.IntFieldUpdateOperationsInput | number
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutOggettoNestedInput
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutItemNestedInput
 }
 
 export type OggettoUncheckedUpdateWithoutInvInput = {
@@ -603,8 +603,8 @@ export type OggettoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   Descrizione?: boolean
   Immagine?: boolean
   SetStatistiche?: boolean
-  Inv?: boolean | Prisma.Oggetto$InvArgs<ExtArgs>
   Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
+  Inv?: boolean | Prisma.Oggetto$InvArgs<ExtArgs>
   _count?: boolean | Prisma.OggettoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["oggetto"]>
 
@@ -636,8 +636,8 @@ export type OggettoSelectScalar = {
 
 export type OggettoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Nome" | "Costo" | "Descrizione" | "Immagine" | "SetStatistiche", ExtArgs["result"]["oggetto"]>
 export type OggettoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Inv?: boolean | Prisma.Oggetto$InvArgs<ExtArgs>
   Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
+  Inv?: boolean | Prisma.Oggetto$InvArgs<ExtArgs>
   _count?: boolean | Prisma.OggettoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OggettoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -650,8 +650,8 @@ export type OggettoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $OggettoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Oggetto"
   objects: {
-    Inv: Prisma.$InventarioPayload<ExtArgs>[]
     Stats: Prisma.$SetBasePayload<ExtArgs>
+    Inv: Prisma.$InventarioPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Nome: string
@@ -1053,8 +1053,8 @@ readonly fields: OggettoFieldRefs;
  */
 export interface Prisma__OggettoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Inv<T extends Prisma.Oggetto$InvArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Oggetto$InvArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Stats<T extends Prisma.SetBaseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBaseDefaultArgs<ExtArgs>>): Prisma.Prisma__SetBaseClient<runtime.Types.Result.GetResult<Prisma.$SetBasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Inv<T extends Prisma.Oggetto$InvArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Oggetto$InvArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

@@ -204,16 +204,16 @@ export type Kit_AbilitaWhereInput = {
   IdKit?: Prisma.IntFilter<"Kit_Abilita"> | number
   IdAbilita?: Prisma.IntFilter<"Kit_Abilita"> | number
   Tipo?: Prisma.EnumTipo_AbilitaFilter<"Kit_Abilita"> | $Enums.Tipo_Abilita
-  kit?: Prisma.XOR<Prisma.KitScalarRelationFilter, Prisma.KitWhereInput>
   abilita?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
+  kit?: Prisma.XOR<Prisma.KitScalarRelationFilter, Prisma.KitWhereInput>
 }
 
 export type Kit_AbilitaOrderByWithRelationInput = {
   IdKit?: Prisma.SortOrder
   IdAbilita?: Prisma.SortOrder
   Tipo?: Prisma.SortOrder
-  kit?: Prisma.KitOrderByWithRelationInput
   abilita?: Prisma.AbilitaOrderByWithRelationInput
+  kit?: Prisma.KitOrderByWithRelationInput
 }
 
 export type Kit_AbilitaWhereUniqueInput = Prisma.AtLeast<{
@@ -224,8 +224,8 @@ export type Kit_AbilitaWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.Kit_AbilitaWhereInput | Prisma.Kit_AbilitaWhereInput[]
   IdKit?: Prisma.IntFilter<"Kit_Abilita"> | number
   Tipo?: Prisma.EnumTipo_AbilitaFilter<"Kit_Abilita"> | $Enums.Tipo_Abilita
-  kit?: Prisma.XOR<Prisma.KitScalarRelationFilter, Prisma.KitWhereInput>
   abilita?: Prisma.XOR<Prisma.AbilitaScalarRelationFilter, Prisma.AbilitaWhereInput>
+  kit?: Prisma.XOR<Prisma.KitScalarRelationFilter, Prisma.KitWhereInput>
 }, "IdKit_Tipo" | "IdAbilita">
 
 export type Kit_AbilitaOrderByWithAggregationInput = {
@@ -250,8 +250,8 @@ export type Kit_AbilitaScalarWhereWithAggregatesInput = {
 
 export type Kit_AbilitaCreateInput = {
   Tipo: $Enums.Tipo_Abilita
-  kit: Prisma.KitCreateNestedOneWithoutAbilitaInput
   abilita: Prisma.AbilitaCreateNestedOneWithoutKitAbInput
+  kit: Prisma.KitCreateNestedOneWithoutAbilitaInput
 }
 
 export type Kit_AbilitaUncheckedCreateInput = {
@@ -262,8 +262,8 @@ export type Kit_AbilitaUncheckedCreateInput = {
 
 export type Kit_AbilitaUpdateInput = {
   Tipo?: Prisma.EnumTipo_AbilitaFieldUpdateOperationsInput | $Enums.Tipo_Abilita
-  kit?: Prisma.KitUpdateOneRequiredWithoutAbilitaNestedInput
   abilita?: Prisma.AbilitaUpdateOneRequiredWithoutKitAbNestedInput
+  kit?: Prisma.KitUpdateOneRequiredWithoutAbilitaNestedInput
 }
 
 export type Kit_AbilitaUncheckedUpdateInput = {
@@ -296,6 +296,11 @@ export type Kit_AbilitaListRelationFilter = {
 
 export type Kit_AbilitaOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type Kit_AbilitaNullableScalarRelationFilter = {
+  is?: Prisma.Kit_AbilitaWhereInput | null
+  isNot?: Prisma.Kit_AbilitaWhereInput | null
 }
 
 export type Kit_AbilitaIdKitTipoCompoundUniqueInput = {
@@ -373,46 +378,36 @@ export type Kit_AbilitaUncheckedUpdateManyWithoutKitNestedInput = {
   deleteMany?: Prisma.Kit_AbilitaScalarWhereInput | Prisma.Kit_AbilitaScalarWhereInput[]
 }
 
-export type Kit_AbilitaCreateNestedManyWithoutAbilitaInput = {
-  create?: Prisma.XOR<Prisma.Kit_AbilitaCreateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput> | Prisma.Kit_AbilitaCreateWithoutAbilitaInput[] | Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput[]
-  connectOrCreate?: Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput | Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput[]
-  createMany?: Prisma.Kit_AbilitaCreateManyAbilitaInputEnvelope
-  connect?: Prisma.Kit_AbilitaWhereUniqueInput | Prisma.Kit_AbilitaWhereUniqueInput[]
+export type Kit_AbilitaCreateNestedOneWithoutAbilitaInput = {
+  create?: Prisma.XOR<Prisma.Kit_AbilitaCreateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput>
+  connectOrCreate?: Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput
+  connect?: Prisma.Kit_AbilitaWhereUniqueInput
 }
 
-export type Kit_AbilitaUncheckedCreateNestedManyWithoutAbilitaInput = {
-  create?: Prisma.XOR<Prisma.Kit_AbilitaCreateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput> | Prisma.Kit_AbilitaCreateWithoutAbilitaInput[] | Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput[]
-  connectOrCreate?: Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput | Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput[]
-  createMany?: Prisma.Kit_AbilitaCreateManyAbilitaInputEnvelope
-  connect?: Prisma.Kit_AbilitaWhereUniqueInput | Prisma.Kit_AbilitaWhereUniqueInput[]
+export type Kit_AbilitaUncheckedCreateNestedOneWithoutAbilitaInput = {
+  create?: Prisma.XOR<Prisma.Kit_AbilitaCreateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput>
+  connectOrCreate?: Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput
+  connect?: Prisma.Kit_AbilitaWhereUniqueInput
 }
 
-export type Kit_AbilitaUpdateManyWithoutAbilitaNestedInput = {
-  create?: Prisma.XOR<Prisma.Kit_AbilitaCreateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput> | Prisma.Kit_AbilitaCreateWithoutAbilitaInput[] | Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput[]
-  connectOrCreate?: Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput | Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput[]
-  upsert?: Prisma.Kit_AbilitaUpsertWithWhereUniqueWithoutAbilitaInput | Prisma.Kit_AbilitaUpsertWithWhereUniqueWithoutAbilitaInput[]
-  createMany?: Prisma.Kit_AbilitaCreateManyAbilitaInputEnvelope
-  set?: Prisma.Kit_AbilitaWhereUniqueInput | Prisma.Kit_AbilitaWhereUniqueInput[]
-  disconnect?: Prisma.Kit_AbilitaWhereUniqueInput | Prisma.Kit_AbilitaWhereUniqueInput[]
-  delete?: Prisma.Kit_AbilitaWhereUniqueInput | Prisma.Kit_AbilitaWhereUniqueInput[]
-  connect?: Prisma.Kit_AbilitaWhereUniqueInput | Prisma.Kit_AbilitaWhereUniqueInput[]
-  update?: Prisma.Kit_AbilitaUpdateWithWhereUniqueWithoutAbilitaInput | Prisma.Kit_AbilitaUpdateWithWhereUniqueWithoutAbilitaInput[]
-  updateMany?: Prisma.Kit_AbilitaUpdateManyWithWhereWithoutAbilitaInput | Prisma.Kit_AbilitaUpdateManyWithWhereWithoutAbilitaInput[]
-  deleteMany?: Prisma.Kit_AbilitaScalarWhereInput | Prisma.Kit_AbilitaScalarWhereInput[]
+export type Kit_AbilitaUpdateOneWithoutAbilitaNestedInput = {
+  create?: Prisma.XOR<Prisma.Kit_AbilitaCreateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput>
+  connectOrCreate?: Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput
+  upsert?: Prisma.Kit_AbilitaUpsertWithoutAbilitaInput
+  disconnect?: Prisma.Kit_AbilitaWhereInput | boolean
+  delete?: Prisma.Kit_AbilitaWhereInput | boolean
+  connect?: Prisma.Kit_AbilitaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.Kit_AbilitaUpdateToOneWithWhereWithoutAbilitaInput, Prisma.Kit_AbilitaUpdateWithoutAbilitaInput>, Prisma.Kit_AbilitaUncheckedUpdateWithoutAbilitaInput>
 }
 
-export type Kit_AbilitaUncheckedUpdateManyWithoutAbilitaNestedInput = {
-  create?: Prisma.XOR<Prisma.Kit_AbilitaCreateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput> | Prisma.Kit_AbilitaCreateWithoutAbilitaInput[] | Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput[]
-  connectOrCreate?: Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput | Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput[]
-  upsert?: Prisma.Kit_AbilitaUpsertWithWhereUniqueWithoutAbilitaInput | Prisma.Kit_AbilitaUpsertWithWhereUniqueWithoutAbilitaInput[]
-  createMany?: Prisma.Kit_AbilitaCreateManyAbilitaInputEnvelope
-  set?: Prisma.Kit_AbilitaWhereUniqueInput | Prisma.Kit_AbilitaWhereUniqueInput[]
-  disconnect?: Prisma.Kit_AbilitaWhereUniqueInput | Prisma.Kit_AbilitaWhereUniqueInput[]
-  delete?: Prisma.Kit_AbilitaWhereUniqueInput | Prisma.Kit_AbilitaWhereUniqueInput[]
-  connect?: Prisma.Kit_AbilitaWhereUniqueInput | Prisma.Kit_AbilitaWhereUniqueInput[]
-  update?: Prisma.Kit_AbilitaUpdateWithWhereUniqueWithoutAbilitaInput | Prisma.Kit_AbilitaUpdateWithWhereUniqueWithoutAbilitaInput[]
-  updateMany?: Prisma.Kit_AbilitaUpdateManyWithWhereWithoutAbilitaInput | Prisma.Kit_AbilitaUpdateManyWithWhereWithoutAbilitaInput[]
-  deleteMany?: Prisma.Kit_AbilitaScalarWhereInput | Prisma.Kit_AbilitaScalarWhereInput[]
+export type Kit_AbilitaUncheckedUpdateOneWithoutAbilitaNestedInput = {
+  create?: Prisma.XOR<Prisma.Kit_AbilitaCreateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput>
+  connectOrCreate?: Prisma.Kit_AbilitaCreateOrConnectWithoutAbilitaInput
+  upsert?: Prisma.Kit_AbilitaUpsertWithoutAbilitaInput
+  disconnect?: Prisma.Kit_AbilitaWhereInput | boolean
+  delete?: Prisma.Kit_AbilitaWhereInput | boolean
+  connect?: Prisma.Kit_AbilitaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.Kit_AbilitaUpdateToOneWithWhereWithoutAbilitaInput, Prisma.Kit_AbilitaUpdateWithoutAbilitaInput>, Prisma.Kit_AbilitaUncheckedUpdateWithoutAbilitaInput>
 }
 
 export type EnumTipo_AbilitaFieldUpdateOperationsInput = {
@@ -479,25 +474,25 @@ export type Kit_AbilitaCreateOrConnectWithoutAbilitaInput = {
   create: Prisma.XOR<Prisma.Kit_AbilitaCreateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput>
 }
 
-export type Kit_AbilitaCreateManyAbilitaInputEnvelope = {
-  data: Prisma.Kit_AbilitaCreateManyAbilitaInput | Prisma.Kit_AbilitaCreateManyAbilitaInput[]
-  skipDuplicates?: boolean
-}
-
-export type Kit_AbilitaUpsertWithWhereUniqueWithoutAbilitaInput = {
-  where: Prisma.Kit_AbilitaWhereUniqueInput
+export type Kit_AbilitaUpsertWithoutAbilitaInput = {
   update: Prisma.XOR<Prisma.Kit_AbilitaUpdateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedUpdateWithoutAbilitaInput>
   create: Prisma.XOR<Prisma.Kit_AbilitaCreateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedCreateWithoutAbilitaInput>
+  where?: Prisma.Kit_AbilitaWhereInput
 }
 
-export type Kit_AbilitaUpdateWithWhereUniqueWithoutAbilitaInput = {
-  where: Prisma.Kit_AbilitaWhereUniqueInput
+export type Kit_AbilitaUpdateToOneWithWhereWithoutAbilitaInput = {
+  where?: Prisma.Kit_AbilitaWhereInput
   data: Prisma.XOR<Prisma.Kit_AbilitaUpdateWithoutAbilitaInput, Prisma.Kit_AbilitaUncheckedUpdateWithoutAbilitaInput>
 }
 
-export type Kit_AbilitaUpdateManyWithWhereWithoutAbilitaInput = {
-  where: Prisma.Kit_AbilitaScalarWhereInput
-  data: Prisma.XOR<Prisma.Kit_AbilitaUpdateManyMutationInput, Prisma.Kit_AbilitaUncheckedUpdateManyWithoutAbilitaInput>
+export type Kit_AbilitaUpdateWithoutAbilitaInput = {
+  Tipo?: Prisma.EnumTipo_AbilitaFieldUpdateOperationsInput | $Enums.Tipo_Abilita
+  kit?: Prisma.KitUpdateOneRequiredWithoutAbilitaNestedInput
+}
+
+export type Kit_AbilitaUncheckedUpdateWithoutAbilitaInput = {
+  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
+  Tipo?: Prisma.EnumTipo_AbilitaFieldUpdateOperationsInput | $Enums.Tipo_Abilita
 }
 
 export type Kit_AbilitaCreateManyKitInput = {
@@ -520,50 +515,30 @@ export type Kit_AbilitaUncheckedUpdateManyWithoutKitInput = {
   Tipo?: Prisma.EnumTipo_AbilitaFieldUpdateOperationsInput | $Enums.Tipo_Abilita
 }
 
-export type Kit_AbilitaCreateManyAbilitaInput = {
-  IdKit: number
-  Tipo: $Enums.Tipo_Abilita
-}
-
-export type Kit_AbilitaUpdateWithoutAbilitaInput = {
-  Tipo?: Prisma.EnumTipo_AbilitaFieldUpdateOperationsInput | $Enums.Tipo_Abilita
-  kit?: Prisma.KitUpdateOneRequiredWithoutAbilitaNestedInput
-}
-
-export type Kit_AbilitaUncheckedUpdateWithoutAbilitaInput = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Tipo?: Prisma.EnumTipo_AbilitaFieldUpdateOperationsInput | $Enums.Tipo_Abilita
-}
-
-export type Kit_AbilitaUncheckedUpdateManyWithoutAbilitaInput = {
-  IdKit?: Prisma.IntFieldUpdateOperationsInput | number
-  Tipo?: Prisma.EnumTipo_AbilitaFieldUpdateOperationsInput | $Enums.Tipo_Abilita
-}
-
 
 
 export type Kit_AbilitaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   IdKit?: boolean
   IdAbilita?: boolean
   Tipo?: boolean
-  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
   abilita?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["kit_Abilita"]>
 
 export type Kit_AbilitaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   IdKit?: boolean
   IdAbilita?: boolean
   Tipo?: boolean
-  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
   abilita?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["kit_Abilita"]>
 
 export type Kit_AbilitaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   IdKit?: boolean
   IdAbilita?: boolean
   Tipo?: boolean
-  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
   abilita?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["kit_Abilita"]>
 
 export type Kit_AbilitaSelectScalar = {
@@ -574,23 +549,23 @@ export type Kit_AbilitaSelectScalar = {
 
 export type Kit_AbilitaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdKit" | "IdAbilita" | "Tipo", ExtArgs["result"]["kit_Abilita"]>
 export type Kit_AbilitaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
   abilita?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
 }
 export type Kit_AbilitaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
   abilita?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
 }
 export type Kit_AbilitaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
   abilita?: boolean | Prisma.AbilitaDefaultArgs<ExtArgs>
+  kit?: boolean | Prisma.KitDefaultArgs<ExtArgs>
 }
 
 export type $Kit_AbilitaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Kit_Abilita"
   objects: {
-    kit: Prisma.$KitPayload<ExtArgs>
     abilita: Prisma.$AbilitaPayload<ExtArgs>
+    kit: Prisma.$KitPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     IdKit: number
@@ -990,8 +965,8 @@ readonly fields: Kit_AbilitaFieldRefs;
  */
 export interface Prisma__Kit_AbilitaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  kit<T extends Prisma.KitDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KitDefaultArgs<ExtArgs>>): Prisma.Prisma__KitClient<runtime.Types.Result.GetResult<Prisma.$KitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   abilita<T extends Prisma.AbilitaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AbilitaDefaultArgs<ExtArgs>>): Prisma.Prisma__AbilitaClient<runtime.Types.Result.GetResult<Prisma.$AbilitaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  kit<T extends Prisma.KitDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KitDefaultArgs<ExtArgs>>): Prisma.Prisma__KitClient<runtime.Types.Result.GetResult<Prisma.$KitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

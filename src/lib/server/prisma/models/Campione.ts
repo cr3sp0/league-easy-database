@@ -27,28 +27,10 @@ export type AggregateCampione = {
 }
 
 export type CampioneAvgAggregateOutputType = {
-  Vita: number | null
-  Mana: number | null
-  Attacco: number | null
-  AttaccoMagico: number | null
-  Velocità_di_movimento: number | null
-  Armatura: number | null
-  Resistenza_magica: number | null
-  Velocità_di_attacco: number | null
-  Gittata: number | null
   SetStatistiche: number | null
 }
 
 export type CampioneSumAggregateOutputType = {
-  Vita: number | null
-  Mana: number | null
-  Attacco: number | null
-  AttaccoMagico: number | null
-  Velocità_di_movimento: number | null
-  Armatura: number | null
-  Resistenza_magica: number | null
-  Velocità_di_attacco: number | null
-  Gittata: number | null
   SetStatistiche: number | null
 }
 
@@ -59,15 +41,6 @@ export type CampioneMinAggregateOutputType = {
   Titolo: string | null
   Descrizione: string | null
   Ruolo: string | null
-  Vita: number | null
-  Mana: number | null
-  Attacco: number | null
-  AttaccoMagico: number | null
-  Velocità_di_movimento: number | null
-  Armatura: number | null
-  Resistenza_magica: number | null
-  Velocità_di_attacco: number | null
-  Gittata: number | null
   SetStatistiche: number | null
 }
 
@@ -78,15 +51,6 @@ export type CampioneMaxAggregateOutputType = {
   Titolo: string | null
   Descrizione: string | null
   Ruolo: string | null
-  Vita: number | null
-  Mana: number | null
-  Attacco: number | null
-  AttaccoMagico: number | null
-  Velocità_di_movimento: number | null
-  Armatura: number | null
-  Resistenza_magica: number | null
-  Velocità_di_attacco: number | null
-  Gittata: number | null
   SetStatistiche: number | null
 }
 
@@ -97,43 +61,16 @@ export type CampioneCountAggregateOutputType = {
   Titolo: number
   Descrizione: number
   Ruolo: number
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche: number
   _all: number
 }
 
 
 export type CampioneAvgAggregateInputType = {
-  Vita?: true
-  Mana?: true
-  Attacco?: true
-  AttaccoMagico?: true
-  Velocità_di_movimento?: true
-  Armatura?: true
-  Resistenza_magica?: true
-  Velocità_di_attacco?: true
-  Gittata?: true
   SetStatistiche?: true
 }
 
 export type CampioneSumAggregateInputType = {
-  Vita?: true
-  Mana?: true
-  Attacco?: true
-  AttaccoMagico?: true
-  Velocità_di_movimento?: true
-  Armatura?: true
-  Resistenza_magica?: true
-  Velocità_di_attacco?: true
-  Gittata?: true
   SetStatistiche?: true
 }
 
@@ -144,15 +81,6 @@ export type CampioneMinAggregateInputType = {
   Titolo?: true
   Descrizione?: true
   Ruolo?: true
-  Vita?: true
-  Mana?: true
-  Attacco?: true
-  AttaccoMagico?: true
-  Velocità_di_movimento?: true
-  Armatura?: true
-  Resistenza_magica?: true
-  Velocità_di_attacco?: true
-  Gittata?: true
   SetStatistiche?: true
 }
 
@@ -163,15 +91,6 @@ export type CampioneMaxAggregateInputType = {
   Titolo?: true
   Descrizione?: true
   Ruolo?: true
-  Vita?: true
-  Mana?: true
-  Attacco?: true
-  AttaccoMagico?: true
-  Velocità_di_movimento?: true
-  Armatura?: true
-  Resistenza_magica?: true
-  Velocità_di_attacco?: true
-  Gittata?: true
   SetStatistiche?: true
 }
 
@@ -182,15 +101,6 @@ export type CampioneCountAggregateInputType = {
   Titolo?: true
   Descrizione?: true
   Ruolo?: true
-  Vita?: true
-  Mana?: true
-  Attacco?: true
-  AttaccoMagico?: true
-  Velocità_di_movimento?: true
-  Armatura?: true
-  Resistenza_magica?: true
-  Velocità_di_attacco?: true
-  Gittata?: true
   SetStatistiche?: true
   _all?: true
 }
@@ -288,15 +198,6 @@ export type CampioneGroupByOutputType = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche: number
   _count: CampioneCountAggregateOutputType | null
   _avg: CampioneAvgAggregateOutputType | null
@@ -330,24 +231,15 @@ export type CampioneWhereInput = {
   Titolo?: Prisma.StringFilter<"Campione"> | string
   Descrizione?: Prisma.StringFilter<"Campione"> | string
   Ruolo?: Prisma.StringFilter<"Campione"> | string
-  Vita?: Prisma.IntFilter<"Campione"> | number
-  Mana?: Prisma.IntFilter<"Campione"> | number
-  Attacco?: Prisma.FloatFilter<"Campione"> | number
-  AttaccoMagico?: Prisma.IntFilter<"Campione"> | number
-  Velocità_di_movimento?: Prisma.IntFilter<"Campione"> | number
-  Armatura?: Prisma.FloatFilter<"Campione"> | number
-  Resistenza_magica?: Prisma.FloatFilter<"Campione"> | number
-  Velocità_di_attacco?: Prisma.FloatFilter<"Campione"> | number
-  Gittata?: Prisma.IntFilter<"Campione"> | number
   SetStatistiche?: Prisma.IntFilter<"Campione"> | number
-  Kit?: Prisma.KitListRelationFilter
-  Cosmetico?: Prisma.CosmeticoListRelationFilter
-  Regione?: Prisma.Campione_RegioneListRelationFilter
-  Razza?: Prisma.Campione_RazzaListRelationFilter
-  Posizione?: Prisma.Campione_PosizioneListRelationFilter
-  Config?: Prisma.ConfigurazioneListRelationFilter
-  Stats?: Prisma.XOR<Prisma.SetBaseScalarRelationFilter, Prisma.SetBaseWhereInput>
   Role?: Prisma.XOR<Prisma.RuoloScalarRelationFilter, Prisma.RuoloWhereInput>
+  Stats?: Prisma.XOR<Prisma.SetBaseScalarRelationFilter, Prisma.SetBaseWhereInput>
+  Posizione?: Prisma.Campione_PosizioneListRelationFilter
+  Razza?: Prisma.Campione_RazzaListRelationFilter
+  Regione?: Prisma.Campione_RegioneListRelationFilter
+  Config?: Prisma.ConfigurazioneListRelationFilter
+  Cosmetico?: Prisma.CosmeticoListRelationFilter
+  Kit?: Prisma.KitListRelationFilter
 }
 
 export type CampioneOrderByWithRelationInput = {
@@ -357,24 +249,15 @@ export type CampioneOrderByWithRelationInput = {
   Titolo?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Ruolo?: Prisma.SortOrder
-  Vita?: Prisma.SortOrder
-  Mana?: Prisma.SortOrder
-  Attacco?: Prisma.SortOrder
-  AttaccoMagico?: Prisma.SortOrder
-  Velocità_di_movimento?: Prisma.SortOrder
-  Armatura?: Prisma.SortOrder
-  Resistenza_magica?: Prisma.SortOrder
-  Velocità_di_attacco?: Prisma.SortOrder
-  Gittata?: Prisma.SortOrder
   SetStatistiche?: Prisma.SortOrder
-  Kit?: Prisma.KitOrderByRelationAggregateInput
-  Cosmetico?: Prisma.CosmeticoOrderByRelationAggregateInput
-  Regione?: Prisma.Campione_RegioneOrderByRelationAggregateInput
-  Razza?: Prisma.Campione_RazzaOrderByRelationAggregateInput
-  Posizione?: Prisma.Campione_PosizioneOrderByRelationAggregateInput
-  Config?: Prisma.ConfigurazioneOrderByRelationAggregateInput
-  Stats?: Prisma.SetBaseOrderByWithRelationInput
   Role?: Prisma.RuoloOrderByWithRelationInput
+  Stats?: Prisma.SetBaseOrderByWithRelationInput
+  Posizione?: Prisma.Campione_PosizioneOrderByRelationAggregateInput
+  Razza?: Prisma.Campione_RazzaOrderByRelationAggregateInput
+  Regione?: Prisma.Campione_RegioneOrderByRelationAggregateInput
+  Config?: Prisma.ConfigurazioneOrderByRelationAggregateInput
+  Cosmetico?: Prisma.CosmeticoOrderByRelationAggregateInput
+  Kit?: Prisma.KitOrderByRelationAggregateInput
 }
 
 export type CampioneWhereUniqueInput = Prisma.AtLeast<{
@@ -387,24 +270,15 @@ export type CampioneWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CampioneWhereInput | Prisma.CampioneWhereInput[]
   Descrizione?: Prisma.StringFilter<"Campione"> | string
   Ruolo?: Prisma.StringFilter<"Campione"> | string
-  Vita?: Prisma.IntFilter<"Campione"> | number
-  Mana?: Prisma.IntFilter<"Campione"> | number
-  Attacco?: Prisma.FloatFilter<"Campione"> | number
-  AttaccoMagico?: Prisma.IntFilter<"Campione"> | number
-  Velocità_di_movimento?: Prisma.IntFilter<"Campione"> | number
-  Armatura?: Prisma.FloatFilter<"Campione"> | number
-  Resistenza_magica?: Prisma.FloatFilter<"Campione"> | number
-  Velocità_di_attacco?: Prisma.FloatFilter<"Campione"> | number
-  Gittata?: Prisma.IntFilter<"Campione"> | number
   SetStatistiche?: Prisma.IntFilter<"Campione"> | number
-  Kit?: Prisma.KitListRelationFilter
-  Cosmetico?: Prisma.CosmeticoListRelationFilter
-  Regione?: Prisma.Campione_RegioneListRelationFilter
-  Razza?: Prisma.Campione_RazzaListRelationFilter
-  Posizione?: Prisma.Campione_PosizioneListRelationFilter
-  Config?: Prisma.ConfigurazioneListRelationFilter
-  Stats?: Prisma.XOR<Prisma.SetBaseScalarRelationFilter, Prisma.SetBaseWhereInput>
   Role?: Prisma.XOR<Prisma.RuoloScalarRelationFilter, Prisma.RuoloWhereInput>
+  Stats?: Prisma.XOR<Prisma.SetBaseScalarRelationFilter, Prisma.SetBaseWhereInput>
+  Posizione?: Prisma.Campione_PosizioneListRelationFilter
+  Razza?: Prisma.Campione_RazzaListRelationFilter
+  Regione?: Prisma.Campione_RegioneListRelationFilter
+  Config?: Prisma.ConfigurazioneListRelationFilter
+  Cosmetico?: Prisma.CosmeticoListRelationFilter
+  Kit?: Prisma.KitListRelationFilter
 }, "ID" | "nome" | "Icona" | "Titolo">
 
 export type CampioneOrderByWithAggregationInput = {
@@ -414,15 +288,6 @@ export type CampioneOrderByWithAggregationInput = {
   Titolo?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Ruolo?: Prisma.SortOrder
-  Vita?: Prisma.SortOrder
-  Mana?: Prisma.SortOrder
-  Attacco?: Prisma.SortOrder
-  AttaccoMagico?: Prisma.SortOrder
-  Velocità_di_movimento?: Prisma.SortOrder
-  Armatura?: Prisma.SortOrder
-  Resistenza_magica?: Prisma.SortOrder
-  Velocità_di_attacco?: Prisma.SortOrder
-  Gittata?: Prisma.SortOrder
   SetStatistiche?: Prisma.SortOrder
   _count?: Prisma.CampioneCountOrderByAggregateInput
   _avg?: Prisma.CampioneAvgOrderByAggregateInput
@@ -441,15 +306,6 @@ export type CampioneScalarWhereWithAggregatesInput = {
   Titolo?: Prisma.StringWithAggregatesFilter<"Campione"> | string
   Descrizione?: Prisma.StringWithAggregatesFilter<"Campione"> | string
   Ruolo?: Prisma.StringWithAggregatesFilter<"Campione"> | string
-  Vita?: Prisma.IntWithAggregatesFilter<"Campione"> | number
-  Mana?: Prisma.IntWithAggregatesFilter<"Campione"> | number
-  Attacco?: Prisma.FloatWithAggregatesFilter<"Campione"> | number
-  AttaccoMagico?: Prisma.IntWithAggregatesFilter<"Campione"> | number
-  Velocità_di_movimento?: Prisma.IntWithAggregatesFilter<"Campione"> | number
-  Armatura?: Prisma.FloatWithAggregatesFilter<"Campione"> | number
-  Resistenza_magica?: Prisma.FloatWithAggregatesFilter<"Campione"> | number
-  Velocità_di_attacco?: Prisma.FloatWithAggregatesFilter<"Campione"> | number
-  Gittata?: Prisma.IntWithAggregatesFilter<"Campione"> | number
   SetStatistiche?: Prisma.IntWithAggregatesFilter<"Campione"> | number
 }
 
@@ -459,23 +315,14 @@ export type CampioneCreateInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
-  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
-  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
-  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutCampioneInput
   Role: Prisma.RuoloCreateNestedOneWithoutCampioneInput
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutChampInput
+  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
+  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
 }
 
 export type CampioneUncheckedCreateInput = {
@@ -485,22 +332,13 @@ export type CampioneUncheckedCreateInput = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche?: number
-  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
 }
 
 export type CampioneUpdateInput = {
@@ -509,23 +347,14 @@ export type CampioneUpdateInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
-  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
-  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
-  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutCampioneNestedInput
   Role?: Prisma.RuoloUpdateOneRequiredWithoutCampioneNestedInput
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutChampNestedInput
+  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
+  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateInput = {
@@ -535,22 +364,13 @@ export type CampioneUncheckedUpdateInput = {
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneCreateManyInput = {
@@ -560,15 +380,6 @@ export type CampioneCreateManyInput = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche?: number
 }
 
@@ -578,15 +389,6 @@ export type CampioneUpdateManyMutationInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type CampioneUncheckedUpdateManyInput = {
@@ -596,15 +398,6 @@ export type CampioneUncheckedUpdateManyInput = {
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -615,28 +408,10 @@ export type CampioneCountOrderByAggregateInput = {
   Titolo?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Ruolo?: Prisma.SortOrder
-  Vita?: Prisma.SortOrder
-  Mana?: Prisma.SortOrder
-  Attacco?: Prisma.SortOrder
-  AttaccoMagico?: Prisma.SortOrder
-  Velocità_di_movimento?: Prisma.SortOrder
-  Armatura?: Prisma.SortOrder
-  Resistenza_magica?: Prisma.SortOrder
-  Velocità_di_attacco?: Prisma.SortOrder
-  Gittata?: Prisma.SortOrder
   SetStatistiche?: Prisma.SortOrder
 }
 
 export type CampioneAvgOrderByAggregateInput = {
-  Vita?: Prisma.SortOrder
-  Mana?: Prisma.SortOrder
-  Attacco?: Prisma.SortOrder
-  AttaccoMagico?: Prisma.SortOrder
-  Velocità_di_movimento?: Prisma.SortOrder
-  Armatura?: Prisma.SortOrder
-  Resistenza_magica?: Prisma.SortOrder
-  Velocità_di_attacco?: Prisma.SortOrder
-  Gittata?: Prisma.SortOrder
   SetStatistiche?: Prisma.SortOrder
 }
 
@@ -647,15 +422,6 @@ export type CampioneMaxOrderByAggregateInput = {
   Titolo?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Ruolo?: Prisma.SortOrder
-  Vita?: Prisma.SortOrder
-  Mana?: Prisma.SortOrder
-  Attacco?: Prisma.SortOrder
-  AttaccoMagico?: Prisma.SortOrder
-  Velocità_di_movimento?: Prisma.SortOrder
-  Armatura?: Prisma.SortOrder
-  Resistenza_magica?: Prisma.SortOrder
-  Velocità_di_attacco?: Prisma.SortOrder
-  Gittata?: Prisma.SortOrder
   SetStatistiche?: Prisma.SortOrder
 }
 
@@ -666,28 +432,10 @@ export type CampioneMinOrderByAggregateInput = {
   Titolo?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Ruolo?: Prisma.SortOrder
-  Vita?: Prisma.SortOrder
-  Mana?: Prisma.SortOrder
-  Attacco?: Prisma.SortOrder
-  AttaccoMagico?: Prisma.SortOrder
-  Velocità_di_movimento?: Prisma.SortOrder
-  Armatura?: Prisma.SortOrder
-  Resistenza_magica?: Prisma.SortOrder
-  Velocità_di_attacco?: Prisma.SortOrder
-  Gittata?: Prisma.SortOrder
   SetStatistiche?: Prisma.SortOrder
 }
 
 export type CampioneSumOrderByAggregateInput = {
-  Vita?: Prisma.SortOrder
-  Mana?: Prisma.SortOrder
-  Attacco?: Prisma.SortOrder
-  AttaccoMagico?: Prisma.SortOrder
-  Velocità_di_movimento?: Prisma.SortOrder
-  Armatura?: Prisma.SortOrder
-  Resistenza_magica?: Prisma.SortOrder
-  Velocità_di_attacco?: Prisma.SortOrder
-  Gittata?: Prisma.SortOrder
   SetStatistiche?: Prisma.SortOrder
 }
 
@@ -711,14 +459,6 @@ export type StringFieldUpdateOperationsInput = {
 }
 
 export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type FloatFieldUpdateOperationsInput = {
   set?: number
   increment?: number
   decrement?: number
@@ -900,22 +640,13 @@ export type CampioneCreateWithoutCosmeticoInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
-  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
-  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
-  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutCampioneInput
   Role: Prisma.RuoloCreateNestedOneWithoutCampioneInput
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutChampInput
+  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
+  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
 }
 
 export type CampioneUncheckedCreateWithoutCosmeticoInput = {
@@ -925,21 +656,12 @@ export type CampioneUncheckedCreateWithoutCosmeticoInput = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche?: number
-  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
 }
 
 export type CampioneCreateOrConnectWithoutCosmeticoInput = {
@@ -964,22 +686,13 @@ export type CampioneUpdateWithoutCosmeticoInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
-  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
-  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
-  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutCampioneNestedInput
   Role?: Prisma.RuoloUpdateOneRequiredWithoutCampioneNestedInput
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutChampNestedInput
+  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
+  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateWithoutCosmeticoInput = {
@@ -989,21 +702,12 @@ export type CampioneUncheckedUpdateWithoutCosmeticoInput = {
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneCreateWithoutRoleInput = {
@@ -1012,22 +716,13 @@ export type CampioneCreateWithoutRoleInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
-  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutCampioneInput
+  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
 }
 
 export type CampioneUncheckedCreateWithoutRoleInput = {
@@ -1036,22 +731,13 @@ export type CampioneUncheckedCreateWithoutRoleInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche?: number
-  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
 }
 
 export type CampioneCreateOrConnectWithoutRoleInput = {
@@ -1090,15 +776,6 @@ export type CampioneScalarWhereInput = {
   Titolo?: Prisma.StringFilter<"Campione"> | string
   Descrizione?: Prisma.StringFilter<"Campione"> | string
   Ruolo?: Prisma.StringFilter<"Campione"> | string
-  Vita?: Prisma.IntFilter<"Campione"> | number
-  Mana?: Prisma.IntFilter<"Campione"> | number
-  Attacco?: Prisma.FloatFilter<"Campione"> | number
-  AttaccoMagico?: Prisma.IntFilter<"Campione"> | number
-  Velocità_di_movimento?: Prisma.IntFilter<"Campione"> | number
-  Armatura?: Prisma.FloatFilter<"Campione"> | number
-  Resistenza_magica?: Prisma.FloatFilter<"Campione"> | number
-  Velocità_di_attacco?: Prisma.FloatFilter<"Campione"> | number
-  Gittata?: Prisma.IntFilter<"Campione"> | number
   SetStatistiche?: Prisma.IntFilter<"Campione"> | number
 }
 
@@ -1108,22 +785,13 @@ export type CampioneCreateWithoutRazzaInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
-  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
-  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
-  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutCampioneInput
   Role: Prisma.RuoloCreateNestedOneWithoutCampioneInput
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutChampInput
+  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
+  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
 }
 
 export type CampioneUncheckedCreateWithoutRazzaInput = {
@@ -1133,21 +801,12 @@ export type CampioneUncheckedCreateWithoutRazzaInput = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche?: number
-  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
 }
 
 export type CampioneCreateOrConnectWithoutRazzaInput = {
@@ -1172,22 +831,13 @@ export type CampioneUpdateWithoutRazzaInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
-  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
-  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
-  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutCampioneNestedInput
   Role?: Prisma.RuoloUpdateOneRequiredWithoutCampioneNestedInput
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutChampNestedInput
+  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
+  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateWithoutRazzaInput = {
@@ -1197,21 +847,12 @@ export type CampioneUncheckedUpdateWithoutRazzaInput = {
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneCreateWithoutPosizioneInput = {
@@ -1220,22 +861,13 @@ export type CampioneCreateWithoutPosizioneInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
-  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
-  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutCampioneInput
   Role: Prisma.RuoloCreateNestedOneWithoutCampioneInput
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutChampInput
+  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
+  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
 }
 
 export type CampioneUncheckedCreateWithoutPosizioneInput = {
@@ -1245,21 +877,12 @@ export type CampioneUncheckedCreateWithoutPosizioneInput = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche?: number
-  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
 }
 
 export type CampioneCreateOrConnectWithoutPosizioneInput = {
@@ -1284,22 +907,13 @@ export type CampioneUpdateWithoutPosizioneInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
-  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
-  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutCampioneNestedInput
   Role?: Prisma.RuoloUpdateOneRequiredWithoutCampioneNestedInput
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
+  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateWithoutPosizioneInput = {
@@ -1309,21 +923,12 @@ export type CampioneUncheckedUpdateWithoutPosizioneInput = {
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneCreateWithoutRegioneInput = {
@@ -1332,22 +937,13 @@ export type CampioneCreateWithoutRegioneInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
-  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
-  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
-  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutCampioneInput
   Role: Prisma.RuoloCreateNestedOneWithoutCampioneInput
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutChampInput
+  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
+  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
 }
 
 export type CampioneUncheckedCreateWithoutRegioneInput = {
@@ -1357,21 +953,12 @@ export type CampioneUncheckedCreateWithoutRegioneInput = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche?: number
-  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
 }
 
 export type CampioneCreateOrConnectWithoutRegioneInput = {
@@ -1396,22 +983,13 @@ export type CampioneUpdateWithoutRegioneInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
-  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
-  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
-  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutCampioneNestedInput
   Role?: Prisma.RuoloUpdateOneRequiredWithoutCampioneNestedInput
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutChampNestedInput
+  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
+  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateWithoutRegioneInput = {
@@ -1421,21 +999,12 @@ export type CampioneUncheckedUpdateWithoutRegioneInput = {
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneCreateWithoutConfigInput = {
@@ -1444,22 +1013,13 @@ export type CampioneCreateWithoutConfigInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
-  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
-  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutCampioneInput
   Role: Prisma.RuoloCreateNestedOneWithoutCampioneInput
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutChampInput
+  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
 }
 
 export type CampioneUncheckedCreateWithoutConfigInput = {
@@ -1469,21 +1029,12 @@ export type CampioneUncheckedCreateWithoutConfigInput = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche?: number
-  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
 }
 
 export type CampioneCreateOrConnectWithoutConfigInput = {
@@ -1508,22 +1059,13 @@ export type CampioneUpdateWithoutConfigInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
-  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
-  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutCampioneNestedInput
   Role?: Prisma.RuoloUpdateOneRequiredWithoutCampioneNestedInput
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutChampNestedInput
+  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateWithoutConfigInput = {
@@ -1533,21 +1075,12 @@ export type CampioneUncheckedUpdateWithoutConfigInput = {
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneCreateWithoutKitInput = {
@@ -1556,22 +1089,13 @@ export type CampioneCreateWithoutKitInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
-  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
-  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
-  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutCampioneInput
   Role: Prisma.RuoloCreateNestedOneWithoutCampioneInput
+  Stats?: Prisma.SetBaseCreateNestedOneWithoutChampInput
+  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
+  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
 }
 
 export type CampioneUncheckedCreateWithoutKitInput = {
@@ -1581,21 +1105,12 @@ export type CampioneUncheckedCreateWithoutKitInput = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche?: number
-  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
 }
 
 export type CampioneCreateOrConnectWithoutKitInput = {
@@ -1620,22 +1135,13 @@ export type CampioneUpdateWithoutKitInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
-  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
-  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
-  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
-  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutCampioneNestedInput
   Role?: Prisma.RuoloUpdateOneRequiredWithoutCampioneNestedInput
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutChampNestedInput
+  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
+  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateWithoutKitInput = {
@@ -1645,21 +1151,12 @@ export type CampioneUncheckedUpdateWithoutKitInput = {
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
-  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneCreateWithoutStatsInput = {
@@ -1668,22 +1165,13 @@ export type CampioneCreateWithoutStatsInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
-  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
-  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
-  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
   Role: Prisma.RuoloCreateNestedOneWithoutCampioneInput
+  Posizione?: Prisma.Campione_PosizioneCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneCreateNestedManyWithoutChampInput
+  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitCreateNestedManyWithoutChampInput
 }
 
 export type CampioneUncheckedCreateWithoutStatsInput = {
@@ -1693,21 +1181,12 @@ export type CampioneUncheckedCreateWithoutStatsInput = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
-  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
-  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
-  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
-  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
   Posizione?: Prisma.Campione_PosizioneUncheckedCreateNestedManyWithoutChampInput
+  Razza?: Prisma.Campione_RazzaUncheckedCreateNestedManyWithoutChampInput
+  Regione?: Prisma.Campione_RegioneUncheckedCreateNestedManyWithoutChampInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutChampInput
+  Cosmetico?: Prisma.CosmeticoUncheckedCreateNestedManyWithoutChampInput
+  Kit?: Prisma.KitUncheckedCreateNestedManyWithoutChampInput
 }
 
 export type CampioneCreateOrConnectWithoutStatsInput = {
@@ -1742,15 +1221,6 @@ export type CampioneCreateManyRoleInput = {
   Icona: string
   Titolo: string
   Descrizione: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
   SetStatistiche?: number
 }
 
@@ -1760,22 +1230,13 @@ export type CampioneUpdateWithoutRoleInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
+  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
   Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
-  Stats?: Prisma.SetBaseUpdateOneRequiredWithoutCampioneNestedInput
+  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateWithoutRoleInput = {
@@ -1784,22 +1245,13 @@ export type CampioneUncheckedUpdateWithoutRoleInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateManyWithoutRoleInput = {
@@ -1808,15 +1260,6 @@ export type CampioneUncheckedUpdateManyWithoutRoleInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   SetStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -1827,15 +1270,6 @@ export type CampioneCreateManyStatsInput = {
   Titolo: string
   Descrizione: string
   Ruolo: string
-  Vita: number
-  Mana: number
-  Attacco: number
-  AttaccoMagico?: number
-  Velocità_di_movimento: number
-  Armatura: number
-  Resistenza_magica: number
-  Velocità_di_attacco: number
-  Gittata: number
 }
 
 export type CampioneUpdateWithoutStatsInput = {
@@ -1844,22 +1278,13 @@ export type CampioneUpdateWithoutStatsInput = {
   Icona?: Prisma.StringFieldUpdateOperationsInput | string
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
-  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
-  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
   Role?: Prisma.RuoloUpdateOneRequiredWithoutCampioneNestedInput
+  Posizione?: Prisma.Campione_PosizioneUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUpdateManyWithoutChampNestedInput
+  Config?: Prisma.ConfigurazioneUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateWithoutStatsInput = {
@@ -1869,21 +1294,12 @@ export type CampioneUncheckedUpdateWithoutStatsInput = {
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
-  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
-  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
-  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
-  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
   Posizione?: Prisma.Campione_PosizioneUncheckedUpdateManyWithoutChampNestedInput
+  Razza?: Prisma.Campione_RazzaUncheckedUpdateManyWithoutChampNestedInput
+  Regione?: Prisma.Campione_RegioneUncheckedUpdateManyWithoutChampNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutChampNestedInput
+  Cosmetico?: Prisma.CosmeticoUncheckedUpdateManyWithoutChampNestedInput
+  Kit?: Prisma.KitUncheckedUpdateManyWithoutChampNestedInput
 }
 
 export type CampioneUncheckedUpdateManyWithoutStatsInput = {
@@ -1893,15 +1309,6 @@ export type CampioneUncheckedUpdateManyWithoutStatsInput = {
   Titolo?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ruolo?: Prisma.StringFieldUpdateOperationsInput | string
-  Vita?: Prisma.IntFieldUpdateOperationsInput | number
-  Mana?: Prisma.IntFieldUpdateOperationsInput | number
-  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
-  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
-  Resistenza_magica?: Prisma.FloatFieldUpdateOperationsInput | number
-  Velocità_di_attacco?: Prisma.FloatFieldUpdateOperationsInput | number
-  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -1910,21 +1317,21 @@ export type CampioneUncheckedUpdateManyWithoutStatsInput = {
  */
 
 export type CampioneCountOutputType = {
-  Kit: number
-  Cosmetico: number
-  Regione: number
-  Razza: number
   Posizione: number
+  Razza: number
+  Regione: number
   Config: number
+  Cosmetico: number
+  Kit: number
 }
 
 export type CampioneCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Kit?: boolean | CampioneCountOutputTypeCountKitArgs
-  Cosmetico?: boolean | CampioneCountOutputTypeCountCosmeticoArgs
-  Regione?: boolean | CampioneCountOutputTypeCountRegioneArgs
-  Razza?: boolean | CampioneCountOutputTypeCountRazzaArgs
   Posizione?: boolean | CampioneCountOutputTypeCountPosizioneArgs
+  Razza?: boolean | CampioneCountOutputTypeCountRazzaArgs
+  Regione?: boolean | CampioneCountOutputTypeCountRegioneArgs
   Config?: boolean | CampioneCountOutputTypeCountConfigArgs
+  Cosmetico?: boolean | CampioneCountOutputTypeCountCosmeticoArgs
+  Kit?: boolean | CampioneCountOutputTypeCountKitArgs
 }
 
 /**
@@ -1940,22 +1347,8 @@ export type CampioneCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * CampioneCountOutputType without action
  */
-export type CampioneCountOutputTypeCountKitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.KitWhereInput
-}
-
-/**
- * CampioneCountOutputType without action
- */
-export type CampioneCountOutputTypeCountCosmeticoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CosmeticoWhereInput
-}
-
-/**
- * CampioneCountOutputType without action
- */
-export type CampioneCountOutputTypeCountRegioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.Campione_RegioneWhereInput
+export type CampioneCountOutputTypeCountPosizioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.Campione_PosizioneWhereInput
 }
 
 /**
@@ -1968,8 +1361,8 @@ export type CampioneCountOutputTypeCountRazzaArgs<ExtArgs extends runtime.Types.
 /**
  * CampioneCountOutputType without action
  */
-export type CampioneCountOutputTypeCountPosizioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.Campione_PosizioneWhereInput
+export type CampioneCountOutputTypeCountRegioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.Campione_RegioneWhereInput
 }
 
 /**
@@ -1977,6 +1370,20 @@ export type CampioneCountOutputTypeCountPosizioneArgs<ExtArgs extends runtime.Ty
  */
 export type CampioneCountOutputTypeCountConfigArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ConfigurazioneWhereInput
+}
+
+/**
+ * CampioneCountOutputType without action
+ */
+export type CampioneCountOutputTypeCountCosmeticoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CosmeticoWhereInput
+}
+
+/**
+ * CampioneCountOutputType without action
+ */
+export type CampioneCountOutputTypeCountKitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KitWhereInput
 }
 
 
@@ -1987,24 +1394,15 @@ export type CampioneSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   Titolo?: boolean
   Descrizione?: boolean
   Ruolo?: boolean
-  Vita?: boolean
-  Mana?: boolean
-  Attacco?: boolean
-  AttaccoMagico?: boolean
-  Velocità_di_movimento?: boolean
-  Armatura?: boolean
-  Resistenza_magica?: boolean
-  Velocità_di_attacco?: boolean
-  Gittata?: boolean
   SetStatistiche?: boolean
-  Kit?: boolean | Prisma.Campione$KitArgs<ExtArgs>
-  Cosmetico?: boolean | Prisma.Campione$CosmeticoArgs<ExtArgs>
-  Regione?: boolean | Prisma.Campione$RegioneArgs<ExtArgs>
-  Razza?: boolean | Prisma.Campione$RazzaArgs<ExtArgs>
-  Posizione?: boolean | Prisma.Campione$PosizioneArgs<ExtArgs>
-  Config?: boolean | Prisma.Campione$ConfigArgs<ExtArgs>
-  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
   Role?: boolean | Prisma.RuoloDefaultArgs<ExtArgs>
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
+  Posizione?: boolean | Prisma.Campione$PosizioneArgs<ExtArgs>
+  Razza?: boolean | Prisma.Campione$RazzaArgs<ExtArgs>
+  Regione?: boolean | Prisma.Campione$RegioneArgs<ExtArgs>
+  Config?: boolean | Prisma.Campione$ConfigArgs<ExtArgs>
+  Cosmetico?: boolean | Prisma.Campione$CosmeticoArgs<ExtArgs>
+  Kit?: boolean | Prisma.Campione$KitArgs<ExtArgs>
   _count?: boolean | Prisma.CampioneCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campione"]>
 
@@ -2015,18 +1413,9 @@ export type CampioneSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   Titolo?: boolean
   Descrizione?: boolean
   Ruolo?: boolean
-  Vita?: boolean
-  Mana?: boolean
-  Attacco?: boolean
-  AttaccoMagico?: boolean
-  Velocità_di_movimento?: boolean
-  Armatura?: boolean
-  Resistenza_magica?: boolean
-  Velocità_di_attacco?: boolean
-  Gittata?: boolean
   SetStatistiche?: boolean
-  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
   Role?: boolean | Prisma.RuoloDefaultArgs<ExtArgs>
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campione"]>
 
 export type CampioneSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2036,18 +1425,9 @@ export type CampioneSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   Titolo?: boolean
   Descrizione?: boolean
   Ruolo?: boolean
-  Vita?: boolean
-  Mana?: boolean
-  Attacco?: boolean
-  AttaccoMagico?: boolean
-  Velocità_di_movimento?: boolean
-  Armatura?: boolean
-  Resistenza_magica?: boolean
-  Velocità_di_attacco?: boolean
-  Gittata?: boolean
   SetStatistiche?: boolean
-  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
   Role?: boolean | Prisma.RuoloDefaultArgs<ExtArgs>
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campione"]>
 
 export type CampioneSelectScalar = {
@@ -2057,50 +1437,41 @@ export type CampioneSelectScalar = {
   Titolo?: boolean
   Descrizione?: boolean
   Ruolo?: boolean
-  Vita?: boolean
-  Mana?: boolean
-  Attacco?: boolean
-  AttaccoMagico?: boolean
-  Velocità_di_movimento?: boolean
-  Armatura?: boolean
-  Resistenza_magica?: boolean
-  Velocità_di_attacco?: boolean
-  Gittata?: boolean
   SetStatistiche?: boolean
 }
 
-export type CampioneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ID" | "nome" | "Icona" | "Titolo" | "Descrizione" | "Ruolo" | "Vita" | "Mana" | "Attacco" | "AttaccoMagico" | "Velocità_di_movimento" | "Armatura" | "Resistenza_magica" | "Velocità_di_attacco" | "Gittata" | "SetStatistiche", ExtArgs["result"]["campione"]>
+export type CampioneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ID" | "nome" | "Icona" | "Titolo" | "Descrizione" | "Ruolo" | "SetStatistiche", ExtArgs["result"]["campione"]>
 export type CampioneInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Kit?: boolean | Prisma.Campione$KitArgs<ExtArgs>
-  Cosmetico?: boolean | Prisma.Campione$CosmeticoArgs<ExtArgs>
-  Regione?: boolean | Prisma.Campione$RegioneArgs<ExtArgs>
-  Razza?: boolean | Prisma.Campione$RazzaArgs<ExtArgs>
-  Posizione?: boolean | Prisma.Campione$PosizioneArgs<ExtArgs>
-  Config?: boolean | Prisma.Campione$ConfigArgs<ExtArgs>
-  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
   Role?: boolean | Prisma.RuoloDefaultArgs<ExtArgs>
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
+  Posizione?: boolean | Prisma.Campione$PosizioneArgs<ExtArgs>
+  Razza?: boolean | Prisma.Campione$RazzaArgs<ExtArgs>
+  Regione?: boolean | Prisma.Campione$RegioneArgs<ExtArgs>
+  Config?: boolean | Prisma.Campione$ConfigArgs<ExtArgs>
+  Cosmetico?: boolean | Prisma.Campione$CosmeticoArgs<ExtArgs>
+  Kit?: boolean | Prisma.Campione$KitArgs<ExtArgs>
   _count?: boolean | Prisma.CampioneCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CampioneIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
   Role?: boolean | Prisma.RuoloDefaultArgs<ExtArgs>
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }
 export type CampioneIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
   Role?: boolean | Prisma.RuoloDefaultArgs<ExtArgs>
+  Stats?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }
 
 export type $CampionePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Campione"
   objects: {
-    Kit: Prisma.$KitPayload<ExtArgs>[]
-    Cosmetico: Prisma.$CosmeticoPayload<ExtArgs>[]
-    Regione: Prisma.$Campione_RegionePayload<ExtArgs>[]
-    Razza: Prisma.$Campione_RazzaPayload<ExtArgs>[]
-    Posizione: Prisma.$Campione_PosizionePayload<ExtArgs>[]
-    Config: Prisma.$ConfigurazionePayload<ExtArgs>[]
-    Stats: Prisma.$SetBasePayload<ExtArgs>
     Role: Prisma.$RuoloPayload<ExtArgs>
+    Stats: Prisma.$SetBasePayload<ExtArgs>
+    Posizione: Prisma.$Campione_PosizionePayload<ExtArgs>[]
+    Razza: Prisma.$Campione_RazzaPayload<ExtArgs>[]
+    Regione: Prisma.$Campione_RegionePayload<ExtArgs>[]
+    Config: Prisma.$ConfigurazionePayload<ExtArgs>[]
+    Cosmetico: Prisma.$CosmeticoPayload<ExtArgs>[]
+    Kit: Prisma.$KitPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     ID: string
@@ -2109,15 +1480,6 @@ export type $CampionePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     Titolo: string
     Descrizione: string
     Ruolo: string
-    Vita: number
-    Mana: number
-    Attacco: number
-    AttaccoMagico: number
-    Velocità_di_movimento: number
-    Armatura: number
-    Resistenza_magica: number
-    Velocità_di_attacco: number
-    Gittata: number
     SetStatistiche: number
   }, ExtArgs["result"]["campione"]>
   composites: {}
@@ -2513,14 +1875,14 @@ readonly fields: CampioneFieldRefs;
  */
 export interface Prisma__CampioneClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Kit<T extends Prisma.Campione$KitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$KitArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Cosmetico<T extends Prisma.Campione$CosmeticoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$CosmeticoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CosmeticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Regione<T extends Prisma.Campione$RegioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$RegioneArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Campione_RegionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Razza<T extends Prisma.Campione$RazzaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$RazzaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Campione_RazzaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Posizione<T extends Prisma.Campione$PosizioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$PosizioneArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Campione_PosizionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Config<T extends Prisma.Campione$ConfigArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$ConfigArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConfigurazionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Stats<T extends Prisma.SetBaseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBaseDefaultArgs<ExtArgs>>): Prisma.Prisma__SetBaseClient<runtime.Types.Result.GetResult<Prisma.$SetBasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Role<T extends Prisma.RuoloDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RuoloDefaultArgs<ExtArgs>>): Prisma.Prisma__RuoloClient<runtime.Types.Result.GetResult<Prisma.$RuoloPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Stats<T extends Prisma.SetBaseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBaseDefaultArgs<ExtArgs>>): Prisma.Prisma__SetBaseClient<runtime.Types.Result.GetResult<Prisma.$SetBasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Posizione<T extends Prisma.Campione$PosizioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$PosizioneArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Campione_PosizionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Razza<T extends Prisma.Campione$RazzaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$RazzaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Campione_RazzaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Regione<T extends Prisma.Campione$RegioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$RegioneArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Campione_RegionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Config<T extends Prisma.Campione$ConfigArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$ConfigArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConfigurazionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Cosmetico<T extends Prisma.Campione$CosmeticoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$CosmeticoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CosmeticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Kit<T extends Prisma.Campione$KitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campione$KitArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2556,15 +1918,6 @@ export interface CampioneFieldRefs {
   readonly Titolo: Prisma.FieldRef<"Campione", 'String'>
   readonly Descrizione: Prisma.FieldRef<"Campione", 'String'>
   readonly Ruolo: Prisma.FieldRef<"Campione", 'String'>
-  readonly Vita: Prisma.FieldRef<"Campione", 'Int'>
-  readonly Mana: Prisma.FieldRef<"Campione", 'Int'>
-  readonly Attacco: Prisma.FieldRef<"Campione", 'Float'>
-  readonly AttaccoMagico: Prisma.FieldRef<"Campione", 'Int'>
-  readonly Velocità_di_movimento: Prisma.FieldRef<"Campione", 'Int'>
-  readonly Armatura: Prisma.FieldRef<"Campione", 'Float'>
-  readonly Resistenza_magica: Prisma.FieldRef<"Campione", 'Float'>
-  readonly Velocità_di_attacco: Prisma.FieldRef<"Campione", 'Float'>
-  readonly Gittata: Prisma.FieldRef<"Campione", 'Int'>
   readonly SetStatistiche: Prisma.FieldRef<"Campione", 'Int'>
 }
     
@@ -2967,75 +2320,27 @@ export type CampioneDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Campione.Kit
+ * Campione.Posizione
  */
-export type Campione$KitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Campione$PosizioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Kit
+   * Select specific fields to fetch from the Campione_Posizione
    */
-  select?: Prisma.KitSelect<ExtArgs> | null
+  select?: Prisma.Campione_PosizioneSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Kit
+   * Omit specific fields from the Campione_Posizione
    */
-  omit?: Prisma.KitOmit<ExtArgs> | null
+  omit?: Prisma.Campione_PosizioneOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.KitInclude<ExtArgs> | null
-  where?: Prisma.KitWhereInput
-  orderBy?: Prisma.KitOrderByWithRelationInput | Prisma.KitOrderByWithRelationInput[]
-  cursor?: Prisma.KitWhereUniqueInput
+  include?: Prisma.Campione_PosizioneInclude<ExtArgs> | null
+  where?: Prisma.Campione_PosizioneWhereInput
+  orderBy?: Prisma.Campione_PosizioneOrderByWithRelationInput | Prisma.Campione_PosizioneOrderByWithRelationInput[]
+  cursor?: Prisma.Campione_PosizioneWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.KitScalarFieldEnum | Prisma.KitScalarFieldEnum[]
-}
-
-/**
- * Campione.Cosmetico
- */
-export type Campione$CosmeticoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Cosmetico
-   */
-  select?: Prisma.CosmeticoSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Cosmetico
-   */
-  omit?: Prisma.CosmeticoOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CosmeticoInclude<ExtArgs> | null
-  where?: Prisma.CosmeticoWhereInput
-  orderBy?: Prisma.CosmeticoOrderByWithRelationInput | Prisma.CosmeticoOrderByWithRelationInput[]
-  cursor?: Prisma.CosmeticoWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CosmeticoScalarFieldEnum | Prisma.CosmeticoScalarFieldEnum[]
-}
-
-/**
- * Campione.Regione
- */
-export type Campione$RegioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Campione_Regione
-   */
-  select?: Prisma.Campione_RegioneSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Campione_Regione
-   */
-  omit?: Prisma.Campione_RegioneOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.Campione_RegioneInclude<ExtArgs> | null
-  where?: Prisma.Campione_RegioneWhereInput
-  orderBy?: Prisma.Campione_RegioneOrderByWithRelationInput | Prisma.Campione_RegioneOrderByWithRelationInput[]
-  cursor?: Prisma.Campione_RegioneWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Campione_RegioneScalarFieldEnum | Prisma.Campione_RegioneScalarFieldEnum[]
+  distinct?: Prisma.Campione_PosizioneScalarFieldEnum | Prisma.Campione_PosizioneScalarFieldEnum[]
 }
 
 /**
@@ -3063,27 +2368,27 @@ export type Campione$RazzaArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Campione.Posizione
+ * Campione.Regione
  */
-export type Campione$PosizioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Campione$RegioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Campione_Posizione
+   * Select specific fields to fetch from the Campione_Regione
    */
-  select?: Prisma.Campione_PosizioneSelect<ExtArgs> | null
+  select?: Prisma.Campione_RegioneSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Campione_Posizione
+   * Omit specific fields from the Campione_Regione
    */
-  omit?: Prisma.Campione_PosizioneOmit<ExtArgs> | null
+  omit?: Prisma.Campione_RegioneOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.Campione_PosizioneInclude<ExtArgs> | null
-  where?: Prisma.Campione_PosizioneWhereInput
-  orderBy?: Prisma.Campione_PosizioneOrderByWithRelationInput | Prisma.Campione_PosizioneOrderByWithRelationInput[]
-  cursor?: Prisma.Campione_PosizioneWhereUniqueInput
+  include?: Prisma.Campione_RegioneInclude<ExtArgs> | null
+  where?: Prisma.Campione_RegioneWhereInput
+  orderBy?: Prisma.Campione_RegioneOrderByWithRelationInput | Prisma.Campione_RegioneOrderByWithRelationInput[]
+  cursor?: Prisma.Campione_RegioneWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.Campione_PosizioneScalarFieldEnum | Prisma.Campione_PosizioneScalarFieldEnum[]
+  distinct?: Prisma.Campione_RegioneScalarFieldEnum | Prisma.Campione_RegioneScalarFieldEnum[]
 }
 
 /**
@@ -3108,6 +2413,54 @@ export type Campione$ConfigArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.ConfigurazioneScalarFieldEnum | Prisma.ConfigurazioneScalarFieldEnum[]
+}
+
+/**
+ * Campione.Cosmetico
+ */
+export type Campione$CosmeticoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Cosmetico
+   */
+  select?: Prisma.CosmeticoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Cosmetico
+   */
+  omit?: Prisma.CosmeticoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CosmeticoInclude<ExtArgs> | null
+  where?: Prisma.CosmeticoWhereInput
+  orderBy?: Prisma.CosmeticoOrderByWithRelationInput | Prisma.CosmeticoOrderByWithRelationInput[]
+  cursor?: Prisma.CosmeticoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CosmeticoScalarFieldEnum | Prisma.CosmeticoScalarFieldEnum[]
+}
+
+/**
+ * Campione.Kit
+ */
+export type Campione$KitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Kit
+   */
+  select?: Prisma.KitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Kit
+   */
+  omit?: Prisma.KitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KitInclude<ExtArgs> | null
+  where?: Prisma.KitWhereInput
+  orderBy?: Prisma.KitOrderByWithRelationInput | Prisma.KitOrderByWithRelationInput[]
+  cursor?: Prisma.KitWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KitScalarFieldEnum | Prisma.KitScalarFieldEnum[]
 }
 
 /**

@@ -225,8 +225,8 @@ export type ReportWhereInput = {
   Motivazione?: Prisma.StringFilter<"Report"> | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
   Banned?: Prisma.XOR<Prisma.Banned_AccountNullableScalarRelationFilter, Prisma.Banned_AccountWhereInput> | null
-  Target?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   Author?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
+  Target?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
 }
 
 export type ReportOrderByWithRelationInput = {
@@ -236,8 +236,8 @@ export type ReportOrderByWithRelationInput = {
   Motivazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrderInput | Prisma.SortOrder
   Banned?: Prisma.Banned_AccountOrderByWithRelationInput
-  Target?: Prisma.AccountOrderByWithRelationInput
   Author?: Prisma.AccountOrderByWithRelationInput
+  Target?: Prisma.AccountOrderByWithRelationInput
 }
 
 export type ReportWhereUniqueInput = Prisma.AtLeast<{
@@ -250,8 +250,8 @@ export type ReportWhereUniqueInput = Prisma.AtLeast<{
   Motivazione?: Prisma.StringFilter<"Report"> | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
   Banned?: Prisma.XOR<Prisma.Banned_AccountNullableScalarRelationFilter, Prisma.Banned_AccountWhereInput> | null
-  Target?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   Author?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
+  Target?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
 }, "Id">
 
 export type ReportOrderByWithAggregationInput = {
@@ -282,8 +282,8 @@ export type ReportCreateInput = {
   Motivazione: string
   Descrizione?: string | null
   Banned?: Prisma.Banned_AccountCreateNestedOneWithoutOrigineInput
-  Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
   Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
+  Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
 }
 
 export type ReportUncheckedCreateInput = {
@@ -299,8 +299,8 @@ export type ReportUpdateInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Banned?: Prisma.Banned_AccountUpdateOneWithoutOrigineNestedInput
-  Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
   Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
+  Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
 }
 
 export type ReportUncheckedUpdateInput = {
@@ -384,13 +384,6 @@ export type ReportScalarRelationFilter = {
   isNot?: Prisma.ReportWhereInput
 }
 
-export type ReportCreateNestedManyWithoutTargetInput = {
-  create?: Prisma.XOR<Prisma.ReportCreateWithoutTargetInput, Prisma.ReportUncheckedCreateWithoutTargetInput> | Prisma.ReportCreateWithoutTargetInput[] | Prisma.ReportUncheckedCreateWithoutTargetInput[]
-  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutTargetInput | Prisma.ReportCreateOrConnectWithoutTargetInput[]
-  createMany?: Prisma.ReportCreateManyTargetInputEnvelope
-  connect?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
-}
-
 export type ReportCreateNestedManyWithoutAuthorInput = {
   create?: Prisma.XOR<Prisma.ReportCreateWithoutAuthorInput, Prisma.ReportUncheckedCreateWithoutAuthorInput> | Prisma.ReportCreateWithoutAuthorInput[] | Prisma.ReportUncheckedCreateWithoutAuthorInput[]
   connectOrCreate?: Prisma.ReportCreateOrConnectWithoutAuthorInput | Prisma.ReportCreateOrConnectWithoutAuthorInput[]
@@ -398,7 +391,7 @@ export type ReportCreateNestedManyWithoutAuthorInput = {
   connect?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
 }
 
-export type ReportUncheckedCreateNestedManyWithoutTargetInput = {
+export type ReportCreateNestedManyWithoutTargetInput = {
   create?: Prisma.XOR<Prisma.ReportCreateWithoutTargetInput, Prisma.ReportUncheckedCreateWithoutTargetInput> | Prisma.ReportCreateWithoutTargetInput[] | Prisma.ReportUncheckedCreateWithoutTargetInput[]
   connectOrCreate?: Prisma.ReportCreateOrConnectWithoutTargetInput | Prisma.ReportCreateOrConnectWithoutTargetInput[]
   createMany?: Prisma.ReportCreateManyTargetInputEnvelope
@@ -412,18 +405,11 @@ export type ReportUncheckedCreateNestedManyWithoutAuthorInput = {
   connect?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
 }
 
-export type ReportUpdateManyWithoutTargetNestedInput = {
+export type ReportUncheckedCreateNestedManyWithoutTargetInput = {
   create?: Prisma.XOR<Prisma.ReportCreateWithoutTargetInput, Prisma.ReportUncheckedCreateWithoutTargetInput> | Prisma.ReportCreateWithoutTargetInput[] | Prisma.ReportUncheckedCreateWithoutTargetInput[]
   connectOrCreate?: Prisma.ReportCreateOrConnectWithoutTargetInput | Prisma.ReportCreateOrConnectWithoutTargetInput[]
-  upsert?: Prisma.ReportUpsertWithWhereUniqueWithoutTargetInput | Prisma.ReportUpsertWithWhereUniqueWithoutTargetInput[]
   createMany?: Prisma.ReportCreateManyTargetInputEnvelope
-  set?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
-  disconnect?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
-  delete?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
   connect?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
-  update?: Prisma.ReportUpdateWithWhereUniqueWithoutTargetInput | Prisma.ReportUpdateWithWhereUniqueWithoutTargetInput[]
-  updateMany?: Prisma.ReportUpdateManyWithWhereWithoutTargetInput | Prisma.ReportUpdateManyWithWhereWithoutTargetInput[]
-  deleteMany?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
 }
 
 export type ReportUpdateManyWithoutAuthorNestedInput = {
@@ -440,7 +426,7 @@ export type ReportUpdateManyWithoutAuthorNestedInput = {
   deleteMany?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
 }
 
-export type ReportUncheckedUpdateManyWithoutTargetNestedInput = {
+export type ReportUpdateManyWithoutTargetNestedInput = {
   create?: Prisma.XOR<Prisma.ReportCreateWithoutTargetInput, Prisma.ReportUncheckedCreateWithoutTargetInput> | Prisma.ReportCreateWithoutTargetInput[] | Prisma.ReportUncheckedCreateWithoutTargetInput[]
   connectOrCreate?: Prisma.ReportCreateOrConnectWithoutTargetInput | Prisma.ReportCreateOrConnectWithoutTargetInput[]
   upsert?: Prisma.ReportUpsertWithWhereUniqueWithoutTargetInput | Prisma.ReportUpsertWithWhereUniqueWithoutTargetInput[]
@@ -468,6 +454,20 @@ export type ReportUncheckedUpdateManyWithoutAuthorNestedInput = {
   deleteMany?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
 }
 
+export type ReportUncheckedUpdateManyWithoutTargetNestedInput = {
+  create?: Prisma.XOR<Prisma.ReportCreateWithoutTargetInput, Prisma.ReportUncheckedCreateWithoutTargetInput> | Prisma.ReportCreateWithoutTargetInput[] | Prisma.ReportUncheckedCreateWithoutTargetInput[]
+  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutTargetInput | Prisma.ReportCreateOrConnectWithoutTargetInput[]
+  upsert?: Prisma.ReportUpsertWithWhereUniqueWithoutTargetInput | Prisma.ReportUpsertWithWhereUniqueWithoutTargetInput[]
+  createMany?: Prisma.ReportCreateManyTargetInputEnvelope
+  set?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
+  disconnect?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
+  delete?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
+  connect?: Prisma.ReportWhereUniqueInput | Prisma.ReportWhereUniqueInput[]
+  update?: Prisma.ReportUpdateWithWhereUniqueWithoutTargetInput | Prisma.ReportUpdateWithWhereUniqueWithoutTargetInput[]
+  updateMany?: Prisma.ReportUpdateManyWithWhereWithoutTargetInput | Prisma.ReportUpdateManyWithWhereWithoutTargetInput[]
+  deleteMany?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
+}
+
 export type ReportCreateNestedOneWithoutBannedInput = {
   create?: Prisma.XOR<Prisma.ReportCreateWithoutBannedInput, Prisma.ReportUncheckedCreateWithoutBannedInput>
   connectOrCreate?: Prisma.ReportCreateOrConnectWithoutBannedInput
@@ -480,31 +480,6 @@ export type ReportUpdateOneRequiredWithoutBannedNestedInput = {
   upsert?: Prisma.ReportUpsertWithoutBannedInput
   connect?: Prisma.ReportWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ReportUpdateToOneWithWhereWithoutBannedInput, Prisma.ReportUpdateWithoutBannedInput>, Prisma.ReportUncheckedUpdateWithoutBannedInput>
-}
-
-export type ReportCreateWithoutTargetInput = {
-  Motivazione: string
-  Descrizione?: string | null
-  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutOrigineInput
-  Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
-}
-
-export type ReportUncheckedCreateWithoutTargetInput = {
-  Id?: number
-  AuthorId: number
-  Motivazione: string
-  Descrizione?: string | null
-  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutOrigineInput
-}
-
-export type ReportCreateOrConnectWithoutTargetInput = {
-  where: Prisma.ReportWhereUniqueInput
-  create: Prisma.XOR<Prisma.ReportCreateWithoutTargetInput, Prisma.ReportUncheckedCreateWithoutTargetInput>
-}
-
-export type ReportCreateManyTargetInputEnvelope = {
-  data: Prisma.ReportCreateManyTargetInput | Prisma.ReportCreateManyTargetInput[]
-  skipDuplicates?: boolean
 }
 
 export type ReportCreateWithoutAuthorInput = {
@@ -532,31 +507,29 @@ export type ReportCreateManyAuthorInputEnvelope = {
   skipDuplicates?: boolean
 }
 
-export type ReportUpsertWithWhereUniqueWithoutTargetInput = {
+export type ReportCreateWithoutTargetInput = {
+  Motivazione: string
+  Descrizione?: string | null
+  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutOrigineInput
+  Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
+}
+
+export type ReportUncheckedCreateWithoutTargetInput = {
+  Id?: number
+  AuthorId: number
+  Motivazione: string
+  Descrizione?: string | null
+  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutOrigineInput
+}
+
+export type ReportCreateOrConnectWithoutTargetInput = {
   where: Prisma.ReportWhereUniqueInput
-  update: Prisma.XOR<Prisma.ReportUpdateWithoutTargetInput, Prisma.ReportUncheckedUpdateWithoutTargetInput>
   create: Prisma.XOR<Prisma.ReportCreateWithoutTargetInput, Prisma.ReportUncheckedCreateWithoutTargetInput>
 }
 
-export type ReportUpdateWithWhereUniqueWithoutTargetInput = {
-  where: Prisma.ReportWhereUniqueInput
-  data: Prisma.XOR<Prisma.ReportUpdateWithoutTargetInput, Prisma.ReportUncheckedUpdateWithoutTargetInput>
-}
-
-export type ReportUpdateManyWithWhereWithoutTargetInput = {
-  where: Prisma.ReportScalarWhereInput
-  data: Prisma.XOR<Prisma.ReportUpdateManyMutationInput, Prisma.ReportUncheckedUpdateManyWithoutTargetInput>
-}
-
-export type ReportScalarWhereInput = {
-  AND?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
-  OR?: Prisma.ReportScalarWhereInput[]
-  NOT?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
-  Id?: Prisma.IntFilter<"Report"> | number
-  TargetId?: Prisma.IntFilter<"Report"> | number
-  AuthorId?: Prisma.IntFilter<"Report"> | number
-  Motivazione?: Prisma.StringFilter<"Report"> | string
-  Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
+export type ReportCreateManyTargetInputEnvelope = {
+  data: Prisma.ReportCreateManyTargetInput | Prisma.ReportCreateManyTargetInput[]
+  skipDuplicates?: boolean
 }
 
 export type ReportUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -575,11 +548,38 @@ export type ReportUpdateManyWithWhereWithoutAuthorInput = {
   data: Prisma.XOR<Prisma.ReportUpdateManyMutationInput, Prisma.ReportUncheckedUpdateManyWithoutAuthorInput>
 }
 
+export type ReportScalarWhereInput = {
+  AND?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
+  OR?: Prisma.ReportScalarWhereInput[]
+  NOT?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
+  Id?: Prisma.IntFilter<"Report"> | number
+  TargetId?: Prisma.IntFilter<"Report"> | number
+  AuthorId?: Prisma.IntFilter<"Report"> | number
+  Motivazione?: Prisma.StringFilter<"Report"> | string
+  Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
+}
+
+export type ReportUpsertWithWhereUniqueWithoutTargetInput = {
+  where: Prisma.ReportWhereUniqueInput
+  update: Prisma.XOR<Prisma.ReportUpdateWithoutTargetInput, Prisma.ReportUncheckedUpdateWithoutTargetInput>
+  create: Prisma.XOR<Prisma.ReportCreateWithoutTargetInput, Prisma.ReportUncheckedCreateWithoutTargetInput>
+}
+
+export type ReportUpdateWithWhereUniqueWithoutTargetInput = {
+  where: Prisma.ReportWhereUniqueInput
+  data: Prisma.XOR<Prisma.ReportUpdateWithoutTargetInput, Prisma.ReportUncheckedUpdateWithoutTargetInput>
+}
+
+export type ReportUpdateManyWithWhereWithoutTargetInput = {
+  where: Prisma.ReportScalarWhereInput
+  data: Prisma.XOR<Prisma.ReportUpdateManyMutationInput, Prisma.ReportUncheckedUpdateManyWithoutTargetInput>
+}
+
 export type ReportCreateWithoutBannedInput = {
   Motivazione: string
   Descrizione?: string | null
-  Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
   Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
+  Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
 }
 
 export type ReportUncheckedCreateWithoutBannedInput = {
@@ -609,8 +609,8 @@ export type ReportUpdateToOneWithWhereWithoutBannedInput = {
 export type ReportUpdateWithoutBannedInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
   Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
+  Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
 }
 
 export type ReportUncheckedUpdateWithoutBannedInput = {
@@ -621,13 +621,6 @@ export type ReportUncheckedUpdateWithoutBannedInput = {
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type ReportCreateManyTargetInput = {
-  Id?: number
-  AuthorId: number
-  Motivazione: string
-  Descrizione?: string | null
-}
-
 export type ReportCreateManyAuthorInput = {
   Id?: number
   TargetId: number
@@ -635,26 +628,11 @@ export type ReportCreateManyAuthorInput = {
   Descrizione?: string | null
 }
 
-export type ReportUpdateWithoutTargetInput = {
-  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
-  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Banned?: Prisma.Banned_AccountUpdateOneWithoutOrigineNestedInput
-  Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
-}
-
-export type ReportUncheckedUpdateWithoutTargetInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
-  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
-  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutOrigineNestedInput
-}
-
-export type ReportUncheckedUpdateManyWithoutTargetInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
-  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
-  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+export type ReportCreateManyTargetInput = {
+  Id?: number
+  AuthorId: number
+  Motivazione: string
+  Descrizione?: string | null
 }
 
 export type ReportUpdateWithoutAuthorInput = {
@@ -679,6 +657,28 @@ export type ReportUncheckedUpdateManyWithoutAuthorInput = {
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
+export type ReportUpdateWithoutTargetInput = {
+  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Banned?: Prisma.Banned_AccountUpdateOneWithoutOrigineNestedInput
+  Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
+}
+
+export type ReportUncheckedUpdateWithoutTargetInput = {
+  Id?: Prisma.IntFieldUpdateOperationsInput | number
+  AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
+  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutOrigineNestedInput
+}
+
+export type ReportUncheckedUpdateManyWithoutTargetInput = {
+  Id?: Prisma.IntFieldUpdateOperationsInput | number
+  AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
+  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
 
 
 export type ReportSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -688,8 +688,8 @@ export type ReportSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   Motivazione?: boolean
   Descrizione?: boolean
   Banned?: boolean | Prisma.Report$BannedArgs<ExtArgs>
-  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -698,8 +698,8 @@ export type ReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   AuthorId?: boolean
   Motivazione?: boolean
   Descrizione?: boolean
-  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -708,8 +708,8 @@ export type ReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   AuthorId?: boolean
   Motivazione?: boolean
   Descrizione?: boolean
-  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectScalar = {
@@ -723,24 +723,24 @@ export type ReportSelectScalar = {
 export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "TargetId" | "AuthorId" | "Motivazione" | "Descrizione", ExtArgs["result"]["report"]>
 export type ReportInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Banned?: boolean | Prisma.Report$BannedArgs<ExtArgs>
-  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }
 export type ReportIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }
 export type ReportIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }
 
 export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Report"
   objects: {
     Banned: Prisma.$Banned_AccountPayload<ExtArgs> | null
-    Target: Prisma.$AccountPayload<ExtArgs>
     Author: Prisma.$AccountPayload<ExtArgs>
+    Target: Prisma.$AccountPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Id: number
@@ -1143,8 +1143,8 @@ readonly fields: ReportFieldRefs;
 export interface Prisma__ReportClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   Banned<T extends Prisma.Report$BannedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Report$BannedArgs<ExtArgs>>): Prisma.Prisma__Banned_AccountClient<runtime.Types.Result.GetResult<Prisma.$Banned_AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  Target<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Author<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Target<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

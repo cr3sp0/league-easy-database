@@ -424,8 +424,8 @@ export type SetBaseWhereInput = {
   VelocitàDiAttacco?: Prisma.FloatFilter<"SetBase"> | number
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFilter<"SetBase"> | number
   AttaccoMagico?: Prisma.IntFilter<"SetBase"> | number
-  Oggetto?: Prisma.OggettoListRelationFilter
-  Campione?: Prisma.CampioneListRelationFilter
+  Champ?: Prisma.CampioneListRelationFilter
+  Item?: Prisma.OggettoListRelationFilter
 }
 
 export type SetBaseOrderByWithRelationInput = {
@@ -450,8 +450,8 @@ export type SetBaseOrderByWithRelationInput = {
   VelocitàDiAttacco?: Prisma.SortOrder
   VelocitàDiAttaccoPerLivello?: Prisma.SortOrder
   AttaccoMagico?: Prisma.SortOrder
-  Oggetto?: Prisma.OggettoOrderByRelationAggregateInput
-  Campione?: Prisma.CampioneOrderByRelationAggregateInput
+  Champ?: Prisma.CampioneOrderByRelationAggregateInput
+  Item?: Prisma.OggettoOrderByRelationAggregateInput
 }
 
 export type SetBaseWhereUniqueInput = Prisma.AtLeast<{
@@ -479,8 +479,8 @@ export type SetBaseWhereUniqueInput = Prisma.AtLeast<{
   VelocitàDiAttacco?: Prisma.FloatFilter<"SetBase"> | number
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFilter<"SetBase"> | number
   AttaccoMagico?: Prisma.IntFilter<"SetBase"> | number
-  Oggetto?: Prisma.OggettoListRelationFilter
-  Campione?: Prisma.CampioneListRelationFilter
+  Champ?: Prisma.CampioneListRelationFilter
+  Item?: Prisma.OggettoListRelationFilter
 }, "IdStatistiche">
 
 export type SetBaseOrderByWithAggregationInput = {
@@ -561,8 +561,8 @@ export type SetBaseCreateInput = {
   VelocitàDiAttacco: number
   VelocitàDiAttaccoPerLivello: number
   AttaccoMagico?: number
-  Oggetto?: Prisma.OggettoCreateNestedManyWithoutStatsInput
-  Campione?: Prisma.CampioneCreateNestedManyWithoutStatsInput
+  Champ?: Prisma.CampioneCreateNestedManyWithoutStatsInput
+  Item?: Prisma.OggettoCreateNestedManyWithoutStatsInput
 }
 
 export type SetBaseUncheckedCreateInput = {
@@ -587,8 +587,8 @@ export type SetBaseUncheckedCreateInput = {
   VelocitàDiAttacco: number
   VelocitàDiAttaccoPerLivello: number
   AttaccoMagico?: number
-  Oggetto?: Prisma.OggettoUncheckedCreateNestedManyWithoutStatsInput
-  Campione?: Prisma.CampioneUncheckedCreateNestedManyWithoutStatsInput
+  Champ?: Prisma.CampioneUncheckedCreateNestedManyWithoutStatsInput
+  Item?: Prisma.OggettoUncheckedCreateNestedManyWithoutStatsInput
 }
 
 export type SetBaseUpdateInput = {
@@ -613,8 +613,8 @@ export type SetBaseUpdateInput = {
   VelocitàDiAttacco?: Prisma.FloatFieldUpdateOperationsInput | number
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Oggetto?: Prisma.OggettoUpdateManyWithoutStatsNestedInput
-  Campione?: Prisma.CampioneUpdateManyWithoutStatsNestedInput
+  Champ?: Prisma.CampioneUpdateManyWithoutStatsNestedInput
+  Item?: Prisma.OggettoUpdateManyWithoutStatsNestedInput
 }
 
 export type SetBaseUncheckedUpdateInput = {
@@ -639,8 +639,8 @@ export type SetBaseUncheckedUpdateInput = {
   VelocitàDiAttacco?: Prisma.FloatFieldUpdateOperationsInput | number
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Oggetto?: Prisma.OggettoUncheckedUpdateManyWithoutStatsNestedInput
-  Campione?: Prisma.CampioneUncheckedUpdateManyWithoutStatsNestedInput
+  Champ?: Prisma.CampioneUncheckedUpdateManyWithoutStatsNestedInput
+  Item?: Prisma.OggettoUncheckedUpdateManyWithoutStatsNestedInput
 }
 
 export type SetBaseCreateManyInput = {
@@ -840,35 +840,35 @@ export type SetBaseSumOrderByAggregateInput = {
   AttaccoMagico?: Prisma.SortOrder
 }
 
-export type SetBaseCreateNestedOneWithoutCampioneInput = {
-  create?: Prisma.XOR<Prisma.SetBaseCreateWithoutCampioneInput, Prisma.SetBaseUncheckedCreateWithoutCampioneInput>
-  connectOrCreate?: Prisma.SetBaseCreateOrConnectWithoutCampioneInput
+export type SetBaseCreateNestedOneWithoutChampInput = {
+  create?: Prisma.XOR<Prisma.SetBaseCreateWithoutChampInput, Prisma.SetBaseUncheckedCreateWithoutChampInput>
+  connectOrCreate?: Prisma.SetBaseCreateOrConnectWithoutChampInput
   connect?: Prisma.SetBaseWhereUniqueInput
 }
 
-export type SetBaseUpdateOneRequiredWithoutCampioneNestedInput = {
-  create?: Prisma.XOR<Prisma.SetBaseCreateWithoutCampioneInput, Prisma.SetBaseUncheckedCreateWithoutCampioneInput>
-  connectOrCreate?: Prisma.SetBaseCreateOrConnectWithoutCampioneInput
-  upsert?: Prisma.SetBaseUpsertWithoutCampioneInput
+export type SetBaseUpdateOneRequiredWithoutChampNestedInput = {
+  create?: Prisma.XOR<Prisma.SetBaseCreateWithoutChampInput, Prisma.SetBaseUncheckedCreateWithoutChampInput>
+  connectOrCreate?: Prisma.SetBaseCreateOrConnectWithoutChampInput
+  upsert?: Prisma.SetBaseUpsertWithoutChampInput
   connect?: Prisma.SetBaseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SetBaseUpdateToOneWithWhereWithoutCampioneInput, Prisma.SetBaseUpdateWithoutCampioneInput>, Prisma.SetBaseUncheckedUpdateWithoutCampioneInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SetBaseUpdateToOneWithWhereWithoutChampInput, Prisma.SetBaseUpdateWithoutChampInput>, Prisma.SetBaseUncheckedUpdateWithoutChampInput>
 }
 
-export type SetBaseCreateNestedOneWithoutOggettoInput = {
-  create?: Prisma.XOR<Prisma.SetBaseCreateWithoutOggettoInput, Prisma.SetBaseUncheckedCreateWithoutOggettoInput>
-  connectOrCreate?: Prisma.SetBaseCreateOrConnectWithoutOggettoInput
+export type SetBaseCreateNestedOneWithoutItemInput = {
+  create?: Prisma.XOR<Prisma.SetBaseCreateWithoutItemInput, Prisma.SetBaseUncheckedCreateWithoutItemInput>
+  connectOrCreate?: Prisma.SetBaseCreateOrConnectWithoutItemInput
   connect?: Prisma.SetBaseWhereUniqueInput
 }
 
-export type SetBaseUpdateOneRequiredWithoutOggettoNestedInput = {
-  create?: Prisma.XOR<Prisma.SetBaseCreateWithoutOggettoInput, Prisma.SetBaseUncheckedCreateWithoutOggettoInput>
-  connectOrCreate?: Prisma.SetBaseCreateOrConnectWithoutOggettoInput
-  upsert?: Prisma.SetBaseUpsertWithoutOggettoInput
+export type SetBaseUpdateOneRequiredWithoutItemNestedInput = {
+  create?: Prisma.XOR<Prisma.SetBaseCreateWithoutItemInput, Prisma.SetBaseUncheckedCreateWithoutItemInput>
+  connectOrCreate?: Prisma.SetBaseCreateOrConnectWithoutItemInput
+  upsert?: Prisma.SetBaseUpsertWithoutItemInput
   connect?: Prisma.SetBaseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SetBaseUpdateToOneWithWhereWithoutOggettoInput, Prisma.SetBaseUpdateWithoutOggettoInput>, Prisma.SetBaseUncheckedUpdateWithoutOggettoInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SetBaseUpdateToOneWithWhereWithoutItemInput, Prisma.SetBaseUpdateWithoutItemInput>, Prisma.SetBaseUncheckedUpdateWithoutItemInput>
 }
 
-export type SetBaseCreateWithoutCampioneInput = {
+export type SetBaseCreateWithoutChampInput = {
   IdStatistiche: number
   Vita: number
   VitaPerLivello: number
@@ -890,10 +890,10 @@ export type SetBaseCreateWithoutCampioneInput = {
   VelocitàDiAttacco: number
   VelocitàDiAttaccoPerLivello: number
   AttaccoMagico?: number
-  Oggetto?: Prisma.OggettoCreateNestedManyWithoutStatsInput
+  Item?: Prisma.OggettoCreateNestedManyWithoutStatsInput
 }
 
-export type SetBaseUncheckedCreateWithoutCampioneInput = {
+export type SetBaseUncheckedCreateWithoutChampInput = {
   IdStatistiche: number
   Vita: number
   VitaPerLivello: number
@@ -915,26 +915,26 @@ export type SetBaseUncheckedCreateWithoutCampioneInput = {
   VelocitàDiAttacco: number
   VelocitàDiAttaccoPerLivello: number
   AttaccoMagico?: number
-  Oggetto?: Prisma.OggettoUncheckedCreateNestedManyWithoutStatsInput
+  Item?: Prisma.OggettoUncheckedCreateNestedManyWithoutStatsInput
 }
 
-export type SetBaseCreateOrConnectWithoutCampioneInput = {
+export type SetBaseCreateOrConnectWithoutChampInput = {
   where: Prisma.SetBaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.SetBaseCreateWithoutCampioneInput, Prisma.SetBaseUncheckedCreateWithoutCampioneInput>
+  create: Prisma.XOR<Prisma.SetBaseCreateWithoutChampInput, Prisma.SetBaseUncheckedCreateWithoutChampInput>
 }
 
-export type SetBaseUpsertWithoutCampioneInput = {
-  update: Prisma.XOR<Prisma.SetBaseUpdateWithoutCampioneInput, Prisma.SetBaseUncheckedUpdateWithoutCampioneInput>
-  create: Prisma.XOR<Prisma.SetBaseCreateWithoutCampioneInput, Prisma.SetBaseUncheckedCreateWithoutCampioneInput>
+export type SetBaseUpsertWithoutChampInput = {
+  update: Prisma.XOR<Prisma.SetBaseUpdateWithoutChampInput, Prisma.SetBaseUncheckedUpdateWithoutChampInput>
+  create: Prisma.XOR<Prisma.SetBaseCreateWithoutChampInput, Prisma.SetBaseUncheckedCreateWithoutChampInput>
   where?: Prisma.SetBaseWhereInput
 }
 
-export type SetBaseUpdateToOneWithWhereWithoutCampioneInput = {
+export type SetBaseUpdateToOneWithWhereWithoutChampInput = {
   where?: Prisma.SetBaseWhereInput
-  data: Prisma.XOR<Prisma.SetBaseUpdateWithoutCampioneInput, Prisma.SetBaseUncheckedUpdateWithoutCampioneInput>
+  data: Prisma.XOR<Prisma.SetBaseUpdateWithoutChampInput, Prisma.SetBaseUncheckedUpdateWithoutChampInput>
 }
 
-export type SetBaseUpdateWithoutCampioneInput = {
+export type SetBaseUpdateWithoutChampInput = {
   IdStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   VitaPerLivello?: Prisma.IntFieldUpdateOperationsInput | number
@@ -956,10 +956,10 @@ export type SetBaseUpdateWithoutCampioneInput = {
   VelocitàDiAttacco?: Prisma.FloatFieldUpdateOperationsInput | number
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Oggetto?: Prisma.OggettoUpdateManyWithoutStatsNestedInput
+  Item?: Prisma.OggettoUpdateManyWithoutStatsNestedInput
 }
 
-export type SetBaseUncheckedUpdateWithoutCampioneInput = {
+export type SetBaseUncheckedUpdateWithoutChampInput = {
   IdStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   VitaPerLivello?: Prisma.IntFieldUpdateOperationsInput | number
@@ -981,10 +981,10 @@ export type SetBaseUncheckedUpdateWithoutCampioneInput = {
   VelocitàDiAttacco?: Prisma.FloatFieldUpdateOperationsInput | number
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Oggetto?: Prisma.OggettoUncheckedUpdateManyWithoutStatsNestedInput
+  Item?: Prisma.OggettoUncheckedUpdateManyWithoutStatsNestedInput
 }
 
-export type SetBaseCreateWithoutOggettoInput = {
+export type SetBaseCreateWithoutItemInput = {
   IdStatistiche: number
   Vita: number
   VitaPerLivello: number
@@ -1006,10 +1006,10 @@ export type SetBaseCreateWithoutOggettoInput = {
   VelocitàDiAttacco: number
   VelocitàDiAttaccoPerLivello: number
   AttaccoMagico?: number
-  Campione?: Prisma.CampioneCreateNestedManyWithoutStatsInput
+  Champ?: Prisma.CampioneCreateNestedManyWithoutStatsInput
 }
 
-export type SetBaseUncheckedCreateWithoutOggettoInput = {
+export type SetBaseUncheckedCreateWithoutItemInput = {
   IdStatistiche: number
   Vita: number
   VitaPerLivello: number
@@ -1031,26 +1031,26 @@ export type SetBaseUncheckedCreateWithoutOggettoInput = {
   VelocitàDiAttacco: number
   VelocitàDiAttaccoPerLivello: number
   AttaccoMagico?: number
-  Campione?: Prisma.CampioneUncheckedCreateNestedManyWithoutStatsInput
+  Champ?: Prisma.CampioneUncheckedCreateNestedManyWithoutStatsInput
 }
 
-export type SetBaseCreateOrConnectWithoutOggettoInput = {
+export type SetBaseCreateOrConnectWithoutItemInput = {
   where: Prisma.SetBaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.SetBaseCreateWithoutOggettoInput, Prisma.SetBaseUncheckedCreateWithoutOggettoInput>
+  create: Prisma.XOR<Prisma.SetBaseCreateWithoutItemInput, Prisma.SetBaseUncheckedCreateWithoutItemInput>
 }
 
-export type SetBaseUpsertWithoutOggettoInput = {
-  update: Prisma.XOR<Prisma.SetBaseUpdateWithoutOggettoInput, Prisma.SetBaseUncheckedUpdateWithoutOggettoInput>
-  create: Prisma.XOR<Prisma.SetBaseCreateWithoutOggettoInput, Prisma.SetBaseUncheckedCreateWithoutOggettoInput>
+export type SetBaseUpsertWithoutItemInput = {
+  update: Prisma.XOR<Prisma.SetBaseUpdateWithoutItemInput, Prisma.SetBaseUncheckedUpdateWithoutItemInput>
+  create: Prisma.XOR<Prisma.SetBaseCreateWithoutItemInput, Prisma.SetBaseUncheckedCreateWithoutItemInput>
   where?: Prisma.SetBaseWhereInput
 }
 
-export type SetBaseUpdateToOneWithWhereWithoutOggettoInput = {
+export type SetBaseUpdateToOneWithWhereWithoutItemInput = {
   where?: Prisma.SetBaseWhereInput
-  data: Prisma.XOR<Prisma.SetBaseUpdateWithoutOggettoInput, Prisma.SetBaseUncheckedUpdateWithoutOggettoInput>
+  data: Prisma.XOR<Prisma.SetBaseUpdateWithoutItemInput, Prisma.SetBaseUncheckedUpdateWithoutItemInput>
 }
 
-export type SetBaseUpdateWithoutOggettoInput = {
+export type SetBaseUpdateWithoutItemInput = {
   IdStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   VitaPerLivello?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1072,10 +1072,10 @@ export type SetBaseUpdateWithoutOggettoInput = {
   VelocitàDiAttacco?: Prisma.FloatFieldUpdateOperationsInput | number
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Campione?: Prisma.CampioneUpdateManyWithoutStatsNestedInput
+  Champ?: Prisma.CampioneUpdateManyWithoutStatsNestedInput
 }
 
-export type SetBaseUncheckedUpdateWithoutOggettoInput = {
+export type SetBaseUncheckedUpdateWithoutItemInput = {
   IdStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
   Vita?: Prisma.IntFieldUpdateOperationsInput | number
   VitaPerLivello?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1097,7 +1097,7 @@ export type SetBaseUncheckedUpdateWithoutOggettoInput = {
   VelocitàDiAttacco?: Prisma.FloatFieldUpdateOperationsInput | number
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
-  Campione?: Prisma.CampioneUncheckedUpdateManyWithoutStatsNestedInput
+  Champ?: Prisma.CampioneUncheckedUpdateManyWithoutStatsNestedInput
 }
 
 
@@ -1106,13 +1106,13 @@ export type SetBaseUncheckedUpdateWithoutOggettoInput = {
  */
 
 export type SetBaseCountOutputType = {
-  Oggetto: number
-  Campione: number
+  Champ: number
+  Item: number
 }
 
 export type SetBaseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Oggetto?: boolean | SetBaseCountOutputTypeCountOggettoArgs
-  Campione?: boolean | SetBaseCountOutputTypeCountCampioneArgs
+  Champ?: boolean | SetBaseCountOutputTypeCountChampArgs
+  Item?: boolean | SetBaseCountOutputTypeCountItemArgs
 }
 
 /**
@@ -1128,15 +1128,15 @@ export type SetBaseCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * SetBaseCountOutputType without action
  */
-export type SetBaseCountOutputTypeCountOggettoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OggettoWhereInput
+export type SetBaseCountOutputTypeCountChampArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CampioneWhereInput
 }
 
 /**
  * SetBaseCountOutputType without action
  */
-export type SetBaseCountOutputTypeCountCampioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CampioneWhereInput
+export type SetBaseCountOutputTypeCountItemArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OggettoWhereInput
 }
 
 
@@ -1162,8 +1162,8 @@ export type SetBaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   VelocitàDiAttacco?: boolean
   VelocitàDiAttaccoPerLivello?: boolean
   AttaccoMagico?: boolean
-  Oggetto?: boolean | Prisma.SetBase$OggettoArgs<ExtArgs>
-  Campione?: boolean | Prisma.SetBase$CampioneArgs<ExtArgs>
+  Champ?: boolean | Prisma.SetBase$ChampArgs<ExtArgs>
+  Item?: boolean | Prisma.SetBase$ItemArgs<ExtArgs>
   _count?: boolean | Prisma.SetBaseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["setBase"]>
 
@@ -1241,8 +1241,8 @@ export type SetBaseSelectScalar = {
 
 export type SetBaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdStatistiche" | "Vita" | "VitaPerLivello" | "Mana" | "ManaPerLivello" | "Velocità_di_movimento" | "Armatura" | "ArmaturaPerLivello" | "ResistenzaMagica" | "ResistenzaMagicaPerLivello" | "Gittata" | "RigenerazioneVita" | "RigenerazioneMana" | "RigenerazioneManaPerLivello" | "Critico" | "CriticoPerLivello" | "Attacco" | "AttaccoPerLivello" | "VelocitàDiAttacco" | "VelocitàDiAttaccoPerLivello" | "AttaccoMagico", ExtArgs["result"]["setBase"]>
 export type SetBaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Oggetto?: boolean | Prisma.SetBase$OggettoArgs<ExtArgs>
-  Campione?: boolean | Prisma.SetBase$CampioneArgs<ExtArgs>
+  Champ?: boolean | Prisma.SetBase$ChampArgs<ExtArgs>
+  Item?: boolean | Prisma.SetBase$ItemArgs<ExtArgs>
   _count?: boolean | Prisma.SetBaseCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SetBaseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1251,8 +1251,8 @@ export type SetBaseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $SetBasePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SetBase"
   objects: {
-    Oggetto: Prisma.$OggettoPayload<ExtArgs>[]
-    Campione: Prisma.$CampionePayload<ExtArgs>[]
+    Champ: Prisma.$CampionePayload<ExtArgs>[]
+    Item: Prisma.$OggettoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     IdStatistiche: number
@@ -1670,8 +1670,8 @@ readonly fields: SetBaseFieldRefs;
  */
 export interface Prisma__SetBaseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Oggetto<T extends Prisma.SetBase$OggettoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBase$OggettoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OggettoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Campione<T extends Prisma.SetBase$CampioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBase$CampioneArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Champ<T extends Prisma.SetBase$ChampArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBase$ChampArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Item<T extends Prisma.SetBase$ItemArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBase$ItemArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OggettoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2115,33 +2115,9 @@ export type SetBaseDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * SetBase.Oggetto
+ * SetBase.Champ
  */
-export type SetBase$OggettoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Oggetto
-   */
-  select?: Prisma.OggettoSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Oggetto
-   */
-  omit?: Prisma.OggettoOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OggettoInclude<ExtArgs> | null
-  where?: Prisma.OggettoWhereInput
-  orderBy?: Prisma.OggettoOrderByWithRelationInput | Prisma.OggettoOrderByWithRelationInput[]
-  cursor?: Prisma.OggettoWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.OggettoScalarFieldEnum | Prisma.OggettoScalarFieldEnum[]
-}
-
-/**
- * SetBase.Campione
- */
-export type SetBase$CampioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type SetBase$ChampArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Campione
    */
@@ -2160,6 +2136,30 @@ export type SetBase$CampioneArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.CampioneScalarFieldEnum | Prisma.CampioneScalarFieldEnum[]
+}
+
+/**
+ * SetBase.Item
+ */
+export type SetBase$ItemArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Oggetto
+   */
+  select?: Prisma.OggettoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Oggetto
+   */
+  omit?: Prisma.OggettoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OggettoInclude<ExtArgs> | null
+  where?: Prisma.OggettoWhereInput
+  orderBy?: Prisma.OggettoOrderByWithRelationInput | Prisma.OggettoOrderByWithRelationInput[]
+  cursor?: Prisma.OggettoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OggettoScalarFieldEnum | Prisma.OggettoScalarFieldEnum[]
 }
 
 /**

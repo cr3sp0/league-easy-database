@@ -324,6 +324,14 @@ export type IncantesimoScalarRelationFilter = {
   isNot?: Prisma.IncantesimoWhereInput
 }
 
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type IncantesimoCreateNestedOneWithoutIncant1Input = {
   create?: Prisma.XOR<Prisma.IncantesimoCreateWithoutIncant1Input, Prisma.IncantesimoUncheckedCreateWithoutIncant1Input>
   connectOrCreate?: Prisma.IncantesimoCreateOrConnectWithoutIncant1Input

@@ -28,16 +28,16 @@ export type AggregatePartita = {
 
 export type PartitaAvgAggregateOutputType = {
   AccountId: number | null
-  Uccisioni: number | null
-  Morti: number | null
   Assist: number | null
+  Morti: number | null
+  Uccisioni: number | null
 }
 
 export type PartitaSumAggregateOutputType = {
   AccountId: number | null
-  Uccisioni: number | null
-  Morti: number | null
   Assist: number | null
+  Morti: number | null
+  Uccisioni: number | null
 }
 
 export type PartitaMinAggregateOutputType = {
@@ -45,9 +45,9 @@ export type PartitaMinAggregateOutputType = {
   Data: Date | null
   Risultato: $Enums.Risultato | null
   AccountId: number | null
-  Uccisioni: number | null
-  Morti: number | null
   Assist: number | null
+  Morti: number | null
+  Uccisioni: number | null
 }
 
 export type PartitaMaxAggregateOutputType = {
@@ -55,9 +55,9 @@ export type PartitaMaxAggregateOutputType = {
   Data: Date | null
   Risultato: $Enums.Risultato | null
   AccountId: number | null
-  Uccisioni: number | null
-  Morti: number | null
   Assist: number | null
+  Morti: number | null
+  Uccisioni: number | null
 }
 
 export type PartitaCountAggregateOutputType = {
@@ -65,25 +65,25 @@ export type PartitaCountAggregateOutputType = {
   Data: number
   Risultato: number
   AccountId: number
-  Uccisioni: number
-  Morti: number
   Assist: number
+  Morti: number
+  Uccisioni: number
   _all: number
 }
 
 
 export type PartitaAvgAggregateInputType = {
   AccountId?: true
-  Uccisioni?: true
-  Morti?: true
   Assist?: true
+  Morti?: true
+  Uccisioni?: true
 }
 
 export type PartitaSumAggregateInputType = {
   AccountId?: true
-  Uccisioni?: true
-  Morti?: true
   Assist?: true
+  Morti?: true
+  Uccisioni?: true
 }
 
 export type PartitaMinAggregateInputType = {
@@ -91,9 +91,9 @@ export type PartitaMinAggregateInputType = {
   Data?: true
   Risultato?: true
   AccountId?: true
-  Uccisioni?: true
-  Morti?: true
   Assist?: true
+  Morti?: true
+  Uccisioni?: true
 }
 
 export type PartitaMaxAggregateInputType = {
@@ -101,9 +101,9 @@ export type PartitaMaxAggregateInputType = {
   Data?: true
   Risultato?: true
   AccountId?: true
-  Uccisioni?: true
-  Morti?: true
   Assist?: true
+  Morti?: true
+  Uccisioni?: true
 }
 
 export type PartitaCountAggregateInputType = {
@@ -111,9 +111,9 @@ export type PartitaCountAggregateInputType = {
   Data?: true
   Risultato?: true
   AccountId?: true
-  Uccisioni?: true
-  Morti?: true
   Assist?: true
+  Morti?: true
+  Uccisioni?: true
   _all?: true
 }
 
@@ -208,9 +208,9 @@ export type PartitaGroupByOutputType = {
   Data: Date
   Risultato: $Enums.Risultato
   AccountId: number
-  Uccisioni: number
-  Morti: number
   Assist: number
+  Morti: number
+  Uccisioni: number
   _count: PartitaCountAggregateOutputType | null
   _avg: PartitaAvgAggregateOutputType | null
   _sum: PartitaSumAggregateOutputType | null
@@ -241,11 +241,11 @@ export type PartitaWhereInput = {
   Data?: Prisma.DateTimeFilter<"Partita"> | Date | string
   Risultato?: Prisma.EnumRisultatoFilter<"Partita"> | $Enums.Risultato
   AccountId?: Prisma.IntFilter<"Partita"> | number
-  Uccisioni?: Prisma.IntFilter<"Partita"> | number
-  Morti?: Prisma.IntFilter<"Partita"> | number
   Assist?: Prisma.IntFilter<"Partita"> | number
-  Configurazione?: Prisma.XOR<Prisma.ConfigurazioneScalarRelationFilter, Prisma.ConfigurazioneWhereInput>
+  Morti?: Prisma.IntFilter<"Partita"> | number
+  Uccisioni?: Prisma.IntFilter<"Partita"> | number
   Account?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
+  Configurazione?: Prisma.XOR<Prisma.ConfigurazioneScalarRelationFilter, Prisma.ConfigurazioneWhereInput>
 }
 
 export type PartitaOrderByWithRelationInput = {
@@ -253,11 +253,11 @@ export type PartitaOrderByWithRelationInput = {
   Data?: Prisma.SortOrder
   Risultato?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
-  Uccisioni?: Prisma.SortOrder
-  Morti?: Prisma.SortOrder
   Assist?: Prisma.SortOrder
-  Configurazione?: Prisma.ConfigurazioneOrderByWithRelationInput
+  Morti?: Prisma.SortOrder
+  Uccisioni?: Prisma.SortOrder
   Account?: Prisma.AccountOrderByWithRelationInput
+  Configurazione?: Prisma.ConfigurazioneOrderByWithRelationInput
 }
 
 export type PartitaWhereUniqueInput = Prisma.AtLeast<{
@@ -269,11 +269,11 @@ export type PartitaWhereUniqueInput = Prisma.AtLeast<{
   Data?: Prisma.DateTimeFilter<"Partita"> | Date | string
   Risultato?: Prisma.EnumRisultatoFilter<"Partita"> | $Enums.Risultato
   AccountId?: Prisma.IntFilter<"Partita"> | number
-  Uccisioni?: Prisma.IntFilter<"Partita"> | number
-  Morti?: Prisma.IntFilter<"Partita"> | number
   Assist?: Prisma.IntFilter<"Partita"> | number
-  Configurazione?: Prisma.XOR<Prisma.ConfigurazioneScalarRelationFilter, Prisma.ConfigurazioneWhereInput>
+  Morti?: Prisma.IntFilter<"Partita"> | number
+  Uccisioni?: Prisma.IntFilter<"Partita"> | number
   Account?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
+  Configurazione?: Prisma.XOR<Prisma.ConfigurazioneScalarRelationFilter, Prisma.ConfigurazioneWhereInput>
 }, "AccountId_Data">
 
 export type PartitaOrderByWithAggregationInput = {
@@ -281,9 +281,9 @@ export type PartitaOrderByWithAggregationInput = {
   Data?: Prisma.SortOrder
   Risultato?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
-  Uccisioni?: Prisma.SortOrder
-  Morti?: Prisma.SortOrder
   Assist?: Prisma.SortOrder
+  Morti?: Prisma.SortOrder
+  Uccisioni?: Prisma.SortOrder
   _count?: Prisma.PartitaCountOrderByAggregateInput
   _avg?: Prisma.PartitaAvgOrderByAggregateInput
   _max?: Prisma.PartitaMaxOrderByAggregateInput
@@ -299,19 +299,19 @@ export type PartitaScalarWhereWithAggregatesInput = {
   Data?: Prisma.DateTimeWithAggregatesFilter<"Partita"> | Date | string
   Risultato?: Prisma.EnumRisultatoWithAggregatesFilter<"Partita"> | $Enums.Risultato
   AccountId?: Prisma.IntWithAggregatesFilter<"Partita"> | number
-  Uccisioni?: Prisma.IntWithAggregatesFilter<"Partita"> | number
-  Morti?: Prisma.IntWithAggregatesFilter<"Partita"> | number
   Assist?: Prisma.IntWithAggregatesFilter<"Partita"> | number
+  Morti?: Prisma.IntWithAggregatesFilter<"Partita"> | number
+  Uccisioni?: Prisma.IntWithAggregatesFilter<"Partita"> | number
 }
 
 export type PartitaCreateInput = {
   Data?: Date | string
   Risultato: $Enums.Risultato
-  Uccisioni?: number
-  Morti?: number
   Assist?: number
-  Configurazione: Prisma.ConfigurazioneCreateNestedOneWithoutPartiteInput
+  Morti?: number
+  Uccisioni?: number
   Account: Prisma.AccountCreateNestedOneWithoutPartitaInput
+  Configurazione: Prisma.ConfigurazioneCreateNestedOneWithoutPartiteInput
 }
 
 export type PartitaUncheckedCreateInput = {
@@ -319,19 +319,19 @@ export type PartitaUncheckedCreateInput = {
   Data?: Date | string
   Risultato: $Enums.Risultato
   AccountId: number
-  Uccisioni?: number
-  Morti?: number
   Assist?: number
+  Morti?: number
+  Uccisioni?: number
 }
 
 export type PartitaUpdateInput = {
   Data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Risultato?: Prisma.EnumRisultatoFieldUpdateOperationsInput | $Enums.Risultato
-  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
-  Morti?: Prisma.IntFieldUpdateOperationsInput | number
   Assist?: Prisma.IntFieldUpdateOperationsInput | number
-  Configurazione?: Prisma.ConfigurazioneUpdateOneRequiredWithoutPartiteNestedInput
+  Morti?: Prisma.IntFieldUpdateOperationsInput | number
+  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
   Account?: Prisma.AccountUpdateOneRequiredWithoutPartitaNestedInput
+  Configurazione?: Prisma.ConfigurazioneUpdateOneRequiredWithoutPartiteNestedInput
 }
 
 export type PartitaUncheckedUpdateInput = {
@@ -339,9 +339,9 @@ export type PartitaUncheckedUpdateInput = {
   Data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Risultato?: Prisma.EnumRisultatoFieldUpdateOperationsInput | $Enums.Risultato
   AccountId?: Prisma.IntFieldUpdateOperationsInput | number
-  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
-  Morti?: Prisma.IntFieldUpdateOperationsInput | number
   Assist?: Prisma.IntFieldUpdateOperationsInput | number
+  Morti?: Prisma.IntFieldUpdateOperationsInput | number
+  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PartitaCreateManyInput = {
@@ -349,17 +349,17 @@ export type PartitaCreateManyInput = {
   Data?: Date | string
   Risultato: $Enums.Risultato
   AccountId: number
-  Uccisioni?: number
-  Morti?: number
   Assist?: number
+  Morti?: number
+  Uccisioni?: number
 }
 
 export type PartitaUpdateManyMutationInput = {
   Data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Risultato?: Prisma.EnumRisultatoFieldUpdateOperationsInput | $Enums.Risultato
-  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
-  Morti?: Prisma.IntFieldUpdateOperationsInput | number
   Assist?: Prisma.IntFieldUpdateOperationsInput | number
+  Morti?: Prisma.IntFieldUpdateOperationsInput | number
+  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PartitaUncheckedUpdateManyInput = {
@@ -367,9 +367,9 @@ export type PartitaUncheckedUpdateManyInput = {
   Data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Risultato?: Prisma.EnumRisultatoFieldUpdateOperationsInput | $Enums.Risultato
   AccountId?: Prisma.IntFieldUpdateOperationsInput | number
-  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
-  Morti?: Prisma.IntFieldUpdateOperationsInput | number
   Assist?: Prisma.IntFieldUpdateOperationsInput | number
+  Morti?: Prisma.IntFieldUpdateOperationsInput | number
+  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PartitaListRelationFilter = {
@@ -392,16 +392,16 @@ export type PartitaCountOrderByAggregateInput = {
   Data?: Prisma.SortOrder
   Risultato?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
-  Uccisioni?: Prisma.SortOrder
-  Morti?: Prisma.SortOrder
   Assist?: Prisma.SortOrder
+  Morti?: Prisma.SortOrder
+  Uccisioni?: Prisma.SortOrder
 }
 
 export type PartitaAvgOrderByAggregateInput = {
   AccountId?: Prisma.SortOrder
-  Uccisioni?: Prisma.SortOrder
-  Morti?: Prisma.SortOrder
   Assist?: Prisma.SortOrder
+  Morti?: Prisma.SortOrder
+  Uccisioni?: Prisma.SortOrder
 }
 
 export type PartitaMaxOrderByAggregateInput = {
@@ -409,9 +409,9 @@ export type PartitaMaxOrderByAggregateInput = {
   Data?: Prisma.SortOrder
   Risultato?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
-  Uccisioni?: Prisma.SortOrder
-  Morti?: Prisma.SortOrder
   Assist?: Prisma.SortOrder
+  Morti?: Prisma.SortOrder
+  Uccisioni?: Prisma.SortOrder
 }
 
 export type PartitaMinOrderByAggregateInput = {
@@ -419,16 +419,16 @@ export type PartitaMinOrderByAggregateInput = {
   Data?: Prisma.SortOrder
   Risultato?: Prisma.SortOrder
   AccountId?: Prisma.SortOrder
-  Uccisioni?: Prisma.SortOrder
-  Morti?: Prisma.SortOrder
   Assist?: Prisma.SortOrder
+  Morti?: Prisma.SortOrder
+  Uccisioni?: Prisma.SortOrder
 }
 
 export type PartitaSumOrderByAggregateInput = {
   AccountId?: Prisma.SortOrder
-  Uccisioni?: Prisma.SortOrder
-  Morti?: Prisma.SortOrder
   Assist?: Prisma.SortOrder
+  Morti?: Prisma.SortOrder
+  Uccisioni?: Prisma.SortOrder
 }
 
 export type PartitaCreateNestedManyWithoutConfigurazioneInput = {
@@ -522,18 +522,18 @@ export type EnumRisultatoFieldUpdateOperationsInput = {
 export type PartitaCreateWithoutConfigurazioneInput = {
   Data?: Date | string
   Risultato: $Enums.Risultato
-  Uccisioni?: number
-  Morti?: number
   Assist?: number
+  Morti?: number
+  Uccisioni?: number
   Account: Prisma.AccountCreateNestedOneWithoutPartitaInput
 }
 
 export type PartitaUncheckedCreateWithoutConfigurazioneInput = {
   Data?: Date | string
   Risultato: $Enums.Risultato
-  Uccisioni?: number
-  Morti?: number
   Assist?: number
+  Morti?: number
+  Uccisioni?: number
 }
 
 export type PartitaCreateOrConnectWithoutConfigurazioneInput = {
@@ -570,17 +570,17 @@ export type PartitaScalarWhereInput = {
   Data?: Prisma.DateTimeFilter<"Partita"> | Date | string
   Risultato?: Prisma.EnumRisultatoFilter<"Partita"> | $Enums.Risultato
   AccountId?: Prisma.IntFilter<"Partita"> | number
-  Uccisioni?: Prisma.IntFilter<"Partita"> | number
-  Morti?: Prisma.IntFilter<"Partita"> | number
   Assist?: Prisma.IntFilter<"Partita"> | number
+  Morti?: Prisma.IntFilter<"Partita"> | number
+  Uccisioni?: Prisma.IntFilter<"Partita"> | number
 }
 
 export type PartitaCreateWithoutAccountInput = {
   Data?: Date | string
   Risultato: $Enums.Risultato
-  Uccisioni?: number
-  Morti?: number
   Assist?: number
+  Morti?: number
+  Uccisioni?: number
   Configurazione: Prisma.ConfigurazioneCreateNestedOneWithoutPartiteInput
 }
 
@@ -588,9 +588,9 @@ export type PartitaUncheckedCreateWithoutAccountInput = {
   ConfigurazioneId: string
   Data?: Date | string
   Risultato: $Enums.Risultato
-  Uccisioni?: number
-  Morti?: number
   Assist?: number
+  Morti?: number
+  Uccisioni?: number
 }
 
 export type PartitaCreateOrConnectWithoutAccountInput = {
@@ -622,51 +622,51 @@ export type PartitaUpdateManyWithWhereWithoutAccountInput = {
 export type PartitaCreateManyConfigurazioneInput = {
   Data?: Date | string
   Risultato: $Enums.Risultato
-  Uccisioni?: number
-  Morti?: number
   Assist?: number
+  Morti?: number
+  Uccisioni?: number
 }
 
 export type PartitaUpdateWithoutConfigurazioneInput = {
   Data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Risultato?: Prisma.EnumRisultatoFieldUpdateOperationsInput | $Enums.Risultato
-  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
-  Morti?: Prisma.IntFieldUpdateOperationsInput | number
   Assist?: Prisma.IntFieldUpdateOperationsInput | number
+  Morti?: Prisma.IntFieldUpdateOperationsInput | number
+  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
   Account?: Prisma.AccountUpdateOneRequiredWithoutPartitaNestedInput
 }
 
 export type PartitaUncheckedUpdateWithoutConfigurazioneInput = {
   Data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Risultato?: Prisma.EnumRisultatoFieldUpdateOperationsInput | $Enums.Risultato
-  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
-  Morti?: Prisma.IntFieldUpdateOperationsInput | number
   Assist?: Prisma.IntFieldUpdateOperationsInput | number
+  Morti?: Prisma.IntFieldUpdateOperationsInput | number
+  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PartitaUncheckedUpdateManyWithoutConfigurazioneInput = {
   Data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Risultato?: Prisma.EnumRisultatoFieldUpdateOperationsInput | $Enums.Risultato
-  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
-  Morti?: Prisma.IntFieldUpdateOperationsInput | number
   Assist?: Prisma.IntFieldUpdateOperationsInput | number
+  Morti?: Prisma.IntFieldUpdateOperationsInput | number
+  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PartitaCreateManyAccountInput = {
   ConfigurazioneId: string
   Data?: Date | string
   Risultato: $Enums.Risultato
-  Uccisioni?: number
-  Morti?: number
   Assist?: number
+  Morti?: number
+  Uccisioni?: number
 }
 
 export type PartitaUpdateWithoutAccountInput = {
   Data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Risultato?: Prisma.EnumRisultatoFieldUpdateOperationsInput | $Enums.Risultato
-  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
-  Morti?: Prisma.IntFieldUpdateOperationsInput | number
   Assist?: Prisma.IntFieldUpdateOperationsInput | number
+  Morti?: Prisma.IntFieldUpdateOperationsInput | number
+  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
   Configurazione?: Prisma.ConfigurazioneUpdateOneRequiredWithoutPartiteNestedInput
 }
 
@@ -674,18 +674,18 @@ export type PartitaUncheckedUpdateWithoutAccountInput = {
   ConfigurazioneId?: Prisma.StringFieldUpdateOperationsInput | string
   Data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Risultato?: Prisma.EnumRisultatoFieldUpdateOperationsInput | $Enums.Risultato
-  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
-  Morti?: Prisma.IntFieldUpdateOperationsInput | number
   Assist?: Prisma.IntFieldUpdateOperationsInput | number
+  Morti?: Prisma.IntFieldUpdateOperationsInput | number
+  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PartitaUncheckedUpdateManyWithoutAccountInput = {
   ConfigurazioneId?: Prisma.StringFieldUpdateOperationsInput | string
   Data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Risultato?: Prisma.EnumRisultatoFieldUpdateOperationsInput | $Enums.Risultato
-  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
-  Morti?: Prisma.IntFieldUpdateOperationsInput | number
   Assist?: Prisma.IntFieldUpdateOperationsInput | number
+  Morti?: Prisma.IntFieldUpdateOperationsInput | number
+  Uccisioni?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -695,11 +695,11 @@ export type PartitaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   Data?: boolean
   Risultato?: boolean
   AccountId?: boolean
-  Uccisioni?: boolean
-  Morti?: boolean
   Assist?: boolean
-  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
+  Morti?: boolean
+  Uccisioni?: boolean
   Account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["partita"]>
 
 export type PartitaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -707,11 +707,11 @@ export type PartitaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   Data?: boolean
   Risultato?: boolean
   AccountId?: boolean
-  Uccisioni?: boolean
-  Morti?: boolean
   Assist?: boolean
-  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
+  Morti?: boolean
+  Uccisioni?: boolean
   Account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["partita"]>
 
 export type PartitaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -719,11 +719,11 @@ export type PartitaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   Data?: boolean
   Risultato?: boolean
   AccountId?: boolean
-  Uccisioni?: boolean
-  Morti?: boolean
   Assist?: boolean
-  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
+  Morti?: boolean
+  Uccisioni?: boolean
   Account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["partita"]>
 
 export type PartitaSelectScalar = {
@@ -731,39 +731,39 @@ export type PartitaSelectScalar = {
   Data?: boolean
   Risultato?: boolean
   AccountId?: boolean
-  Uccisioni?: boolean
-  Morti?: boolean
   Assist?: boolean
+  Morti?: boolean
+  Uccisioni?: boolean
 }
 
-export type PartitaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ConfigurazioneId" | "Data" | "Risultato" | "AccountId" | "Uccisioni" | "Morti" | "Assist", ExtArgs["result"]["partita"]>
+export type PartitaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ConfigurazioneId" | "Data" | "Risultato" | "AccountId" | "Assist" | "Morti" | "Uccisioni", ExtArgs["result"]["partita"]>
 export type PartitaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
   Account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
 }
 export type PartitaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
   Account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
 }
 export type PartitaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
   Account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  Configurazione?: boolean | Prisma.ConfigurazioneDefaultArgs<ExtArgs>
 }
 
 export type $PartitaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Partita"
   objects: {
-    Configurazione: Prisma.$ConfigurazionePayload<ExtArgs>
     Account: Prisma.$AccountPayload<ExtArgs>
+    Configurazione: Prisma.$ConfigurazionePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     ConfigurazioneId: string
     Data: Date
     Risultato: $Enums.Risultato
     AccountId: number
-    Uccisioni: number
-    Morti: number
     Assist: number
+    Morti: number
+    Uccisioni: number
   }, ExtArgs["result"]["partita"]>
   composites: {}
 }
@@ -1158,8 +1158,8 @@ readonly fields: PartitaFieldRefs;
  */
 export interface Prisma__PartitaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Configurazione<T extends Prisma.ConfigurazioneDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ConfigurazioneDefaultArgs<ExtArgs>>): Prisma.Prisma__ConfigurazioneClient<runtime.Types.Result.GetResult<Prisma.$ConfigurazionePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Account<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Configurazione<T extends Prisma.ConfigurazioneDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ConfigurazioneDefaultArgs<ExtArgs>>): Prisma.Prisma__ConfigurazioneClient<runtime.Types.Result.GetResult<Prisma.$ConfigurazionePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1193,9 +1193,9 @@ export interface PartitaFieldRefs {
   readonly Data: Prisma.FieldRef<"Partita", 'DateTime'>
   readonly Risultato: Prisma.FieldRef<"Partita", 'Risultato'>
   readonly AccountId: Prisma.FieldRef<"Partita", 'Int'>
-  readonly Uccisioni: Prisma.FieldRef<"Partita", 'Int'>
-  readonly Morti: Prisma.FieldRef<"Partita", 'Int'>
   readonly Assist: Prisma.FieldRef<"Partita", 'Int'>
+  readonly Morti: Prisma.FieldRef<"Partita", 'Int'>
+  readonly Uccisioni: Prisma.FieldRef<"Partita", 'Int'>
 }
     
 

@@ -27,79 +27,79 @@ export type AggregateConfigurazione = {
 }
 
 export type ConfigurazioneAvgAggregateOutputType = {
-  IdAccount: number | null
   Runa: number | null
+  IdAccount: number | null
 }
 
 export type ConfigurazioneSumAggregateOutputType = {
-  IdAccount: number | null
   Runa: number | null
+  IdAccount: number | null
 }
 
 export type ConfigurazioneMinAggregateOutputType = {
-  TitoloConf: string | null
   IdCampione: string | null
   Incantesimo1: string | null
   Incantesimo2: string | null
-  IdAccount: number | null
   Runa: number | null
+  IdAccount: number | null
+  TitoloConf: string | null
 }
 
 export type ConfigurazioneMaxAggregateOutputType = {
-  TitoloConf: string | null
   IdCampione: string | null
   Incantesimo1: string | null
   Incantesimo2: string | null
-  IdAccount: number | null
   Runa: number | null
+  IdAccount: number | null
+  TitoloConf: string | null
 }
 
 export type ConfigurazioneCountAggregateOutputType = {
-  TitoloConf: number
   IdCampione: number
   Incantesimo1: number
   Incantesimo2: number
-  IdAccount: number
   Runa: number
+  IdAccount: number
+  TitoloConf: number
   _all: number
 }
 
 
 export type ConfigurazioneAvgAggregateInputType = {
-  IdAccount?: true
   Runa?: true
+  IdAccount?: true
 }
 
 export type ConfigurazioneSumAggregateInputType = {
-  IdAccount?: true
   Runa?: true
+  IdAccount?: true
 }
 
 export type ConfigurazioneMinAggregateInputType = {
-  TitoloConf?: true
   IdCampione?: true
   Incantesimo1?: true
   Incantesimo2?: true
-  IdAccount?: true
   Runa?: true
+  IdAccount?: true
+  TitoloConf?: true
 }
 
 export type ConfigurazioneMaxAggregateInputType = {
-  TitoloConf?: true
   IdCampione?: true
   Incantesimo1?: true
   Incantesimo2?: true
-  IdAccount?: true
   Runa?: true
+  IdAccount?: true
+  TitoloConf?: true
 }
 
 export type ConfigurazioneCountAggregateInputType = {
-  TitoloConf?: true
   IdCampione?: true
   Incantesimo1?: true
   Incantesimo2?: true
-  IdAccount?: true
   Runa?: true
+  IdAccount?: true
+  TitoloConf?: true
   _all?: true
 }
 
@@ -190,12 +190,12 @@ export type ConfigurazioneGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 export type ConfigurazioneGroupByOutputType = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
   Incantesimo2: string
+  Runa: number
   IdAccount: number
-  Runa: number | null
+  TitoloConf: string
   _count: ConfigurazioneCountAggregateOutputType | null
   _avg: ConfigurazioneAvgAggregateOutputType | null
   _sum: ConfigurazioneSumAggregateOutputType | null
@@ -222,35 +222,35 @@ export type ConfigurazioneWhereInput = {
   AND?: Prisma.ConfigurazioneWhereInput | Prisma.ConfigurazioneWhereInput[]
   OR?: Prisma.ConfigurazioneWhereInput[]
   NOT?: Prisma.ConfigurazioneWhereInput | Prisma.ConfigurazioneWhereInput[]
-  TitoloConf?: Prisma.StringFilter<"Configurazione"> | string
   IdCampione?: Prisma.StringFilter<"Configurazione"> | string
   Incantesimo1?: Prisma.StringFilter<"Configurazione"> | string
   Incantesimo2?: Prisma.StringFilter<"Configurazione"> | string
+  Runa?: Prisma.IntFilter<"Configurazione"> | number
   IdAccount?: Prisma.IntFilter<"Configurazione"> | number
-  Runa?: Prisma.IntNullableFilter<"Configurazione"> | number | null
+  TitoloConf?: Prisma.StringFilter<"Configurazione"> | string
+  User?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   champ?: Prisma.XOR<Prisma.CampioneScalarRelationFilter, Prisma.CampioneWhereInput>
   Inc1?: Prisma.XOR<Prisma.IncantesimoScalarRelationFilter, Prisma.IncantesimoWhereInput>
   Inc2?: Prisma.XOR<Prisma.IncantesimoScalarRelationFilter, Prisma.IncantesimoWhereInput>
-  User?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
-  Pag_Runa?: Prisma.XOR<Prisma.Pagina_RunaNullableScalarRelationFilter, Prisma.Pagina_RunaWhereInput> | null
-  Partite?: Prisma.PartitaListRelationFilter
+  Pag_Runa?: Prisma.XOR<Prisma.Pagina_RunaScalarRelationFilter, Prisma.Pagina_RunaWhereInput>
   Inv?: Prisma.InventarioListRelationFilter
+  Partite?: Prisma.PartitaListRelationFilter
 }
 
 export type ConfigurazioneOrderByWithRelationInput = {
-  TitoloConf?: Prisma.SortOrder
   IdCampione?: Prisma.SortOrder
   Incantesimo1?: Prisma.SortOrder
   Incantesimo2?: Prisma.SortOrder
+  Runa?: Prisma.SortOrder
   IdAccount?: Prisma.SortOrder
-  Runa?: Prisma.SortOrderInput | Prisma.SortOrder
+  TitoloConf?: Prisma.SortOrder
+  User?: Prisma.AccountOrderByWithRelationInput
   champ?: Prisma.CampioneOrderByWithRelationInput
   Inc1?: Prisma.IncantesimoOrderByWithRelationInput
   Inc2?: Prisma.IncantesimoOrderByWithRelationInput
-  User?: Prisma.AccountOrderByWithRelationInput
   Pag_Runa?: Prisma.Pagina_RunaOrderByWithRelationInput
-  Partite?: Prisma.PartitaOrderByRelationAggregateInput
   Inv?: Prisma.InventarioOrderByRelationAggregateInput
+  Partite?: Prisma.PartitaOrderByRelationAggregateInput
 }
 
 export type ConfigurazioneWhereUniqueInput = Prisma.AtLeast<{
@@ -258,28 +258,28 @@ export type ConfigurazioneWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ConfigurazioneWhereInput | Prisma.ConfigurazioneWhereInput[]
   OR?: Prisma.ConfigurazioneWhereInput[]
   NOT?: Prisma.ConfigurazioneWhereInput | Prisma.ConfigurazioneWhereInput[]
-  TitoloConf?: Prisma.StringFilter<"Configurazione"> | string
   IdCampione?: Prisma.StringFilter<"Configurazione"> | string
   Incantesimo1?: Prisma.StringFilter<"Configurazione"> | string
   Incantesimo2?: Prisma.StringFilter<"Configurazione"> | string
+  Runa?: Prisma.IntFilter<"Configurazione"> | number
   IdAccount?: Prisma.IntFilter<"Configurazione"> | number
-  Runa?: Prisma.IntNullableFilter<"Configurazione"> | number | null
+  TitoloConf?: Prisma.StringFilter<"Configurazione"> | string
+  User?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   champ?: Prisma.XOR<Prisma.CampioneScalarRelationFilter, Prisma.CampioneWhereInput>
   Inc1?: Prisma.XOR<Prisma.IncantesimoScalarRelationFilter, Prisma.IncantesimoWhereInput>
   Inc2?: Prisma.XOR<Prisma.IncantesimoScalarRelationFilter, Prisma.IncantesimoWhereInput>
-  User?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
-  Pag_Runa?: Prisma.XOR<Prisma.Pagina_RunaNullableScalarRelationFilter, Prisma.Pagina_RunaWhereInput> | null
-  Partite?: Prisma.PartitaListRelationFilter
+  Pag_Runa?: Prisma.XOR<Prisma.Pagina_RunaScalarRelationFilter, Prisma.Pagina_RunaWhereInput>
   Inv?: Prisma.InventarioListRelationFilter
+  Partite?: Prisma.PartitaListRelationFilter
 }, "TitoloConf_IdAccount">
 
 export type ConfigurazioneOrderByWithAggregationInput = {
-  TitoloConf?: Prisma.SortOrder
   IdCampione?: Prisma.SortOrder
   Incantesimo1?: Prisma.SortOrder
   Incantesimo2?: Prisma.SortOrder
+  Runa?: Prisma.SortOrder
   IdAccount?: Prisma.SortOrder
-  Runa?: Prisma.SortOrderInput | Prisma.SortOrder
+  TitoloConf?: Prisma.SortOrder
   _count?: Prisma.ConfigurazioneCountOrderByAggregateInput
   _avg?: Prisma.ConfigurazioneAvgOrderByAggregateInput
   _max?: Prisma.ConfigurazioneMaxOrderByAggregateInput
@@ -291,65 +291,65 @@ export type ConfigurazioneScalarWhereWithAggregatesInput = {
   AND?: Prisma.ConfigurazioneScalarWhereWithAggregatesInput | Prisma.ConfigurazioneScalarWhereWithAggregatesInput[]
   OR?: Prisma.ConfigurazioneScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ConfigurazioneScalarWhereWithAggregatesInput | Prisma.ConfigurazioneScalarWhereWithAggregatesInput[]
-  TitoloConf?: Prisma.StringWithAggregatesFilter<"Configurazione"> | string
   IdCampione?: Prisma.StringWithAggregatesFilter<"Configurazione"> | string
   Incantesimo1?: Prisma.StringWithAggregatesFilter<"Configurazione"> | string
   Incantesimo2?: Prisma.StringWithAggregatesFilter<"Configurazione"> | string
+  Runa?: Prisma.IntWithAggregatesFilter<"Configurazione"> | number
   IdAccount?: Prisma.IntWithAggregatesFilter<"Configurazione"> | number
-  Runa?: Prisma.IntNullableWithAggregatesFilter<"Configurazione"> | number | null
+  TitoloConf?: Prisma.StringWithAggregatesFilter<"Configurazione"> | string
 }
 
 export type ConfigurazioneCreateInput = {
   TitoloConf: string
+  User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
   Inc2: Prisma.IncantesimoCreateNestedOneWithoutIncant2Input
-  User: Prisma.AccountCreateNestedOneWithoutConfigInput
-  Pag_Runa?: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
-  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
+  Pag_Runa: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
   Inv?: Prisma.InventarioCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneUncheckedCreateInput = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
   Incantesimo2: string
+  Runa: number
   IdAccount: number
-  Runa?: number | null
-  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
+  TitoloConf: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneUpdateInput = {
   TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
+  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
   champ?: Prisma.CampioneUpdateOneRequiredWithoutConfigNestedInput
   Inc1?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant1NestedInput
   Inc2?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant2NestedInput
-  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
-  Pag_Runa?: Prisma.Pagina_RunaUpdateOneWithoutConfNestedInput
-  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
+  Pag_Runa?: Prisma.Pagina_RunaUpdateOneRequiredWithoutConfNestedInput
   Inv?: Prisma.InventarioUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateInput = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   Inv?: Prisma.InventarioUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneCreateManyInput = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
   Incantesimo2: string
+  Runa: number
   IdAccount: number
-  Runa?: number | null
+  TitoloConf: string
 }
 
 export type ConfigurazioneUpdateManyMutationInput = {
@@ -357,12 +357,12 @@ export type ConfigurazioneUpdateManyMutationInput = {
 }
 
 export type ConfigurazioneUncheckedUpdateManyInput = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConfigurazioneListRelationFilter = {
@@ -381,40 +381,40 @@ export type ConfigurazioneTitoloConfIdAccountCompoundUniqueInput = {
 }
 
 export type ConfigurazioneCountOrderByAggregateInput = {
-  TitoloConf?: Prisma.SortOrder
   IdCampione?: Prisma.SortOrder
   Incantesimo1?: Prisma.SortOrder
   Incantesimo2?: Prisma.SortOrder
-  IdAccount?: Prisma.SortOrder
   Runa?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
+  TitoloConf?: Prisma.SortOrder
 }
 
 export type ConfigurazioneAvgOrderByAggregateInput = {
-  IdAccount?: Prisma.SortOrder
   Runa?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
 }
 
 export type ConfigurazioneMaxOrderByAggregateInput = {
-  TitoloConf?: Prisma.SortOrder
   IdCampione?: Prisma.SortOrder
   Incantesimo1?: Prisma.SortOrder
   Incantesimo2?: Prisma.SortOrder
-  IdAccount?: Prisma.SortOrder
   Runa?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
+  TitoloConf?: Prisma.SortOrder
 }
 
 export type ConfigurazioneMinOrderByAggregateInput = {
-  TitoloConf?: Prisma.SortOrder
   IdCampione?: Prisma.SortOrder
   Incantesimo1?: Prisma.SortOrder
   Incantesimo2?: Prisma.SortOrder
-  IdAccount?: Prisma.SortOrder
   Runa?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
+  TitoloConf?: Prisma.SortOrder
 }
 
 export type ConfigurazioneSumOrderByAggregateInput = {
-  IdAccount?: Prisma.SortOrder
   Runa?: Prisma.SortOrder
+  IdAccount?: Prisma.SortOrder
 }
 
 export type ConfigurazioneScalarRelationFilter = {
@@ -548,14 +548,6 @@ export type ConfigurazioneUncheckedUpdateManyWithoutInc2NestedInput = {
   deleteMany?: Prisma.ConfigurazioneScalarWhereInput | Prisma.ConfigurazioneScalarWhereInput[]
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type ConfigurazioneCreateNestedOneWithoutInvInput = {
   create?: Prisma.XOR<Prisma.ConfigurazioneCreateWithoutInvInput, Prisma.ConfigurazioneUncheckedCreateWithoutInvInput>
   connectOrCreate?: Prisma.ConfigurazioneCreateOrConnectWithoutInvInput
@@ -670,22 +662,22 @@ export type ConfigurazioneUpdateOneRequiredWithoutPartiteNestedInput = {
 
 export type ConfigurazioneCreateWithoutChampInput = {
   TitoloConf: string
+  User: Prisma.AccountCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
   Inc2: Prisma.IncantesimoCreateNestedOneWithoutIncant2Input
-  User: Prisma.AccountCreateNestedOneWithoutConfigInput
-  Pag_Runa?: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
-  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
+  Pag_Runa: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
   Inv?: Prisma.InventarioCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneUncheckedCreateWithoutChampInput = {
-  TitoloConf: string
   Incantesimo1: string
   Incantesimo2: string
+  Runa: number
   IdAccount: number
-  Runa?: number | null
-  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
+  TitoloConf: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneCreateOrConnectWithoutChampInput = {
@@ -718,32 +710,32 @@ export type ConfigurazioneScalarWhereInput = {
   AND?: Prisma.ConfigurazioneScalarWhereInput | Prisma.ConfigurazioneScalarWhereInput[]
   OR?: Prisma.ConfigurazioneScalarWhereInput[]
   NOT?: Prisma.ConfigurazioneScalarWhereInput | Prisma.ConfigurazioneScalarWhereInput[]
-  TitoloConf?: Prisma.StringFilter<"Configurazione"> | string
   IdCampione?: Prisma.StringFilter<"Configurazione"> | string
   Incantesimo1?: Prisma.StringFilter<"Configurazione"> | string
   Incantesimo2?: Prisma.StringFilter<"Configurazione"> | string
+  Runa?: Prisma.IntFilter<"Configurazione"> | number
   IdAccount?: Prisma.IntFilter<"Configurazione"> | number
-  Runa?: Prisma.IntNullableFilter<"Configurazione"> | number | null
+  TitoloConf?: Prisma.StringFilter<"Configurazione"> | string
 }
 
 export type ConfigurazioneCreateWithoutInc1Input = {
   TitoloConf: string
+  User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc2: Prisma.IncantesimoCreateNestedOneWithoutIncant2Input
-  User: Prisma.AccountCreateNestedOneWithoutConfigInput
-  Pag_Runa?: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
-  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
+  Pag_Runa: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
   Inv?: Prisma.InventarioCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneUncheckedCreateWithoutInc1Input = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo2: string
+  Runa: number
   IdAccount: number
-  Runa?: number | null
-  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
+  TitoloConf: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneCreateOrConnectWithoutInc1Input = {
@@ -758,22 +750,22 @@ export type ConfigurazioneCreateManyInc1InputEnvelope = {
 
 export type ConfigurazioneCreateWithoutInc2Input = {
   TitoloConf: string
+  User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
-  User: Prisma.AccountCreateNestedOneWithoutConfigInput
-  Pag_Runa?: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
-  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
+  Pag_Runa: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
   Inv?: Prisma.InventarioCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneUncheckedCreateWithoutInc2Input = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
+  Runa: number
   IdAccount: number
-  Runa?: number | null
-  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
+  TitoloConf: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneCreateOrConnectWithoutInc2Input = {
@@ -820,21 +812,21 @@ export type ConfigurazioneUpdateManyWithWhereWithoutInc2Input = {
 
 export type ConfigurazioneCreateWithoutInvInput = {
   TitoloConf: string
+  User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
   Inc2: Prisma.IncantesimoCreateNestedOneWithoutIncant2Input
-  User: Prisma.AccountCreateNestedOneWithoutConfigInput
-  Pag_Runa?: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
+  Pag_Runa: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
   Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneUncheckedCreateWithoutInvInput = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
   Incantesimo2: string
+  Runa: number
   IdAccount: number
-  Runa?: number | null
+  TitoloConf: string
   Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
 
@@ -856,21 +848,21 @@ export type ConfigurazioneUpdateToOneWithWhereWithoutInvInput = {
 
 export type ConfigurazioneUpdateWithoutInvInput = {
   TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
+  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
   champ?: Prisma.CampioneUpdateOneRequiredWithoutConfigNestedInput
   Inc1?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant1NestedInput
   Inc2?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant2NestedInput
-  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
-  Pag_Runa?: Prisma.Pagina_RunaUpdateOneWithoutConfNestedInput
+  Pag_Runa?: Prisma.Pagina_RunaUpdateOneRequiredWithoutConfNestedInput
   Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateWithoutInvInput = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
 }
 
@@ -879,19 +871,19 @@ export type ConfigurazioneCreateWithoutUserInput = {
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
   Inc2: Prisma.IncantesimoCreateNestedOneWithoutIncant2Input
-  Pag_Runa?: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
-  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
+  Pag_Runa: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
   Inv?: Prisma.InventarioCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneUncheckedCreateWithoutUserInput = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
   Incantesimo2: string
-  Runa?: number | null
-  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
+  Runa: number
+  TitoloConf: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneCreateOrConnectWithoutUserInput = {
@@ -922,22 +914,22 @@ export type ConfigurazioneUpdateManyWithWhereWithoutUserInput = {
 
 export type ConfigurazioneCreateWithoutPag_RunaInput = {
   TitoloConf: string
+  User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
   Inc2: Prisma.IncantesimoCreateNestedOneWithoutIncant2Input
-  User: Prisma.AccountCreateNestedOneWithoutConfigInput
-  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
   Inv?: Prisma.InventarioCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneUncheckedCreateWithoutPag_RunaInput = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
   Incantesimo2: string
   IdAccount: number
-  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
+  TitoloConf: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
+  Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneCreateOrConnectWithoutPag_RunaInput = {
@@ -968,21 +960,21 @@ export type ConfigurazioneUpdateManyWithWhereWithoutPag_RunaInput = {
 
 export type ConfigurazioneCreateWithoutPartiteInput = {
   TitoloConf: string
+  User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
   Inc2: Prisma.IncantesimoCreateNestedOneWithoutIncant2Input
-  User: Prisma.AccountCreateNestedOneWithoutConfigInput
-  Pag_Runa?: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
+  Pag_Runa: Prisma.Pagina_RunaCreateNestedOneWithoutConfInput
   Inv?: Prisma.InventarioCreateNestedManyWithoutConfigurazioneInput
 }
 
 export type ConfigurazioneUncheckedCreateWithoutPartiteInput = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
   Incantesimo2: string
+  Runa: number
   IdAccount: number
-  Runa?: number | null
+  TitoloConf: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
 
@@ -1004,138 +996,138 @@ export type ConfigurazioneUpdateToOneWithWhereWithoutPartiteInput = {
 
 export type ConfigurazioneUpdateWithoutPartiteInput = {
   TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
+  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
   champ?: Prisma.CampioneUpdateOneRequiredWithoutConfigNestedInput
   Inc1?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant1NestedInput
   Inc2?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant2NestedInput
-  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
-  Pag_Runa?: Prisma.Pagina_RunaUpdateOneWithoutConfNestedInput
+  Pag_Runa?: Prisma.Pagina_RunaUpdateOneRequiredWithoutConfNestedInput
   Inv?: Prisma.InventarioUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateWithoutPartiteInput = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   Inv?: Prisma.InventarioUncheckedUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneCreateManyChampInput = {
-  TitoloConf: string
   Incantesimo1: string
   Incantesimo2: string
+  Runa: number
   IdAccount: number
-  Runa?: number | null
+  TitoloConf: string
 }
 
 export type ConfigurazioneUpdateWithoutChampInput = {
   TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
+  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
   Inc1?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant1NestedInput
   Inc2?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant2NestedInput
-  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
-  Pag_Runa?: Prisma.Pagina_RunaUpdateOneWithoutConfNestedInput
-  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
+  Pag_Runa?: Prisma.Pagina_RunaUpdateOneRequiredWithoutConfNestedInput
   Inv?: Prisma.InventarioUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateWithoutChampInput = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   Inv?: Prisma.InventarioUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateManyWithoutChampInput = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConfigurazioneCreateManyInc1Input = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo2: string
+  Runa: number
   IdAccount: number
-  Runa?: number | null
+  TitoloConf: string
 }
 
 export type ConfigurazioneCreateManyInc2Input = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
+  Runa: number
   IdAccount: number
-  Runa?: number | null
+  TitoloConf: string
 }
 
 export type ConfigurazioneUpdateWithoutInc1Input = {
   TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
+  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
   champ?: Prisma.CampioneUpdateOneRequiredWithoutConfigNestedInput
   Inc2?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant2NestedInput
-  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
-  Pag_Runa?: Prisma.Pagina_RunaUpdateOneWithoutConfNestedInput
-  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
+  Pag_Runa?: Prisma.Pagina_RunaUpdateOneRequiredWithoutConfNestedInput
   Inv?: Prisma.InventarioUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateWithoutInc1Input = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   Inv?: Prisma.InventarioUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateManyWithoutInc1Input = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConfigurazioneUpdateWithoutInc2Input = {
   TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
+  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
   champ?: Prisma.CampioneUpdateOneRequiredWithoutConfigNestedInput
   Inc1?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant1NestedInput
-  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
-  Pag_Runa?: Prisma.Pagina_RunaUpdateOneWithoutConfNestedInput
-  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
+  Pag_Runa?: Prisma.Pagina_RunaUpdateOneRequiredWithoutConfNestedInput
   Inv?: Prisma.InventarioUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateWithoutInc2Input = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   Inv?: Prisma.InventarioUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateManyWithoutInc2Input = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConfigurazioneCreateManyUserInput = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
   Incantesimo2: string
-  Runa?: number | null
+  Runa: number
+  TitoloConf: string
 }
 
 export type ConfigurazioneUpdateWithoutUserInput = {
@@ -1143,63 +1135,63 @@ export type ConfigurazioneUpdateWithoutUserInput = {
   champ?: Prisma.CampioneUpdateOneRequiredWithoutConfigNestedInput
   Inc1?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant1NestedInput
   Inc2?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant2NestedInput
-  Pag_Runa?: Prisma.Pagina_RunaUpdateOneWithoutConfNestedInput
-  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
+  Pag_Runa?: Prisma.Pagina_RunaUpdateOneRequiredWithoutConfNestedInput
   Inv?: Prisma.InventarioUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateWithoutUserInput = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   Inv?: Prisma.InventarioUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateManyWithoutUserInput = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
-  Runa?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  Runa?: Prisma.IntFieldUpdateOperationsInput | number
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConfigurazioneCreateManyPag_RunaInput = {
-  TitoloConf: string
   IdCampione: string
   Incantesimo1: string
   Incantesimo2: string
   IdAccount: number
+  TitoloConf: string
 }
 
 export type ConfigurazioneUpdateWithoutPag_RunaInput = {
   TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
+  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
   champ?: Prisma.CampioneUpdateOneRequiredWithoutConfigNestedInput
   Inc1?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant1NestedInput
   Inc2?: Prisma.IncantesimoUpdateOneRequiredWithoutIncant2NestedInput
-  User?: Prisma.AccountUpdateOneRequiredWithoutConfigNestedInput
-  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
   Inv?: Prisma.InventarioUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateWithoutPag_RunaInput = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
-  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   Inv?: Prisma.InventarioUncheckedUpdateManyWithoutConfigurazioneNestedInput
+  Partite?: Prisma.PartitaUncheckedUpdateManyWithoutConfigurazioneNestedInput
 }
 
 export type ConfigurazioneUncheckedUpdateManyWithoutPag_RunaInput = {
-  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
   IdCampione?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo1?: Prisma.StringFieldUpdateOperationsInput | string
   Incantesimo2?: Prisma.StringFieldUpdateOperationsInput | string
   IdAccount?: Prisma.IntFieldUpdateOperationsInput | number
+  TitoloConf?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -1208,13 +1200,13 @@ export type ConfigurazioneUncheckedUpdateManyWithoutPag_RunaInput = {
  */
 
 export type ConfigurazioneCountOutputType = {
-  Partite: number
   Inv: number
+  Partite: number
 }
 
 export type ConfigurazioneCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Partite?: boolean | ConfigurazioneCountOutputTypeCountPartiteArgs
   Inv?: boolean | ConfigurazioneCountOutputTypeCountInvArgs
+  Partite?: boolean | ConfigurazioneCountOutputTypeCountPartiteArgs
 }
 
 /**
@@ -1230,116 +1222,116 @@ export type ConfigurazioneCountOutputTypeDefaultArgs<ExtArgs extends runtime.Typ
 /**
  * ConfigurazioneCountOutputType without action
  */
-export type ConfigurazioneCountOutputTypeCountPartiteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PartitaWhereInput
+export type ConfigurazioneCountOutputTypeCountInvArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InventarioWhereInput
 }
 
 /**
  * ConfigurazioneCountOutputType without action
  */
-export type ConfigurazioneCountOutputTypeCountInvArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InventarioWhereInput
+export type ConfigurazioneCountOutputTypeCountPartiteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PartitaWhereInput
 }
 
 
 export type ConfigurazioneSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  TitoloConf?: boolean
   IdCampione?: boolean
   Incantesimo1?: boolean
   Incantesimo2?: boolean
-  IdAccount?: boolean
   Runa?: boolean
+  IdAccount?: boolean
+  TitoloConf?: boolean
+  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
   Inc1?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
   Inc2?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
-  Pag_Runa?: boolean | Prisma.Configurazione$Pag_RunaArgs<ExtArgs>
-  Partite?: boolean | Prisma.Configurazione$PartiteArgs<ExtArgs>
+  Pag_Runa?: boolean | Prisma.Pagina_RunaDefaultArgs<ExtArgs>
   Inv?: boolean | Prisma.Configurazione$InvArgs<ExtArgs>
+  Partite?: boolean | Prisma.Configurazione$PartiteArgs<ExtArgs>
   _count?: boolean | Prisma.ConfigurazioneCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["configurazione"]>
 
 export type ConfigurazioneSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  TitoloConf?: boolean
   IdCampione?: boolean
   Incantesimo1?: boolean
   Incantesimo2?: boolean
-  IdAccount?: boolean
   Runa?: boolean
+  IdAccount?: boolean
+  TitoloConf?: boolean
+  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
   Inc1?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
   Inc2?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
-  Pag_Runa?: boolean | Prisma.Configurazione$Pag_RunaArgs<ExtArgs>
+  Pag_Runa?: boolean | Prisma.Pagina_RunaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["configurazione"]>
 
 export type ConfigurazioneSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  TitoloConf?: boolean
   IdCampione?: boolean
   Incantesimo1?: boolean
   Incantesimo2?: boolean
-  IdAccount?: boolean
   Runa?: boolean
+  IdAccount?: boolean
+  TitoloConf?: boolean
+  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
   Inc1?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
   Inc2?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
-  Pag_Runa?: boolean | Prisma.Configurazione$Pag_RunaArgs<ExtArgs>
+  Pag_Runa?: boolean | Prisma.Pagina_RunaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["configurazione"]>
 
 export type ConfigurazioneSelectScalar = {
-  TitoloConf?: boolean
   IdCampione?: boolean
   Incantesimo1?: boolean
   Incantesimo2?: boolean
-  IdAccount?: boolean
   Runa?: boolean
+  IdAccount?: boolean
+  TitoloConf?: boolean
 }
 
-export type ConfigurazioneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"TitoloConf" | "IdCampione" | "Incantesimo1" | "Incantesimo2" | "IdAccount" | "Runa", ExtArgs["result"]["configurazione"]>
+export type ConfigurazioneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdCampione" | "Incantesimo1" | "Incantesimo2" | "Runa" | "IdAccount" | "TitoloConf", ExtArgs["result"]["configurazione"]>
 export type ConfigurazioneInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
   Inc1?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
   Inc2?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
-  Pag_Runa?: boolean | Prisma.Configurazione$Pag_RunaArgs<ExtArgs>
-  Partite?: boolean | Prisma.Configurazione$PartiteArgs<ExtArgs>
+  Pag_Runa?: boolean | Prisma.Pagina_RunaDefaultArgs<ExtArgs>
   Inv?: boolean | Prisma.Configurazione$InvArgs<ExtArgs>
+  Partite?: boolean | Prisma.Configurazione$PartiteArgs<ExtArgs>
   _count?: boolean | Prisma.ConfigurazioneCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ConfigurazioneIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
   Inc1?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
   Inc2?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
-  Pag_Runa?: boolean | Prisma.Configurazione$Pag_RunaArgs<ExtArgs>
+  Pag_Runa?: boolean | Prisma.Pagina_RunaDefaultArgs<ExtArgs>
 }
 export type ConfigurazioneIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   champ?: boolean | Prisma.CampioneDefaultArgs<ExtArgs>
   Inc1?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
   Inc2?: boolean | Prisma.IncantesimoDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
-  Pag_Runa?: boolean | Prisma.Configurazione$Pag_RunaArgs<ExtArgs>
+  Pag_Runa?: boolean | Prisma.Pagina_RunaDefaultArgs<ExtArgs>
 }
 
 export type $ConfigurazionePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Configurazione"
   objects: {
+    User: Prisma.$AccountPayload<ExtArgs>
     champ: Prisma.$CampionePayload<ExtArgs>
     Inc1: Prisma.$IncantesimoPayload<ExtArgs>
     Inc2: Prisma.$IncantesimoPayload<ExtArgs>
-    User: Prisma.$AccountPayload<ExtArgs>
-    Pag_Runa: Prisma.$Pagina_RunaPayload<ExtArgs> | null
-    Partite: Prisma.$PartitaPayload<ExtArgs>[]
+    Pag_Runa: Prisma.$Pagina_RunaPayload<ExtArgs>
     Inv: Prisma.$InventarioPayload<ExtArgs>[]
+    Partite: Prisma.$PartitaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    TitoloConf: string
     IdCampione: string
     Incantesimo1: string
     Incantesimo2: string
+    Runa: number
     IdAccount: number
-    Runa: number | null
+    TitoloConf: string
   }, ExtArgs["result"]["configurazione"]>
   composites: {}
 }
@@ -1423,8 +1415,8 @@ export interface ConfigurazioneDelegate<ExtArgs extends runtime.Types.Extensions
    * // Get first 10 Configuraziones
    * const configuraziones = await prisma.configurazione.findMany({ take: 10 })
    * 
-   * // Only select the `TitoloConf`
-   * const configurazioneWithTitoloConfOnly = await prisma.configurazione.findMany({ select: { TitoloConf: true } })
+   * // Only select the `IdCampione`
+   * const configurazioneWithIdCampioneOnly = await prisma.configurazione.findMany({ select: { IdCampione: true } })
    * 
    */
   findMany<T extends ConfigurazioneFindManyArgs>(args?: Prisma.SelectSubset<T, ConfigurazioneFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConfigurazionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1468,9 +1460,9 @@ export interface ConfigurazioneDelegate<ExtArgs extends runtime.Types.Extensions
    *   ]
    * })
    * 
-   * // Create many Configuraziones and only return the `TitoloConf`
-   * const configurazioneWithTitoloConfOnly = await prisma.configurazione.createManyAndReturn({
-   *   select: { TitoloConf: true },
+   * // Create many Configuraziones and only return the `IdCampione`
+   * const configurazioneWithIdCampioneOnly = await prisma.configurazione.createManyAndReturn({
+   *   select: { IdCampione: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1559,9 +1551,9 @@ export interface ConfigurazioneDelegate<ExtArgs extends runtime.Types.Extensions
    *   ]
    * })
    * 
-   * // Update zero or more Configuraziones and only return the `TitoloConf`
-   * const configurazioneWithTitoloConfOnly = await prisma.configurazione.updateManyAndReturn({
-   *   select: { TitoloConf: true },
+   * // Update zero or more Configuraziones and only return the `IdCampione`
+   * const configurazioneWithIdCampioneOnly = await prisma.configurazione.updateManyAndReturn({
+   *   select: { IdCampione: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1734,13 +1726,13 @@ readonly fields: ConfigurazioneFieldRefs;
  */
 export interface Prisma__ConfigurazioneClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  User<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   champ<T extends Prisma.CampioneDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampioneDefaultArgs<ExtArgs>>): Prisma.Prisma__CampioneClient<runtime.Types.Result.GetResult<Prisma.$CampionePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Inc1<T extends Prisma.IncantesimoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.IncantesimoDefaultArgs<ExtArgs>>): Prisma.Prisma__IncantesimoClient<runtime.Types.Result.GetResult<Prisma.$IncantesimoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Inc2<T extends Prisma.IncantesimoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.IncantesimoDefaultArgs<ExtArgs>>): Prisma.Prisma__IncantesimoClient<runtime.Types.Result.GetResult<Prisma.$IncantesimoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  User<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Pag_Runa<T extends Prisma.Configurazione$Pag_RunaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Configurazione$Pag_RunaArgs<ExtArgs>>): Prisma.Prisma__Pagina_RunaClient<runtime.Types.Result.GetResult<Prisma.$Pagina_RunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  Partite<T extends Prisma.Configurazione$PartiteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Configurazione$PartiteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Pag_Runa<T extends Prisma.Pagina_RunaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pagina_RunaDefaultArgs<ExtArgs>>): Prisma.Prisma__Pagina_RunaClient<runtime.Types.Result.GetResult<Prisma.$Pagina_RunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Inv<T extends Prisma.Configurazione$InvArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Configurazione$InvArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Partite<T extends Prisma.Configurazione$PartiteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Configurazione$PartiteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1770,12 +1762,12 @@ export interface Prisma__ConfigurazioneClient<T, Null = never, ExtArgs extends r
  * Fields of the Configurazione model
  */
 export interface ConfigurazioneFieldRefs {
-  readonly TitoloConf: Prisma.FieldRef<"Configurazione", 'String'>
   readonly IdCampione: Prisma.FieldRef<"Configurazione", 'String'>
   readonly Incantesimo1: Prisma.FieldRef<"Configurazione", 'String'>
   readonly Incantesimo2: Prisma.FieldRef<"Configurazione", 'String'>
-  readonly IdAccount: Prisma.FieldRef<"Configurazione", 'Int'>
   readonly Runa: Prisma.FieldRef<"Configurazione", 'Int'>
+  readonly IdAccount: Prisma.FieldRef<"Configurazione", 'Int'>
+  readonly TitoloConf: Prisma.FieldRef<"Configurazione", 'String'>
 }
     
 
@@ -2177,22 +2169,27 @@ export type ConfigurazioneDeleteManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
- * Configurazione.Pag_Runa
+ * Configurazione.Inv
  */
-export type Configurazione$Pag_RunaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Configurazione$InvArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Pagina_Runa
+   * Select specific fields to fetch from the Inventario
    */
-  select?: Prisma.Pagina_RunaSelect<ExtArgs> | null
+  select?: Prisma.InventarioSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Pagina_Runa
+   * Omit specific fields from the Inventario
    */
-  omit?: Prisma.Pagina_RunaOmit<ExtArgs> | null
+  omit?: Prisma.InventarioOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.Pagina_RunaInclude<ExtArgs> | null
-  where?: Prisma.Pagina_RunaWhereInput
+  include?: Prisma.InventarioInclude<ExtArgs> | null
+  where?: Prisma.InventarioWhereInput
+  orderBy?: Prisma.InventarioOrderByWithRelationInput | Prisma.InventarioOrderByWithRelationInput[]
+  cursor?: Prisma.InventarioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InventarioScalarFieldEnum | Prisma.InventarioScalarFieldEnum[]
 }
 
 /**
@@ -2217,30 +2214,6 @@ export type Configurazione$PartiteArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.PartitaScalarFieldEnum | Prisma.PartitaScalarFieldEnum[]
-}
-
-/**
- * Configurazione.Inv
- */
-export type Configurazione$InvArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Inventario
-   */
-  select?: Prisma.InventarioSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Inventario
-   */
-  omit?: Prisma.InventarioOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.InventarioInclude<ExtArgs> | null
-  where?: Prisma.InventarioWhereInput
-  orderBy?: Prisma.InventarioOrderByWithRelationInput | Prisma.InventarioOrderByWithRelationInput[]
-  cursor?: Prisma.InventarioWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.InventarioScalarFieldEnum | Prisma.InventarioScalarFieldEnum[]
 }
 
 /**

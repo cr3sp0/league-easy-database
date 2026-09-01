@@ -232,11 +232,11 @@ export type AccountWhereInput = {
   Immagine?: Prisma.StringFilter<"Account"> | string
   RiotID?: Prisma.StringNullableFilter<"Account"> | string | null
   IsAdmin?: Prisma.BoolFilter<"Account"> | boolean
-  sessione?: Prisma.SessioneListRelationFilter
   Config?: Prisma.ConfigurazioneListRelationFilter
   Partita?: Prisma.PartitaListRelationFilter
-  ReportCreati?: Prisma.ReportListRelationFilter
   ReportRicev?: Prisma.ReportListRelationFilter
+  ReportCreati?: Prisma.ReportListRelationFilter
+  sessione?: Prisma.XOR<Prisma.SessioneNullableScalarRelationFilter, Prisma.SessioneWhereInput> | null
 }
 
 export type AccountOrderByWithRelationInput = {
@@ -247,11 +247,11 @@ export type AccountOrderByWithRelationInput = {
   Immagine?: Prisma.SortOrder
   RiotID?: Prisma.SortOrderInput | Prisma.SortOrder
   IsAdmin?: Prisma.SortOrder
-  sessione?: Prisma.SessioneOrderByRelationAggregateInput
   Config?: Prisma.ConfigurazioneOrderByRelationAggregateInput
   Partita?: Prisma.PartitaOrderByRelationAggregateInput
-  ReportCreati?: Prisma.ReportOrderByRelationAggregateInput
   ReportRicev?: Prisma.ReportOrderByRelationAggregateInput
+  ReportCreati?: Prisma.ReportOrderByRelationAggregateInput
+  sessione?: Prisma.SessioneOrderByWithRelationInput
 }
 
 export type AccountWhereUniqueInput = Prisma.AtLeast<{
@@ -265,11 +265,11 @@ export type AccountWhereUniqueInput = Prisma.AtLeast<{
   Descrizione?: Prisma.StringFilter<"Account"> | string
   Immagine?: Prisma.StringFilter<"Account"> | string
   IsAdmin?: Prisma.BoolFilter<"Account"> | boolean
-  sessione?: Prisma.SessioneListRelationFilter
   Config?: Prisma.ConfigurazioneListRelationFilter
   Partita?: Prisma.PartitaListRelationFilter
-  ReportCreati?: Prisma.ReportListRelationFilter
   ReportRicev?: Prisma.ReportListRelationFilter
+  ReportCreati?: Prisma.ReportListRelationFilter
+  sessione?: Prisma.XOR<Prisma.SessioneNullableScalarRelationFilter, Prisma.SessioneWhereInput> | null
 }, "AccountId" | "Nome" | "RiotID">
 
 export type AccountOrderByWithAggregationInput = {
@@ -307,11 +307,11 @@ export type AccountCreateInput = {
   Immagine?: string
   RiotID?: string | null
   IsAdmin: boolean
-  sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
-  ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
+  sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
 }
 
 export type AccountUncheckedCreateInput = {
@@ -322,11 +322,11 @@ export type AccountUncheckedCreateInput = {
   Immagine?: string
   RiotID?: string | null
   IsAdmin: boolean
-  sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
-  ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
+  sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type AccountUpdateInput = {
@@ -336,11 +336,11 @@ export type AccountUpdateInput = {
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
-  ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
+  sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
 }
 
 export type AccountUncheckedUpdateInput = {
@@ -351,11 +351,11 @@ export type AccountUncheckedUpdateInput = {
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
-  ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
+  sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type AccountCreateManyInput = {
@@ -466,24 +466,16 @@ export type AccountUpdateOneRequiredWithoutSessioneNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccountUpdateToOneWithWhereWithoutSessioneInput, Prisma.AccountUpdateWithoutSessioneInput>, Prisma.AccountUncheckedUpdateWithoutSessioneInput>
 }
 
-export type AccountCreateNestedOneWithoutReportCreatiInput = {
-  create?: Prisma.XOR<Prisma.AccountCreateWithoutReportCreatiInput, Prisma.AccountUncheckedCreateWithoutReportCreatiInput>
-  connectOrCreate?: Prisma.AccountCreateOrConnectWithoutReportCreatiInput
-  connect?: Prisma.AccountWhereUniqueInput
-}
-
 export type AccountCreateNestedOneWithoutReportRicevInput = {
   create?: Prisma.XOR<Prisma.AccountCreateWithoutReportRicevInput, Prisma.AccountUncheckedCreateWithoutReportRicevInput>
   connectOrCreate?: Prisma.AccountCreateOrConnectWithoutReportRicevInput
   connect?: Prisma.AccountWhereUniqueInput
 }
 
-export type AccountUpdateOneRequiredWithoutReportCreatiNestedInput = {
+export type AccountCreateNestedOneWithoutReportCreatiInput = {
   create?: Prisma.XOR<Prisma.AccountCreateWithoutReportCreatiInput, Prisma.AccountUncheckedCreateWithoutReportCreatiInput>
   connectOrCreate?: Prisma.AccountCreateOrConnectWithoutReportCreatiInput
-  upsert?: Prisma.AccountUpsertWithoutReportCreatiInput
   connect?: Prisma.AccountWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.AccountUpdateToOneWithWhereWithoutReportCreatiInput, Prisma.AccountUpdateWithoutReportCreatiInput>, Prisma.AccountUncheckedUpdateWithoutReportCreatiInput>
 }
 
 export type AccountUpdateOneRequiredWithoutReportRicevNestedInput = {
@@ -492,6 +484,14 @@ export type AccountUpdateOneRequiredWithoutReportRicevNestedInput = {
   upsert?: Prisma.AccountUpsertWithoutReportRicevInput
   connect?: Prisma.AccountWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccountUpdateToOneWithWhereWithoutReportRicevInput, Prisma.AccountUpdateWithoutReportRicevInput>, Prisma.AccountUncheckedUpdateWithoutReportRicevInput>
+}
+
+export type AccountUpdateOneRequiredWithoutReportCreatiNestedInput = {
+  create?: Prisma.XOR<Prisma.AccountCreateWithoutReportCreatiInput, Prisma.AccountUncheckedCreateWithoutReportCreatiInput>
+  connectOrCreate?: Prisma.AccountCreateOrConnectWithoutReportCreatiInput
+  upsert?: Prisma.AccountUpsertWithoutReportCreatiInput
+  connect?: Prisma.AccountWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AccountUpdateToOneWithWhereWithoutReportCreatiInput, Prisma.AccountUpdateWithoutReportCreatiInput>, Prisma.AccountUncheckedUpdateWithoutReportCreatiInput>
 }
 
 export type AccountCreateNestedOneWithoutPartitaInput = {
@@ -515,10 +515,10 @@ export type AccountCreateWithoutConfigInput = {
   Immagine?: string
   RiotID?: string | null
   IsAdmin: boolean
-  sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
-  ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
+  sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
 }
 
 export type AccountUncheckedCreateWithoutConfigInput = {
@@ -529,10 +529,10 @@ export type AccountUncheckedCreateWithoutConfigInput = {
   Immagine?: string
   RiotID?: string | null
   IsAdmin: boolean
-  sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
-  ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
+  sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type AccountCreateOrConnectWithoutConfigInput = {
@@ -558,10 +558,10 @@ export type AccountUpdateWithoutConfigInput = {
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
-  ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
+  sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
 }
 
 export type AccountUncheckedUpdateWithoutConfigInput = {
@@ -572,10 +572,10 @@ export type AccountUncheckedUpdateWithoutConfigInput = {
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
-  ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
+  sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type AccountCreateWithoutSessioneInput = {
@@ -587,8 +587,8 @@ export type AccountCreateWithoutSessioneInput = {
   IsAdmin: boolean
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
-  ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
 }
 
 export type AccountUncheckedCreateWithoutSessioneInput = {
@@ -601,8 +601,8 @@ export type AccountUncheckedCreateWithoutSessioneInput = {
   IsAdmin: boolean
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
-  ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
 }
 
 export type AccountCreateOrConnectWithoutSessioneInput = {
@@ -630,8 +630,8 @@ export type AccountUpdateWithoutSessioneInput = {
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
-  ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
 }
 
 export type AccountUncheckedUpdateWithoutSessioneInput = {
@@ -644,40 +644,8 @@ export type AccountUncheckedUpdateWithoutSessioneInput = {
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
-  ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
-}
-
-export type AccountCreateWithoutReportCreatiInput = {
-  Nome: string
-  Password: string
-  Descrizione: string
-  Immagine?: string
-  RiotID?: string | null
-  IsAdmin: boolean
-  sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
-  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
-  ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
-}
-
-export type AccountUncheckedCreateWithoutReportCreatiInput = {
-  Nome: string
-  AccountId?: number
-  Password: string
-  Descrizione: string
-  Immagine?: string
-  RiotID?: string | null
-  IsAdmin: boolean
-  sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
-  Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
-  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
-  ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
-}
-
-export type AccountCreateOrConnectWithoutReportCreatiInput = {
-  where: Prisma.AccountWhereUniqueInput
-  create: Prisma.XOR<Prisma.AccountCreateWithoutReportCreatiInput, Prisma.AccountUncheckedCreateWithoutReportCreatiInput>
+  ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
 }
 
 export type AccountCreateWithoutReportRicevInput = {
@@ -687,10 +655,10 @@ export type AccountCreateWithoutReportRicevInput = {
   Immagine?: string
   RiotID?: string | null
   IsAdmin: boolean
-  sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
+  sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
 }
 
 export type AccountUncheckedCreateWithoutReportRicevInput = {
@@ -701,10 +669,10 @@ export type AccountUncheckedCreateWithoutReportRicevInput = {
   Immagine?: string
   RiotID?: string | null
   IsAdmin: boolean
-  sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
+  sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type AccountCreateOrConnectWithoutReportRicevInput = {
@@ -712,42 +680,36 @@ export type AccountCreateOrConnectWithoutReportRicevInput = {
   create: Prisma.XOR<Prisma.AccountCreateWithoutReportRicevInput, Prisma.AccountUncheckedCreateWithoutReportRicevInput>
 }
 
-export type AccountUpsertWithoutReportCreatiInput = {
-  update: Prisma.XOR<Prisma.AccountUpdateWithoutReportCreatiInput, Prisma.AccountUncheckedUpdateWithoutReportCreatiInput>
+export type AccountCreateWithoutReportCreatiInput = {
+  Nome: string
+  Password: string
+  Descrizione: string
+  Immagine?: string
+  RiotID?: string | null
+  IsAdmin: boolean
+  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
+  Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
+  ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
+}
+
+export type AccountUncheckedCreateWithoutReportCreatiInput = {
+  Nome: string
+  AccountId?: number
+  Password: string
+  Descrizione: string
+  Immagine?: string
+  RiotID?: string | null
+  IsAdmin: boolean
+  Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
+  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
+  ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type AccountCreateOrConnectWithoutReportCreatiInput = {
+  where: Prisma.AccountWhereUniqueInput
   create: Prisma.XOR<Prisma.AccountCreateWithoutReportCreatiInput, Prisma.AccountUncheckedCreateWithoutReportCreatiInput>
-  where?: Prisma.AccountWhereInput
-}
-
-export type AccountUpdateToOneWithWhereWithoutReportCreatiInput = {
-  where?: Prisma.AccountWhereInput
-  data: Prisma.XOR<Prisma.AccountUpdateWithoutReportCreatiInput, Prisma.AccountUncheckedUpdateWithoutReportCreatiInput>
-}
-
-export type AccountUpdateWithoutReportCreatiInput = {
-  Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  Password?: Prisma.StringFieldUpdateOperationsInput | string
-  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
-  Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
-  ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
-}
-
-export type AccountUncheckedUpdateWithoutReportCreatiInput = {
-  Nome?: Prisma.StringFieldUpdateOperationsInput | string
-  AccountId?: Prisma.IntFieldUpdateOperationsInput | number
-  Password?: Prisma.StringFieldUpdateOperationsInput | string
-  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
-  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
-  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
-  Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
-  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
-  ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type AccountUpsertWithoutReportRicevInput = {
@@ -768,10 +730,10 @@ export type AccountUpdateWithoutReportRicevInput = {
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
+  sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
 }
 
 export type AccountUncheckedUpdateWithoutReportRicevInput = {
@@ -782,10 +744,48 @@ export type AccountUncheckedUpdateWithoutReportRicevInput = {
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
   Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
+  sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type AccountUpsertWithoutReportCreatiInput = {
+  update: Prisma.XOR<Prisma.AccountUpdateWithoutReportCreatiInput, Prisma.AccountUncheckedUpdateWithoutReportCreatiInput>
+  create: Prisma.XOR<Prisma.AccountCreateWithoutReportCreatiInput, Prisma.AccountUncheckedCreateWithoutReportCreatiInput>
+  where?: Prisma.AccountWhereInput
+}
+
+export type AccountUpdateToOneWithWhereWithoutReportCreatiInput = {
+  where?: Prisma.AccountWhereInput
+  data: Prisma.XOR<Prisma.AccountUpdateWithoutReportCreatiInput, Prisma.AccountUncheckedUpdateWithoutReportCreatiInput>
+}
+
+export type AccountUpdateWithoutReportCreatiInput = {
+  Nome?: Prisma.StringFieldUpdateOperationsInput | string
+  Password?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
+  Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
+  ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
+}
+
+export type AccountUncheckedUpdateWithoutReportCreatiInput = {
+  Nome?: Prisma.StringFieldUpdateOperationsInput | string
+  AccountId?: Prisma.IntFieldUpdateOperationsInput | number
+  Password?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
+  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
+  ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type AccountCreateWithoutPartitaInput = {
@@ -795,10 +795,10 @@ export type AccountCreateWithoutPartitaInput = {
   Immagine?: string
   RiotID?: string | null
   IsAdmin: boolean
-  sessione?: Prisma.SessioneCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
-  ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
+  sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
 }
 
 export type AccountUncheckedCreateWithoutPartitaInput = {
@@ -809,10 +809,10 @@ export type AccountUncheckedCreateWithoutPartitaInput = {
   Immagine?: string
   RiotID?: string | null
   IsAdmin: boolean
-  sessione?: Prisma.SessioneUncheckedCreateNestedManyWithoutUserInput
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
-  ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
+  sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type AccountCreateOrConnectWithoutPartitaInput = {
@@ -838,10 +838,10 @@ export type AccountUpdateWithoutPartitaInput = {
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  sessione?: Prisma.SessioneUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
-  ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
+  sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
 }
 
 export type AccountUncheckedUpdateWithoutPartitaInput = {
@@ -852,10 +852,10 @@ export type AccountUncheckedUpdateWithoutPartitaInput = {
   Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  sessione?: Prisma.SessioneUncheckedUpdateManyWithoutUserNestedInput
   Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
-  ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
+  sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -864,19 +864,17 @@ export type AccountUncheckedUpdateWithoutPartitaInput = {
  */
 
 export type AccountCountOutputType = {
-  sessione: number
   Config: number
   Partita: number
-  ReportCreati: number
   ReportRicev: number
+  ReportCreati: number
 }
 
 export type AccountCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  sessione?: boolean | AccountCountOutputTypeCountSessioneArgs
   Config?: boolean | AccountCountOutputTypeCountConfigArgs
   Partita?: boolean | AccountCountOutputTypeCountPartitaArgs
-  ReportCreati?: boolean | AccountCountOutputTypeCountReportCreatiArgs
   ReportRicev?: boolean | AccountCountOutputTypeCountReportRicevArgs
+  ReportCreati?: boolean | AccountCountOutputTypeCountReportCreatiArgs
 }
 
 /**
@@ -887,13 +885,6 @@ export type AccountCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
    * Select specific fields to fetch from the AccountCountOutputType
    */
   select?: Prisma.AccountCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * AccountCountOutputType without action
- */
-export type AccountCountOutputTypeCountSessioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SessioneWhereInput
 }
 
 /**
@@ -913,14 +904,14 @@ export type AccountCountOutputTypeCountPartitaArgs<ExtArgs extends runtime.Types
 /**
  * AccountCountOutputType without action
  */
-export type AccountCountOutputTypeCountReportCreatiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AccountCountOutputTypeCountReportRicevArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ReportWhereInput
 }
 
 /**
  * AccountCountOutputType without action
  */
-export type AccountCountOutputTypeCountReportRicevArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AccountCountOutputTypeCountReportCreatiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ReportWhereInput
 }
 
@@ -933,11 +924,11 @@ export type AccountSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   Immagine?: boolean
   RiotID?: boolean
   IsAdmin?: boolean
-  sessione?: boolean | Prisma.Account$sessioneArgs<ExtArgs>
   Config?: boolean | Prisma.Account$ConfigArgs<ExtArgs>
   Partita?: boolean | Prisma.Account$PartitaArgs<ExtArgs>
-  ReportCreati?: boolean | Prisma.Account$ReportCreatiArgs<ExtArgs>
   ReportRicev?: boolean | Prisma.Account$ReportRicevArgs<ExtArgs>
+  ReportCreati?: boolean | Prisma.Account$ReportCreatiArgs<ExtArgs>
+  sessione?: boolean | Prisma.Account$sessioneArgs<ExtArgs>
   _count?: boolean | Prisma.AccountCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["account"]>
 
@@ -973,11 +964,11 @@ export type AccountSelectScalar = {
 
 export type AccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Nome" | "AccountId" | "Password" | "Descrizione" | "Immagine" | "RiotID" | "IsAdmin", ExtArgs["result"]["account"]>
 export type AccountInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  sessione?: boolean | Prisma.Account$sessioneArgs<ExtArgs>
   Config?: boolean | Prisma.Account$ConfigArgs<ExtArgs>
   Partita?: boolean | Prisma.Account$PartitaArgs<ExtArgs>
-  ReportCreati?: boolean | Prisma.Account$ReportCreatiArgs<ExtArgs>
   ReportRicev?: boolean | Prisma.Account$ReportRicevArgs<ExtArgs>
+  ReportCreati?: boolean | Prisma.Account$ReportCreatiArgs<ExtArgs>
+  sessione?: boolean | Prisma.Account$sessioneArgs<ExtArgs>
   _count?: boolean | Prisma.AccountCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AccountIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -986,11 +977,11 @@ export type AccountIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $AccountPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Account"
   objects: {
-    sessione: Prisma.$SessionePayload<ExtArgs>[]
     Config: Prisma.$ConfigurazionePayload<ExtArgs>[]
     Partita: Prisma.$PartitaPayload<ExtArgs>[]
-    ReportCreati: Prisma.$ReportPayload<ExtArgs>[]
     ReportRicev: Prisma.$ReportPayload<ExtArgs>[]
+    ReportCreati: Prisma.$ReportPayload<ExtArgs>[]
+    sessione: Prisma.$SessionePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Nome: string
@@ -1394,11 +1385,11 @@ readonly fields: AccountFieldRefs;
  */
 export interface Prisma__AccountClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  sessione<T extends Prisma.Account$sessioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$sessioneArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Config<T extends Prisma.Account$ConfigArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$ConfigArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConfigurazionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Partita<T extends Prisma.Account$PartitaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$PartitaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  ReportCreati<T extends Prisma.Account$ReportCreatiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$ReportCreatiArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ReportRicev<T extends Prisma.Account$ReportRicevArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$ReportRicevArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ReportCreati<T extends Prisma.Account$ReportCreatiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$ReportCreatiArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessione<T extends Prisma.Account$sessioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$sessioneArgs<ExtArgs>>): Prisma.Prisma__SessioneClient<runtime.Types.Result.GetResult<Prisma.$SessionePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1828,30 +1819,6 @@ export type AccountDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Account.sessione
- */
-export type Account$sessioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Sessione
-   */
-  select?: Prisma.SessioneSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Sessione
-   */
-  omit?: Prisma.SessioneOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SessioneInclude<ExtArgs> | null
-  where?: Prisma.SessioneWhereInput
-  orderBy?: Prisma.SessioneOrderByWithRelationInput | Prisma.SessioneOrderByWithRelationInput[]
-  cursor?: Prisma.SessioneWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SessioneScalarFieldEnum | Prisma.SessioneScalarFieldEnum[]
-}
-
-/**
  * Account.Config
  */
 export type Account$ConfigArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1900,6 +1867,30 @@ export type Account$PartitaArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Account.ReportRicev
+ */
+export type Account$ReportRicevArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Report
+   */
+  select?: Prisma.ReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Report
+   */
+  omit?: Prisma.ReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReportInclude<ExtArgs> | null
+  where?: Prisma.ReportWhereInput
+  orderBy?: Prisma.ReportOrderByWithRelationInput | Prisma.ReportOrderByWithRelationInput[]
+  cursor?: Prisma.ReportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReportScalarFieldEnum | Prisma.ReportScalarFieldEnum[]
+}
+
+/**
  * Account.ReportCreati
  */
 export type Account$ReportCreatiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1924,27 +1915,22 @@ export type Account$ReportCreatiArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Account.ReportRicev
+ * Account.sessione
  */
-export type Account$ReportRicevArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Account$sessioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Report
+   * Select specific fields to fetch from the Sessione
    */
-  select?: Prisma.ReportSelect<ExtArgs> | null
+  select?: Prisma.SessioneSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Report
+   * Omit specific fields from the Sessione
    */
-  omit?: Prisma.ReportOmit<ExtArgs> | null
+  omit?: Prisma.SessioneOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ReportInclude<ExtArgs> | null
-  where?: Prisma.ReportWhereInput
-  orderBy?: Prisma.ReportOrderByWithRelationInput | Prisma.ReportOrderByWithRelationInput[]
-  cursor?: Prisma.ReportWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReportScalarFieldEnum | Prisma.ReportScalarFieldEnum[]
+  include?: Prisma.SessioneInclude<ExtArgs> | null
+  where?: Prisma.SessioneWhereInput
 }
 
 /**

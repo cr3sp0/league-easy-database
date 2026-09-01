@@ -220,10 +220,10 @@ export type Pagina_RunaWhereInput = {
   RunaPrimaria?: Prisma.IntFilter<"Pagina_Runa"> | number
   RunaSecondaria?: Prisma.IntFilter<"Pagina_Runa"> | number
   Frammenti?: Prisma.IntFilter<"Pagina_Runa"> | number
+  Conf?: Prisma.ConfigurazioneListRelationFilter
+  Shards?: Prisma.XOR<Prisma.Sezione_RunaScalarRelationFilter, Prisma.Sezione_RunaWhereInput>
   Principale?: Prisma.XOR<Prisma.Sezione_RunaScalarRelationFilter, Prisma.Sezione_RunaWhereInput>
   Secondaria?: Prisma.XOR<Prisma.Sezione_RunaScalarRelationFilter, Prisma.Sezione_RunaWhereInput>
-  Shards?: Prisma.XOR<Prisma.Sezione_RunaScalarRelationFilter, Prisma.Sezione_RunaWhereInput>
-  Conf?: Prisma.ConfigurazioneListRelationFilter
 }
 
 export type Pagina_RunaOrderByWithRelationInput = {
@@ -231,10 +231,10 @@ export type Pagina_RunaOrderByWithRelationInput = {
   RunaPrimaria?: Prisma.SortOrder
   RunaSecondaria?: Prisma.SortOrder
   Frammenti?: Prisma.SortOrder
+  Conf?: Prisma.ConfigurazioneOrderByRelationAggregateInput
+  Shards?: Prisma.Sezione_RunaOrderByWithRelationInput
   Principale?: Prisma.Sezione_RunaOrderByWithRelationInput
   Secondaria?: Prisma.Sezione_RunaOrderByWithRelationInput
-  Shards?: Prisma.Sezione_RunaOrderByWithRelationInput
-  Conf?: Prisma.ConfigurazioneOrderByRelationAggregateInput
 }
 
 export type Pagina_RunaWhereUniqueInput = Prisma.AtLeast<{
@@ -245,10 +245,10 @@ export type Pagina_RunaWhereUniqueInput = Prisma.AtLeast<{
   RunaPrimaria?: Prisma.IntFilter<"Pagina_Runa"> | number
   RunaSecondaria?: Prisma.IntFilter<"Pagina_Runa"> | number
   Frammenti?: Prisma.IntFilter<"Pagina_Runa"> | number
+  Conf?: Prisma.ConfigurazioneListRelationFilter
+  Shards?: Prisma.XOR<Prisma.Sezione_RunaScalarRelationFilter, Prisma.Sezione_RunaWhereInput>
   Principale?: Prisma.XOR<Prisma.Sezione_RunaScalarRelationFilter, Prisma.Sezione_RunaWhereInput>
   Secondaria?: Prisma.XOR<Prisma.Sezione_RunaScalarRelationFilter, Prisma.Sezione_RunaWhereInput>
-  Shards?: Prisma.XOR<Prisma.Sezione_RunaScalarRelationFilter, Prisma.Sezione_RunaWhereInput>
-  Conf?: Prisma.ConfigurazioneListRelationFilter
 }, "Id">
 
 export type Pagina_RunaOrderByWithAggregationInput = {
@@ -275,10 +275,10 @@ export type Pagina_RunaScalarWhereWithAggregatesInput = {
 
 export type Pagina_RunaCreateInput = {
   Id: number
+  Conf?: Prisma.ConfigurazioneCreateNestedManyWithoutPag_RunaInput
+  Shards: Prisma.Sezione_RunaCreateNestedOneWithoutShardInput
   Principale: Prisma.Sezione_RunaCreateNestedOneWithoutPrimInput
   Secondaria: Prisma.Sezione_RunaCreateNestedOneWithoutSeconInput
-  Shards: Prisma.Sezione_RunaCreateNestedOneWithoutShardInput
-  Conf?: Prisma.ConfigurazioneCreateNestedManyWithoutPag_RunaInput
 }
 
 export type Pagina_RunaUncheckedCreateInput = {
@@ -291,10 +291,10 @@ export type Pagina_RunaUncheckedCreateInput = {
 
 export type Pagina_RunaUpdateInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
+  Conf?: Prisma.ConfigurazioneUpdateManyWithoutPag_RunaNestedInput
+  Shards?: Prisma.Sezione_RunaUpdateOneRequiredWithoutShardNestedInput
   Principale?: Prisma.Sezione_RunaUpdateOneRequiredWithoutPrimNestedInput
   Secondaria?: Prisma.Sezione_RunaUpdateOneRequiredWithoutSeconNestedInput
-  Shards?: Prisma.Sezione_RunaUpdateOneRequiredWithoutShardNestedInput
-  Conf?: Prisma.ConfigurazioneUpdateManyWithoutPag_RunaNestedInput
 }
 
 export type Pagina_RunaUncheckedUpdateInput = {
@@ -323,9 +323,9 @@ export type Pagina_RunaUncheckedUpdateManyInput = {
   Frammenti?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type Pagina_RunaNullableScalarRelationFilter = {
-  is?: Prisma.Pagina_RunaWhereInput | null
-  isNot?: Prisma.Pagina_RunaWhereInput | null
+export type Pagina_RunaScalarRelationFilter = {
+  is?: Prisma.Pagina_RunaWhereInput
+  isNot?: Prisma.Pagina_RunaWhereInput
 }
 
 export type Pagina_RunaCountOrderByAggregateInput = {
@@ -379,14 +379,19 @@ export type Pagina_RunaCreateNestedOneWithoutConfInput = {
   connect?: Prisma.Pagina_RunaWhereUniqueInput
 }
 
-export type Pagina_RunaUpdateOneWithoutConfNestedInput = {
+export type Pagina_RunaUpdateOneRequiredWithoutConfNestedInput = {
   create?: Prisma.XOR<Prisma.Pagina_RunaCreateWithoutConfInput, Prisma.Pagina_RunaUncheckedCreateWithoutConfInput>
   connectOrCreate?: Prisma.Pagina_RunaCreateOrConnectWithoutConfInput
   upsert?: Prisma.Pagina_RunaUpsertWithoutConfInput
-  disconnect?: Prisma.Pagina_RunaWhereInput | boolean
-  delete?: Prisma.Pagina_RunaWhereInput | boolean
   connect?: Prisma.Pagina_RunaWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.Pagina_RunaUpdateToOneWithWhereWithoutConfInput, Prisma.Pagina_RunaUpdateWithoutConfInput>, Prisma.Pagina_RunaUncheckedUpdateWithoutConfInput>
+}
+
+export type Pagina_RunaCreateNestedManyWithoutShardsInput = {
+  create?: Prisma.XOR<Prisma.Pagina_RunaCreateWithoutShardsInput, Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput> | Prisma.Pagina_RunaCreateWithoutShardsInput[] | Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput[]
+  connectOrCreate?: Prisma.Pagina_RunaCreateOrConnectWithoutShardsInput | Prisma.Pagina_RunaCreateOrConnectWithoutShardsInput[]
+  createMany?: Prisma.Pagina_RunaCreateManyShardsInputEnvelope
+  connect?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
 }
 
 export type Pagina_RunaCreateNestedManyWithoutPrincipaleInput = {
@@ -403,7 +408,7 @@ export type Pagina_RunaCreateNestedManyWithoutSecondariaInput = {
   connect?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
 }
 
-export type Pagina_RunaCreateNestedManyWithoutShardsInput = {
+export type Pagina_RunaUncheckedCreateNestedManyWithoutShardsInput = {
   create?: Prisma.XOR<Prisma.Pagina_RunaCreateWithoutShardsInput, Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput> | Prisma.Pagina_RunaCreateWithoutShardsInput[] | Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput[]
   connectOrCreate?: Prisma.Pagina_RunaCreateOrConnectWithoutShardsInput | Prisma.Pagina_RunaCreateOrConnectWithoutShardsInput[]
   createMany?: Prisma.Pagina_RunaCreateManyShardsInputEnvelope
@@ -424,11 +429,18 @@ export type Pagina_RunaUncheckedCreateNestedManyWithoutSecondariaInput = {
   connect?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
 }
 
-export type Pagina_RunaUncheckedCreateNestedManyWithoutShardsInput = {
+export type Pagina_RunaUpdateManyWithoutShardsNestedInput = {
   create?: Prisma.XOR<Prisma.Pagina_RunaCreateWithoutShardsInput, Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput> | Prisma.Pagina_RunaCreateWithoutShardsInput[] | Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput[]
   connectOrCreate?: Prisma.Pagina_RunaCreateOrConnectWithoutShardsInput | Prisma.Pagina_RunaCreateOrConnectWithoutShardsInput[]
+  upsert?: Prisma.Pagina_RunaUpsertWithWhereUniqueWithoutShardsInput | Prisma.Pagina_RunaUpsertWithWhereUniqueWithoutShardsInput[]
   createMany?: Prisma.Pagina_RunaCreateManyShardsInputEnvelope
+  set?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
+  disconnect?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
+  delete?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
   connect?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
+  update?: Prisma.Pagina_RunaUpdateWithWhereUniqueWithoutShardsInput | Prisma.Pagina_RunaUpdateWithWhereUniqueWithoutShardsInput[]
+  updateMany?: Prisma.Pagina_RunaUpdateManyWithWhereWithoutShardsInput | Prisma.Pagina_RunaUpdateManyWithWhereWithoutShardsInput[]
+  deleteMany?: Prisma.Pagina_RunaScalarWhereInput | Prisma.Pagina_RunaScalarWhereInput[]
 }
 
 export type Pagina_RunaUpdateManyWithoutPrincipaleNestedInput = {
@@ -459,7 +471,7 @@ export type Pagina_RunaUpdateManyWithoutSecondariaNestedInput = {
   deleteMany?: Prisma.Pagina_RunaScalarWhereInput | Prisma.Pagina_RunaScalarWhereInput[]
 }
 
-export type Pagina_RunaUpdateManyWithoutShardsNestedInput = {
+export type Pagina_RunaUncheckedUpdateManyWithoutShardsNestedInput = {
   create?: Prisma.XOR<Prisma.Pagina_RunaCreateWithoutShardsInput, Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput> | Prisma.Pagina_RunaCreateWithoutShardsInput[] | Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput[]
   connectOrCreate?: Prisma.Pagina_RunaCreateOrConnectWithoutShardsInput | Prisma.Pagina_RunaCreateOrConnectWithoutShardsInput[]
   upsert?: Prisma.Pagina_RunaUpsertWithWhereUniqueWithoutShardsInput | Prisma.Pagina_RunaUpsertWithWhereUniqueWithoutShardsInput[]
@@ -501,25 +513,11 @@ export type Pagina_RunaUncheckedUpdateManyWithoutSecondariaNestedInput = {
   deleteMany?: Prisma.Pagina_RunaScalarWhereInput | Prisma.Pagina_RunaScalarWhereInput[]
 }
 
-export type Pagina_RunaUncheckedUpdateManyWithoutShardsNestedInput = {
-  create?: Prisma.XOR<Prisma.Pagina_RunaCreateWithoutShardsInput, Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput> | Prisma.Pagina_RunaCreateWithoutShardsInput[] | Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput[]
-  connectOrCreate?: Prisma.Pagina_RunaCreateOrConnectWithoutShardsInput | Prisma.Pagina_RunaCreateOrConnectWithoutShardsInput[]
-  upsert?: Prisma.Pagina_RunaUpsertWithWhereUniqueWithoutShardsInput | Prisma.Pagina_RunaUpsertWithWhereUniqueWithoutShardsInput[]
-  createMany?: Prisma.Pagina_RunaCreateManyShardsInputEnvelope
-  set?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
-  disconnect?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
-  delete?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
-  connect?: Prisma.Pagina_RunaWhereUniqueInput | Prisma.Pagina_RunaWhereUniqueInput[]
-  update?: Prisma.Pagina_RunaUpdateWithWhereUniqueWithoutShardsInput | Prisma.Pagina_RunaUpdateWithWhereUniqueWithoutShardsInput[]
-  updateMany?: Prisma.Pagina_RunaUpdateManyWithWhereWithoutShardsInput | Prisma.Pagina_RunaUpdateManyWithWhereWithoutShardsInput[]
-  deleteMany?: Prisma.Pagina_RunaScalarWhereInput | Prisma.Pagina_RunaScalarWhereInput[]
-}
-
 export type Pagina_RunaCreateWithoutConfInput = {
   Id: number
+  Shards: Prisma.Sezione_RunaCreateNestedOneWithoutShardInput
   Principale: Prisma.Sezione_RunaCreateNestedOneWithoutPrimInput
   Secondaria: Prisma.Sezione_RunaCreateNestedOneWithoutSeconInput
-  Shards: Prisma.Sezione_RunaCreateNestedOneWithoutShardInput
 }
 
 export type Pagina_RunaUncheckedCreateWithoutConfInput = {
@@ -547,9 +545,9 @@ export type Pagina_RunaUpdateToOneWithWhereWithoutConfInput = {
 
 export type Pagina_RunaUpdateWithoutConfInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
+  Shards?: Prisma.Sezione_RunaUpdateOneRequiredWithoutShardNestedInput
   Principale?: Prisma.Sezione_RunaUpdateOneRequiredWithoutPrimNestedInput
   Secondaria?: Prisma.Sezione_RunaUpdateOneRequiredWithoutSeconNestedInput
-  Shards?: Prisma.Sezione_RunaUpdateOneRequiredWithoutShardNestedInput
 }
 
 export type Pagina_RunaUncheckedUpdateWithoutConfInput = {
@@ -559,11 +557,35 @@ export type Pagina_RunaUncheckedUpdateWithoutConfInput = {
   Frammenti?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
+export type Pagina_RunaCreateWithoutShardsInput = {
+  Id: number
+  Conf?: Prisma.ConfigurazioneCreateNestedManyWithoutPag_RunaInput
+  Principale: Prisma.Sezione_RunaCreateNestedOneWithoutPrimInput
+  Secondaria: Prisma.Sezione_RunaCreateNestedOneWithoutSeconInput
+}
+
+export type Pagina_RunaUncheckedCreateWithoutShardsInput = {
+  Id: number
+  RunaPrimaria: number
+  RunaSecondaria: number
+  Conf?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutPag_RunaInput
+}
+
+export type Pagina_RunaCreateOrConnectWithoutShardsInput = {
+  where: Prisma.Pagina_RunaWhereUniqueInput
+  create: Prisma.XOR<Prisma.Pagina_RunaCreateWithoutShardsInput, Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput>
+}
+
+export type Pagina_RunaCreateManyShardsInputEnvelope = {
+  data: Prisma.Pagina_RunaCreateManyShardsInput | Prisma.Pagina_RunaCreateManyShardsInput[]
+  skipDuplicates?: boolean
+}
+
 export type Pagina_RunaCreateWithoutPrincipaleInput = {
   Id: number
-  Secondaria: Prisma.Sezione_RunaCreateNestedOneWithoutSeconInput
-  Shards: Prisma.Sezione_RunaCreateNestedOneWithoutShardInput
   Conf?: Prisma.ConfigurazioneCreateNestedManyWithoutPag_RunaInput
+  Shards: Prisma.Sezione_RunaCreateNestedOneWithoutShardInput
+  Secondaria: Prisma.Sezione_RunaCreateNestedOneWithoutSeconInput
 }
 
 export type Pagina_RunaUncheckedCreateWithoutPrincipaleInput = {
@@ -585,9 +607,9 @@ export type Pagina_RunaCreateManyPrincipaleInputEnvelope = {
 
 export type Pagina_RunaCreateWithoutSecondariaInput = {
   Id: number
-  Principale: Prisma.Sezione_RunaCreateNestedOneWithoutPrimInput
-  Shards: Prisma.Sezione_RunaCreateNestedOneWithoutShardInput
   Conf?: Prisma.ConfigurazioneCreateNestedManyWithoutPag_RunaInput
+  Shards: Prisma.Sezione_RunaCreateNestedOneWithoutShardInput
+  Principale: Prisma.Sezione_RunaCreateNestedOneWithoutPrimInput
 }
 
 export type Pagina_RunaUncheckedCreateWithoutSecondariaInput = {
@@ -607,28 +629,30 @@ export type Pagina_RunaCreateManySecondariaInputEnvelope = {
   skipDuplicates?: boolean
 }
 
-export type Pagina_RunaCreateWithoutShardsInput = {
-  Id: number
-  Principale: Prisma.Sezione_RunaCreateNestedOneWithoutPrimInput
-  Secondaria: Prisma.Sezione_RunaCreateNestedOneWithoutSeconInput
-  Conf?: Prisma.ConfigurazioneCreateNestedManyWithoutPag_RunaInput
-}
-
-export type Pagina_RunaUncheckedCreateWithoutShardsInput = {
-  Id: number
-  RunaPrimaria: number
-  RunaSecondaria: number
-  Conf?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutPag_RunaInput
-}
-
-export type Pagina_RunaCreateOrConnectWithoutShardsInput = {
+export type Pagina_RunaUpsertWithWhereUniqueWithoutShardsInput = {
   where: Prisma.Pagina_RunaWhereUniqueInput
+  update: Prisma.XOR<Prisma.Pagina_RunaUpdateWithoutShardsInput, Prisma.Pagina_RunaUncheckedUpdateWithoutShardsInput>
   create: Prisma.XOR<Prisma.Pagina_RunaCreateWithoutShardsInput, Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput>
 }
 
-export type Pagina_RunaCreateManyShardsInputEnvelope = {
-  data: Prisma.Pagina_RunaCreateManyShardsInput | Prisma.Pagina_RunaCreateManyShardsInput[]
-  skipDuplicates?: boolean
+export type Pagina_RunaUpdateWithWhereUniqueWithoutShardsInput = {
+  where: Prisma.Pagina_RunaWhereUniqueInput
+  data: Prisma.XOR<Prisma.Pagina_RunaUpdateWithoutShardsInput, Prisma.Pagina_RunaUncheckedUpdateWithoutShardsInput>
+}
+
+export type Pagina_RunaUpdateManyWithWhereWithoutShardsInput = {
+  where: Prisma.Pagina_RunaScalarWhereInput
+  data: Prisma.XOR<Prisma.Pagina_RunaUpdateManyMutationInput, Prisma.Pagina_RunaUncheckedUpdateManyWithoutShardsInput>
+}
+
+export type Pagina_RunaScalarWhereInput = {
+  AND?: Prisma.Pagina_RunaScalarWhereInput | Prisma.Pagina_RunaScalarWhereInput[]
+  OR?: Prisma.Pagina_RunaScalarWhereInput[]
+  NOT?: Prisma.Pagina_RunaScalarWhereInput | Prisma.Pagina_RunaScalarWhereInput[]
+  Id?: Prisma.IntFilter<"Pagina_Runa"> | number
+  RunaPrimaria?: Prisma.IntFilter<"Pagina_Runa"> | number
+  RunaSecondaria?: Prisma.IntFilter<"Pagina_Runa"> | number
+  Frammenti?: Prisma.IntFilter<"Pagina_Runa"> | number
 }
 
 export type Pagina_RunaUpsertWithWhereUniqueWithoutPrincipaleInput = {
@@ -647,16 +671,6 @@ export type Pagina_RunaUpdateManyWithWhereWithoutPrincipaleInput = {
   data: Prisma.XOR<Prisma.Pagina_RunaUpdateManyMutationInput, Prisma.Pagina_RunaUncheckedUpdateManyWithoutPrincipaleInput>
 }
 
-export type Pagina_RunaScalarWhereInput = {
-  AND?: Prisma.Pagina_RunaScalarWhereInput | Prisma.Pagina_RunaScalarWhereInput[]
-  OR?: Prisma.Pagina_RunaScalarWhereInput[]
-  NOT?: Prisma.Pagina_RunaScalarWhereInput | Prisma.Pagina_RunaScalarWhereInput[]
-  Id?: Prisma.IntFilter<"Pagina_Runa"> | number
-  RunaPrimaria?: Prisma.IntFilter<"Pagina_Runa"> | number
-  RunaSecondaria?: Prisma.IntFilter<"Pagina_Runa"> | number
-  Frammenti?: Prisma.IntFilter<"Pagina_Runa"> | number
-}
-
 export type Pagina_RunaUpsertWithWhereUniqueWithoutSecondariaInput = {
   where: Prisma.Pagina_RunaWhereUniqueInput
   update: Prisma.XOR<Prisma.Pagina_RunaUpdateWithoutSecondariaInput, Prisma.Pagina_RunaUncheckedUpdateWithoutSecondariaInput>
@@ -673,20 +687,10 @@ export type Pagina_RunaUpdateManyWithWhereWithoutSecondariaInput = {
   data: Prisma.XOR<Prisma.Pagina_RunaUpdateManyMutationInput, Prisma.Pagina_RunaUncheckedUpdateManyWithoutSecondariaInput>
 }
 
-export type Pagina_RunaUpsertWithWhereUniqueWithoutShardsInput = {
-  where: Prisma.Pagina_RunaWhereUniqueInput
-  update: Prisma.XOR<Prisma.Pagina_RunaUpdateWithoutShardsInput, Prisma.Pagina_RunaUncheckedUpdateWithoutShardsInput>
-  create: Prisma.XOR<Prisma.Pagina_RunaCreateWithoutShardsInput, Prisma.Pagina_RunaUncheckedCreateWithoutShardsInput>
-}
-
-export type Pagina_RunaUpdateWithWhereUniqueWithoutShardsInput = {
-  where: Prisma.Pagina_RunaWhereUniqueInput
-  data: Prisma.XOR<Prisma.Pagina_RunaUpdateWithoutShardsInput, Prisma.Pagina_RunaUncheckedUpdateWithoutShardsInput>
-}
-
-export type Pagina_RunaUpdateManyWithWhereWithoutShardsInput = {
-  where: Prisma.Pagina_RunaScalarWhereInput
-  data: Prisma.XOR<Prisma.Pagina_RunaUpdateManyMutationInput, Prisma.Pagina_RunaUncheckedUpdateManyWithoutShardsInput>
+export type Pagina_RunaCreateManyShardsInput = {
+  Id: number
+  RunaPrimaria: number
+  RunaSecondaria: number
 }
 
 export type Pagina_RunaCreateManyPrincipaleInput = {
@@ -701,17 +705,31 @@ export type Pagina_RunaCreateManySecondariaInput = {
   Frammenti: number
 }
 
-export type Pagina_RunaCreateManyShardsInput = {
-  Id: number
-  RunaPrimaria: number
-  RunaSecondaria: number
+export type Pagina_RunaUpdateWithoutShardsInput = {
+  Id?: Prisma.IntFieldUpdateOperationsInput | number
+  Conf?: Prisma.ConfigurazioneUpdateManyWithoutPag_RunaNestedInput
+  Principale?: Prisma.Sezione_RunaUpdateOneRequiredWithoutPrimNestedInput
+  Secondaria?: Prisma.Sezione_RunaUpdateOneRequiredWithoutSeconNestedInput
+}
+
+export type Pagina_RunaUncheckedUpdateWithoutShardsInput = {
+  Id?: Prisma.IntFieldUpdateOperationsInput | number
+  RunaPrimaria?: Prisma.IntFieldUpdateOperationsInput | number
+  RunaSecondaria?: Prisma.IntFieldUpdateOperationsInput | number
+  Conf?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutPag_RunaNestedInput
+}
+
+export type Pagina_RunaUncheckedUpdateManyWithoutShardsInput = {
+  Id?: Prisma.IntFieldUpdateOperationsInput | number
+  RunaPrimaria?: Prisma.IntFieldUpdateOperationsInput | number
+  RunaSecondaria?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type Pagina_RunaUpdateWithoutPrincipaleInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
-  Secondaria?: Prisma.Sezione_RunaUpdateOneRequiredWithoutSeconNestedInput
-  Shards?: Prisma.Sezione_RunaUpdateOneRequiredWithoutShardNestedInput
   Conf?: Prisma.ConfigurazioneUpdateManyWithoutPag_RunaNestedInput
+  Shards?: Prisma.Sezione_RunaUpdateOneRequiredWithoutShardNestedInput
+  Secondaria?: Prisma.Sezione_RunaUpdateOneRequiredWithoutSeconNestedInput
 }
 
 export type Pagina_RunaUncheckedUpdateWithoutPrincipaleInput = {
@@ -729,9 +747,9 @@ export type Pagina_RunaUncheckedUpdateManyWithoutPrincipaleInput = {
 
 export type Pagina_RunaUpdateWithoutSecondariaInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
-  Principale?: Prisma.Sezione_RunaUpdateOneRequiredWithoutPrimNestedInput
-  Shards?: Prisma.Sezione_RunaUpdateOneRequiredWithoutShardNestedInput
   Conf?: Prisma.ConfigurazioneUpdateManyWithoutPag_RunaNestedInput
+  Shards?: Prisma.Sezione_RunaUpdateOneRequiredWithoutShardNestedInput
+  Principale?: Prisma.Sezione_RunaUpdateOneRequiredWithoutPrimNestedInput
 }
 
 export type Pagina_RunaUncheckedUpdateWithoutSecondariaInput = {
@@ -745,26 +763,6 @@ export type Pagina_RunaUncheckedUpdateManyWithoutSecondariaInput = {
   Id?: Prisma.IntFieldUpdateOperationsInput | number
   RunaPrimaria?: Prisma.IntFieldUpdateOperationsInput | number
   Frammenti?: Prisma.IntFieldUpdateOperationsInput | number
-}
-
-export type Pagina_RunaUpdateWithoutShardsInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  Principale?: Prisma.Sezione_RunaUpdateOneRequiredWithoutPrimNestedInput
-  Secondaria?: Prisma.Sezione_RunaUpdateOneRequiredWithoutSeconNestedInput
-  Conf?: Prisma.ConfigurazioneUpdateManyWithoutPag_RunaNestedInput
-}
-
-export type Pagina_RunaUncheckedUpdateWithoutShardsInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  RunaPrimaria?: Prisma.IntFieldUpdateOperationsInput | number
-  RunaSecondaria?: Prisma.IntFieldUpdateOperationsInput | number
-  Conf?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutPag_RunaNestedInput
-}
-
-export type Pagina_RunaUncheckedUpdateManyWithoutShardsInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  RunaPrimaria?: Prisma.IntFieldUpdateOperationsInput | number
-  RunaSecondaria?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -803,10 +801,10 @@ export type Pagina_RunaSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   RunaPrimaria?: boolean
   RunaSecondaria?: boolean
   Frammenti?: boolean
+  Conf?: boolean | Prisma.Pagina_Runa$ConfArgs<ExtArgs>
+  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Principale?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Secondaria?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
-  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
-  Conf?: boolean | Prisma.Pagina_Runa$ConfArgs<ExtArgs>
   _count?: boolean | Prisma.Pagina_RunaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pagina_Runa"]>
 
@@ -815,9 +813,9 @@ export type Pagina_RunaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   RunaPrimaria?: boolean
   RunaSecondaria?: boolean
   Frammenti?: boolean
+  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Principale?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Secondaria?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
-  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pagina_Runa"]>
 
 export type Pagina_RunaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -825,9 +823,9 @@ export type Pagina_RunaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   RunaPrimaria?: boolean
   RunaSecondaria?: boolean
   Frammenti?: boolean
+  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Principale?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Secondaria?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
-  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pagina_Runa"]>
 
 export type Pagina_RunaSelectScalar = {
@@ -839,30 +837,30 @@ export type Pagina_RunaSelectScalar = {
 
 export type Pagina_RunaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "RunaPrimaria" | "RunaSecondaria" | "Frammenti", ExtArgs["result"]["pagina_Runa"]>
 export type Pagina_RunaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Conf?: boolean | Prisma.Pagina_Runa$ConfArgs<ExtArgs>
+  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Principale?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Secondaria?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
-  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
-  Conf?: boolean | Prisma.Pagina_Runa$ConfArgs<ExtArgs>
   _count?: boolean | Prisma.Pagina_RunaCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type Pagina_RunaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Principale?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Secondaria?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
-  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
 }
 export type Pagina_RunaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Principale?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
   Secondaria?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
-  Shards?: boolean | Prisma.Sezione_RunaDefaultArgs<ExtArgs>
 }
 
 export type $Pagina_RunaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Pagina_Runa"
   objects: {
+    Conf: Prisma.$ConfigurazionePayload<ExtArgs>[]
+    Shards: Prisma.$Sezione_RunaPayload<ExtArgs>
     Principale: Prisma.$Sezione_RunaPayload<ExtArgs>
     Secondaria: Prisma.$Sezione_RunaPayload<ExtArgs>
-    Shards: Prisma.$Sezione_RunaPayload<ExtArgs>
-    Conf: Prisma.$ConfigurazionePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Id: number
@@ -1263,10 +1261,10 @@ readonly fields: Pagina_RunaFieldRefs;
  */
 export interface Prisma__Pagina_RunaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  Conf<T extends Prisma.Pagina_Runa$ConfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pagina_Runa$ConfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConfigurazionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Shards<T extends Prisma.Sezione_RunaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sezione_RunaDefaultArgs<ExtArgs>>): Prisma.Prisma__Sezione_RunaClient<runtime.Types.Result.GetResult<Prisma.$Sezione_RunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Principale<T extends Prisma.Sezione_RunaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sezione_RunaDefaultArgs<ExtArgs>>): Prisma.Prisma__Sezione_RunaClient<runtime.Types.Result.GetResult<Prisma.$Sezione_RunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Secondaria<T extends Prisma.Sezione_RunaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sezione_RunaDefaultArgs<ExtArgs>>): Prisma.Prisma__Sezione_RunaClient<runtime.Types.Result.GetResult<Prisma.$Sezione_RunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Shards<T extends Prisma.Sezione_RunaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sezione_RunaDefaultArgs<ExtArgs>>): Prisma.Prisma__Sezione_RunaClient<runtime.Types.Result.GetResult<Prisma.$Sezione_RunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Conf<T extends Prisma.Pagina_Runa$ConfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pagina_Runa$ConfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConfigurazionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

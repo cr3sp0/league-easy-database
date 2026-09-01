@@ -289,7 +289,7 @@ model SetBase {
   VitaPerLivello               Int
   Mana                         Int
   ManaPerLivello               Int
-  Velocità_di_movimento       Int
+  Velocità_di_movimento        Int
   Armatura                     Float
   ArmaturaPerLivello           Float
   ResistenzaMagica             Float

@@ -1,28 +1,44 @@
 import prisma from "./prisma";
-import { Risultato, type Account, type Campione, type Configurazione, type Inventario, type Pagina_Runa, type Partita, type Runa } from "./prisma/browser";
+import { 
+  type Account,
+  type Campione,
+  type Configurazione,
+  type Incantesimo,
+  type Inventario,
+  type Oggetto,
+  type Pagina_Runa,
+  type Partita,
+  type Runa 
+} from "./prisma/browser";
 
 // Unisce i valori delle tabelle in modo da ricostruire una singola Build
 export interface completeBuild {
   author: Account
   build: Configurazione
-  items?: Inventario[]
   champion: Campione
+  items: Inventario[]
+  runes: Pagina_Runa
+  spells: [Incantesimo, Incantesimo]
   results: Partita[]
 }
 
 export async function getBuilds({
-  username = undefined,
   buildTitle = undefined,
+  username = undefined,
   userID = undefined,
   champion = undefined,
   championID = undefined,
+  items = undefined,
+  spells = undefined,
   limit = 5
 } : {
-  username? : string,
-  userID? : number,
-  champion? : string,
-  championID? : string,
-  buildTitle? : number,
+  buildTitle? : number 
+  username? : string
+  userID? : number
+  champion? : string
+  championID? : string
+  items? : Oggetto[]
+  spells? : Incantesimo[]
   limit? : number
 }) : Promise<completeBuild[]> {
 
@@ -33,15 +49,49 @@ export async function getBuilds({
       champ: true,
       Inc1: true,
       Inc2: true,
-      Pag_Runa: true,
-      Inv: true,
+      Pag_Runa: {
+        include: {
+          Principale: {
+            include: {
+              Keystone: { include: { Camm: true } },
+              Middle: { include: { Camm: true } },
+              Lower: { include: { Camm: true } },
+              First: { include: { Camm: true } }
+            }
+          },
+          Secondaria: {
+            include: {
+              Keystone: { include: { Camm: true } },
+              Middle: { include: { Camm: true } },
+              Lower: { include: { Camm: true } },
+              First: { include: { Camm: true } }
+            }
+          },
+          Shards: {
+            include: {
+              Keystone: { include: { Camm: true } },
+              Middle: { include: { Camm: true } },
+              Lower: { include: { Camm: true } },
+              First: { include: { Camm: true } }
+            }
+          },
+        }
+      },
+      Inv: {
+        include: {
+          Oggetto:  true
+        }
+      },
       User: true,
       Partite: true
     },
     where: {
       AND: [
         {
-          ID: buildTitle
+          buildTitle: {
+            contains: buildTitle,
+            mode: 'insensitive'
+          }
         },
         {
           User: {
@@ -53,6 +103,23 @@ export async function getBuilds({
           champ: {
             nome: champion,
             ID: championID
+          }
+        },
+        {
+          Inv: {
+            every: {
+              Oggetto: {
+                OR: items
+              }
+            }
+          }
+        },
+        {
+          Inc1: {
+            OR: spells
+          },
+          Inc2: {
+            OR: spells
           }
         }
       ]
@@ -70,8 +137,10 @@ export async function getBuilds({
     output.push({
       author: b.User,
       build: b,
-      items: b.Inv,
       champion: b.champ,
+      runes: b.Pag_Runa,
+      items: b.Inv,
+      spells: [b.Inc1, b.Inc2],
       results: b.Partite
     })
   })
@@ -79,79 +148,51 @@ export async function getBuilds({
   return output;
 }
 
-export async function getUniqueBuild(
-  buildTitle : string,
-  userID : number
-) : Promise<completeBuild> {
-
-  // TODO: add explicit query sql
-  //TODO: fix select to return only the valueable info of the Build
-  const build = await prisma.configurazione.findUnique({
-    include: {
-      champ: true,
-      Inc1: true,
-      Inc2: true,
-      Pag_Runa: true,
-      Inv: true,
-      User: true,
-      Partite: true
-    },
-    where: {
-      TitoloConf_IdAccount: {
-        TitoloConf: buildTitle,
-        IdAccount: userID
-      }
-    }
-  })
-
-  if(!build) {
-    throw { message: "Build Missing" }
-  }
-
-  return {
-    author: build.User,
-    build: build,
-    champion: build.champ,
-    items: build.Inv,
-    results: build.Partite
-  };
-}
-
 export async function createBuild(
   buildTitle: string,
   userID: number,
+  championID: string,
+  runes: Pagina_Runa,
+  inc1: Incantesimo,
+  inc2: Incantesimo,
   {
-    championID = undefined,
-    runesID = undefined,
-    inc1 = undefined,
-    inc2 = undefined,
     matches = []
   } : {
-    championID?: string,
-    runesID?: number,
-    inc1?: string,
-    inc2?: string,
     matches: Partita[]
   }
-) : Promise<completeBuild | undefined> {
-  if(
-    !userID 
-    || !championID 
-    || !runesID
-    || !inc1
-    || !inc2
-  ) {
-    throw { message: "Invalid input" }
-  }
+) : Promise<completeBuild> {
 
-  let creation = await prisma.configurazione.create({
+  const creation = await prisma.configurazione.create({
     data: {
       TitoloConf: buildTitle,
-      IdAccount: userID,
-      IdCampione: championID,
-      Runa: runesID,
-      Incantesimo1: inc1,
-      Incantesimo2: inc2,
+      User: {
+        connect: {
+          AccountId: userID
+        }
+      },
+      champ: {
+        connect: {
+          ID: championID
+        }
+      },
+      Pag_Runa: {
+        connectOrCreate: {
+          where: {
+            Id: runes.Id
+          },
+          create: runes
+        }
+      },
+      Inc1: {
+        connect: {
+          Nome: inc1.Nome
+        }
+      },
+      Inc2: {
+        connect: {
+          Nome: inc2.Nome
+        }
+      },
       Partite: {
         createMany: {
           data: matches
@@ -161,18 +202,23 @@ export async function createBuild(
     include: {
       User: true,
       champ: true,
-      Partite: true,
-      Inv: true
+      Pag_Runa: true,
+      Inc1: true,
+      Inc2: true,
+      Inv: true,
+      Partite: true
     }
   })
 
-  return creation ? {
+  return {
     author: creation.User,
     build: creation,
     champion: creation.champ,
+    runes: creation.Pag_Runa,
+    spells: [creation.Inc1, creation.Inc2],
     items: creation.Inv,
     results: creation.Partite
-  } : undefined
+  }
 }
 
 export async function updateBuild(
@@ -220,8 +266,11 @@ export async function updateBuild(
     include: {
       User: true,
       champ: true,
-      Partite: true,
-      Inv: true
+      Pag_Runa: true,
+      Inc1: true,
+      Inc2: true,
+      Inv: true,
+      Partite: true
     }
   })
 
@@ -229,6 +278,8 @@ export async function updateBuild(
     author: build.User,
     build: build,
     champion: build.champ,
+    runes: build.Pag_Runa,
+    spells: [build.Inc1, build.Inc2],
     items: build.Inv,
     results: build.Partite
   } : undefined

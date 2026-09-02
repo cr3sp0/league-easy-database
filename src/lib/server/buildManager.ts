@@ -32,7 +32,7 @@ export async function getBuilds({
   spells = undefined,
   limit = 5
 } : {
-  buildTitle? : number 
+  buildTitle? : string 
   username? : string
   userID? : number
   champion? : string
@@ -88,7 +88,7 @@ export async function getBuilds({
     where: {
       AND: [
         {
-          buildTitle: {
+          TitoloConf: {
             contains: buildTitle,
             mode: 'insensitive'
           }

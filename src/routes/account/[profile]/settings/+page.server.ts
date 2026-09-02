@@ -1,58 +1,39 @@
 import { error, fail, redirect, type Action, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "../$types";
-import prisma from "$lib/server/prisma";
-import { goto } from "$app/navigation";
-import { popup } from "$lib/components/store/popup.svelte";
+import { getChampionsBasicInfo } from "$lib/server/championsManager";
+import { getAccount, updateAccount } from "$lib/server/accountManager";
 
 export const load : PageServerLoad = async ({ params, locals }) => {
-    const user = locals.user
-
+    
     let images
     
     try {
+        const user = locals.user
         if(user === undefined) {
             throw { message : "Access denied" }
         }
         if (user.username !== params.profile) {
             throw { message: "Only the owner of this Account has access to this page" }
         }
-        //SELECT icona FROM Campioni
-        images = await prisma.campione.findMany({
-            select: {
-                Icona: true
-            }
-        })
 
-        // TODO: Add explicit query sql
-        let accountInfo = await prisma.account.findUnique({
-            select: {
-                AccountId: true,
-                Nome: true,
-                RiotID: true,
-                Immagine: true,
-            },
-            where: {
-                AccountId: user.userID
-            }
-        })
+        images = await getChampionsBasicInfo()
+
+        let accountInfo = getAccount(user.username)
 
         if(!accountInfo) {
             throw { message: "Account Missing." }
         }
         
+        return {
+            profile: user,
+            profileRole: user.isAdmin
+            ? "Admin" : "User",
+            imageList: images.map(i => i.Icona)
+        }
     } catch(error : any) {
         console.error("Error: ", error.message)
-        
-        popup.color = "red"
-        popup.text = "" + error.message
-        
+
         return redirect(303, "/")
-    }
-    return {
-        profile: user,
-        profileRole: user.isAdmin
-            ? "Admin" : "User",
-        imageList: images.map(i => i.Icona)
     }
 }
 
@@ -80,24 +61,13 @@ const sendEdit : Action = async ({ request, params, cookies, locals }) => {
             throw { message: "Invalid RiotID" }
         }
 
-        console.log(newUsername)
-        if (await prisma.account.findUnique({where: { Nome: newUsername }})) {
-            throw { message: "This Username has already been taken" }
-        }
-        
         //TODO: Add explicit query sql
-        const update = await prisma.account.update({
-            data: {
-                Immagine: newPfp,
-                Nome: newUsername,
-                RiotID: newID,
-                Descrizione: newDescription
-            },
-            where: {
-                AccountId: locals.user.userID
-            }
+        const update = updateAccount(locals.user.userID, {
+            newPfp: newPfp,
+            newUsername: newUsername,
+            newDescription: newDescription,
+            newID: newID
         })
-        console.log(update.Nome)
         
         if(!update) {
             throw { message: "Connection Error" }
@@ -109,9 +79,6 @@ const sendEdit : Action = async ({ request, params, cookies, locals }) => {
         }
     } catch(error : any) {
         console.error("Error: ", error.message)
-
-        popup.color = "red"
-        popup.text = "" + error.message
 
         return fail(400, { msg: error.message })
     }

@@ -1,23 +1,15 @@
 import { error, fail, type Action, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from "./$types";
-import prisma from '$lib/server/prisma';
 import type { Build, Champion, Item, Rune, RuneConfiguration, Report, ReportReason, IUser } from '$lib/types';
-import { popup } from '$lib/components/store/popup.svelte';
-import { equal } from 'node:assert';
 import { getBuilds } from '$lib/server/buildManager';
+import { deleteSession, getAccount } from '$lib/server/accountManager';
 
 export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 
-	try {		
-		//TODO: Add filter removing banned accounts
-		//TODO: write explicit sql query
-		const profile = await prisma.account.findUnique({
-			where: {
-				Nome: params.profile
-			}
-		})
+	try {
+		const profile = await getAccount(params.profile)
 		if (!profile) {
-			throw  error(400, { message: "Profile missing or banned" })
+			throw error(400, { message: "Profile missing or banned" })
 		}
 
 		return {
@@ -31,29 +23,20 @@ export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 			},
 			builds: await getBuilds({username: profile.Nome})
 		}
-	} catch (error : any) {
-		console.error(error.message)
+	} catch (err : any) {
+		console.error(err.message);
 
-		popup.color = "red"
-		popup.text = error.message
-
-		throw error(error)
+		throw error(err);
 	}
 }
 
 const logout : Action = async ({ cookies }) => {
 	
 	try {
-		//TODO: Delete session from the DB.
 		let currentSession = cookies.get("ledb_session")
 		
 		if (currentSession) {
-			//TODO: write explicit sql query
-			const session = await prisma.sessione.delete({
-				where: {
-					Id: parseInt(currentSession)
-				}
-			})
+			const session = deleteSession(parseInt(currentSession))
 
 			if(!session) {
 				throw { message: "Error when deleting the current session" }
@@ -62,13 +45,10 @@ const logout : Action = async ({ cookies }) => {
 
 		cookies.delete('ledb_session', {path: "/"});
 		return {success: true}
-	} catch (error : any) {
-		console.error(error.message)
+	} catch (err : any) {
+		console.error(err.message)
 
-		popup.color = "red"
-		popup.text = error.message
-		
-		throw error(error)
+		throw error(err)
 	}
 }
 
@@ -92,13 +72,10 @@ const moreBuilds : Action = async ({ request, params }) => {
 					limit: parseInt(limit)
 				})
 		}
-	} catch (error : any) {
-		console.error(error.message)
-
-		popup.color = "red"
-		popup.text = error.message
+	} catch (err : any) {
+		console.error(err.message)
 		
-		throw error(error)
+		throw error(err)
 	}
 }
 
@@ -123,10 +100,8 @@ const sendReport : Action = async ({ request, params, cookies, locals }) => {
 		if(target === author.username){
 			throw { message: "You cannot Report your own account" }
 		}
-		
-		const bannedAccount = await prisma.account.findFirst({
-			
-		})
+
+		let bannedAccount
 
 		if(bannedAccount) { //TODO: Check actual banned accounts.
 			return fail(400, {msg: "This Account has already been Banned"})
@@ -146,13 +121,10 @@ const sendReport : Action = async ({ request, params, cookies, locals }) => {
 			success: true,
 			msg: "Successfully sent a Report for " + target
 		}
-	} catch (error : any) {
-		console.error(error.message)
+	} catch (err : any) {
+		console.error(err.message)
 
-		popup.color = "red"
-		popup.text = error.message
-		
-		throw error(error)
+		throw error(err)
 	}
 }
 

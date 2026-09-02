@@ -1,27 +1,17 @@
 // hooks.server.ts
 
-import prisma from '$lib/server/prisma';
+import { getActiveSession } from '$lib/server/accountManager';
 import { redirect, type Handle } from '@sveltejs/kit'; 
 
 export const handle: Handle = async ({ event, resolve }) => {
 
-    const sessionGUID = event.cookies.get('ledb_session')
-    if(sessionGUID) {
-        let dbSession = await prisma.sessione.findFirst({
-            where: {
-                AND: [
-                    { Id: parseInt(sessionGUID) },
-                    { date_expired: { gt: new Date(Date.now()) } }
-                ]
-            },
-            include: {
-                user: true
-            }
-        })
+    const sessionID = event.cookies.get('ledb_session')
+    if(sessionID) {
+        let dbSession = await getActiveSession({ sessionID: parseInt(sessionID) })
 
         if(dbSession && dbSession.user) {
             event.locals.user = {
-                userID: dbSession.user_id,
+                userID: dbSession.session.user_id,
                 username: dbSession.user.Nome,
                 pfp: dbSession.user.Immagine,
                 isAdmin: dbSession.user.IsAdmin,

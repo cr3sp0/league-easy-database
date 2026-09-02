@@ -31,13 +31,13 @@ export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 			},
 			builds: await getBuilds({username: profile.Nome})
 		}
-	} catch (error : any) {
-		console.error(error.message)
+	} catch (err : any) {
+		console.error(err.message);
 
-		popup.color = "red"
-		popup.text = error.message
+		popup.color = "red";
+		popup.text = err.message;
 
-		throw error(error)
+		throw error(err);
 	}
 }
 
@@ -62,13 +62,13 @@ const logout : Action = async ({ cookies }) => {
 
 		cookies.delete('ledb_session', {path: "/"});
 		return {success: true}
-	} catch (error : any) {
-		console.error(error.message)
+	} catch (err : any) {
+		console.error(err.message)
 
 		popup.color = "red"
-		popup.text = error.message
+		popup.text = err.message
 		
-		throw error(error)
+		throw error(err)
 	}
 }
 
@@ -92,13 +92,14 @@ const moreBuilds : Action = async ({ request, params }) => {
 					limit: parseInt(limit)
 				})
 		}
-	} catch (error : any) {
-		console.error(error.message)
+	} catch (err : any) {
+		console.error(err.message)
 
 		popup.color = "red"
-		popup.text = error.message
+		popup.text = err.message
 		
-		throw error(error)
+		throw error(err
+		)
 	}
 }
 
@@ -146,13 +147,13 @@ const sendReport : Action = async ({ request, params, cookies, locals }) => {
 			success: true,
 			msg: "Successfully sent a Report for " + target
 		}
-	} catch (error : any) {
-		console.error(error.message)
+	} catch (err : any) {
+		console.error(err.message)
 
 		popup.color = "red"
-		popup.text = error.message
+		popup.text = err.message
 		
-		throw error(error)
+		throw error(err)
 	}
 }
 

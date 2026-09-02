@@ -159,6 +159,7 @@ model Report {
   IdTarget    Int
   IdAutore    Int
   Motivazione String
+  Data_Creazione  DateTime
   Descrizione String?
   Author      Account         @relation("Author", fields: [IdAutore], references: [AccountId])
   Target      Account         @relation("Target", fields: [IdTarget], references: [AccountId])

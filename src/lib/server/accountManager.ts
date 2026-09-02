@@ -40,7 +40,6 @@ export async function createSession(
         session: sessione
     }
 }
-
 export async function getActiveSession({
     sessionID = undefined,
     guid_id = undefined
@@ -73,7 +72,6 @@ export async function getActiveSession({
         session: session
     }
 }
-
 export async function deleteSession(currentSession : number) {
     return await prisma.sessione.delete({
         where: {
@@ -81,23 +79,21 @@ export async function deleteSession(currentSession : number) {
         }
     })
 }
-
 export async function getAccount(username : string) {
     //TODO: write explicit sql query
     return await prisma.account.findUnique({ 
         where: {
             Nome: username,
             NOT: [
-                // TODO: add ban check { lt: new Date(Date.now()) }
+                {
+                    Banned: {
+                        Expiration_Date: {
+                            gt: new Date(Date.now())
+                        }
+                    }
+                }
             ]
         },
-        include: {
-            ReportRicev: {
-                include: {
-                    Banned: true
-                }
-            }
-        }
     })
 }
 export async function createAccount(
@@ -168,15 +164,153 @@ export async function updateAccount(userID : number,
         throw { message: err.message }
     }
 }
-export async function getReport() {
-    
+export async function createReport(
+    reason : string,
+    {
+        targetID = undefined,
+        target = undefined,
+        authorID = undefined,
+        author = undefined,
+        description = undefined 
+    } : {
+        targetID? : number,
+        target? : string,
+        authorID? : number,
+        author? : string,
+        description? : string 
+    }
+) {
+
+    if(
+        (!target || !targetID)
+        && (!author || !authorID)
+    ) {
+        throw { message: "Target and Author are required" }
+    }
+
+    return await prisma.report.create({
+        data: {
+            Target: {
+                connect: {
+                    Nome: target,
+                    AccountId: targetID
+                }
+            },
+            Author: {
+                connect: {
+                    Nome: author,
+                    AccountId: authorID
+                }
+            },
+            Motivazione: reason,
+            Data_Creazione: new Date(Date.now()),
+            Descrizione: description
+        },
+        include: {
+            Target: true,
+            Au: true
+        }
+    })
 }
-export async function createReport() {
-    
+export async function getReport({
+    target = undefined,
+    targetID = undefined,
+    author = undefined,
+    authorID = undefined,
+    motivation = undefined,
+    beforeDate = undefined,
+    afterDate = undefined
+} : {
+    target? : string
+    targetID? : number
+    author? : string
+    authorID? : number
+    motivation? : string
+    beforeDate? : Date
+    afterDate? : Date
+}) {
+
+    if(
+        (!target || !targetID)
+        && (!author || !authorID)
+    ) {
+        throw { message: "Target and Author are required" }
+    }
+
+    return await prisma.report.findMany({
+        where: {
+            Target: {
+                Nome: target,
+                AccountId: targetID
+            },
+            Author: {
+                Nome: author,
+                AccountId: targetID
+            },
+            Motivazione: {
+                equals: motivation
+            },
+            AND: [
+                {
+                    Data_Creazione: {
+                        gte: beforeDate
+                    }
+                },
+                {
+                    Data_Creazione: {
+                        lte: afterDate
+                    }
+                }
+            ]
+        },
+        include: {
+            Author: true,
+            Target: true
+        }
+    })
 }
-export async function deleteReport() {
-    
+export async function deleteReport(
+    targetID : number,
+    authorID : number
+) {
+    return await prisma.report.delete({
+        where: {
+            IdTarget_IdAutore: {
+                IdTarget: targetID,
+                IdAutore: authorID
+            }
+        }
+    })
 }
-export async function banAccount() {
-    
+export async function banAccount(
+    AccountID : number,
+    Expiration_Date : Date,
+    reason : string,
+    description? : string
+) {
+
+    const ban = await prisma.banned_Account.create({
+        data: {
+            AccountId: AccountID,
+            Expiration_Date: Expiration_Date,
+            Motivazione: reason,
+            Descrizione: description,
+        },
+        include: {
+            Account: {
+                include: {
+                    sessione: true
+                }
+            }
+        }
+    })
+
+    if (
+        ban &&
+        ban.Account.sessione
+    ) {
+        await deleteSession(ban.Account.sessione.Id)
+    }
+
+    return ban
 }

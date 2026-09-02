@@ -244,6 +244,7 @@ export const ReportScalarFieldEnum = {
   IdTarget: 'IdTarget',
   IdAutore: 'IdAutore',
   Motivazione: 'Motivazione',
+  Data_Creazione: 'Data_Creazione',
   Descrizione: 'Descrizione'
 } as const
 

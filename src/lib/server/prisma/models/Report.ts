@@ -40,6 +40,7 @@ export type ReportMinAggregateOutputType = {
   IdTarget: number | null
   IdAutore: number | null
   Motivazione: string | null
+  Data_Creazione: Date | null
   Descrizione: string | null
 }
 
@@ -47,6 +48,7 @@ export type ReportMaxAggregateOutputType = {
   IdTarget: number | null
   IdAutore: number | null
   Motivazione: string | null
+  Data_Creazione: Date | null
   Descrizione: string | null
 }
 
@@ -54,6 +56,7 @@ export type ReportCountAggregateOutputType = {
   IdTarget: number
   IdAutore: number
   Motivazione: number
+  Data_Creazione: number
   Descrizione: number
   _all: number
 }
@@ -73,6 +76,7 @@ export type ReportMinAggregateInputType = {
   IdTarget?: true
   IdAutore?: true
   Motivazione?: true
+  Data_Creazione?: true
   Descrizione?: true
 }
 
@@ -80,6 +84,7 @@ export type ReportMaxAggregateInputType = {
   IdTarget?: true
   IdAutore?: true
   Motivazione?: true
+  Data_Creazione?: true
   Descrizione?: true
 }
 
@@ -87,6 +92,7 @@ export type ReportCountAggregateInputType = {
   IdTarget?: true
   IdAutore?: true
   Motivazione?: true
+  Data_Creazione?: true
   Descrizione?: true
   _all?: true
 }
@@ -181,6 +187,7 @@ export type ReportGroupByOutputType = {
   IdTarget: number
   IdAutore: number
   Motivazione: string
+  Data_Creazione: Date
   Descrizione: string | null
   _count: ReportCountAggregateOutputType | null
   _avg: ReportAvgAggregateOutputType | null
@@ -211,6 +218,7 @@ export type ReportWhereInput = {
   IdTarget?: Prisma.IntFilter<"Report"> | number
   IdAutore?: Prisma.IntFilter<"Report"> | number
   Motivazione?: Prisma.StringFilter<"Report"> | string
+  Data_Creazione?: Prisma.DateTimeFilter<"Report"> | Date | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
   Author?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   Target?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
@@ -220,6 +228,7 @@ export type ReportOrderByWithRelationInput = {
   IdTarget?: Prisma.SortOrder
   IdAutore?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
+  Data_Creazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrderInput | Prisma.SortOrder
   Author?: Prisma.AccountOrderByWithRelationInput
   Target?: Prisma.AccountOrderByWithRelationInput
@@ -233,6 +242,7 @@ export type ReportWhereUniqueInput = Prisma.AtLeast<{
   IdTarget?: Prisma.IntFilter<"Report"> | number
   IdAutore?: Prisma.IntFilter<"Report"> | number
   Motivazione?: Prisma.StringFilter<"Report"> | string
+  Data_Creazione?: Prisma.DateTimeFilter<"Report"> | Date | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
   Author?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   Target?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
@@ -242,6 +252,7 @@ export type ReportOrderByWithAggregationInput = {
   IdTarget?: Prisma.SortOrder
   IdAutore?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
+  Data_Creazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ReportCountOrderByAggregateInput
   _avg?: Prisma.ReportAvgOrderByAggregateInput
@@ -257,11 +268,13 @@ export type ReportScalarWhereWithAggregatesInput = {
   IdTarget?: Prisma.IntWithAggregatesFilter<"Report"> | number
   IdAutore?: Prisma.IntWithAggregatesFilter<"Report"> | number
   Motivazione?: Prisma.StringWithAggregatesFilter<"Report"> | string
+  Data_Creazione?: Prisma.DateTimeWithAggregatesFilter<"Report"> | Date | string
   Descrizione?: Prisma.StringNullableWithAggregatesFilter<"Report"> | string | null
 }
 
 export type ReportCreateInput = {
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
   Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
   Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
@@ -271,11 +284,13 @@ export type ReportUncheckedCreateInput = {
   IdTarget: number
   IdAutore: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
 }
 
 export type ReportUpdateInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
   Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
@@ -285,6 +300,7 @@ export type ReportUncheckedUpdateInput = {
   IdTarget?: Prisma.IntFieldUpdateOperationsInput | number
   IdAutore?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -292,11 +308,13 @@ export type ReportCreateManyInput = {
   IdTarget: number
   IdAutore: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
 }
 
 export type ReportUpdateManyMutationInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -304,6 +322,7 @@ export type ReportUncheckedUpdateManyInput = {
   IdTarget?: Prisma.IntFieldUpdateOperationsInput | number
   IdAutore?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -326,6 +345,7 @@ export type ReportCountOrderByAggregateInput = {
   IdTarget?: Prisma.SortOrder
   IdAutore?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
+  Data_Creazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
 }
 
@@ -338,6 +358,7 @@ export type ReportMaxOrderByAggregateInput = {
   IdTarget?: Prisma.SortOrder
   IdAutore?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
+  Data_Creazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
 }
 
@@ -345,6 +366,7 @@ export type ReportMinOrderByAggregateInput = {
   IdTarget?: Prisma.SortOrder
   IdAutore?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
+  Data_Creazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
 }
 
@@ -439,6 +461,7 @@ export type ReportUncheckedUpdateManyWithoutTargetNestedInput = {
 
 export type ReportCreateWithoutAuthorInput = {
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
   Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
 }
@@ -446,6 +469,7 @@ export type ReportCreateWithoutAuthorInput = {
 export type ReportUncheckedCreateWithoutAuthorInput = {
   IdTarget: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
 }
 
@@ -461,6 +485,7 @@ export type ReportCreateManyAuthorInputEnvelope = {
 
 export type ReportCreateWithoutTargetInput = {
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
   Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
 }
@@ -468,6 +493,7 @@ export type ReportCreateWithoutTargetInput = {
 export type ReportUncheckedCreateWithoutTargetInput = {
   IdAutore: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
 }
 
@@ -504,6 +530,7 @@ export type ReportScalarWhereInput = {
   IdTarget?: Prisma.IntFilter<"Report"> | number
   IdAutore?: Prisma.IntFilter<"Report"> | number
   Motivazione?: Prisma.StringFilter<"Report"> | string
+  Data_Creazione?: Prisma.DateTimeFilter<"Report"> | Date | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
 }
 
@@ -526,17 +553,20 @@ export type ReportUpdateManyWithWhereWithoutTargetInput = {
 export type ReportCreateManyAuthorInput = {
   IdTarget: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
 }
 
 export type ReportCreateManyTargetInput = {
   IdAutore: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
 }
 
 export type ReportUpdateWithoutAuthorInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
 }
@@ -544,17 +574,20 @@ export type ReportUpdateWithoutAuthorInput = {
 export type ReportUncheckedUpdateWithoutAuthorInput = {
   IdTarget?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ReportUncheckedUpdateManyWithoutAuthorInput = {
   IdTarget?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ReportUpdateWithoutTargetInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
 }
@@ -562,12 +595,14 @@ export type ReportUpdateWithoutTargetInput = {
 export type ReportUncheckedUpdateWithoutTargetInput = {
   IdAutore?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ReportUncheckedUpdateManyWithoutTargetInput = {
   IdAutore?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -577,6 +612,7 @@ export type ReportSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   IdTarget?: boolean
   IdAutore?: boolean
   Motivazione?: boolean
+  Data_Creazione?: boolean
   Descrizione?: boolean
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
@@ -586,6 +622,7 @@ export type ReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   IdTarget?: boolean
   IdAutore?: boolean
   Motivazione?: boolean
+  Data_Creazione?: boolean
   Descrizione?: boolean
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
@@ -595,6 +632,7 @@ export type ReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   IdTarget?: boolean
   IdAutore?: boolean
   Motivazione?: boolean
+  Data_Creazione?: boolean
   Descrizione?: boolean
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
@@ -604,10 +642,11 @@ export type ReportSelectScalar = {
   IdTarget?: boolean
   IdAutore?: boolean
   Motivazione?: boolean
+  Data_Creazione?: boolean
   Descrizione?: boolean
 }
 
-export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdTarget" | "IdAutore" | "Motivazione" | "Descrizione", ExtArgs["result"]["report"]>
+export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdTarget" | "IdAutore" | "Motivazione" | "Data_Creazione" | "Descrizione", ExtArgs["result"]["report"]>
 export type ReportInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
@@ -631,6 +670,7 @@ export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     IdTarget: number
     IdAutore: number
     Motivazione: string
+    Data_Creazione: Date
     Descrizione: string | null
   }, ExtArgs["result"]["report"]>
   composites: {}
@@ -1060,6 +1100,7 @@ export interface ReportFieldRefs {
   readonly IdTarget: Prisma.FieldRef<"Report", 'Int'>
   readonly IdAutore: Prisma.FieldRef<"Report", 'Int'>
   readonly Motivazione: Prisma.FieldRef<"Report", 'String'>
+  readonly Data_Creazione: Prisma.FieldRef<"Report", 'DateTime'>
   readonly Descrizione: Prisma.FieldRef<"Report", 'String'>
 }
     

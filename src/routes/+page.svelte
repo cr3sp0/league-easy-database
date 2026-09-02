@@ -7,7 +7,7 @@
 
 <div class="container">
   <div class="landpage-content">
-    <Navbar profile={data.profile}/>
+    <Navbar profile={data.profile} role={data.role} />
     <div class="landpage-3d-container">
       <img src="..\img\shyvana 1.png" alt="" srcset="" />
     </div>

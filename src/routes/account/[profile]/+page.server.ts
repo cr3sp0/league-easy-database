@@ -4,12 +4,12 @@ import type { Build, Champion, Item, Rune, RuneConfiguration, Report, ReportReas
 import { getBuilds } from '$lib/server/buildManager';
 import { deleteSession, getAccount } from '$lib/server/accountManager';
 
-export const load: PageServerLoad = async ({ params, locals, cookies }) => {
+export const load: PageServerLoad = async ({ params, locals }) => {
 
 	try {
 		const profile = await getAccount(params.profile)
 		if (!profile) {
-			throw error(400, { message: "Profile missing or banned" })
+			throw { message: "Profile missing or banned" }
 		}
 
 		return {
@@ -26,7 +26,7 @@ export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 	} catch (err : any) {
 		console.error(err.message);
 
-		throw error(err);
+		throw error(404, { message: err.message });
 	}
 }
 

@@ -237,6 +237,7 @@ export type AccountWhereInput = {
   ReportRicev?: Prisma.ReportListRelationFilter
   ReportCreati?: Prisma.ReportListRelationFilter
   sessione?: Prisma.XOR<Prisma.SessioneNullableScalarRelationFilter, Prisma.SessioneWhereInput> | null
+  Banned?: Prisma.XOR<Prisma.Banned_AccountNullableScalarRelationFilter, Prisma.Banned_AccountWhereInput> | null
 }
 
 export type AccountOrderByWithRelationInput = {
@@ -252,6 +253,7 @@ export type AccountOrderByWithRelationInput = {
   ReportRicev?: Prisma.ReportOrderByRelationAggregateInput
   ReportCreati?: Prisma.ReportOrderByRelationAggregateInput
   sessione?: Prisma.SessioneOrderByWithRelationInput
+  Banned?: Prisma.Banned_AccountOrderByWithRelationInput
 }
 
 export type AccountWhereUniqueInput = Prisma.AtLeast<{
@@ -270,6 +272,7 @@ export type AccountWhereUniqueInput = Prisma.AtLeast<{
   ReportRicev?: Prisma.ReportListRelationFilter
   ReportCreati?: Prisma.ReportListRelationFilter
   sessione?: Prisma.XOR<Prisma.SessioneNullableScalarRelationFilter, Prisma.SessioneWhereInput> | null
+  Banned?: Prisma.XOR<Prisma.Banned_AccountNullableScalarRelationFilter, Prisma.Banned_AccountWhereInput> | null
 }, "AccountId" | "Nome" | "RiotID">
 
 export type AccountOrderByWithAggregationInput = {
@@ -312,6 +315,7 @@ export type AccountCreateInput = {
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
+  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutAccountInput
 }
 
 export type AccountUncheckedCreateInput = {
@@ -327,6 +331,7 @@ export type AccountUncheckedCreateInput = {
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
+  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutAccountInput
 }
 
 export type AccountUpdateInput = {
@@ -341,6 +346,7 @@ export type AccountUpdateInput = {
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
+  Banned?: Prisma.Banned_AccountUpdateOneWithoutAccountNestedInput
 }
 
 export type AccountUncheckedUpdateInput = {
@@ -356,6 +362,7 @@ export type AccountUncheckedUpdateInput = {
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
+  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutAccountNestedInput
 }
 
 export type AccountCreateManyInput = {
@@ -494,6 +501,20 @@ export type AccountUpdateOneRequiredWithoutReportCreatiNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccountUpdateToOneWithWhereWithoutReportCreatiInput, Prisma.AccountUpdateWithoutReportCreatiInput>, Prisma.AccountUncheckedUpdateWithoutReportCreatiInput>
 }
 
+export type AccountCreateNestedOneWithoutBannedInput = {
+  create?: Prisma.XOR<Prisma.AccountCreateWithoutBannedInput, Prisma.AccountUncheckedCreateWithoutBannedInput>
+  connectOrCreate?: Prisma.AccountCreateOrConnectWithoutBannedInput
+  connect?: Prisma.AccountWhereUniqueInput
+}
+
+export type AccountUpdateOneRequiredWithoutBannedNestedInput = {
+  create?: Prisma.XOR<Prisma.AccountCreateWithoutBannedInput, Prisma.AccountUncheckedCreateWithoutBannedInput>
+  connectOrCreate?: Prisma.AccountCreateOrConnectWithoutBannedInput
+  upsert?: Prisma.AccountUpsertWithoutBannedInput
+  connect?: Prisma.AccountWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AccountUpdateToOneWithWhereWithoutBannedInput, Prisma.AccountUpdateWithoutBannedInput>, Prisma.AccountUncheckedUpdateWithoutBannedInput>
+}
+
 export type AccountCreateNestedOneWithoutPartitaInput = {
   create?: Prisma.XOR<Prisma.AccountCreateWithoutPartitaInput, Prisma.AccountUncheckedCreateWithoutPartitaInput>
   connectOrCreate?: Prisma.AccountCreateOrConnectWithoutPartitaInput
@@ -519,6 +540,7 @@ export type AccountCreateWithoutConfigInput = {
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
+  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutAccountInput
 }
 
 export type AccountUncheckedCreateWithoutConfigInput = {
@@ -533,6 +555,7 @@ export type AccountUncheckedCreateWithoutConfigInput = {
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
+  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutAccountInput
 }
 
 export type AccountCreateOrConnectWithoutConfigInput = {
@@ -562,6 +585,7 @@ export type AccountUpdateWithoutConfigInput = {
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
+  Banned?: Prisma.Banned_AccountUpdateOneWithoutAccountNestedInput
 }
 
 export type AccountUncheckedUpdateWithoutConfigInput = {
@@ -576,6 +600,7 @@ export type AccountUncheckedUpdateWithoutConfigInput = {
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
+  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutAccountNestedInput
 }
 
 export type AccountCreateWithoutSessioneInput = {
@@ -589,6 +614,7 @@ export type AccountCreateWithoutSessioneInput = {
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
+  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutAccountInput
 }
 
 export type AccountUncheckedCreateWithoutSessioneInput = {
@@ -603,6 +629,7 @@ export type AccountUncheckedCreateWithoutSessioneInput = {
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
+  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutAccountInput
 }
 
 export type AccountCreateOrConnectWithoutSessioneInput = {
@@ -632,6 +659,7 @@ export type AccountUpdateWithoutSessioneInput = {
   Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
+  Banned?: Prisma.Banned_AccountUpdateOneWithoutAccountNestedInput
 }
 
 export type AccountUncheckedUpdateWithoutSessioneInput = {
@@ -646,6 +674,7 @@ export type AccountUncheckedUpdateWithoutSessioneInput = {
   Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
+  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutAccountNestedInput
 }
 
 export type AccountCreateWithoutReportRicevInput = {
@@ -659,6 +688,7 @@ export type AccountCreateWithoutReportRicevInput = {
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
+  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutAccountInput
 }
 
 export type AccountUncheckedCreateWithoutReportRicevInput = {
@@ -673,6 +703,7 @@ export type AccountUncheckedCreateWithoutReportRicevInput = {
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
+  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutAccountInput
 }
 
 export type AccountCreateOrConnectWithoutReportRicevInput = {
@@ -691,6 +722,7 @@ export type AccountCreateWithoutReportCreatiInput = {
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
+  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutAccountInput
 }
 
 export type AccountUncheckedCreateWithoutReportCreatiInput = {
@@ -705,6 +737,7 @@ export type AccountUncheckedCreateWithoutReportCreatiInput = {
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
+  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutAccountInput
 }
 
 export type AccountCreateOrConnectWithoutReportCreatiInput = {
@@ -734,6 +767,7 @@ export type AccountUpdateWithoutReportRicevInput = {
   Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
+  Banned?: Prisma.Banned_AccountUpdateOneWithoutAccountNestedInput
 }
 
 export type AccountUncheckedUpdateWithoutReportRicevInput = {
@@ -748,6 +782,7 @@ export type AccountUncheckedUpdateWithoutReportRicevInput = {
   Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
   ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
+  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutAccountNestedInput
 }
 
 export type AccountUpsertWithoutReportCreatiInput = {
@@ -772,6 +807,7 @@ export type AccountUpdateWithoutReportCreatiInput = {
   Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
+  Banned?: Prisma.Banned_AccountUpdateOneWithoutAccountNestedInput
 }
 
 export type AccountUncheckedUpdateWithoutReportCreatiInput = {
@@ -786,6 +822,81 @@ export type AccountUncheckedUpdateWithoutReportCreatiInput = {
   Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
+  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutAccountNestedInput
+}
+
+export type AccountCreateWithoutBannedInput = {
+  Nome: string
+  Password: string
+  Descrizione: string
+  Immagine?: string
+  RiotID?: string | null
+  IsAdmin: boolean
+  Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
+  Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
+  ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
+  sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
+}
+
+export type AccountUncheckedCreateWithoutBannedInput = {
+  Nome: string
+  AccountId?: number
+  Password: string
+  Descrizione: string
+  Immagine?: string
+  RiotID?: string | null
+  IsAdmin: boolean
+  Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
+  Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
+  ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
+  sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type AccountCreateOrConnectWithoutBannedInput = {
+  where: Prisma.AccountWhereUniqueInput
+  create: Prisma.XOR<Prisma.AccountCreateWithoutBannedInput, Prisma.AccountUncheckedCreateWithoutBannedInput>
+}
+
+export type AccountUpsertWithoutBannedInput = {
+  update: Prisma.XOR<Prisma.AccountUpdateWithoutBannedInput, Prisma.AccountUncheckedUpdateWithoutBannedInput>
+  create: Prisma.XOR<Prisma.AccountCreateWithoutBannedInput, Prisma.AccountUncheckedCreateWithoutBannedInput>
+  where?: Prisma.AccountWhereInput
+}
+
+export type AccountUpdateToOneWithWhereWithoutBannedInput = {
+  where?: Prisma.AccountWhereInput
+  data: Prisma.XOR<Prisma.AccountUpdateWithoutBannedInput, Prisma.AccountUncheckedUpdateWithoutBannedInput>
+}
+
+export type AccountUpdateWithoutBannedInput = {
+  Nome?: Prisma.StringFieldUpdateOperationsInput | string
+  Password?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  Config?: Prisma.ConfigurazioneUpdateManyWithoutUserNestedInput
+  Partita?: Prisma.PartitaUpdateManyWithoutAccountNestedInput
+  ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
+  sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
+}
+
+export type AccountUncheckedUpdateWithoutBannedInput = {
+  Nome?: Prisma.StringFieldUpdateOperationsInput | string
+  AccountId?: Prisma.IntFieldUpdateOperationsInput | number
+  Password?: Prisma.StringFieldUpdateOperationsInput | string
+  Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
+  RiotID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  IsAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  Config?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutUserNestedInput
+  Partita?: Prisma.PartitaUncheckedUpdateManyWithoutAccountNestedInput
+  ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
+  sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type AccountCreateWithoutPartitaInput = {
@@ -799,6 +910,7 @@ export type AccountCreateWithoutPartitaInput = {
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
   sessione?: Prisma.SessioneCreateNestedOneWithoutUserInput
+  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutAccountInput
 }
 
 export type AccountUncheckedCreateWithoutPartitaInput = {
@@ -813,6 +925,7 @@ export type AccountUncheckedCreateWithoutPartitaInput = {
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
   sessione?: Prisma.SessioneUncheckedCreateNestedOneWithoutUserInput
+  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutAccountInput
 }
 
 export type AccountCreateOrConnectWithoutPartitaInput = {
@@ -842,6 +955,7 @@ export type AccountUpdateWithoutPartitaInput = {
   ReportRicev?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   ReportCreati?: Prisma.ReportUpdateManyWithoutTargetNestedInput
   sessione?: Prisma.SessioneUpdateOneWithoutUserNestedInput
+  Banned?: Prisma.Banned_AccountUpdateOneWithoutAccountNestedInput
 }
 
 export type AccountUncheckedUpdateWithoutPartitaInput = {
@@ -856,6 +970,7 @@ export type AccountUncheckedUpdateWithoutPartitaInput = {
   ReportRicev?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   ReportCreati?: Prisma.ReportUncheckedUpdateManyWithoutTargetNestedInput
   sessione?: Prisma.SessioneUncheckedUpdateOneWithoutUserNestedInput
+  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutAccountNestedInput
 }
 
 
@@ -929,6 +1044,7 @@ export type AccountSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   ReportRicev?: boolean | Prisma.Account$ReportRicevArgs<ExtArgs>
   ReportCreati?: boolean | Prisma.Account$ReportCreatiArgs<ExtArgs>
   sessione?: boolean | Prisma.Account$sessioneArgs<ExtArgs>
+  Banned?: boolean | Prisma.Account$BannedArgs<ExtArgs>
   _count?: boolean | Prisma.AccountCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["account"]>
 
@@ -969,6 +1085,7 @@ export type AccountInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   ReportRicev?: boolean | Prisma.Account$ReportRicevArgs<ExtArgs>
   ReportCreati?: boolean | Prisma.Account$ReportCreatiArgs<ExtArgs>
   sessione?: boolean | Prisma.Account$sessioneArgs<ExtArgs>
+  Banned?: boolean | Prisma.Account$BannedArgs<ExtArgs>
   _count?: boolean | Prisma.AccountCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AccountIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -982,6 +1099,7 @@ export type $AccountPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     ReportRicev: Prisma.$ReportPayload<ExtArgs>[]
     ReportCreati: Prisma.$ReportPayload<ExtArgs>[]
     sessione: Prisma.$SessionePayload<ExtArgs> | null
+    Banned: Prisma.$Banned_AccountPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Nome: string
@@ -1390,6 +1508,7 @@ export interface Prisma__AccountClient<T, Null = never, ExtArgs extends runtime.
   ReportRicev<T extends Prisma.Account$ReportRicevArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$ReportRicevArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ReportCreati<T extends Prisma.Account$ReportCreatiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$ReportCreatiArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessione<T extends Prisma.Account$sessioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$sessioneArgs<ExtArgs>>): Prisma.Prisma__SessioneClient<runtime.Types.Result.GetResult<Prisma.$SessionePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  Banned<T extends Prisma.Account$BannedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Account$BannedArgs<ExtArgs>>): Prisma.Prisma__Banned_AccountClient<runtime.Types.Result.GetResult<Prisma.$Banned_AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1931,6 +2050,25 @@ export type Account$sessioneArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   include?: Prisma.SessioneInclude<ExtArgs> | null
   where?: Prisma.SessioneWhereInput
+}
+
+/**
+ * Account.Banned
+ */
+export type Account$BannedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Banned_Account
+   */
+  select?: Prisma.Banned_AccountSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Banned_Account
+   */
+  omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
+  where?: Prisma.Banned_AccountWhereInput
 }
 
 /**

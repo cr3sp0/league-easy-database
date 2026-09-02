@@ -1,8 +1,7 @@
 import { error, fail, type Action, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from "./$types";
-import type { Build, Champion, Item, Rune, RuneConfiguration, Report, ReportReason, IUser } from '$lib/types';
 import { getBuilds } from '$lib/server/buildManager';
-import { deleteSession, getAccount } from '$lib/server/accountManager';
+import { createReport, deleteSession, getAccount } from '$lib/server/accountManager';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
 
@@ -107,13 +106,11 @@ const sendReport : Action = async ({ request, params, cookies, locals }) => {
 			return fail(400, {msg: "This Account has already been Banned"})
 		}
 		
-		const report : Report = {
-			date: new Date(Date.now()),
+		const report = await createReport(reason, {
 			target: target,
 			author: author.username,
-			reason: reason,
 			description: description
-		}
+		})
 		
 		//TODO: send the report to the db
 		

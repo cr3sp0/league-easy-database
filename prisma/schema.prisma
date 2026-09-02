@@ -98,7 +98,7 @@ model Configurazione {
   Incantesimo2 String
   Runa         Int
   IdAccount    Int
-  TitoloConf   String
+  TitoloConf   String       @default("New Build")
   User         Account      @relation(fields: [IdAccount], references: [AccountId])
   champ        Campione     @relation(fields: [IdCampione], references: [ID])
   Inc1         Incantesimo  @relation("Inc1", fields: [Incantesimo1], references: [Nome])
@@ -134,10 +134,10 @@ model Account {
   Nome         String           @unique
   AccountId    Int              @id @default(autoincrement())
   Password     String
-  Descrizione  String
+  Descrizione  String           @default("Hi! I'm new here.")
   Immagine     String           @default("https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/items/Poro-Snax_item_HD.png")
   RiotID       String?          @unique @db.VarChar(50)
-  IsAdmin      Boolean
+  IsAdmin      Boolean          @default(false)
   Config       Configurazione[]
   Partita      Partita[]
   ReportRicev  Report[]         @relation("Author")

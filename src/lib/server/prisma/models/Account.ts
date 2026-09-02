@@ -306,10 +306,10 @@ export type AccountScalarWhereWithAggregatesInput = {
 export type AccountCreateInput = {
   Nome: string
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
@@ -322,10 +322,10 @@ export type AccountUncheckedCreateInput = {
   Nome: string
   AccountId?: number
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
@@ -369,10 +369,10 @@ export type AccountCreateManyInput = {
   Nome: string
   AccountId?: number
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
 }
 
 export type AccountUpdateManyMutationInput = {
@@ -532,10 +532,10 @@ export type AccountUpdateOneRequiredWithoutPartitaNestedInput = {
 export type AccountCreateWithoutConfigInput = {
   Nome: string
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
@@ -547,10 +547,10 @@ export type AccountUncheckedCreateWithoutConfigInput = {
   Nome: string
   AccountId?: number
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
@@ -606,10 +606,10 @@ export type AccountUncheckedUpdateWithoutConfigInput = {
 export type AccountCreateWithoutSessioneInput = {
   Nome: string
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
@@ -621,10 +621,10 @@ export type AccountUncheckedCreateWithoutSessioneInput = {
   Nome: string
   AccountId?: number
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
@@ -680,10 +680,10 @@ export type AccountUncheckedUpdateWithoutSessioneInput = {
 export type AccountCreateWithoutReportRicevInput = {
   Nome: string
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
@@ -695,10 +695,10 @@ export type AccountUncheckedCreateWithoutReportRicevInput = {
   Nome: string
   AccountId?: number
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput
@@ -714,10 +714,10 @@ export type AccountCreateOrConnectWithoutReportRicevInput = {
 export type AccountCreateWithoutReportCreatiInput = {
   Nome: string
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
@@ -729,10 +729,10 @@ export type AccountUncheckedCreateWithoutReportCreatiInput = {
   Nome: string
   AccountId?: number
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
@@ -828,10 +828,10 @@ export type AccountUncheckedUpdateWithoutReportCreatiInput = {
 export type AccountCreateWithoutBannedInput = {
   Nome: string
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
@@ -843,10 +843,10 @@ export type AccountUncheckedCreateWithoutBannedInput = {
   Nome: string
   AccountId?: number
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   Partita?: Prisma.PartitaUncheckedCreateNestedManyWithoutAccountInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
@@ -902,10 +902,10 @@ export type AccountUncheckedUpdateWithoutBannedInput = {
 export type AccountCreateWithoutPartitaInput = {
   Nome: string
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneCreateNestedManyWithoutUserInput
   ReportRicev?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportCreateNestedManyWithoutTargetInput
@@ -917,10 +917,10 @@ export type AccountUncheckedCreateWithoutPartitaInput = {
   Nome: string
   AccountId?: number
   Password: string
-  Descrizione: string
+  Descrizione?: string
   Immagine?: string
   RiotID?: string | null
-  IsAdmin: boolean
+  IsAdmin?: boolean
   Config?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutUserInput
   ReportRicev?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   ReportCreati?: Prisma.ReportUncheckedCreateNestedManyWithoutTargetInput

@@ -18,15 +18,15 @@ export const load : PageServerLoad = async ({ params, locals }) => {
 
         images = await getChampionsBasicInfo()
 
-        let accountInfo = getAccount(user.username)
+        let accountInfo = await getAccount(user.username)
 
         if(!accountInfo) {
             throw { message: "Account Missing." }
         }
         
         return {
-            profile: user,
-            profileRole: user.isAdmin
+            profile: accountInfo,
+            profileRole: accountInfo.IsAdmin
             ? "Admin" : "User",
             imageList: images.map(i => i.Icona)
         }

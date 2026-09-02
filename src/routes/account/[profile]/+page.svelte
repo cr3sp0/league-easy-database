@@ -81,6 +81,7 @@
                 <CreateReport bind:visible={isReportOpen} target={data.profile.Nome} />
             </div>
         </div>
+        <div class="description">{data.profile.Descrizione}</div>
         <br />
         <div class="builds-content">
             <Search />
@@ -177,6 +178,11 @@
         font-size: var(--text-lm);
         font-family: var(--font-passion);
         color: var(--white-20);
+    }
+
+    .description{
+        font-size: var(--text-sm);
+        font-family: var(--font-mono);
     }
 
     .builds-content{

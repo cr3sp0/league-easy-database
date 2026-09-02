@@ -161,7 +161,7 @@ export async function updateAccount(userID : number,
             }
         })
     } catch (err : any) {
-        throw { message: err.message }
+        throw { message: "Something went wrong." }
     }
 }
 export async function createReport(

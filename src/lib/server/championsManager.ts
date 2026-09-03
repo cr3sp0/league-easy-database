@@ -3,38 +3,46 @@ import type { Campione, Prisma } from './prisma/client';
 import { CosmeticoScalarFieldEnum } from './prisma/internal/prismaNamespace';
 
 let championsCache: Campione[] | null = null;
+
 type CampioniConCosmetici = Prisma.CampioneGetPayload<{
-  include: { Cosmetico: true} }>;
+  include: { Cosmetico: true }
+}>;
+
 let champAndCosmeticsCache: CampioniConCosmetici[] | null = null; 
-
-async function getFullChampionsCache() {
-  if (championsCache) {
-    return championsCache; 
-  }
-
-  //SELECT * FROM campione
-  championsCache = await prisma.campione.findMany();
-  
-  return championsCache;
-}
 
 async function getFullChampionsAndCosmeticsCache() {
   if (champAndCosmeticsCache) {
     return champAndCosmeticsCache; 
   }
 
-  //SELECT * FROM campione JOIN cosmetico ON IdCampione ORDERBY cosmetico.Immagine
+  // SELECT * FROM campione JOIN cosmetico ON IdCampione ORDER BY cosmetico.Immagine
   champAndCosmeticsCache = await prisma.campione.findMany({
-  include: {
-    Cosmetico: {
-      orderBy: {
-        Immagine: 'asc'
-      }
-    }
-  },
-});
+    include: {
+      Cosmetico: {
+        orderBy: {
+          Immagine: 'asc'
+        }
+      },
+    },
+  });
   
   return champAndCosmeticsCache;
+}
+
+async function getFullChampionsCache() {
+  if (championsCache) {
+    return championsCache; 
+  }
+
+  const allChampionsAndCosmetics = await getFullChampionsAndCosmeticsCache();
+  
+  championsCache = allChampionsAndCosmetics.map((champ) => {
+    const { Cosmetico, ...nakedChamp } = champ;
+    
+    return nakedChamp;
+  });
+  
+  return championsCache;
 }
 
 export async function getChampionsBasicInfo() {
@@ -46,17 +54,27 @@ export async function getChampionsBasicInfo() {
   }));
 }
 
-export async function getChampionByName(nomeCercato: string) {
+export async function getChampionByName(name: string) {
   const allChampions = await getFullChampionsCache();
-  return allChampions.find(champ => champ.nome.toLowerCase() === nomeCercato.toLowerCase());
+  return allChampions.find(champ => champ.nome.toLowerCase() === name.toLowerCase());
 }
 
-export async function getChampionAndCosmeticsByName(nomeCercato: string) {
+export async function getChampionAndCosmeticsByName(name: string) {
   const allChampionsAndCosmetics = await getFullChampionsAndCosmeticsCache();
-  return allChampionsAndCosmetics.find(champ => champ.nome.toLowerCase() === nomeCercato.toLowerCase());
+  return allChampionsAndCosmetics.find(champ => champ.nome.toLowerCase() === name.toLowerCase());
 }
 
-//Empty Cache
+export async function getStats(champID : number) {
+  const champStats = await prisma.setBase.findFirst({
+    where: {
+      IdStatistiche: champID
+    }
+  })
+
+  return champStats
+}
+
+// Empty Cache
 export function invalidateChampionsCache() {
   championsCache = null;
   champAndCosmeticsCache = null;

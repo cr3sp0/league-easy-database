@@ -37,7 +37,7 @@ export const load: PageServerLoad = async ({ params, locals, cookies }) => {
 		popup.color = "red";
 		popup.text = err.message;
 
-		throw error(err);
+		throw error(500, err);
 	}
 }
 

@@ -1,69 +1,132 @@
 <script lang="ts">
-  import type { PathConfig } from "$lib/types";
-  import type { RunePath } from "$lib/types";
+  import type { Runa, Tipologia_runa } from "$lib/server/prisma/client";
 
-  let { paths }: { paths: PathConfig[] } = $props();
+  let { paths = [], runes = [] }: { paths: Tipologia_runa[]; runes: Runa[] } =
+    $props();
 
-  //TODO: we need to use the database data here
+  let selectedPath = $state<Tipologia_runa | null>(null);
 
-  let selectedPath = $state<RunePath | null>(null);
-  let isMenuOpen = $state(false);
+  // Slot 0 e 1 per le due rune secondarie
+  let selectedRunes = $state<(Runa | null)[]>([null, null]);
+
+  // Stato per gestire i menu a tendina
+  let activeMenu = $state<"path" | 0 | 1 | null>(null);
   let isAnimating = $state(false);
 
+  // NOTA: Controlla se nel tuo schema il colore c'è, altrimenti teniamo il bianco di default.
+  // Assicurati di usare .Id o .id in base a come è scritto nel tuo Prisma Schema.
   let currentPathColor = $derived(
-    paths.find((p) => p.id === selectedPath)?.color || "#ffffff",
+    selectedPath ? (selectedPath as any).color || "#ffffff" : "#ffffff",
   );
 
-  function toggleMenu() {
-    isMenuOpen = !isMenuOpen;
+  // Funzione che calcola le rune disponibili per uno slot, escludendo il Grado occupato dall'altro slot
+  function getAvailableRunes(slotIndex: 0 | 1) {
+    if (!selectedPath) return [];
+
+    // Troviamo l'indice dell'altro slot (se guardo lo 0, l'altro è 1 e viceversa)
+    const otherSlotIndex = slotIndex === 0 ? 1 : 0;
+    const otherRune = selectedRunes[otherSlotIndex];
+    const otherGrado = otherRune ? otherRune.Grado : null;
+
+    return runes.filter(
+      (r) =>
+        r.CamminoId === (selectedPath as any).Id &&
+        (r.Grado === 1 || r.Grado === 2 || r.Grado === 3) && // Solo rune minori
+        r.Grado !== otherGrado, // ESCLUDE le rune della stessa riga (Grado) dell'altra scelta
+    );
   }
 
-  function selectPath(pathId: RunePath) {
-    selectedPath = pathId;
-    isMenuOpen = false;
+  function toggleMenu(menu: "path" | 0 | 1) {
+    activeMenu = activeMenu === menu ? null : menu;
+  }
+
+  function selectPath(path: Tipologia_runa) {
+    selectedPath = path;
+    selectedRunes = [null, null]; // Reset delle rune scelte
+    activeMenu = null;
     isAnimating = false;
 
     setTimeout(() => {
       isAnimating = true;
     }, 10);
   }
+
+  function selectRune(index: 0 | 1, rune: Runa) {
+    selectedRunes[index] = rune;
+    activeMenu = null;
+  }
 </script>
 
 <div class="rune-builder" style="--current-path-color: {currentPathColor}">
   <div class="rune-row">
-    <div class="path-selector-wrapper">
+    <!-- SELETTORE PATH -->
+    <div class="path-selector-wrapper" class:open={activeMenu === "path"}>
       <button
         class="path-circle"
         class:empty-glow={!selectedPath}
-        onclick={toggleMenu}
-        aria-label="Select Rune Path"
+        onclick={() => toggleMenu("path")}
+        aria-label="Select Secondary Rune Path"
       >
         <span class="arc-deco"></span>
         <span class="path-icon">
-          {selectedPath ? selectedPath.charAt(0).toUpperCase() : "?"}
+          {selectedPath ? selectedPath.Nome.charAt(0).toUpperCase() : "?"}
         </span>
       </button>
 
-      {#if isMenuOpen}
+      {#if activeMenu === "path"}
         <div class="path-dropdown">
           {#each paths as path}
             <button
               class="path-option"
-              onclick={() => selectPath(path.id)}
-              style="--hover-color: {path.color}"
+              onclick={() => selectPath(path)}
+              style="--hover-color: {(path as any).color || '#ffffff'}"
             >
-              {path.name}
+              {path.Nome}
             </button>
           {/each}
         </div>
       {/if}
     </div>
 
+    <!-- SELETTORE RUNE E SHARDS -->
     <div class="beads-container">
       <div class="rune-line" class:pulse-active={isAnimating}></div>
 
-      <div class="rune-bead" class:active={selectedPath}></div>
-      <div class="rune-bead" class:active={selectedPath}></div>
+      <!-- LE 2 RUNE SECONDARIE SELEZIONABILI -->
+      {#each [0, 1] as slotIndex}
+        <div class="bead-wrapper" class:open={activeMenu === slotIndex}>
+          <button
+            class="rune-bead"
+            class:active={selectedPath}
+            onclick={() => selectedPath && toggleMenu(slotIndex as 0 | 1)}
+            aria-label={`Select Secondary Rune ${slotIndex + 1}`}
+          >
+            {#if selectedRunes[slotIndex]}
+              <img
+                src={selectedRunes[slotIndex]!.Immagine}
+                alt={selectedRunes[slotIndex]!.Nome}
+                title={selectedRunes[slotIndex]!.Descrizione}
+              />
+            {/if}
+          </button>
+
+          {#if activeMenu === slotIndex}
+            <div class="path-dropdown rune-dropdown">
+              {#each getAvailableRunes(slotIndex as 0 | 1) as rune}
+                <button
+                  class="path-option rune-option"
+                  onclick={() => selectRune(slotIndex as 0 | 1, rune)}
+                >
+                  <img src={rune.Immagine} alt="" class="rune-option-img" />
+                  {rune.Nome}
+                </button>
+              {/each}
+            </div>
+          {/if}
+        </div>
+      {/each}
+
+      <!-- LE 3 SHARDS (STATISTICHE) - Placeholder per ora -->
       <div class="small-rune-bead" class:active={selectedPath}></div>
       <div class="small-rune-bead" class:active={selectedPath}></div>
       <div class="small-rune-bead" class:active={selectedPath}></div>
@@ -71,10 +134,11 @@
   </div>
 </div>
 
-{#if isMenuOpen}
+<!-- BACKDROP PER CHIUDERE I MENU -->
+{#if activeMenu !== null}
   <button
     class="backdrop"
-    onclick={() => (isMenuOpen = false)}
+    onclick={() => (activeMenu = null)}
     aria-label="Close menu"
   ></button>
 {/if}
@@ -98,9 +162,51 @@
 
   .path-selector-wrapper {
     position: relative;
-    z-index: 20;
+    z-index: 18;
     flex-shrink: 0;
   }
+
+  .path-selector-wrapper.open {
+    z-index: 19;
+  }
+
+  /* --- CLASSI PER I MENU RUNE (come nel ramo primario) --- */
+  .bead-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+  }
+
+  .bead-wrapper.open {
+    z-index: 50;
+  }
+
+  .rune-bead img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
+  .rune-dropdown {
+    min-width: 180px;
+  }
+
+  .rune-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .rune-option-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+  /* -------------------------------------------------------- */
 
   .path-circle {
     position: relative;
@@ -117,6 +223,7 @@
       transform 0.2s,
       border-color 0.4s,
       box-shadow 0.4s;
+    padding: 0;
   }
 
   .path-circle:hover {
@@ -217,7 +324,7 @@
       #252830 0%,
       var(--current-path-color) 20%,
       var(--current-path-color) 50%,
-      #252830 80
+      #252830 80%
     );
     background-size: 200% 100%;
     animation: run-pulse 1s ease-out forwards;
@@ -245,6 +352,11 @@
       border-color 0.4s 0.4s,
       box-shadow 0.4s 0.4s;
     flex-shrink: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 
   .small-rune-bead {
@@ -261,14 +373,14 @@
     flex-shrink: 0;
   }
 
-  .rune-bead.active {
+  .rune-bead.active,
+  .small-rune-bead.active {
     border-color: var(--current-path-color);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   }
 
-  .small-rune-bead.active {
-    border-color: var(--current-path-color);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  .rune-bead:hover.active {
+    border-color: white;
   }
 
   .backdrop {

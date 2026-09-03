@@ -2,23 +2,23 @@
   import Itemselector from "$lib/components/Itemselector.svelte";
   import Navbar from "$lib/components/navbar.svelte";
   import Runeselector from "$lib/components/runeselector.svelte";
-  import type { Campione } from "$lib/server/prisma/client.js";
+  import type { Campione, Runa, SetBase } from "$lib/server/prisma/client.js";
   import type { StatItem } from "$lib/types";
-  import { setContext } from "svelte";
 
   let { data } = $props();
 
   const champ: Campione = data.champ;
 
-  const defaultTitle = $derived(data.title.replaceAll("-", " "));
+  const stats: SetBase = data.stats;
 
-  let currentTitle = $derived(data.title.replaceAll("-", " "));
+  const defaultTitle = data.champ.nome + " New Build";
+
+  let currentTitle = defaultTitle;
   let isEditing = $state(false);
 
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === "Enter") {
       isEditing = false;
-      // TODO: Logica per salvare il nome nel database o nello store
     } else if (event.key === "Escape") {
       isEditing = false;
       currentTitle = defaultTitle;
@@ -29,22 +29,21 @@
     node.focus();
   }
 
-  const stats: StatItem[] = [
-    { id: 1, name: "Attack Damage", value: champ.Attacco },
-    { id: 2, name: "Ability Power", value: champ.AttaccoMagico },
-    { id: 3, name: "Armor", value: champ.Armatura },
-    { id: 4, name: "Magic Resist", value: champ.Resistenza_magica },
-    { id: 5, name: "Attack Speed", value: champ.Velocità_di_attacco },
-    { id: 6, name: "Range", value: champ.Gittata },
-    { id: 7, name: "Mana", value: champ.Vita },
-    { id: 8, name: "HP", value: champ.Mana },
-    { id: 9, name: "Move Speed", value: champ.Velocità_di_movimento },
+  const statsArr: StatItem[] = [
+    { id: 1, name: "Attack Damage", value: stats.Attacco },
+    { id: 2, name: "Ability Power", value: stats.AttaccoMagico },
+    { id: 3, name: "Armor", value: stats.Armatura },
+    { id: 4, name: "Magic Resist", value: stats.ResistenzaMagica },
+    { id: 5, name: "Attack Speed", value: stats.VelocitàDiAttacco },
+    { id: 6, name: "Range", value: stats.Gittata },
+    { id: 7, name: "Mana", value: stats.Vita },
+    { id: 8, name: "HP", value: stats.Mana },
+    { id: 9, name: "Move Speed", value: stats.Velocità_di_movimento },
   ];
 
   let wins = $state(0);
   let losses = $state(0);
 
-  //TODO: PLACE HOLDER
   type MatchRecord = {
     id: number;
     date: string;
@@ -165,6 +164,7 @@
         type="button"
         aria-label="Edit title"
         onclick={() => (isEditing = true)}
+        title="Edit"
       >
         <svg viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -173,11 +173,25 @@
           />
         </svg>
       </button>
+
+      <button
+        class="save-build-btn"
+        type="button"
+        aria-label="Save Build"
+        title="Save Build"
+      >
+        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M0 2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H3V3.5C3 3.89782 3.15804 4.27936 3.43934 4.56066C3.72064 4.84196 4.10218 5 4.5 5H8.5C8.89782 5 9.27936 4.84196 9.56066 4.56066C9.84196 4.27936 10 3.89782 10 3.5V0H10.379C10.9094 0.000113275 11.418 0.210901 11.793 0.586L13.414 2.207C13.7891 2.58199 13.9999 3.09061 14 3.621V12C14 12.5304 13.7893 13.0391 13.4142 13.4142C13.0391 13.7893 12.5304 14 12 14V8.5C12 8.10218 11.842 7.72064 11.5607 7.43934C11.2794 7.15804 10.8978 7 10.5 7H3.5C3.10218 7 2.72064 7.15804 2.43934 7.43934C2.15804 7.72064 2 8.10218 2 8.5V14C1.46957 14 0.960859 13.7893 0.585786 13.4142C0.210714 13.0391 0 12.5304 0 12V2ZM9 0H4V3.5C4 3.63261 4.05268 3.75979 4.14645 3.85355C4.24021 3.94732 4.36739 4 4.5 4H8.5C8.63261 4 8.75979 3.94732 8.85355 3.85355C8.94732 3.75979 9 3.63261 9 3.5V0ZM11 8.5V14H3V8.5C3 8.36739 3.05268 8.24021 3.14645 8.14645C3.24021 8.05268 3.36739 8 3.5 8H10.5C10.6326 8 10.7598 8.05268 10.8536 8.14645C10.9473 8.24021 11 8.36739 11 8.5Z"
+            fill="white"
+          />
+        </svg>
+      </button>
     </div>
 
     <div class="buildinfo-runes">
       <div class="buildinfo-sectiontitle">Runes</div>
-      <Runeselector />
+      <Runeselector runes={data.runes} paths={data.path} />
     </div>
 
     <div class="buildinfo-items">
@@ -197,7 +211,7 @@
     <div class="buildinfo-stats">
       <div class="buildinfo-sectiontitle">Stats</div>
       <div class="stats-grid">
-        {#each stats as stat (stat.id)}
+        {#each statsArr as stat (stat.id)}
           <div class="stat-card">
             <span class="stat-name">{stat.name}</span>
             <span class="stat-value">{stat.value}</span>
@@ -283,7 +297,6 @@
               <span class="match-kda">{match.kda}</span>
               <span class="match-result">{match.result}</span>
 
-              <!-- Sezione azioni (Modifica / Elimina) -->
               <div class="match-actions">
                 <button class="action-txt-btn" onclick={() => editGame(match)}
                   >edit</button
@@ -344,6 +357,7 @@
     align-items: center;
     gap: 50px;
     height: 75px;
+    width: 100%; /* Assicura che l'header prenda tutto lo spazio orizzontale */
   }
 
   .champpic {
@@ -363,6 +377,7 @@
   }
 
   .pen {
+    margin-left: auto;
     background: transparent;
     border: none;
     padding: 0;
@@ -372,13 +387,33 @@
   }
 
   .pen svg {
-    height: 2.5rem;
+    height: 2rem;
     aspect-ratio: 1;
     cursor: pointer;
     transition: opacity 0.2s;
   }
 
   .pen:hover svg {
+    opacity: 0.7;
+  }
+
+  .save-build-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .save-build-btn svg {
+    height: 2rem;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .save-build-btn:hover svg {
     opacity: 0.7;
   }
 

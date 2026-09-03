@@ -8,7 +8,7 @@
 
 <div class="container">
   <div class="items-content">
-    <Navbar profile={data.profile.username} role={data.role} />
+    <Navbar profile={data.profile?.username} role={data.role} />
     <div class="title">Items</div>
     <Search />
     <Itemsgrid itemList={data.items} />

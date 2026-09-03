@@ -4,12 +4,10 @@
 
   let { itemList } : { itemList : CompleteItem[] } = $props()
 
-  console.log("--")
-  // svelte-ignore state_referenced_locally
-  const items = Array.from({ length: 24 }, (_, i) => ({
+  const items = $derived(Array.from({ length: itemList.length }, (_, i) => ({
     id: i,
     item: itemList[i]
-  }));
+  })));
 
   let expandedId = $state<number | null>(null);
 
@@ -105,6 +103,7 @@
     border-color: #554949;
     aspect-ratio: auto;
     align-items: flex-start;
+    overflow-y: auto;
   }
 
   .grid-item.expanded .image-wrapper {
@@ -120,6 +119,8 @@
     justify-content: center;
     color: white;
     animation: fadeIn 0.4s ease-out;
+
+    font-family: var(--font-mono);
   }
 
   .info-wrapper h3 {

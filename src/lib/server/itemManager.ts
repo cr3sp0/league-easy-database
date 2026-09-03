@@ -71,35 +71,40 @@ export async function getItems({
         include: {
             Stats: true
         },
-        /*where: {
+        where: {
             Nome: name,
             Costo: {
                 lt: costsLess,
                 gt: costsMore
             },
             Stats: {
-                Vita                         : { gt: containsStat.Vita },
-                VitaPerLivello               : { gt: containsStat.VitaPerLivello },
-                Mana                         : { gt: containsStat.Mana },
-                ManaPerLivello               : { gt: containsStat.ManaPerLivello },
-                Velocità_di_movimento        : { gt: containsStat.Velocità_di_movimento },
-                Armatura                     : { gt: containsStat.Armatura },
-                ArmaturaPerLivello           : { gt: containsStat.ArmaturaPerLivello },
-                ResistenzaMagica             : { gt: containsStat.ResistenzaMagica },
-                ResistenzaMagicaPerLivello   : { gt: containsStat.ResistenzaMagicaPerLivello },
-                Gittata                      : { gt: containsStat.Gittata },
-                RigenerazioneVita            : { gt: containsStat.RigenerazioneVita },
-                RigenerazioneMana            : { gt: containsStat.RigenerazioneMana },
-                RigenerazioneManaPerLivello  : { gt: containsStat.RigenerazioneManaPerLivello },
-                Critico                      : { gt: containsStat.Critico },
-                CriticoPerLivello            : { gt: containsStat.CriticoPerLivello },
-                Attacco                      : { gt: containsStat.Attacco },
-                AttaccoPerLivello            : { gt: containsStat.AttaccoPerLivello },
-                VelocitàDiAttacco            : { gt: containsStat.VelocitàDiAttacco },
-                VelocitàDiAttaccoPerLivello  : { gt: containsStat.VelocitàDiAttaccoPerLivello },
-                AttaccoMagico                : { gt: containsStat.AttaccoMagico },
+                OR: [
+                    {Vita                         : { gte: containsStat.Vita }},
+                    {VitaPerLivello               : { gt: containsStat.VitaPerLivello }},
+                    {Mana                         : { gt: containsStat.Mana }},
+                    {ManaPerLivello               : { gt: containsStat.ManaPerLivello }},
+                    {Velocità_di_movimento        : { gt: containsStat.Velocità_di_movimento }},
+                    {Armatura                     : { gt: containsStat.Armatura }},
+                    {ArmaturaPerLivello           : { gt: containsStat.ArmaturaPerLivello }},
+                    {ResistenzaMagica             : { gt: containsStat.ResistenzaMagica }},
+                    {ResistenzaMagicaPerLivello   : { gt: containsStat.ResistenzaMagicaPerLivello }},
+                    {Gittata                      : { gt: containsStat.Gittata }},
+                    {RigenerazioneVita            : { gt: containsStat.RigenerazioneVita }},
+                    {RigenerazioneMana            : { gt: containsStat.RigenerazioneMana }},
+                    {RigenerazioneManaPerLivello  : { gt: containsStat.RigenerazioneManaPerLivello }},
+                    {Critico                      : { gt: containsStat.Critico }},
+                    {CriticoPerLivello            : { gt: containsStat.CriticoPerLivello }},
+                    {Attacco                      : { gt: containsStat.Attacco }},
+                    {AttaccoPerLivello            : { gt: containsStat.AttaccoPerLivello }},
+                    {VelocitàDiAttacco            : { gt: containsStat.VelocitàDiAttacco }},
+                    {VelocitàDiAttaccoPerLivello  : { gt: containsStat.VelocitàDiAttaccoPerLivello }},
+                    {AttaccoMagico                : { gt: containsStat.AttaccoMagico }}
+                ]
             }
-        }*/
+        },
+        orderBy: {
+            Nome: "asc"
+        }
     })
 
     console.log("3333")

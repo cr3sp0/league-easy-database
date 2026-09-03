@@ -18,7 +18,7 @@ export const load: PageServerLoad = async ({params, locals}) => {
     console.log(items[2].item.Nome)
 
     return {
-        profile: locals.user,
+        profile: profile,
         role: role,
         items: items
     };

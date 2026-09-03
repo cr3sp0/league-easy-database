@@ -30,44 +30,42 @@
 </script>
 
 <div class="stat-grid">
-    <div>
-        {#if Vita > 0}
+    {#if Vita > 0}
         <div>Health: {Vita}</div>
-        {/if}
-        {#if RigenerazioneVita > 0}
-            <div>Health Regen: {RigenerazioneVita}</div>
-        {/if}
-        {#if Mana > 0}
-            <div>Mana: {Mana}</div>
-        {/if}
-        {#if RigenerazioneMana > 0}
-            <div>Mana Regen: {RigenerazioneMana}</div>
-        {/if}
-        {#if Velocità_di_movimento > 0}
-            <div>Movement Speed: {Velocità_di_movimento}</div>
-        {/if}
-        {#if Armatura > 0}
-            <div>Armor: {Armatura}</div>
-        {/if}
-        {#if ResistenzaMagica > 0}
-            <div>Magic Resistance: {ResistenzaMagica}</div>
-        {/if}
-        {#if Gittata > 0}
-            <div>Range: {Gittata}</div>
-        {/if}
-        {#if Critico > 0}
-            <div>Critical Rate: {Critico}</div>
-        {/if}
-        {#if Attacco > 0}
-            <div>Attack: {Attacco}</div>
-        {/if}
-        {#if VelocitàDiAttacco > 0}
-            <div>Attack Speed: {VelocitàDiAttacco}</div>
-        {/if}
-        {#if AttaccoMagico > 0}
-            <div>Ability Power: {AttaccoMagico}</div>
-        {/if}
-    </div>
+    {/if}
+    {#if RigenerazioneVita > 0}
+        <div>Health Regen: {RigenerazioneVita}</div>
+    {/if}
+    {#if Mana > 0}
+        <div>Mana: {Mana}</div>
+    {/if}
+    {#if RigenerazioneMana > 0}
+        <div>Mana Regen: {RigenerazioneMana}</div>
+    {/if}
+    {#if Velocità_di_movimento > 0}
+        <div>Movement Speed: {Velocità_di_movimento}</div>
+    {/if}
+    {#if Armatura > 0}
+        <div>Armor: {Armatura}</div>
+    {/if}
+    {#if ResistenzaMagica > 0}
+        <div>Magic Resistance: {ResistenzaMagica}</div>
+    {/if}
+    {#if Gittata > 0}
+        <div>Range: {Gittata}</div>
+    {/if}
+    {#if Critico > 0}
+        <div>Critical Rate: {Critico}</div>
+    {/if}
+    {#if Attacco > 0}
+        <div>Attack: {Attacco}</div>
+    {/if}
+    {#if VelocitàDiAttacco > 0}
+        <div>Attack Speed: {VelocitàDiAttacco}</div>
+    {/if}
+    {#if AttaccoMagico > 0}
+        <div>Ability Power: {AttaccoMagico}</div>
+    {/if}
 </div>
 
 <style>

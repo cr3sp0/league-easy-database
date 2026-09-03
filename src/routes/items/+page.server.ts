@@ -1,17 +1,25 @@
+import { getItems } from '$lib/server/itemManager';
+import type { IUser } from '$lib/types';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({params, locals}) => {
   
-  if(!locals.user) {
-    return {
-      profile: undefined,
-      role: "User"
-    }
-  }
+    let profile : IUser | undefined = undefined
+    let role = "User"
 
-  return {
-    profile: locals.user.username,
-    role: locals.user.isAdmin
-      ? "Admin" : "User",
-  };
+    if(locals.user) {
+        profile = locals.user
+        role = locals.user.isAdmin
+            ? "Admin" : "User"
+    }
+
+    console.log("!!!!")
+    const items = await getItems({})
+    console.log(items[2].item.Nome)
+
+    return {
+        profile: locals.user,
+        role: role,
+        items: items
+    };
 };

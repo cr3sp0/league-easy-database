@@ -98,7 +98,7 @@ model Configurazione {
   Incantesimo2 String
   Runa         Int
   IdAccount    Int
-  TitoloConf   String
+  TitoloConf   String       @default("New Build")
   User         Account      @relation(fields: [IdAccount], references: [AccountId])
   champ        Campione     @relation(fields: [IdCampione], references: [ID])
   Inc1         Incantesimo  @relation("Inc1", fields: [Incantesimo1], references: [Nome])
@@ -134,15 +134,16 @@ model Account {
   Nome         String           @unique
   AccountId    Int              @id @default(autoincrement())
   Password     String
-  Descrizione  String
+  Descrizione  String           @default("Hi! I'm new here.")
   Immagine     String           @default("https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/items/Poro-Snax_item_HD.png")
   RiotID       String?          @unique @db.VarChar(50)
-  IsAdmin      Boolean
+  IsAdmin      Boolean          @default(false)
   Config       Configurazione[]
   Partita      Partita[]
   ReportRicev  Report[]         @relation("Author")
   ReportCreati Report[]         @relation("Target")
   sessione     Sessione?
+  Banned       Banned_Account?
 }
 
 model Sessione {
@@ -155,22 +156,23 @@ model Sessione {
 }
 
 model Report {
-  Id          Int             @id @default(autoincrement())
-  TargetId    Int
-  AuthorId    Int
+  IdTarget    Int
+  IdAutore    Int
   Motivazione String
+  Data_Creazione  DateTime
   Descrizione String?
-  Banned      Banned_Account?
-  Author      Account         @relation("Author", fields: [AuthorId], references: [AccountId])
-  Target      Account         @relation("Target", fields: [TargetId], references: [AccountId])
+  Author      Account         @relation("Author", fields: [IdAutore], references: [AccountId])
+  Target      Account         @relation("Target", fields: [IdTarget], references: [AccountId])
+
+  @@id([IdTarget, IdAutore])
 }
 
 model Banned_Account {
   AccountId       Int     @id
+  Expiration_Date      DateTime
   Motivazione     String
   Descrizione     String?
-  ReportOrigineId Int     @unique
-  Origine         Report  @relation(fields: [ReportOrigineId], references: [Id])
+  Account         Account @relation(fields: [AccountId], references: [AccountId])
 }
 
 model Kit {

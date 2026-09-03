@@ -300,7 +300,7 @@ export type ConfigurazioneScalarWhereWithAggregatesInput = {
 }
 
 export type ConfigurazioneCreateInput = {
-  TitoloConf: string
+  TitoloConf?: string
   User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
@@ -316,7 +316,7 @@ export type ConfigurazioneUncheckedCreateInput = {
   Incantesimo2: string
   Runa: number
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
   Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
@@ -349,7 +349,7 @@ export type ConfigurazioneCreateManyInput = {
   Incantesimo2: string
   Runa: number
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
 }
 
 export type ConfigurazioneUpdateManyMutationInput = {
@@ -661,7 +661,7 @@ export type ConfigurazioneUpdateOneRequiredWithoutPartiteNestedInput = {
 }
 
 export type ConfigurazioneCreateWithoutChampInput = {
-  TitoloConf: string
+  TitoloConf?: string
   User: Prisma.AccountCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
   Inc2: Prisma.IncantesimoCreateNestedOneWithoutIncant2Input
@@ -675,7 +675,7 @@ export type ConfigurazioneUncheckedCreateWithoutChampInput = {
   Incantesimo2: string
   Runa: number
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
   Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
@@ -719,7 +719,7 @@ export type ConfigurazioneScalarWhereInput = {
 }
 
 export type ConfigurazioneCreateWithoutInc1Input = {
-  TitoloConf: string
+  TitoloConf?: string
   User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc2: Prisma.IncantesimoCreateNestedOneWithoutIncant2Input
@@ -733,7 +733,7 @@ export type ConfigurazioneUncheckedCreateWithoutInc1Input = {
   Incantesimo2: string
   Runa: number
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
   Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
@@ -749,7 +749,7 @@ export type ConfigurazioneCreateManyInc1InputEnvelope = {
 }
 
 export type ConfigurazioneCreateWithoutInc2Input = {
-  TitoloConf: string
+  TitoloConf?: string
   User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
@@ -763,7 +763,7 @@ export type ConfigurazioneUncheckedCreateWithoutInc2Input = {
   Incantesimo1: string
   Runa: number
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
   Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
@@ -811,7 +811,7 @@ export type ConfigurazioneUpdateManyWithWhereWithoutInc2Input = {
 }
 
 export type ConfigurazioneCreateWithoutInvInput = {
-  TitoloConf: string
+  TitoloConf?: string
   User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
@@ -826,7 +826,7 @@ export type ConfigurazioneUncheckedCreateWithoutInvInput = {
   Incantesimo2: string
   Runa: number
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
   Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
 
@@ -867,7 +867,7 @@ export type ConfigurazioneUncheckedUpdateWithoutInvInput = {
 }
 
 export type ConfigurazioneCreateWithoutUserInput = {
-  TitoloConf: string
+  TitoloConf?: string
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
   Inc2: Prisma.IncantesimoCreateNestedOneWithoutIncant2Input
@@ -881,7 +881,7 @@ export type ConfigurazioneUncheckedCreateWithoutUserInput = {
   Incantesimo1: string
   Incantesimo2: string
   Runa: number
-  TitoloConf: string
+  TitoloConf?: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
   Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
@@ -913,7 +913,7 @@ export type ConfigurazioneUpdateManyWithWhereWithoutUserInput = {
 }
 
 export type ConfigurazioneCreateWithoutPag_RunaInput = {
-  TitoloConf: string
+  TitoloConf?: string
   User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
@@ -927,7 +927,7 @@ export type ConfigurazioneUncheckedCreateWithoutPag_RunaInput = {
   Incantesimo1: string
   Incantesimo2: string
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
   Partite?: Prisma.PartitaUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
@@ -959,7 +959,7 @@ export type ConfigurazioneUpdateManyWithWhereWithoutPag_RunaInput = {
 }
 
 export type ConfigurazioneCreateWithoutPartiteInput = {
-  TitoloConf: string
+  TitoloConf?: string
   User: Prisma.AccountCreateNestedOneWithoutConfigInput
   champ: Prisma.CampioneCreateNestedOneWithoutConfigInput
   Inc1: Prisma.IncantesimoCreateNestedOneWithoutIncant1Input
@@ -974,7 +974,7 @@ export type ConfigurazioneUncheckedCreateWithoutPartiteInput = {
   Incantesimo2: string
   Runa: number
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutConfigurazioneInput
 }
 
@@ -1019,7 +1019,7 @@ export type ConfigurazioneCreateManyChampInput = {
   Incantesimo2: string
   Runa: number
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
 }
 
 export type ConfigurazioneUpdateWithoutChampInput = {
@@ -1055,7 +1055,7 @@ export type ConfigurazioneCreateManyInc1Input = {
   Incantesimo2: string
   Runa: number
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
 }
 
 export type ConfigurazioneCreateManyInc2Input = {
@@ -1063,7 +1063,7 @@ export type ConfigurazioneCreateManyInc2Input = {
   Incantesimo1: string
   Runa: number
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
 }
 
 export type ConfigurazioneUpdateWithoutInc1Input = {
@@ -1127,7 +1127,7 @@ export type ConfigurazioneCreateManyUserInput = {
   Incantesimo1: string
   Incantesimo2: string
   Runa: number
-  TitoloConf: string
+  TitoloConf?: string
 }
 
 export type ConfigurazioneUpdateWithoutUserInput = {
@@ -1163,7 +1163,7 @@ export type ConfigurazioneCreateManyPag_RunaInput = {
   Incantesimo1: string
   Incantesimo2: string
   IdAccount: number
-  TitoloConf: string
+  TitoloConf?: string
 }
 
 export type ConfigurazioneUpdateWithoutPag_RunaInput = {

@@ -3,6 +3,7 @@
     import Navbar from "$lib/components/navbar.svelte";
     import Search from "$lib/components/search.svelte";
     import { popup } from "$lib/components/store/popup.svelte";
+    import type { Report } from "$lib/server/prisma/browser.js";
     import { slide } from "svelte/transition";
 
     let { data } = $props();
@@ -36,17 +37,17 @@
                 onclick={() => toggleExpand(currIndex)}
                 >
                     <div class="list-item-header">
-                        <div class="reason">{listItem.reason}</div>
+                        <div class="reason">{listItem.Motivazione}</div>
                         <div class="filler"></div>
                         <div class="list-item-info">
                             <div>to: 
-                                <a href="/account/{listItem.target}" class="account-info">
-                                    {listItem.target}
+                                <a href="/account/{listItem.Target.Nome}" class="account-info">
+                                    {listItem.Target.Nome}
                                 </a>
                             </div>
                             <div>from: 
-                                <a href="/account/{listItem.author}" class="account-info">
-                                    {listItem.author}
+                                <a href="/account/{listItem.Author.Nome}" class="account-info">
+                                    {listItem.Author.Nome}
                                 </a>
                             </div>
                         </div>
@@ -54,14 +55,14 @@
 
                     {#if (expandedId === currIndex)}
                     <div class="list-item-expanded" transition:slide={{duration : 300}}>
-                        <div class="description">{listItem.description}</div>
+                        <div class="description">{listItem.Descrizione}</div>
                         <div class="filler"></div>
                         <form
                         method="get"
-                        action="/account/ban"
+                        action="/admin/ban"
                         >
-                            <input name="target" type="hidden" value={listItem.target} />
-                            <input name="reason" type="hidden" value={listItem.reason} />
+                            <input name="target" type="hidden" value={listItem.Target.Nome} />
+                            <input name="reason" type="hidden" value={listItem.Motivazione} />
 
                             <button class="btn" type="submit" value="banAccount">Ban</button>
                         </form>
@@ -78,7 +79,8 @@
                             }
                         }}
                         >
-                            <input name="date" type="hidden" value={listItem.date} />
+                            <input name="target" type="hidden" value={listItem.IdTarget} />
+                            <input name="author" type="hidden" value={listItem.IdAutore} />
 
                             <button class="btn" type="submit">Ignore</button>
                         </form>

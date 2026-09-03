@@ -60,7 +60,7 @@
                             <div>
                                 <form
                                 method="get"
-                                action="/account/reports"
+                                action="/admin/reports"
                                 >
                                     <input name="target" type="hidden" value={data.profile.Nome} />
                                     <button type="submit" class="option-content-btn">Report List</button>
@@ -69,7 +69,7 @@
                             <div>
                                 <form 
                                 method="get"
-                                action="/account/ban"
+                                action="/admin/ban"
                                 >
                                     <input name="target" type="hidden" value={data.profile.Nome} />
                                     <button type="submit" class="option-content-btn">Block Account</button>
@@ -81,6 +81,7 @@
                 <CreateReport bind:visible={isReportOpen} target={data.profile.Nome} />
             </div>
         </div>
+        <div class="description">{data.profile.Descrizione}</div>
         <br />
         <div class="builds-content">
             <Search />
@@ -177,6 +178,11 @@
         font-size: var(--text-lm);
         font-family: var(--font-passion);
         color: var(--white-20);
+    }
+
+    .description{
+        font-size: var(--text-sm);
+        font-family: var(--font-mono);
     }
 
     .builds-content{

@@ -2760,10 +2760,10 @@ export type SessioneScalarFieldEnum = (typeof SessioneScalarFieldEnum)[keyof typ
 
 
 export const ReportScalarFieldEnum = {
-  Id: 'Id',
-  TargetId: 'TargetId',
-  AuthorId: 'AuthorId',
+  IdTarget: 'IdTarget',
+  IdAutore: 'IdAutore',
   Motivazione: 'Motivazione',
+  Data_Creazione: 'Data_Creazione',
   Descrizione: 'Descrizione'
 } as const
 
@@ -2772,9 +2772,9 @@ export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof 
 
 export const Banned_AccountScalarFieldEnum = {
   AccountId: 'AccountId',
+  Expiration_Date: 'Expiration_Date',
   Motivazione: 'Motivazione',
-  Descrizione: 'Descrizione',
-  ReportOrigineId: 'ReportOrigineId'
+  Descrizione: 'Descrizione'
 } as const
 
 export type Banned_AccountScalarFieldEnum = (typeof Banned_AccountScalarFieldEnum)[keyof typeof Banned_AccountScalarFieldEnum]

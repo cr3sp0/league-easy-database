@@ -9,16 +9,17 @@
 
     const imagesLinkList = $derived(data.imageList)
 
-    let pfp = $derived(data.profile.pfp)
-    let username = $derived(data.profile.username)
-    let riotID : string | undefined = $derived(data.profile.riotID)
+    let pfp = $derived(data.profile.Immagine)
+    let username = $derived(data.profile.Nome)
+    let description = $derived(data.profile.Descrizione)
+    let riotID = $derived(data.profile.RiotID)
 
     let isPickerOpen : boolean = $state(false)
 </script>
 
 <div class="container">
     <div class="content">
-        <Navbar profile={data.profile.username} role={data.profileRole} />
+        <Navbar profile={data.profile.Nome} role={data.profileRole} />
 
         <div class="title">Settings</div>
         
@@ -60,6 +61,12 @@
                 <div>Set a new Username</div>
                 <div class="filler"></div>
                 <textarea name="newUsername" class="text" bind:value={username}></textarea>
+            </div>
+
+            <div class="form-info">
+                <div>Set a new Description</div>
+                <div class="filler"></div>
+                <textarea name="newUsername" class="text" bind:value={description}></textarea>
             </div>
 
             <div class="form-info">

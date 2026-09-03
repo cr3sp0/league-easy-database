@@ -27,76 +27,72 @@ export type AggregateReport = {
 }
 
 export type ReportAvgAggregateOutputType = {
-  Id: number | null
-  TargetId: number | null
-  AuthorId: number | null
+  IdTarget: number | null
+  IdAutore: number | null
 }
 
 export type ReportSumAggregateOutputType = {
-  Id: number | null
-  TargetId: number | null
-  AuthorId: number | null
+  IdTarget: number | null
+  IdAutore: number | null
 }
 
 export type ReportMinAggregateOutputType = {
-  Id: number | null
-  TargetId: number | null
-  AuthorId: number | null
+  IdTarget: number | null
+  IdAutore: number | null
   Motivazione: string | null
+  Data_Creazione: Date | null
   Descrizione: string | null
 }
 
 export type ReportMaxAggregateOutputType = {
-  Id: number | null
-  TargetId: number | null
-  AuthorId: number | null
+  IdTarget: number | null
+  IdAutore: number | null
   Motivazione: string | null
+  Data_Creazione: Date | null
   Descrizione: string | null
 }
 
 export type ReportCountAggregateOutputType = {
-  Id: number
-  TargetId: number
-  AuthorId: number
+  IdTarget: number
+  IdAutore: number
   Motivazione: number
+  Data_Creazione: number
   Descrizione: number
   _all: number
 }
 
 
 export type ReportAvgAggregateInputType = {
-  Id?: true
-  TargetId?: true
-  AuthorId?: true
+  IdTarget?: true
+  IdAutore?: true
 }
 
 export type ReportSumAggregateInputType = {
-  Id?: true
-  TargetId?: true
-  AuthorId?: true
+  IdTarget?: true
+  IdAutore?: true
 }
 
 export type ReportMinAggregateInputType = {
-  Id?: true
-  TargetId?: true
-  AuthorId?: true
+  IdTarget?: true
+  IdAutore?: true
   Motivazione?: true
+  Data_Creazione?: true
   Descrizione?: true
 }
 
 export type ReportMaxAggregateInputType = {
-  Id?: true
-  TargetId?: true
-  AuthorId?: true
+  IdTarget?: true
+  IdAutore?: true
   Motivazione?: true
+  Data_Creazione?: true
   Descrizione?: true
 }
 
 export type ReportCountAggregateInputType = {
-  Id?: true
-  TargetId?: true
-  AuthorId?: true
+  IdTarget?: true
+  IdAutore?: true
   Motivazione?: true
+  Data_Creazione?: true
   Descrizione?: true
   _all?: true
 }
@@ -188,10 +184,10 @@ export type ReportGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 export type ReportGroupByOutputType = {
-  Id: number
-  TargetId: number
-  AuthorId: number
+  IdTarget: number
+  IdAutore: number
   Motivazione: string
+  Data_Creazione: Date
   Descrizione: string | null
   _count: ReportCountAggregateOutputType | null
   _avg: ReportAvgAggregateOutputType | null
@@ -219,46 +215,44 @@ export type ReportWhereInput = {
   AND?: Prisma.ReportWhereInput | Prisma.ReportWhereInput[]
   OR?: Prisma.ReportWhereInput[]
   NOT?: Prisma.ReportWhereInput | Prisma.ReportWhereInput[]
-  Id?: Prisma.IntFilter<"Report"> | number
-  TargetId?: Prisma.IntFilter<"Report"> | number
-  AuthorId?: Prisma.IntFilter<"Report"> | number
+  IdTarget?: Prisma.IntFilter<"Report"> | number
+  IdAutore?: Prisma.IntFilter<"Report"> | number
   Motivazione?: Prisma.StringFilter<"Report"> | string
+  Data_Creazione?: Prisma.DateTimeFilter<"Report"> | Date | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
-  Banned?: Prisma.XOR<Prisma.Banned_AccountNullableScalarRelationFilter, Prisma.Banned_AccountWhereInput> | null
   Author?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   Target?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
 }
 
 export type ReportOrderByWithRelationInput = {
-  Id?: Prisma.SortOrder
-  TargetId?: Prisma.SortOrder
-  AuthorId?: Prisma.SortOrder
+  IdTarget?: Prisma.SortOrder
+  IdAutore?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
+  Data_Creazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrderInput | Prisma.SortOrder
-  Banned?: Prisma.Banned_AccountOrderByWithRelationInput
   Author?: Prisma.AccountOrderByWithRelationInput
   Target?: Prisma.AccountOrderByWithRelationInput
 }
 
 export type ReportWhereUniqueInput = Prisma.AtLeast<{
-  Id?: number
+  IdTarget_IdAutore?: Prisma.ReportIdTargetIdAutoreCompoundUniqueInput
   AND?: Prisma.ReportWhereInput | Prisma.ReportWhereInput[]
   OR?: Prisma.ReportWhereInput[]
   NOT?: Prisma.ReportWhereInput | Prisma.ReportWhereInput[]
-  TargetId?: Prisma.IntFilter<"Report"> | number
-  AuthorId?: Prisma.IntFilter<"Report"> | number
+  IdTarget?: Prisma.IntFilter<"Report"> | number
+  IdAutore?: Prisma.IntFilter<"Report"> | number
   Motivazione?: Prisma.StringFilter<"Report"> | string
+  Data_Creazione?: Prisma.DateTimeFilter<"Report"> | Date | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
-  Banned?: Prisma.XOR<Prisma.Banned_AccountNullableScalarRelationFilter, Prisma.Banned_AccountWhereInput> | null
   Author?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   Target?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
-}, "Id">
+}, "IdTarget_IdAutore">
 
 export type ReportOrderByWithAggregationInput = {
-  Id?: Prisma.SortOrder
-  TargetId?: Prisma.SortOrder
-  AuthorId?: Prisma.SortOrder
+  IdTarget?: Prisma.SortOrder
+  IdAutore?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
+  Data_Creazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ReportCountOrderByAggregateInput
   _avg?: Prisma.ReportAvgOrderByAggregateInput
@@ -271,65 +265,64 @@ export type ReportScalarWhereWithAggregatesInput = {
   AND?: Prisma.ReportScalarWhereWithAggregatesInput | Prisma.ReportScalarWhereWithAggregatesInput[]
   OR?: Prisma.ReportScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ReportScalarWhereWithAggregatesInput | Prisma.ReportScalarWhereWithAggregatesInput[]
-  Id?: Prisma.IntWithAggregatesFilter<"Report"> | number
-  TargetId?: Prisma.IntWithAggregatesFilter<"Report"> | number
-  AuthorId?: Prisma.IntWithAggregatesFilter<"Report"> | number
+  IdTarget?: Prisma.IntWithAggregatesFilter<"Report"> | number
+  IdAutore?: Prisma.IntWithAggregatesFilter<"Report"> | number
   Motivazione?: Prisma.StringWithAggregatesFilter<"Report"> | string
+  Data_Creazione?: Prisma.DateTimeWithAggregatesFilter<"Report"> | Date | string
   Descrizione?: Prisma.StringNullableWithAggregatesFilter<"Report"> | string | null
 }
 
 export type ReportCreateInput = {
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
-  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutOrigineInput
   Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
   Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
 }
 
 export type ReportUncheckedCreateInput = {
-  Id?: number
-  TargetId: number
-  AuthorId: number
+  IdTarget: number
+  IdAutore: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
-  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutOrigineInput
 }
 
 export type ReportUpdateInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Banned?: Prisma.Banned_AccountUpdateOneWithoutOrigineNestedInput
   Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
   Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
 }
 
 export type ReportUncheckedUpdateInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  TargetId?: Prisma.IntFieldUpdateOperationsInput | number
-  AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
+  IdTarget?: Prisma.IntFieldUpdateOperationsInput | number
+  IdAutore?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutOrigineNestedInput
 }
 
 export type ReportCreateManyInput = {
-  Id?: number
-  TargetId: number
-  AuthorId: number
+  IdTarget: number
+  IdAutore: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
 }
 
 export type ReportUpdateManyMutationInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ReportUncheckedUpdateManyInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  TargetId?: Prisma.IntFieldUpdateOperationsInput | number
-  AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
+  IdTarget?: Prisma.IntFieldUpdateOperationsInput | number
+  IdAutore?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -343,45 +336,43 @@ export type ReportOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type ReportIdTargetIdAutoreCompoundUniqueInput = {
+  IdTarget: number
+  IdAutore: number
+}
+
 export type ReportCountOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
-  TargetId?: Prisma.SortOrder
-  AuthorId?: Prisma.SortOrder
+  IdTarget?: Prisma.SortOrder
+  IdAutore?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
+  Data_Creazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
 }
 
 export type ReportAvgOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
-  TargetId?: Prisma.SortOrder
-  AuthorId?: Prisma.SortOrder
+  IdTarget?: Prisma.SortOrder
+  IdAutore?: Prisma.SortOrder
 }
 
 export type ReportMaxOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
-  TargetId?: Prisma.SortOrder
-  AuthorId?: Prisma.SortOrder
+  IdTarget?: Prisma.SortOrder
+  IdAutore?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
+  Data_Creazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
 }
 
 export type ReportMinOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
-  TargetId?: Prisma.SortOrder
-  AuthorId?: Prisma.SortOrder
+  IdTarget?: Prisma.SortOrder
+  IdAutore?: Prisma.SortOrder
   Motivazione?: Prisma.SortOrder
+  Data_Creazione?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
 }
 
 export type ReportSumOrderByAggregateInput = {
-  Id?: Prisma.SortOrder
-  TargetId?: Prisma.SortOrder
-  AuthorId?: Prisma.SortOrder
-}
-
-export type ReportScalarRelationFilter = {
-  is?: Prisma.ReportWhereInput
-  isNot?: Prisma.ReportWhereInput
+  IdTarget?: Prisma.SortOrder
+  IdAutore?: Prisma.SortOrder
 }
 
 export type ReportCreateNestedManyWithoutAuthorInput = {
@@ -468,33 +459,18 @@ export type ReportUncheckedUpdateManyWithoutTargetNestedInput = {
   deleteMany?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
 }
 
-export type ReportCreateNestedOneWithoutBannedInput = {
-  create?: Prisma.XOR<Prisma.ReportCreateWithoutBannedInput, Prisma.ReportUncheckedCreateWithoutBannedInput>
-  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutBannedInput
-  connect?: Prisma.ReportWhereUniqueInput
-}
-
-export type ReportUpdateOneRequiredWithoutBannedNestedInput = {
-  create?: Prisma.XOR<Prisma.ReportCreateWithoutBannedInput, Prisma.ReportUncheckedCreateWithoutBannedInput>
-  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutBannedInput
-  upsert?: Prisma.ReportUpsertWithoutBannedInput
-  connect?: Prisma.ReportWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ReportUpdateToOneWithWhereWithoutBannedInput, Prisma.ReportUpdateWithoutBannedInput>, Prisma.ReportUncheckedUpdateWithoutBannedInput>
-}
-
 export type ReportCreateWithoutAuthorInput = {
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
-  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutOrigineInput
   Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
 }
 
 export type ReportUncheckedCreateWithoutAuthorInput = {
-  Id?: number
-  TargetId: number
+  IdTarget: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
-  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutOrigineInput
 }
 
 export type ReportCreateOrConnectWithoutAuthorInput = {
@@ -509,17 +485,16 @@ export type ReportCreateManyAuthorInputEnvelope = {
 
 export type ReportCreateWithoutTargetInput = {
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
-  Banned?: Prisma.Banned_AccountCreateNestedOneWithoutOrigineInput
   Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
 }
 
 export type ReportUncheckedCreateWithoutTargetInput = {
-  Id?: number
-  AuthorId: number
+  IdAutore: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
-  Banned?: Prisma.Banned_AccountUncheckedCreateNestedOneWithoutOrigineInput
 }
 
 export type ReportCreateOrConnectWithoutTargetInput = {
@@ -552,10 +527,10 @@ export type ReportScalarWhereInput = {
   AND?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
   OR?: Prisma.ReportScalarWhereInput[]
   NOT?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
-  Id?: Prisma.IntFilter<"Report"> | number
-  TargetId?: Prisma.IntFilter<"Report"> | number
-  AuthorId?: Prisma.IntFilter<"Report"> | number
+  IdTarget?: Prisma.IntFilter<"Report"> | number
+  IdAutore?: Prisma.IntFilter<"Report"> | number
   Motivazione?: Prisma.StringFilter<"Report"> | string
+  Data_Creazione?: Prisma.DateTimeFilter<"Report"> | Date | string
   Descrizione?: Prisma.StringNullableFilter<"Report"> | string | null
 }
 
@@ -575,154 +550,104 @@ export type ReportUpdateManyWithWhereWithoutTargetInput = {
   data: Prisma.XOR<Prisma.ReportUpdateManyMutationInput, Prisma.ReportUncheckedUpdateManyWithoutTargetInput>
 }
 
-export type ReportCreateWithoutBannedInput = {
-  Motivazione: string
-  Descrizione?: string | null
-  Author: Prisma.AccountCreateNestedOneWithoutReportRicevInput
-  Target: Prisma.AccountCreateNestedOneWithoutReportCreatiInput
-}
-
-export type ReportUncheckedCreateWithoutBannedInput = {
-  Id?: number
-  TargetId: number
-  AuthorId: number
-  Motivazione: string
-  Descrizione?: string | null
-}
-
-export type ReportCreateOrConnectWithoutBannedInput = {
-  where: Prisma.ReportWhereUniqueInput
-  create: Prisma.XOR<Prisma.ReportCreateWithoutBannedInput, Prisma.ReportUncheckedCreateWithoutBannedInput>
-}
-
-export type ReportUpsertWithoutBannedInput = {
-  update: Prisma.XOR<Prisma.ReportUpdateWithoutBannedInput, Prisma.ReportUncheckedUpdateWithoutBannedInput>
-  create: Prisma.XOR<Prisma.ReportCreateWithoutBannedInput, Prisma.ReportUncheckedCreateWithoutBannedInput>
-  where?: Prisma.ReportWhereInput
-}
-
-export type ReportUpdateToOneWithWhereWithoutBannedInput = {
-  where?: Prisma.ReportWhereInput
-  data: Prisma.XOR<Prisma.ReportUpdateWithoutBannedInput, Prisma.ReportUncheckedUpdateWithoutBannedInput>
-}
-
-export type ReportUpdateWithoutBannedInput = {
-  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
-  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
-  Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
-}
-
-export type ReportUncheckedUpdateWithoutBannedInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  TargetId?: Prisma.IntFieldUpdateOperationsInput | number
-  AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
-  Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
-  Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
 export type ReportCreateManyAuthorInput = {
-  Id?: number
-  TargetId: number
+  IdTarget: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
 }
 
 export type ReportCreateManyTargetInput = {
-  Id?: number
-  AuthorId: number
+  IdAutore: number
   Motivazione: string
+  Data_Creazione: Date | string
   Descrizione?: string | null
 }
 
 export type ReportUpdateWithoutAuthorInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Banned?: Prisma.Banned_AccountUpdateOneWithoutOrigineNestedInput
   Target?: Prisma.AccountUpdateOneRequiredWithoutReportCreatiNestedInput
 }
 
 export type ReportUncheckedUpdateWithoutAuthorInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  TargetId?: Prisma.IntFieldUpdateOperationsInput | number
+  IdTarget?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutOrigineNestedInput
 }
 
 export type ReportUncheckedUpdateManyWithoutAuthorInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  TargetId?: Prisma.IntFieldUpdateOperationsInput | number
+  IdTarget?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ReportUpdateWithoutTargetInput = {
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Banned?: Prisma.Banned_AccountUpdateOneWithoutOrigineNestedInput
   Author?: Prisma.AccountUpdateOneRequiredWithoutReportRicevNestedInput
 }
 
 export type ReportUncheckedUpdateWithoutTargetInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
+  IdAutore?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Banned?: Prisma.Banned_AccountUncheckedUpdateOneWithoutOrigineNestedInput
 }
 
 export type ReportUncheckedUpdateManyWithoutTargetInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
-  AuthorId?: Prisma.IntFieldUpdateOperationsInput | number
+  IdAutore?: Prisma.IntFieldUpdateOperationsInput | number
   Motivazione?: Prisma.StringFieldUpdateOperationsInput | string
+  Data_Creazione?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Descrizione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
 
 export type ReportSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  Id?: boolean
-  TargetId?: boolean
-  AuthorId?: boolean
+  IdTarget?: boolean
+  IdAutore?: boolean
   Motivazione?: boolean
+  Data_Creazione?: boolean
   Descrizione?: boolean
-  Banned?: boolean | Prisma.Report$BannedArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  Id?: boolean
-  TargetId?: boolean
-  AuthorId?: boolean
+  IdTarget?: boolean
+  IdAutore?: boolean
   Motivazione?: boolean
+  Data_Creazione?: boolean
   Descrizione?: boolean
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  Id?: boolean
-  TargetId?: boolean
-  AuthorId?: boolean
+  IdTarget?: boolean
+  IdAutore?: boolean
   Motivazione?: boolean
+  Data_Creazione?: boolean
   Descrizione?: boolean
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectScalar = {
-  Id?: boolean
-  TargetId?: boolean
-  AuthorId?: boolean
+  IdTarget?: boolean
+  IdAutore?: boolean
   Motivazione?: boolean
+  Data_Creazione?: boolean
   Descrizione?: boolean
 }
 
-export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Id" | "TargetId" | "AuthorId" | "Motivazione" | "Descrizione", ExtArgs["result"]["report"]>
+export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdTarget" | "IdAutore" | "Motivazione" | "Data_Creazione" | "Descrizione", ExtArgs["result"]["report"]>
 export type ReportInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Banned?: boolean | Prisma.Report$BannedArgs<ExtArgs>
   Author?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   Target?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }
@@ -738,15 +663,14 @@ export type ReportIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Report"
   objects: {
-    Banned: Prisma.$Banned_AccountPayload<ExtArgs> | null
     Author: Prisma.$AccountPayload<ExtArgs>
     Target: Prisma.$AccountPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    Id: number
-    TargetId: number
-    AuthorId: number
+    IdTarget: number
+    IdAutore: number
     Motivazione: string
+    Data_Creazione: Date
     Descrizione: string | null
   }, ExtArgs["result"]["report"]>
   composites: {}
@@ -831,8 +755,8 @@ export interface ReportDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    * // Get first 10 Reports
    * const reports = await prisma.report.findMany({ take: 10 })
    * 
-   * // Only select the `Id`
-   * const reportWithIdOnly = await prisma.report.findMany({ select: { Id: true } })
+   * // Only select the `IdTarget`
+   * const reportWithIdTargetOnly = await prisma.report.findMany({ select: { IdTarget: true } })
    * 
    */
   findMany<T extends ReportFindManyArgs>(args?: Prisma.SelectSubset<T, ReportFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -876,9 +800,9 @@ export interface ReportDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Create many Reports and only return the `Id`
-   * const reportWithIdOnly = await prisma.report.createManyAndReturn({
-   *   select: { Id: true },
+   * // Create many Reports and only return the `IdTarget`
+   * const reportWithIdTargetOnly = await prisma.report.createManyAndReturn({
+   *   select: { IdTarget: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -967,9 +891,9 @@ export interface ReportDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Update zero or more Reports and only return the `Id`
-   * const reportWithIdOnly = await prisma.report.updateManyAndReturn({
-   *   select: { Id: true },
+   * // Update zero or more Reports and only return the `IdTarget`
+   * const reportWithIdTargetOnly = await prisma.report.updateManyAndReturn({
+   *   select: { IdTarget: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1142,7 +1066,6 @@ readonly fields: ReportFieldRefs;
  */
 export interface Prisma__ReportClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Banned<T extends Prisma.Report$BannedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Report$BannedArgs<ExtArgs>>): Prisma.Prisma__Banned_AccountClient<runtime.Types.Result.GetResult<Prisma.$Banned_AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   Author<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Target<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1174,10 +1097,10 @@ export interface Prisma__ReportClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the Report model
  */
 export interface ReportFieldRefs {
-  readonly Id: Prisma.FieldRef<"Report", 'Int'>
-  readonly TargetId: Prisma.FieldRef<"Report", 'Int'>
-  readonly AuthorId: Prisma.FieldRef<"Report", 'Int'>
+  readonly IdTarget: Prisma.FieldRef<"Report", 'Int'>
+  readonly IdAutore: Prisma.FieldRef<"Report", 'Int'>
   readonly Motivazione: Prisma.FieldRef<"Report", 'String'>
+  readonly Data_Creazione: Prisma.FieldRef<"Report", 'DateTime'>
   readonly Descrizione: Prisma.FieldRef<"Report", 'String'>
 }
     
@@ -1577,25 +1500,6 @@ export type ReportDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Reports to delete.
    */
   limit?: number
-}
-
-/**
- * Report.Banned
- */
-export type Report$BannedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Banned_Account
-   */
-  select?: Prisma.Banned_AccountSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Banned_Account
-   */
-  omit?: Prisma.Banned_AccountOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.Banned_AccountInclude<ExtArgs> | null
-  where?: Prisma.Banned_AccountWhereInput
 }
 
 /**

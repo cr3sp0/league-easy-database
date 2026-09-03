@@ -182,35 +182,41 @@ export async function createReport(
 ) {
 
     if(
-        (!target || !targetID)
-        && (!author || !authorID)
+        !(target || targetID)
+        && !(author || authorID)
     ) {
         throw { message: "Target and Author are required" }
     }
 
-    return await prisma.report.create({
-        data: {
-            Target: {
-                connect: {
-                    Nome: target,
-                    AccountId: targetID
-                }
+    try {
+        return await prisma.report.create({
+            data: {
+                Target: {
+                    connect: {
+                        Nome: target,
+                        AccountId: targetID
+                    }
+                },
+                Author: {
+                    connect: {
+                        Nome: author,
+                        AccountId: authorID
+                    }
+                },
+                Motivazione: reason,
+                Data_Creazione: new Date(Date.now()),
+                Descrizione: description
             },
-            Author: {
-                connect: {
-                    Nome: author,
-                    AccountId: authorID
-                }
-            },
-            Motivazione: reason,
-            Data_Creazione: new Date(Date.now()),
-            Descrizione: description
-        },
-        include: {
-            Target: true,
-            Au: true
-        }
-    })
+            include: {
+                Target: true,
+                Author: true
+            }
+        })
+    } catch (err : any) {
+        console. log(err)
+
+        throw {message : "Something went Wrong"}
+    }
 }
 export async function getReport({
     target = undefined,
@@ -230,13 +236,6 @@ export async function getReport({
     afterDate? : Date
 }) {
 
-    if(
-        (!target || !targetID)
-        && (!author || !authorID)
-    ) {
-        throw { message: "Target and Author are required" }
-    }
-
     return await prisma.report.findMany({
         where: {
             Target: {
@@ -245,7 +244,7 @@ export async function getReport({
             },
             Author: {
                 Nome: author,
-                AccountId: targetID
+                AccountId: authorID
             },
             Motivazione: {
                 equals: motivation
@@ -283,34 +282,56 @@ export async function deleteReport(
     })
 }
 export async function banAccount(
-    AccountID : number,
-    Expiration_Date : Date,
+    {
+        accountID = undefined,
+        username = undefined
+    } : {
+        accountID? : number
+        username? : string
+    },
+    expiration_Date : Date,
     reason : string,
     description? : string
 ) {
 
-    const ban = await prisma.banned_Account.create({
-        data: {
-            AccountId: AccountID,
-            Expiration_Date: Expiration_Date,
-            Motivazione: reason,
-            Descrizione: description,
-        },
-        include: {
-            Account: {
-                include: {
-                    sessione: true
+    if(
+        !accountID
+        && !username
+    ) {
+        throw { message: "Impossible to define the account" }
+    }
+    
+    try{
+        const ban = await prisma.banned_Account.create({
+            data: {
+                Account: {
+                    connect: {
+                        AccountId: accountID,
+                        Nome: username
+                    }
+                },
+                Expiration_Date: expiration_Date,
+                Motivazione: reason,
+                Descrizione: description,
+            },
+            include: {
+                Account: {
+                    include: {
+                        sessione: true
+                    }
                 }
             }
+        })
+        
+        if (
+            ban &&
+            ban.Account.sessione
+        ) {
+            await deleteSession(ban.Account.sessione.Id)
         }
-    })
-
-    if (
-        ban &&
-        ban.Account.sessione
-    ) {
-        await deleteSession(ban.Account.sessione.Id)
+        
+        return ban
+    } catch (err: any) {
+        throw { message: "Something went wrong" }
     }
-
-    return ban
 }

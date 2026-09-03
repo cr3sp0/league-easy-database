@@ -47,7 +47,7 @@ const logout : Action = async ({ cookies }) => {
 	} catch (err : any) {
 		console.error(err.message)
 
-		throw error(err)
+		return fail(500, {msg: err.message})
 	}
 }
 
@@ -74,7 +74,7 @@ const moreBuilds : Action = async ({ request, params }) => {
 	} catch (err : any) {
 		console.error(err.message)
 		
-		throw error(err)
+		return fail(500, {msg: err.message})
 	}
 }
 
@@ -112,8 +112,6 @@ const sendReport : Action = async ({ request, params, cookies, locals }) => {
 			description: description
 		})
 		
-		//TODO: send the report to the db
-		
 		return {
 			success: true,
 			msg: "Successfully sent a Report for " + target
@@ -121,7 +119,7 @@ const sendReport : Action = async ({ request, params, cookies, locals }) => {
 	} catch (err : any) {
 		console.error(err.message)
 
-		throw error(err)
+		return fail(500, { msg: err.message })
 	}
 }
 

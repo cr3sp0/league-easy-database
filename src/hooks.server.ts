@@ -30,11 +30,19 @@ export const handle: Handle = async ({ event, resolve }) => {
     }
 
     if(
-        event.url.pathname === "/login"
-        && event.locals.user
+        event.locals.user
+        && event.url.pathname === "/login"
     ) {
         throw redirect(303, "/account/" + event.locals.user.username)
     }
-    
+
+    if(
+        event.locals.user
+        && !event.locals.user.isAdmin
+        && event.url.pathname.startsWith("/admin/")
+    ) {
+        throw redirect(303, "/")
+    }
+
     return await resolve(event)
 }

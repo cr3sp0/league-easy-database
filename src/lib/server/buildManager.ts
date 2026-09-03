@@ -42,110 +42,112 @@ export async function getBuilds({
   limit? : number
 }) : Promise<completeBuild[]> {
 
-  // TODO: add explicit query sql
-  //TODO: fix select to return only the valueable info of the Build
-  const builds = await prisma.configurazione.findMany({
-    include: {
-      champ: true,
-      Inc1: true,
-      Inc2: true,
-      Pag_Runa: {
-        include: {
-          Principale: {
-            include: {
-              Keystone: { include: { Camm: true } },
-              Middle: { include: { Camm: true } },
-              Lower: { include: { Camm: true } },
-              First: { include: { Camm: true } }
-            }
-          },
-          Secondaria: {
-            include: {
-              Keystone: { include: { Camm: true } },
-              Middle: { include: { Camm: true } },
-              Lower: { include: { Camm: true } },
-              First: { include: { Camm: true } }
-            }
-          },
-          Shards: {
-            include: {
-              Keystone: { include: { Camm: true } },
-              Middle: { include: { Camm: true } },
-              Lower: { include: { Camm: true } },
-              First: { include: { Camm: true } }
-            }
-          },
-        }
+  try{
+
+    // TODO: add explicit query sql
+    //TODO: fix select to return only the valueable info of the Build
+    const builds = await prisma.configurazione.findMany({
+      include: {
+        champ: true,
+        Inc1: true,
+        Inc2: true,
+        Pag_Runa: {
+          include: {
+            Principale: {
+              include: {
+                Keystone: { include: { Camm: true } },
+                Middle: { include: { Camm: true } },
+                Lower: { include: { Camm: true } },
+                First: { include: { Camm: true } }
+              }
+            },
+            Secondaria: {
+              include: {
+                Keystone: { include: { Camm: true } },
+                Middle: { include: { Camm: true } },
+                Lower: { include: { Camm: true } },
+                First: { include: { Camm: true } }
+              }
+            },
+            Shards: {
+              include: {
+                Keystone: { include: { Camm: true } },
+                Middle: { include: { Camm: true } },
+                Lower: { include: { Camm: true } },
+                First: { include: { Camm: true } }
+              }
+            },
+          }
+        },
+        Inv: {
+          include: {
+            Oggetto:  true
+          }
+        },
+        User: true,
+        Partite: true
       },
-      Inv: {
-        include: {
-          Oggetto:  true
-        }
-      },
-      User: true,
-      Partite: true
-    },
-    where: {
-      AND: [
-        {
-          TitoloConf: {
-            contains: buildTitle,
-            mode: 'insensitive'
-          }
-        },
-        {
-          User: {
-            Nome: username,
-            AccountId: userID
-          }
-        },
-        {
-          champ: {
-            nome: champion,
-            ID: championID
-          }
-        },
-        {
-          Inv: {
-            every: {
-              Oggetto: {
-                OR: items
+      where: {
+        AND: [
+          {
+            TitoloConf: {
+              contains: buildTitle,
+              mode: 'insensitive'
+            }
+          },
+          {
+            User: {
+              Nome: username,
+              AccountId: userID
+            }
+          },
+          {
+            champ: {
+              nome: champion,
+              ID: championID
+            }
+          },
+          {
+            Inv: {
+              every: {
+                Oggetto: {
+                  OR: items
+                }
               }
             }
-          }
-        },
-        {
-          Inc1: {
-            OR: spells
           },
-          Inc2: {
-            OR: spells
+          {
+            Inc1: {
+              OR: spells
+            },
+            Inc2: {
+              OR: spells
+            }
           }
-        }
-      ]
-    },
-    take: limit
-  })
-
-  if(!builds) {
-    throw { message: "This user doesn't own any Build" }
-  }
-
-  let output : completeBuild[] = []
-
-  builds.forEach(b => {
-    output.push({
-      author: b.User,
-      build: b,
-      champion: b.champ,
-      runes: b.Pag_Runa,
-      items: b.Inv,
-      spells: [b.Inc1, b.Inc2],
-      results: b.Partite
+        ]
+      },
+      take: limit
     })
-  })
 
-  return output;
+    let output : completeBuild[] = []
+
+    builds.forEach(b => {
+      output.push({
+        author: b.User,
+        build: b,
+        champion: b.champ,
+        runes: b.Pag_Runa,
+        items: b.Inv,
+        spells: [b.Inc1, b.Inc2],
+        results: b.Partite
+      })
+    })
+
+    return output;
+    
+  } catch (err : any) {
+    throw { message: "Something went wrong" }
+  }
 }
 
 export async function createBuild(

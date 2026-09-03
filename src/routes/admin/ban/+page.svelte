@@ -3,6 +3,7 @@
     import Navbar from '$lib/components/navbar.svelte';
     import { popup } from '$lib/components/store/popup.svelte.js';
     import { BanDurations, ReportReason } from '$lib/types.js';
+    import { redirect } from '@sveltejs/kit';
 
     let { data } = $props()
 
@@ -34,6 +35,8 @@
             } else if (result.type === "success") {
                 popup.color = "green"
                 popup.text = "" + result.data?.msg
+
+                redirect(303, "/")
             }
         }}
         >

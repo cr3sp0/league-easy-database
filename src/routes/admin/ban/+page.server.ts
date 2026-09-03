@@ -1,5 +1,6 @@
 import { error, fail, redirect, type Action, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "../../account/$types";
+import { banAccount as banAccountDB } from "$lib/server/accountManager";
 
 export const load : PageServerLoad = async ({ locals, url }) => {
 
@@ -30,26 +31,38 @@ export const load : PageServerLoad = async ({ locals, url }) => {
 const banAccount : Action = async ({ request }) => {
     
     let formData = await request.formData()
+    
+    try {
+        let target = formData.get("target")?.toString()
+        let reason = formData.get("reason")?.toString()
+        let duration = formData.get("duration")?.valueOf() as number
+        let description = formData.get("description")?.toString()
 
-    let target = formData.get("target")
-    let reason = formData.get("reason")
-    let duration = formData.get("duration")?.valueOf() as number
-    let description = formData.get("description")
+        if(!target || !reason || !duration) {
+            throw { message: "Missing required values" }
+        }
 
-    if(!target || !reason || !duration) {
-        return fail(400)
+        if(reason === "Other" && !description) {
+            throw { message: "The 'Description' field is mandatory when using the reason 'Other'" }
+        }
+
+        const ban = await banAccountDB(
+            {username: target},
+            new Date(Date.now() + (duration * 60 * 60 * 1000)),
+            reason,
+            description
+        )
+
+        return {
+            success: true,
+            msg: ban.Account.Nome + " has been successfully Banned"
+        }
+    } catch (err : any) {
+        console.log(err.message)
+
+        return fail(400, { msg: err.message })
     }
 
-    if(reason === "Other" && !description) {
-        return fail(400, {msg: "The 'Description' field is mandatory when using the reason 'Other'"})
-    }
-
-    //TODO: Add to the banned table
-
-    return {
-        success: true,
-        msg: target + " has been successfully Banned"
-    }
 }
 
 export const actions : Actions = { banAccount }

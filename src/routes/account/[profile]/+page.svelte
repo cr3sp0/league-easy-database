@@ -60,7 +60,7 @@
                             <div>
                                 <form
                                 method="get"
-                                action="/account/reports"
+                                action="/admin/reports"
                                 >
                                     <input name="target" type="hidden" value={data.profile.Nome} />
                                     <button type="submit" class="option-content-btn">Report List</button>
@@ -69,7 +69,7 @@
                             <div>
                                 <form 
                                 method="get"
-                                action="/account/ban"
+                                action="/admin/ban"
                                 >
                                     <input name="target" type="hidden" value={data.profile.Nome} />
                                     <button type="submit" class="option-content-btn">Block Account</button>

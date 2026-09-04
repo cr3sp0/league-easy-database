@@ -1,38 +1,43 @@
 <script lang="ts">
-  import type { Champion, Item, RuneConfiguration } from "$lib/types";
   import { slide } from "svelte/transition";
   import Itemsgrid from "./itemsgrid.svelte";
   import type { completeBuild } from "$lib/server/buildManager";
 
-  let { Build, isEditable = false }
-  : {
-    Build : completeBuild
-    isEditable?: boolean
+  let {
+    Build,
+    isEditable = false,
+  }: {
+    Build: completeBuild;
+    isEditable?: boolean;
   } = $props();
   // TODO: More parameters are required for this component, add them once the dbms is ready.
-  
-  const name = $derived(Build.build.ID) 
-  const author = $derived(Build.author) 
-  const champion = $derived(Build.champion) 
-  const runes = $derived(Build)
-  const items = $derived(Build)
-  const wins = $derived(Build.results.filter(r => r.Risultato === "Vittoria").length)
-  const losses = $derived(Build.results.filter(r => r.Risultato === "Sconfitta").length)
-  const kills = $derived(0)
-  const deaths = $derived(0)
-  const assists = $derived(0)
+
+  const name = $derived(Build.build.TitoloConf);
+  const author = $derived(Build.author);
+  const champion = $derived(Build.champion);
+  const runes = $derived(Build);
+  const items = $derived(Build);
+  const wins = $derived(
+    Build.results.filter((r) => r.Risultato === "Vittoria").length,
+  );
+  const losses = $derived(
+    Build.results.filter((r) => r.Risultato === "Sconfitta").length,
+  );
+  const kills = $derived(0);
+  const deaths = $derived(0);
+  const assists = $derived(0);
 
   let isOpen = $state(false);
-  let winPerc: string | undefined = $state()
+  let winPerc: string | undefined = $state();
   // svelte-ignore state_referenced_locally
   if (wins && losses) {
-    winPerc = (wins / (wins + losses) * 100).toFixed(0) + "%"
+    winPerc = ((wins / (wins + losses)) * 100).toFixed(0) + "%";
   }
 
   function toggleCard() {
     isOpen = !isOpen;
-    console.error("!!!!!!!!")
-    console.log(wins + " " + losses + " " + kills)
+    console.error("!!!!!!!!");
+    console.log(wins + " " + losses + " " + kills);
   }
 </script>
 
@@ -48,8 +53,10 @@
       <img src={champion.Icona} alt="champion-icon" />
     </div>
     <div class="buildcard-header-title">
-      <div class="buildcard-header-title-name">{champion}, {name}</div>
-      <a href="/account/{author}" class="buildcard-header-title-auth">{author.Nome}</a>
+      <div class="buildcard-header-title-name">{champion.nome}, {name}</div>
+      <a href="/account/{author}" class="buildcard-header-title-auth"
+        >{author.Nome}</a
+      >
     </div>
     <div class="buildcard-header-winrate">{winPerc}</div>
     <div class="buildcard-header-button">
@@ -129,10 +136,10 @@
           <div class="total">{wins + losses}</div>
         </div>
       </div>
-      <form 
-      method="get"
-      action="/builder/{name}"
-      >
+      <form method="get" action="/builder/{champion.ID}">
+        <input type="hidden" name="author" value={author.AccountId} />
+        <input type="hidden" name="title" value={name} />
+
         <button type="submit" class="btn">Edit</button>
       </form>
     </div>
@@ -210,14 +217,15 @@
 
     background-color: var(--black-20);
     border: 1px var(--white-20) solid;
-    
+
     color: white;
-    
+
     font-family: var(--font-mono);
     font-size: var(--text-md);
     cursor: pointer;
   }
-  .btn:hover, .btn:focus {
+  .btn:hover,
+  .btn:focus {
     background-color: #2a2323;
     border-color: #4a3f3f;
     text-decoration: underline;
@@ -268,7 +276,6 @@
     flex-direction: row;
     justify-content: center;
     gap: 100px;
-
   }
   .buildcard-runes img {
     height: 50px;
@@ -312,5 +319,4 @@
     color: gray;
     font-size: var(--text-lm);
   }
-
 </style>

@@ -20,31 +20,72 @@
 
   const defaultTitle = data.champ.nome + " New Build";
 
-  let currentTitle = $state(defaultTitle);
+  const eb = data.existingBuild;
+
+  const getRune = (name: string) =>
+    data.runes.find((r) => r.Nome === name) || null;
+  const getPath = (runeName: string) => {
+    const r = getRune(runeName);
+    return r ? data.path.find((p) => p.Id === r.CamminoId) || null : null;
+  };
+
+  let currentTitle = $state(eb ? eb.TitoloConf : defaultTitle);
   let isEditing = $state(false);
 
-  let buildItems = $state<(Oggetto | null)[]>([
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ]);
+  let buildSpells = $state<(Incantesimo | null)[]>(
+    eb ? [eb.Inc1, eb.Inc2] : [null, null],
+  );
 
-  let buildPrimaryPath = $state<Tipologia_runa | null>(null);
-  let buildPrimaryRunes = $state<(Runa | null)[]>([null, null, null, null]);
-  let buildSecondaryPath = $state<Tipologia_runa | null>(null);
-  let buildSecondaryRunes = $state<(Runa | null)[]>([null, null]);
+  let initialItems: (Oggetto | null)[] = [null, null, null, null, null, null];
 
-  let buildSpells = $state<(Incantesimo | null)[]>([null, null]);
+  if (eb) {
+    eb.Inv.forEach((invObj: any, index: number) => {
+      if (index < 6) {
+        initialItems[index] =
+          data.items.find((i) => i.Nome === invObj.NomeOggetto) || null;
+      }
+    });
+  }
+
+  let buildItems = $state<(Oggetto | null)[]>(initialItems);
+
+  let buildPrimaryPath = $state<Tipologia_runa | null>(
+    eb ? getPath(eb.Pag_Runa.Principale.Pietrachiave) : null,
+  );
+
+  let buildPrimaryRunes = $state<(Runa | null)[]>(
+    eb
+      ? [
+          getRune(eb.Pag_Runa.Principale.Pietrachiave),
+          getRune(eb.Pag_Runa.Principale.RigaSuperiore),
+          getRune(eb.Pag_Runa.Principale.RigaCentrale),
+          getRune(eb.Pag_Runa.Principale.RigaInferiore),
+        ]
+      : [null, null, null, null],
+  );
+
+  let initialSecondaryRunes: (Runa | null)[] = [null, null];
+  if (eb) {
+    const secRunes = [
+      getRune(eb.Pag_Runa.Secondaria.RigaSuperiore),
+      getRune(eb.Pag_Runa.Secondaria.RigaCentrale),
+      getRune(eb.Pag_Runa.Secondaria.RigaInferiore),
+    ].filter((r) => r !== null && r.Nome !== "Nessuna");
+
+    initialSecondaryRunes = [secRunes[0] || null, secRunes[1] || null];
+  }
+  let buildSecondaryPath = $state<Tipologia_runa | null>(
+    eb ? getPath(eb.Pag_Runa.Secondaria.RigaSuperiore) : null,
+  );
+
+  let buildSecondaryRunes = $state<(Runa | null)[]>(initialSecondaryRunes);
 
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === "Enter") {
       isEditing = false;
     } else if (event.key === "Escape") {
       isEditing = false;
-      currentTitle = defaultTitle;
+      currentTitle = eb ? eb.TitoloConf : defaultTitle;
     }
   }
 
@@ -64,9 +105,6 @@
     { id: 9, name: "Move Speed", value: stats.Velocità_di_movimento },
   ];
 
-  let wins = $state(0);
-  let losses = $state(0);
-
   type MatchRecord = {
     id: number;
     date: string;
@@ -74,10 +112,28 @@
     result: "Win" | "Loss";
   };
 
-  let matches: MatchRecord[] = $state([]);
+  let matches: MatchRecord[] = $state(
+    eb
+      ? eb.Partite.map((p: any) => ({
+          id: new Date(p.Data).getTime(),
+          date: new Date(p.Data).toLocaleDateString("it-IT"),
+          kda: `${p.Uccisioni}/${p.Morti}/${p.Assist}`,
+          result:
+            p.Risultato === "Win" || p.Risultato === "Vittoria"
+              ? "Win"
+              : "Loss",
+        }))
+      : [],
+  );
+
+  let wins = $state(eb ? matches.filter((m) => m.result === "Win").length : 0);
+  let losses = $state(
+    eb ? matches.filter((m) => m.result === "Loss").length : 0,
+  );
 
   let buildPayload = $derived(
     JSON.stringify({
+      originalTitle: eb ? eb.TitoloConf : null,
       title: currentTitle,
       championID: champ.ID,
       spells: buildSpells,

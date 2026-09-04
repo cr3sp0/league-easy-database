@@ -6,13 +6,16 @@ import { getPaths, getRunes } from '$lib/server/runeManager';
 import { getSpells } from '$lib/server/spellsManager';
 import { fail } from '@sveltejs/kit';
 import type { Actions } from '../$types';
-import { createBuild } from '$lib/server/buildManager';
+import { createBuild, updateBuild } from '$lib/server/buildManager';
 
-export const load: PageServerLoad = async ({params, locals}) => {
+export const load: PageServerLoad = async ({params, url, locals}) => {
   const items = await prisma.oggetto.findMany();
 
   let champname = params.buildinfo.split("-")
+  const authorParam = url.searchParams.get('author');
+  const titleParam = url.searchParams.get('title');
 
+  //Query section
   const champ = await getChampionByName(champname[0]);
 
   if (!champ) {
@@ -46,6 +49,39 @@ export const load: PageServerLoad = async ({params, locals}) => {
   const shards = path.filter((p) => p.Id === 0);
 
   path = path.filter((p) => p.Id != 0);
+
+  //Build recognition section
+  let existingBuild = null;
+  let isOwner = true;
+
+  if (authorParam && titleParam) {
+    existingBuild = await prisma.configurazione.findUnique({
+      where: {
+        TitoloConf_IdAccount: {
+          TitoloConf: titleParam,
+          IdAccount: parseInt(authorParam)
+        }
+      },
+      include: {
+        Pag_Runa: {
+          include: {
+            Principale: true,
+            Secondaria: true,
+            Shards: true
+          }
+        },
+        Inc1: true,
+        Inc2: true,
+        Inv: true, 
+        Partite: true,
+        User: true
+      }
+    });
+
+    if (existingBuild) {
+      isOwner = existingBuild.IdAccount === locals.user?.userID;
+    }
+  }
   
   if(!locals.user) {
     return {
@@ -57,9 +93,13 @@ export const load: PageServerLoad = async ({params, locals}) => {
       runes: runes,
       path: path,
       shards: shards,
-      spells: spells
+      spells: spells,
+      existingBuild,
+      isOwner
     }
   }
+
+  
 
   return {
     profile: locals.user.username,
@@ -70,7 +110,9 @@ export const load: PageServerLoad = async ({params, locals}) => {
     items: items,
     path: path,
     shards: shards,
-    spells: spells
+    spells: spells,
+    existingBuild,
+    isOwner
   };
 };
 
@@ -142,7 +184,24 @@ export const actions = {
         };
       });
 
-      await createBuild(
+      const originalTitle = buildData.originalTitle;
+
+      if (originalTitle) {
+        // UPDATE MODE
+        await updateBuild(
+          originalTitle,
+          userID,
+          buildData.title,
+          buildData.championID,
+          paginaRunaObj,
+          buildData.spells[0],
+          buildData.spells[1],
+          buildData.items,
+          { matches: formattedMatches }
+        );
+      } else {
+        // CREATE MODE
+        await createBuild(
         buildData.title,
         userID,
         buildData.championID,
@@ -152,6 +211,7 @@ export const actions = {
         buildData.items,
         { matches: formattedMatches }
       );
+      }
 
       return { success: true };
     } catch (error) {

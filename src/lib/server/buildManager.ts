@@ -248,46 +248,67 @@ export async function createBuild(
 }
 
 export async function updateBuild(
-  buildTitle: string,
+  originalTitle: string,
   userID: number,
-  {
-    championID = undefined,
-    runesID = undefined,
-    inc1 = undefined,
-    inc2 = undefined,
-    newTitle = undefined
-  } : {
-    championID?: string,
-    runesID?: number,
-    inc1?: string,
-    inc2?: string,
-    newTitle?: string
-  }
-) : Promise<completeBuild | undefined> {
+  newTitle: string,
+  championID: string,
+  runes: { RunaPrimaria: number; RunaSecondaria: number; Frammenti: number },
+  inc1: Incantesimo,
+  inc2: Incantesimo,
+  items: Oggetto[],
+  { matches = [] }: { matches: any[] }
+): Promise<completeBuild | undefined> {
 
-  if(newTitle && await prisma.configurazione.findUnique({
-    where: {
-      TitoloConf_IdAccount: {
-        TitoloConf: newTitle,
-        IdAccount: userID
+  if (originalTitle !== newTitle) {
+    const existingName = await prisma.configurazione.findUnique({
+      where: {
+        TitoloConf_IdAccount: {
+          TitoloConf: newTitle,
+          IdAccount: userID
+        }
       }
+    });
+    if (existingName) {
+      throw { message: "Hai già una build con il titolo " + newTitle };
     }
-  })) {
-    throw { message: buildTitle + " already exists" }
   }
 
   const build = await prisma.configurazione.update({
     where: {
       TitoloConf_IdAccount: {
-        TitoloConf: buildTitle,
+        TitoloConf: originalTitle,
         IdAccount: userID
       }
     },
     data: {
-      IdCampione: championID,
-      Runa: runesID,
-      Incantesimo1: inc1,
-      Incantesimo2: inc2
+      TitoloConf: newTitle,
+      champ: { connect: { ID: championID } },
+      
+      Pag_Runa: {
+        update: {
+          RunaPrimaria: runes.RunaPrimaria,
+          RunaSecondaria: runes.RunaSecondaria,
+          Frammenti: runes.Frammenti
+        }
+      },
+      
+      Inc1: { connect: { Nome: inc1.Nome } },
+      Inc2: { connect: { Nome: inc2.Nome } },
+      
+      Inv: {
+        deleteMany: {}, 
+        create: items
+          .filter(item => item !== null)
+          .map(item => ({
+            Oggetto: { connect: { Nome: item.Nome } }
+          }))
+      },
+      Partite: {
+        deleteMany: {}, 
+        createMany: {
+          data: matches
+        }
+      }
     },
     include: {
       champ: true,
@@ -318,7 +339,7 @@ export async function updateBuild(
               Lower: { include: { Camm: true } },
               First: { include: { Camm: true } }
             }
-          },
+          }
         }
       },
       Inv: {
@@ -332,8 +353,8 @@ export async function updateBuild(
       },
       User: true,
       Partite: true
-    },
-  })
+    }
+  });
 
   return build ? {
     author: build.User,
@@ -348,5 +369,5 @@ export async function updateBuild(
       }
     }),
     results: build.Partite
-  } : undefined
+  } : undefined;
 }

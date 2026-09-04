@@ -154,9 +154,10 @@ export async function createBuild(
   buildTitle: string,
   userID: number,
   championID: string,
-  runes: Pagina_Runa,
+  runes: { RunaPrimaria: number; RunaSecondaria: number; Frammenti: number },
   inc1: Incantesimo,
   inc2: Incantesimo,
+  items: Oggetto[],
   {
     matches = []
   } : {
@@ -178,12 +179,7 @@ export async function createBuild(
         }
       },
       Pag_Runa: {
-        connectOrCreate: {
-          where: {
-            Id: runes.Id
-          },
-          create: runes
-        }
+        create: runes
       },
       Inc1: {
         connect: {
@@ -194,6 +190,13 @@ export async function createBuild(
         connect: {
           Nome: inc2.Nome
         }
+      },
+      Inv: {
+        create: items
+          .filter(item => item !== null)
+          .map(item => ({
+            Oggetto: { connect: { Nome: item.Nome } }
+          }))
       },
       Partite: {
         createMany: {

@@ -2,28 +2,37 @@
   import Runeselector2 from "./runeselector2.svelte";
   import type { Runa, Tipologia_runa } from "$lib/server/prisma/client";
 
-  let { runes = [], paths = [] }: { runes: Runa[]; paths: Tipologia_runa[] } =
-    $props();
-
-  let selectedPath = $state<Tipologia_runa | null>(null);
-
-  let selectedRunes = $state<(Runa | null)[]>([null, null, null, null]);
+  let {
+    runes = [],
+    paths = [],
+    primaryPath = $bindable(null),
+    primaryRunes = $bindable([null, null, null, null]),
+    secondaryPath = $bindable(null),
+    secondaryRunes = $bindable([null, null]),
+  }: {
+    runes: Runa[];
+    paths: Tipologia_runa[];
+    primaryPath?: Tipologia_runa | null;
+    primaryRunes?: (Runa | null)[];
+    secondaryPath?: Tipologia_runa | null;
+    secondaryRunes?: (Runa | null)[];
+  } = $props();
 
   let activeMenu = $state<"path" | 0 | 1 | 2 | 3 | null>(null);
   let isAnimating = $state(false);
 
   let availableRunes = $derived(
     [0, 1, 2, 3].map((slot) =>
-      selectedPath
+      primaryPath
         ? runes.filter(
-            (r) => r.CamminoId === (selectedPath as any).Id && r.Grado === slot,
+            (r) => r.CamminoId === (primaryPath as any).Id && r.Grado === slot,
           )
         : [],
     ),
   );
 
   function isSelected() {
-    return selectedPath !== null;
+    return primaryPath !== null;
   }
 
   function toggleMenu(menu: "path" | 0 | 1 | 2 | 3) {
@@ -31,8 +40,8 @@
   }
 
   function selectPath(path: Tipologia_runa) {
-    selectedPath = path;
-    selectedRunes = [null, null, null, null];
+    primaryPath = path;
+    primaryRunes = [null, null, null, null];
     activeMenu = null;
     isAnimating = false;
 
@@ -42,7 +51,7 @@
   }
 
   function selectRune(index: number, rune: Runa) {
-    selectedRunes[index] = rune;
+    primaryRunes[index] = rune;
     activeMenu = null;
   }
 </script>
@@ -52,13 +61,13 @@
     <div class="path-selector-wrapper" class:open={activeMenu === "path"}>
       <button
         class="path-circle"
-        class:empty-glow={!selectedPath}
+        class:empty-glow={!primaryPath}
         onclick={() => toggleMenu("path")}
         aria-label="Select Rune Path"
       >
         <span class="arc-deco"></span>
         <span class="path-icon">
-          {selectedPath ? selectedPath.Nome.charAt(0).toUpperCase() : "?"}
+          {primaryPath ? primaryPath.Nome.charAt(0).toUpperCase() : "?"}
         </span>
       </button>
 
@@ -83,15 +92,15 @@
       <div class="bead-wrapper" class:open={activeMenu === 0}>
         <button
           class="rune-bead keystone"
-          class:active={selectedPath}
-          onclick={() => selectedPath && toggleMenu(0)}
+          class:active={primaryPath}
+          onclick={() => primaryPath && toggleMenu(0)}
           aria-label="Select Keystone"
         >
-          {#if selectedRunes[0]}
+          {#if primaryRunes[0]}
             <img
-              src={selectedRunes[0].Immagine}
-              alt={selectedRunes[0].Nome}
-              title={selectedRunes[0].Descrizione}
+              src={primaryRunes[0].Immagine}
+              alt={primaryRunes[0].Nome}
+              title={primaryRunes[0].Descrizione}
             />
           {/if}
         </button>
@@ -115,15 +124,15 @@
         <div class="bead-wrapper" class:open={activeMenu === slotIndex}>
           <button
             class="rune-bead"
-            class:active={selectedPath}
-            onclick={() => selectedPath && toggleMenu(slotIndex as 1 | 2 | 3)}
+            class:active={primaryPath}
+            onclick={() => primaryPath && toggleMenu(slotIndex as 1 | 2 | 3)}
             aria-label={`Select Minor Rune ${slotIndex}`}
           >
-            {#if selectedRunes[slotIndex]}
+            {#if primaryRunes[slotIndex]}
               <img
-                src={selectedRunes[slotIndex]!.Immagine}
-                alt={selectedRunes[slotIndex]!.Nome}
-                title={selectedRunes[slotIndex]!.Descrizione}
+                src={primaryRunes[slotIndex]!.Immagine}
+                alt={primaryRunes[slotIndex]!.Nome}
+                title={primaryRunes[slotIndex]!.Descrizione}
               />
             {/if}
           </button>
@@ -148,9 +157,11 @@
 </div>
 <Runeselector2
   paths={paths.filter((p) =>
-    selectedPath ? (p as any).Id !== (selectedPath as any).Id : true,
+    primaryPath ? (p as any).Id !== (primaryPath as any).Id : true,
   )}
   {runes}
+  bind:selectedPath={secondaryPath}
+  bind:selectedRunes={secondaryRunes}
 />
 
 {#if activeMenu !== null}

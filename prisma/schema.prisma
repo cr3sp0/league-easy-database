@@ -203,7 +203,7 @@ model Kit_Abilita {
 }
 
 model Pagina_Runa {
-  Id             Int              @id
+  Id             Int              @id @default(autoincrement())
   RunaPrimaria   Int
   RunaSecondaria Int
   Frammenti      Int
@@ -214,7 +214,7 @@ model Pagina_Runa {
 }
 
 model Sezione_Runa {
-  Id            Int           @id
+  Id            Int           @id @default(autoincrement())
   Pietrachiave  String
   RigaSuperiore String
   RigaCentrale  String

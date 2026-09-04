@@ -283,7 +283,6 @@ export type Sezione_RunaScalarWhereWithAggregatesInput = {
 }
 
 export type Sezione_RunaCreateInput = {
-  Id: number
   Shard?: Prisma.Pagina_RunaCreateNestedManyWithoutShardsInput
   Prim?: Prisma.Pagina_RunaCreateNestedManyWithoutPrincipaleInput
   Secon?: Prisma.Pagina_RunaCreateNestedManyWithoutSecondariaInput
@@ -294,7 +293,7 @@ export type Sezione_RunaCreateInput = {
 }
 
 export type Sezione_RunaUncheckedCreateInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaSuperiore: string
   RigaCentrale: string
@@ -305,7 +304,6 @@ export type Sezione_RunaUncheckedCreateInput = {
 }
 
 export type Sezione_RunaUpdateInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   Shard?: Prisma.Pagina_RunaUpdateManyWithoutShardsNestedInput
   Prim?: Prisma.Pagina_RunaUpdateManyWithoutPrincipaleNestedInput
   Secon?: Prisma.Pagina_RunaUpdateManyWithoutSecondariaNestedInput
@@ -327,7 +325,7 @@ export type Sezione_RunaUncheckedUpdateInput = {
 }
 
 export type Sezione_RunaCreateManyInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaSuperiore: string
   RigaCentrale: string
@@ -335,7 +333,7 @@ export type Sezione_RunaCreateManyInput = {
 }
 
 export type Sezione_RunaUpdateManyMutationInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
+
 }
 
 export type Sezione_RunaUncheckedUpdateManyInput = {
@@ -604,7 +602,6 @@ export type Sezione_RunaUncheckedUpdateManyWithoutFirstNestedInput = {
 }
 
 export type Sezione_RunaCreateWithoutShardInput = {
-  Id: number
   Prim?: Prisma.Pagina_RunaCreateNestedManyWithoutPrincipaleInput
   Secon?: Prisma.Pagina_RunaCreateNestedManyWithoutSecondariaInput
   Keystone: Prisma.RunaCreateNestedOneWithoutKeystoneInput
@@ -614,7 +611,7 @@ export type Sezione_RunaCreateWithoutShardInput = {
 }
 
 export type Sezione_RunaUncheckedCreateWithoutShardInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaSuperiore: string
   RigaCentrale: string
@@ -629,7 +626,6 @@ export type Sezione_RunaCreateOrConnectWithoutShardInput = {
 }
 
 export type Sezione_RunaCreateWithoutPrimInput = {
-  Id: number
   Shard?: Prisma.Pagina_RunaCreateNestedManyWithoutShardsInput
   Secon?: Prisma.Pagina_RunaCreateNestedManyWithoutSecondariaInput
   Keystone: Prisma.RunaCreateNestedOneWithoutKeystoneInput
@@ -639,7 +635,7 @@ export type Sezione_RunaCreateWithoutPrimInput = {
 }
 
 export type Sezione_RunaUncheckedCreateWithoutPrimInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaSuperiore: string
   RigaCentrale: string
@@ -654,7 +650,6 @@ export type Sezione_RunaCreateOrConnectWithoutPrimInput = {
 }
 
 export type Sezione_RunaCreateWithoutSeconInput = {
-  Id: number
   Shard?: Prisma.Pagina_RunaCreateNestedManyWithoutShardsInput
   Prim?: Prisma.Pagina_RunaCreateNestedManyWithoutPrincipaleInput
   Keystone: Prisma.RunaCreateNestedOneWithoutKeystoneInput
@@ -664,7 +659,7 @@ export type Sezione_RunaCreateWithoutSeconInput = {
 }
 
 export type Sezione_RunaUncheckedCreateWithoutSeconInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaSuperiore: string
   RigaCentrale: string
@@ -690,7 +685,6 @@ export type Sezione_RunaUpdateToOneWithWhereWithoutShardInput = {
 }
 
 export type Sezione_RunaUpdateWithoutShardInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   Prim?: Prisma.Pagina_RunaUpdateManyWithoutPrincipaleNestedInput
   Secon?: Prisma.Pagina_RunaUpdateManyWithoutSecondariaNestedInput
   Keystone?: Prisma.RunaUpdateOneRequiredWithoutKeystoneNestedInput
@@ -721,7 +715,6 @@ export type Sezione_RunaUpdateToOneWithWhereWithoutPrimInput = {
 }
 
 export type Sezione_RunaUpdateWithoutPrimInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   Shard?: Prisma.Pagina_RunaUpdateManyWithoutShardsNestedInput
   Secon?: Prisma.Pagina_RunaUpdateManyWithoutSecondariaNestedInput
   Keystone?: Prisma.RunaUpdateOneRequiredWithoutKeystoneNestedInput
@@ -752,7 +745,6 @@ export type Sezione_RunaUpdateToOneWithWhereWithoutSeconInput = {
 }
 
 export type Sezione_RunaUpdateWithoutSeconInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   Shard?: Prisma.Pagina_RunaUpdateManyWithoutShardsNestedInput
   Prim?: Prisma.Pagina_RunaUpdateManyWithoutPrincipaleNestedInput
   Keystone?: Prisma.RunaUpdateOneRequiredWithoutKeystoneNestedInput
@@ -772,7 +764,6 @@ export type Sezione_RunaUncheckedUpdateWithoutSeconInput = {
 }
 
 export type Sezione_RunaCreateWithoutKeystoneInput = {
-  Id: number
   Shard?: Prisma.Pagina_RunaCreateNestedManyWithoutShardsInput
   Prim?: Prisma.Pagina_RunaCreateNestedManyWithoutPrincipaleInput
   Secon?: Prisma.Pagina_RunaCreateNestedManyWithoutSecondariaInput
@@ -782,7 +773,7 @@ export type Sezione_RunaCreateWithoutKeystoneInput = {
 }
 
 export type Sezione_RunaUncheckedCreateWithoutKeystoneInput = {
-  Id: number
+  Id?: number
   RigaSuperiore: string
   RigaCentrale: string
   RigaInferiore: string
@@ -802,7 +793,6 @@ export type Sezione_RunaCreateManyKeystoneInputEnvelope = {
 }
 
 export type Sezione_RunaCreateWithoutMiddleInput = {
-  Id: number
   Shard?: Prisma.Pagina_RunaCreateNestedManyWithoutShardsInput
   Prim?: Prisma.Pagina_RunaCreateNestedManyWithoutPrincipaleInput
   Secon?: Prisma.Pagina_RunaCreateNestedManyWithoutSecondariaInput
@@ -812,7 +802,7 @@ export type Sezione_RunaCreateWithoutMiddleInput = {
 }
 
 export type Sezione_RunaUncheckedCreateWithoutMiddleInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaSuperiore: string
   RigaInferiore: string
@@ -832,7 +822,6 @@ export type Sezione_RunaCreateManyMiddleInputEnvelope = {
 }
 
 export type Sezione_RunaCreateWithoutLowerInput = {
-  Id: number
   Shard?: Prisma.Pagina_RunaCreateNestedManyWithoutShardsInput
   Prim?: Prisma.Pagina_RunaCreateNestedManyWithoutPrincipaleInput
   Secon?: Prisma.Pagina_RunaCreateNestedManyWithoutSecondariaInput
@@ -842,7 +831,7 @@ export type Sezione_RunaCreateWithoutLowerInput = {
 }
 
 export type Sezione_RunaUncheckedCreateWithoutLowerInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaSuperiore: string
   RigaCentrale: string
@@ -862,7 +851,6 @@ export type Sezione_RunaCreateManyLowerInputEnvelope = {
 }
 
 export type Sezione_RunaCreateWithoutFirstInput = {
-  Id: number
   Shard?: Prisma.Pagina_RunaCreateNestedManyWithoutShardsInput
   Prim?: Prisma.Pagina_RunaCreateNestedManyWithoutPrincipaleInput
   Secon?: Prisma.Pagina_RunaCreateNestedManyWithoutSecondariaInput
@@ -872,7 +860,7 @@ export type Sezione_RunaCreateWithoutFirstInput = {
 }
 
 export type Sezione_RunaUncheckedCreateWithoutFirstInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaCentrale: string
   RigaInferiore: string
@@ -967,35 +955,34 @@ export type Sezione_RunaUpdateManyWithWhereWithoutFirstInput = {
 }
 
 export type Sezione_RunaCreateManyKeystoneInput = {
-  Id: number
+  Id?: number
   RigaSuperiore: string
   RigaCentrale: string
   RigaInferiore: string
 }
 
 export type Sezione_RunaCreateManyMiddleInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaSuperiore: string
   RigaInferiore: string
 }
 
 export type Sezione_RunaCreateManyLowerInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaSuperiore: string
   RigaCentrale: string
 }
 
 export type Sezione_RunaCreateManyFirstInput = {
-  Id: number
+  Id?: number
   Pietrachiave: string
   RigaCentrale: string
   RigaInferiore: string
 }
 
 export type Sezione_RunaUpdateWithoutKeystoneInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   Shard?: Prisma.Pagina_RunaUpdateManyWithoutShardsNestedInput
   Prim?: Prisma.Pagina_RunaUpdateManyWithoutPrincipaleNestedInput
   Secon?: Prisma.Pagina_RunaUpdateManyWithoutSecondariaNestedInput
@@ -1022,7 +1009,6 @@ export type Sezione_RunaUncheckedUpdateManyWithoutKeystoneInput = {
 }
 
 export type Sezione_RunaUpdateWithoutMiddleInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   Shard?: Prisma.Pagina_RunaUpdateManyWithoutShardsNestedInput
   Prim?: Prisma.Pagina_RunaUpdateManyWithoutPrincipaleNestedInput
   Secon?: Prisma.Pagina_RunaUpdateManyWithoutSecondariaNestedInput
@@ -1049,7 +1035,6 @@ export type Sezione_RunaUncheckedUpdateManyWithoutMiddleInput = {
 }
 
 export type Sezione_RunaUpdateWithoutLowerInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   Shard?: Prisma.Pagina_RunaUpdateManyWithoutShardsNestedInput
   Prim?: Prisma.Pagina_RunaUpdateManyWithoutPrincipaleNestedInput
   Secon?: Prisma.Pagina_RunaUpdateManyWithoutSecondariaNestedInput
@@ -1076,7 +1061,6 @@ export type Sezione_RunaUncheckedUpdateManyWithoutLowerInput = {
 }
 
 export type Sezione_RunaUpdateWithoutFirstInput = {
-  Id?: Prisma.IntFieldUpdateOperationsInput | number
   Shard?: Prisma.Pagina_RunaUpdateManyWithoutShardsNestedInput
   Prim?: Prisma.Pagina_RunaUpdateManyWithoutPrincipaleNestedInput
   Secon?: Prisma.Pagina_RunaUpdateManyWithoutSecondariaNestedInput

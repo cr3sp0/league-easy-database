@@ -1,29 +1,28 @@
 <script lang="ts">
   import type { Runa, Tipologia_runa } from "$lib/server/prisma/client";
 
-  let { paths = [], runes = [] }: { paths: Tipologia_runa[]; runes: Runa[] } =
-    $props();
+  let {
+    paths = [],
+    runes = [],
+    selectedPath = $bindable(null),
+    selectedRunes = $bindable([null, null]),
+  }: {
+    paths: Tipologia_runa[];
+    runes: Runa[];
+    selectedPath?: Tipologia_runa | null;
+    selectedRunes?: (Runa | null)[];
+  } = $props();
 
-  let selectedPath = $state<Tipologia_runa | null>(null);
-
-  // Slot 0 e 1 per le due rune secondarie
-  let selectedRunes = $state<(Runa | null)[]>([null, null]);
-
-  // Stato per gestire i menu a tendina
   let activeMenu = $state<"path" | 0 | 1 | null>(null);
   let isAnimating = $state(false);
 
-  // NOTA: Controlla se nel tuo schema il colore c'è, altrimenti teniamo il bianco di default.
-  // Assicurati di usare .Id o .id in base a come è scritto nel tuo Prisma Schema.
   let currentPathColor = $derived(
     selectedPath ? (selectedPath as any).color || "#ffffff" : "#ffffff",
   );
 
-  // Funzione che calcola le rune disponibili per uno slot, escludendo il Grado occupato dall'altro slot
   function getAvailableRunes(slotIndex: 0 | 1) {
     if (!selectedPath) return [];
 
-    // Troviamo l'indice dell'altro slot (se guardo lo 0, l'altro è 1 e viceversa)
     const otherSlotIndex = slotIndex === 0 ? 1 : 0;
     const otherRune = selectedRunes[otherSlotIndex];
     const otherGrado = otherRune ? otherRune.Grado : null;
@@ -31,8 +30,8 @@
     return runes.filter(
       (r) =>
         r.CamminoId === (selectedPath as any).Id &&
-        (r.Grado === 1 || r.Grado === 2 || r.Grado === 3) && // Solo rune minori
-        r.Grado !== otherGrado, // ESCLUDE le rune della stessa riga (Grado) dell'altra scelta
+        (r.Grado === 1 || r.Grado === 2 || r.Grado === 3) &&
+        r.Grado !== otherGrado,
     );
   }
 
@@ -42,7 +41,7 @@
 
   function selectPath(path: Tipologia_runa) {
     selectedPath = path;
-    selectedRunes = [null, null]; // Reset delle rune scelte
+    selectedRunes = [null, null];
     activeMenu = null;
     isAnimating = false;
 
@@ -59,7 +58,6 @@
 
 <div class="rune-builder" style="--current-path-color: {currentPathColor}">
   <div class="rune-row">
-    <!-- SELETTORE PATH -->
     <div class="path-selector-wrapper" class:open={activeMenu === "path"}>
       <button
         class="path-circle"
@@ -88,11 +86,9 @@
       {/if}
     </div>
 
-    <!-- SELETTORE RUNE E SHARDS -->
     <div class="beads-container">
       <div class="rune-line" class:pulse-active={isAnimating}></div>
 
-      <!-- LE 2 RUNE SECONDARIE SELEZIONABILI -->
       {#each [0, 1] as slotIndex}
         <div class="bead-wrapper" class:open={activeMenu === slotIndex}>
           <button
@@ -126,7 +122,6 @@
         </div>
       {/each}
 
-      <!-- LE 3 SHARDS (STATISTICHE) - Placeholder per ora -->
       <div class="small-rune-bead" class:active={selectedPath}></div>
       <div class="small-rune-bead" class:active={selectedPath}></div>
       <div class="small-rune-bead" class:active={selectedPath}></div>
@@ -134,7 +129,6 @@
   </div>
 </div>
 
-<!-- BACKDROP PER CHIUDERE I MENU -->
 {#if activeMenu !== null}
   <button
     class="backdrop"
@@ -170,7 +164,6 @@
     z-index: 19;
   }
 
-  /* --- CLASSI PER I MENU RUNE (come nel ramo primario) --- */
   .bead-wrapper {
     position: relative;
     display: flex;
@@ -206,7 +199,6 @@
     object-fit: contain;
     border-radius: 50%;
   }
-  /* -------------------------------------------------------- */
 
   .path-circle {
     position: relative;

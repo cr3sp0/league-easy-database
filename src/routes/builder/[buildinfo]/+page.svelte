@@ -1,20 +1,43 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import Itemselector from "$lib/components/Itemselector.svelte";
   import Navbar from "$lib/components/navbar.svelte";
   import Runeselector from "$lib/components/runeselector.svelte";
-  import type { Campione, Runa, SetBase } from "$lib/server/prisma/client.js";
-  import type { StatItem } from "$lib/types";
+  import Spellselector from "$lib/components/Spellselector.svelte";
+  import type {
+    Campione,
+    SetBase,
+    Oggetto,
+    Runa,
+    Tipologia_runa,
+    Incantesimo,
+  } from "$lib/server/prisma/client.js";
 
   let { data } = $props();
 
   const champ: Campione = data.champ;
-
   const stats: SetBase = data.stats;
 
   const defaultTitle = data.champ.nome + " New Build";
 
-  let currentTitle = defaultTitle;
+  let currentTitle = $state(defaultTitle);
   let isEditing = $state(false);
+
+  let buildItems = $state<(Oggetto | null)[]>([
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ]);
+
+  let buildPrimaryPath = $state<Tipologia_runa | null>(null);
+  let buildPrimaryRunes = $state<(Runa | null)[]>([null, null, null, null]);
+  let buildSecondaryPath = $state<Tipologia_runa | null>(null);
+  let buildSecondaryRunes = $state<(Runa | null)[]>([null, null]);
+
+  let buildSpells = $state<(Incantesimo | null)[]>([null, null]);
 
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === "Enter") {
@@ -29,7 +52,7 @@
     node.focus();
   }
 
-  const statsArr: StatItem[] = [
+  const statsArr = [
     { id: 1, name: "Attack Damage", value: stats.Attacco },
     { id: 2, name: "Ability Power", value: stats.AttaccoMagico },
     { id: 3, name: "Armor", value: stats.Armatura },
@@ -53,8 +76,23 @@
 
   let matches: MatchRecord[] = $state([]);
 
-  let isAddingGame = $state(false);
+  let buildPayload = $derived(
+    JSON.stringify({
+      title: currentTitle,
+      championID: champ.ID,
+      spells: buildSpells,
+      items: buildItems,
+      runes: {
+        primaryPath: buildPrimaryPath,
+        primaryRunes: buildPrimaryRunes,
+        secondaryPath: buildSecondaryPath,
+        secondaryRunes: buildSecondaryRunes,
+      },
+      matches: matches,
+    }),
+  );
 
+  let isAddingGame = $state(false);
   let editingMatchId = $state<number | null>(null);
   let originalResult = $state<"Win" | "Loss" | null>(null);
 
@@ -147,6 +185,17 @@
         <img src={champ.Icona} alt="champ icon" />
       </div>
 
+      <div class="spells-wrapper">
+        <Spellselector
+          spells={data.spells}
+          bind:selectedSpell={buildSpells[0]}
+        />
+        <Spellselector
+          spells={data.spells}
+          bind:selectedSpell={buildSpells[1]}
+        />
+      </div>
+
       {#if isEditing}
         <input
           type="text"
@@ -174,37 +223,66 @@
         </svg>
       </button>
 
-      <button
-        class="save-build-btn"
-        type="button"
-        aria-label="Save Build"
-        title="Save Build"
+      <form
+        method="POST"
+        action="?/saveBuild"
+        use:enhance={() => {
+          return async ({ result, update }) => {
+            if (result.type === "success") {
+              alert("Build salvata con successo!");
+            } else {
+              alert("Si è verificato un errore durante il salvataggio.");
+              console.error(result);
+            }
+            update();
+          };
+        }}
       >
-        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M0 2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H3V3.5C3 3.89782 3.15804 4.27936 3.43934 4.56066C3.72064 4.84196 4.10218 5 4.5 5H8.5C8.89782 5 9.27936 4.84196 9.56066 4.56066C9.84196 4.27936 10 3.89782 10 3.5V0H10.379C10.9094 0.000113275 11.418 0.210901 11.793 0.586L13.414 2.207C13.7891 2.58199 13.9999 3.09061 14 3.621V12C14 12.5304 13.7893 13.0391 13.4142 13.4142C13.0391 13.7893 12.5304 14 12 14V8.5C12 8.10218 11.842 7.72064 11.5607 7.43934C11.2794 7.15804 10.8978 7 10.5 7H3.5C3.10218 7 2.72064 7.15804 2.43934 7.43934C2.15804 7.72064 2 8.10218 2 8.5V14C1.46957 14 0.960859 13.7893 0.585786 13.4142C0.210714 13.0391 0 12.5304 0 12V2ZM9 0H4V3.5C4 3.63261 4.05268 3.75979 4.14645 3.85355C4.24021 3.94732 4.36739 4 4.5 4H8.5C8.63261 4 8.75979 3.94732 8.85355 3.85355C8.94732 3.75979 9 3.63261 9 3.5V0ZM11 8.5V14H3V8.5C3 8.36739 3.05268 8.24021 3.14645 8.14645C3.24021 8.05268 3.36739 8 3.5 8H10.5C10.6326 8 10.7598 8.05268 10.8536 8.14645C10.9473 8.24021 11 8.36739 11 8.5Z"
-            fill="white"
-          />
-        </svg>
-      </button>
+        <input type="hidden" name="buildData" value={buildPayload} />
+
+        <button
+          class="save-build-btn"
+          type="submit"
+          aria-label="Save Build"
+          title="Save Build"
+        >
+          <svg
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H3V3.5C3 3.89782 3.15804 4.27936 3.43934 4.56066C3.72064 4.84196 4.10218 5 4.5 5H8.5C8.89782 5 9.27936 4.84196 9.56066 4.56066C9.84196 4.27936 10 3.89782 10 3.5V0H10.379C10.9094 0.000113275 11.418 0.210901 11.793 0.586L13.414 2.207C13.7891 2.58199 13.9999 3.09061 14 3.621V12C14 12.5304 13.7893 13.0391 13.4142 13.4142C13.0391 13.7893 12.5304 14 12 14V8.5C12 8.10218 11.842 7.72064 11.5607 7.43934C11.2794 7.15804 10.8978 7 10.5 7H3.5C3.10218 7 2.72064 7.15804 2.43934 7.43934C2.15804 7.72064 2 8.10218 2 8.5V14C1.46957 14 0.960859 13.7893 0.585786 13.4142C0.210714 13.0391 0 12.5304 0 12V2ZM9 0H4V3.5C4 3.63261 4.05268 3.75979 4.14645 3.85355C4.24021 3.94732 4.36739 4 4.5 4H8.5C8.63261 4 8.75979 3.94732 8.85355 3.85355C8.94732 3.75979 9 3.63261 9 3.5V0ZM11 8.5V14H3V8.5C3 8.36739 3.05268 8.24021 3.14645 8.14645C3.24021 8.05268 3.36739 8 3.5 8H10.5C10.6326 8 10.7598 8.05268 10.8536 8.14645C10.9473 8.24021 11 8.36739 11 8.5Z"
+              fill="white"
+            />
+          </svg>
+        </button>
+      </form>
     </div>
 
     <div class="buildinfo-runes">
       <div class="buildinfo-sectiontitle">Runes</div>
-      <Runeselector runes={data.runes} paths={data.path} />
+      <Runeselector
+        runes={data.runes}
+        paths={data.path}
+        bind:primaryPath={buildPrimaryPath}
+        bind:primaryRunes={buildPrimaryRunes}
+        bind:secondaryPath={buildSecondaryPath}
+        bind:secondaryRunes={buildSecondaryRunes}
+      />
     </div>
 
     <div class="buildinfo-items">
       <div class="buildinfo-sectiontitle">Items</div>
       <div class="items-row">
-        <Itemselector items={data.items} /><Itemselector
-          items={data.items}
-        /><Itemselector items={data.items} />
+        <Itemselector items={data.items} bind:selectedItem={buildItems[0]} />
+        <Itemselector items={data.items} bind:selectedItem={buildItems[1]} />
+        <Itemselector items={data.items} bind:selectedItem={buildItems[2]} />
       </div>
       <div class="items-row">
-        <Itemselector items={data.items} /><Itemselector
-          items={data.items}
-        /><Itemselector items={data.items} />
+        <Itemselector items={data.items} bind:selectedItem={buildItems[3]} />
+        <Itemselector items={data.items} bind:selectedItem={buildItems[4]} />
+        <Itemselector items={data.items} bind:selectedItem={buildItems[5]} />
       </div>
     </div>
 
@@ -357,7 +435,7 @@
     align-items: center;
     gap: 50px;
     height: 75px;
-    width: 100%; /* Assicura che l'header prenda tutto lo spazio orizzontale */
+    width: 100%;
   }
 
   .champpic {
@@ -447,6 +525,13 @@
     flex-direction: row;
 
     gap: clamp(80px, 10vw, 125px);
+  }
+
+  .spells-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-right: 15px;
   }
 
   .buildinfo-stats {

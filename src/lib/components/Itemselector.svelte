@@ -1,10 +1,12 @@
 <script lang="ts">
   import type { Oggetto } from "$lib/server/prisma/client";
-  let { items = [] }: { items: Oggetto[] } = $props();
+  let {
+    items = [],
+    selectedItem = $bindable(null),
+  }: { items: Oggetto[]; selectedItem?: Oggetto | null } = $props();
 
   let isMenuOpen = $state(false);
   let searchQuery = $state("");
-  let selectedItem = $state<Oggetto | null>(null);
 
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
@@ -13,13 +15,13 @@
     }
   }
 
-  function selectItem(item: any) {
+  function selectItem(item: Oggetto) {
     selectedItem = item;
     isMenuOpen = false;
   }
 
   let filteredItems = $derived(
-    items.filter((item: any) =>
+    items.filter((item: Oggetto) =>
       item.Nome.toLowerCase().includes(searchQuery.toLowerCase()),
     ),
   );

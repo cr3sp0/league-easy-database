@@ -1,16 +1,19 @@
-<script>
+<script lang="ts">
   import Itemsgrid from "$lib/components/itemsgrid.svelte";
   import Navbar from "$lib/components/navbar.svelte";
   import Search from "$lib/components/search.svelte";
+  import type { itemStatFilter } from "$lib/server/itemManager.js";
 
   let { data } = $props()
+
+  let itemFilter : itemStatFilter = $state({})
 </script>
 
 <div class="container">
   <div class="items-content">
     <Navbar profile={data.profile?.username} role={data.role} />
     <div class="title">Items</div>
-    <Search />
+    <Search bind:itemFilter={itemFilter} />
     <Itemsgrid itemList={data.items} />
   </div>
 </div>

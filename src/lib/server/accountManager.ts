@@ -16,7 +16,7 @@ export async function createSession(
     guid : string
 ) : Promise<completeUser> {
     //TODO: write explicit sql query
-    const sessione = await prisma.sessione.upsert({
+    const Sessione = await prisma.sessione.upsert({
         where: {
             guid_id: guid
         },
@@ -36,8 +36,8 @@ export async function createSession(
     })
     
     return {
-        user: sessione.user,
-        session: sessione
+        user: Sessione.user,
+        session: Sessione
     }
 }
 export async function getActiveSession({
@@ -110,7 +110,7 @@ export async function createAccount(
                 Descrizione: "Hi! I'm new here.",
                 IsAdmin: false,
                 Immagine: undefined,
-                sessione: {
+                Sessione: {
                     create: {
                         guid_id: username,
                         date_created: new Date(Date.now()),
@@ -119,17 +119,17 @@ export async function createAccount(
                 }
             },
             include: {
-                sessione: true
+                Sessione: true
             }
         })
 
-        if(createAccount.sessione === null) {
-            createAccount.sessione = (await createSession(createAccount.AccountId, createAccount.Nome)).session
+        if(createAccount.Sessione === null) {
+            createAccount.Sessione = (await createSession(createAccount.AccountId, createAccount.Nome)).session
         }
         
         return {
             user: createAccount,
-            session: createAccount.sessione 
+            session: createAccount.Sessione 
         }
     } catch ( error : any ) {
         throw { message: username + " alredy exists" }
@@ -317,7 +317,7 @@ export async function banAccount(
             include: {
                 Account: {
                     include: {
-                        sessione: true
+                        Sessione: true
                     }
                 }
             }
@@ -325,9 +325,9 @@ export async function banAccount(
         
         if (
             ban &&
-            ban.Account.sessione
+            ban.Account.Sessione
         ) {
-            await deleteSession(ban.Account.sessione.Id)
+            await deleteSession(ban.Account.Sessione.Id)
         }
         
         return ban

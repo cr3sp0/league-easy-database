@@ -1,18 +1,13 @@
 <script lang="ts">
-  import type { Item } from "$lib/types";
+    import type { CompleteItem } from "$lib/server/itemManager";
+    import StatGrid from "./statGrid.svelte";
 
-  interface GridItem {
-    id: number;
-    item: Item;
-  }
+  let { itemList } : { itemList : CompleteItem[] } = $props()
 
-  let { itemList } : { itemList : Item[] } = $props()
-
-  // svelte-ignore state_referenced_locally
-  const items: GridItem[] = Array.from({ length: 24 }, (_, i) => ({
+  const items = $derived(Array.from({ length: itemList.length }, (_, i) => ({
     id: i,
     item: itemList[i]
-  }));
+  })));
 
   let expandedId = $state<number | null>(null);
 
@@ -31,13 +26,27 @@
       onclick={() => toggleExpand(gridItem.id)}
     >
       <div class="image-wrapper">
-        <img src={gridItem.item.image} alt={gridItem.item.name} />
+        <img src={gridItem.item.item.Immagine} alt={gridItem.item.item.Nome} />
       </div>
 
       {#if expandedId === gridItem.id}
         <div class="info-wrapper">
-          <h3>{gridItem.item.name}</h3>
-          <p>{gridItem.item.description}</p>
+          <h3>{gridItem.item.item.Nome}</h3>
+          <StatGrid 
+          Vita = {gridItem.item.stats.Vita}
+          Mana = {gridItem.item.stats.Mana}
+          Velocità_di_movimento = {gridItem.item.stats.Velocità_di_movimento}
+          Armatura = {gridItem.item.stats.Armatura}
+          ResistenzaMagica = {gridItem.item.stats.ResistenzaMagica}
+          Gittata = {gridItem.item.stats.Gittata}
+          RigenerazioneVita = {gridItem.item.stats.RigenerazioneVita}
+          RigenerazioneMana = {gridItem.item.stats.RigenerazioneMana}
+          Critico = {gridItem.item.stats.Critico}
+          Attacco = {gridItem.item.stats.Attacco}
+          VelocitàDiAttacco = {gridItem.item.stats.VelocitàDiAttacco}
+          AttaccoMagico = {gridItem.item.stats.AttaccoMagico}
+          />
+          <p>{gridItem.item.item.Descrizione}</p>
         </div>
       {/if}
     </div>
@@ -94,6 +103,7 @@
     border-color: #554949;
     aspect-ratio: auto;
     align-items: flex-start;
+    overflow-y: auto;
   }
 
   .grid-item.expanded .image-wrapper {
@@ -109,6 +119,8 @@
     justify-content: center;
     color: white;
     animation: fadeIn 0.4s ease-out;
+
+    font-family: var(--font-mono);
   }
 
   .info-wrapper h3 {

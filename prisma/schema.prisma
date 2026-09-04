@@ -142,7 +142,7 @@ model Account {
   Partita      Partita[]
   ReportRicev  Report[]         @relation("Author")
   ReportCreati Report[]         @relation("Target")
-  sessione     Sessione?
+  Sessione     Sessione?
   Banned       Banned_Account?
 }
 

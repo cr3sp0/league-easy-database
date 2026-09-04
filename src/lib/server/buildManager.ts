@@ -1,3 +1,4 @@
+import type { CompleteItem } from "./itemManager";
 import prisma from "./prisma";
 import { 
   type Account,
@@ -16,7 +17,7 @@ export interface completeBuild {
   author: Account
   build: Configurazione
   champion: Campione
-  items: Inventario[]
+  items: CompleteItem[]
   runes: Pagina_Runa
   spells: [Incantesimo, Incantesimo]
   results: Partita[]
@@ -81,7 +82,11 @@ export async function getBuilds({
         },
         Inv: {
           include: {
-            Oggetto:  true
+            Oggetto: {
+              include: {
+                Stats: true
+              }
+            }
           }
         },
         User: true,
@@ -129,23 +134,26 @@ export async function getBuilds({
       take: limit
     })
 
-    let output : completeBuild[] = []
-
-    builds.forEach(b => {
-      output.push({
+    return builds.map(b => {
+      return {
         author: b.User,
         build: b,
         champion: b.champ,
         runes: b.Pag_Runa,
-        items: b.Inv,
+        items: b.Inv.map(o => {
+          return {
+            item: o.Oggetto,
+            stats: o.Oggetto.Stats
+          }
+        }),
         spells: [b.Inc1, b.Inc2],
         results: b.Partite
-      })
-    })
-
-    return output;
+      }
+    });
     
   } catch (err : any) {
+    console.log(err)
+
     throw { message: "Something went wrong" }
   }
 }
@@ -210,7 +218,15 @@ export async function createBuild(
       Pag_Runa: true,
       Inc1: true,
       Inc2: true,
-      Inv: true,
+      Inv: {
+        include: {
+          Oggetto: {
+            include: {
+              Stats: true
+            }
+          }
+        }
+      },
       Partite: true
     }
   })
@@ -221,7 +237,12 @@ export async function createBuild(
     champion: creation.champ,
     runes: creation.Pag_Runa,
     spells: [creation.Inc1, creation.Inc2],
-    items: creation.Inv,
+    items: creation.Inv.map(o => {
+      return {
+        item: o.Oggetto,
+        stats: o.Oggetto.Stats
+      }
+    }),
     results: creation.Partite
   }
 }
@@ -269,14 +290,49 @@ export async function updateBuild(
       Incantesimo2: inc2
     },
     include: {
-      User: true,
       champ: true,
-      Pag_Runa: true,
       Inc1: true,
       Inc2: true,
-      Inv: true,
+      Pag_Runa: {
+        include: {
+          Principale: {
+            include: {
+              Keystone: { include: { Camm: true } },
+              Middle: { include: { Camm: true } },
+              Lower: { include: { Camm: true } },
+              First: { include: { Camm: true } }
+            }
+          },
+          Secondaria: {
+            include: {
+              Keystone: { include: { Camm: true } },
+              Middle: { include: { Camm: true } },
+              Lower: { include: { Camm: true } },
+              First: { include: { Camm: true } }
+            }
+          },
+          Shards: {
+            include: {
+              Keystone: { include: { Camm: true } },
+              Middle: { include: { Camm: true } },
+              Lower: { include: { Camm: true } },
+              First: { include: { Camm: true } }
+            }
+          },
+        }
+      },
+      Inv: {
+        include: {
+          Oggetto: {
+            include: {
+              Stats: true
+            }
+          }
+        }
+      },
+      User: true,
       Partite: true
-    }
+    },
   })
 
   return build ? {
@@ -285,7 +341,12 @@ export async function updateBuild(
     champion: build.champ,
     runes: build.Pag_Runa,
     spells: [build.Inc1, build.Inc2],
-    items: build.Inv,
+    items: build.Inv.map(o => {
+      return {
+        item: o.Oggetto,
+        stats: o.Oggetto.Stats
+      }
+    }),
     results: build.Partite
   } : undefined
 }

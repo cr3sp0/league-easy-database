@@ -1,10 +1,25 @@
-<script>
+<script lang="ts">
+    import type { itemStatFilter } from "$lib/server/itemManager";
+    import ItemFilter from "./itemFilter.svelte";
+
+
+  let { itemFilter = $bindable() } 
+  : { itemFilter? : itemStatFilter } = $props()
+
+  let isFilterVisible = $state(false)
 </script>
 
-<div class="search-container" id="head-section">
+<form 
+class="search-container"
+id="head-section"
+method="post"
+action="?/sendFilter"
+>
   <input type="text" class="search" placeholder="Search..." name="search" />
   <div class="filler"></div>
-  <div class="filter" id="filter">
+  <!-- svelte-ignore a11y_click_events_have_key_events -->
+  <!-- svelte-ignore a11y_no_static_element_interactions -->
+  <div class="filter" id="filter" onclick={() => isFilterVisible = true}>
     <svg
       width="10"
       height="12"
@@ -20,7 +35,10 @@
 
     Filter
   </div>
-</div>
+  {#if isFilterVisible && itemFilter !== undefined}
+    <ItemFilter bind:visible={isFilterVisible} bind:filter={itemFilter} />
+  {/if}
+</form>
 
 <style>
   .search-container {

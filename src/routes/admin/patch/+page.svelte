@@ -7,7 +7,12 @@
 
   let dropdownOpen = $state(false);
   let selectedOption = $state("Filtri");
-  let selection : {Nome: string, Immagine: string}[] = $state([])
+
+  let selection : {
+    index: number
+    Nome: string,
+    Immagine: string
+  }[] = $state([])
 
   let updates : {
     champion: Campione[],
@@ -47,6 +52,7 @@
             <button type="button" onclick={() => {
                 handleSelect("Champions", data.champions.map((c) => {
                   return {
+                    index: data.champions.indexOf(c),
                     Nome: c.nome,
                     Immagine: c.Icona
                   }
@@ -55,10 +61,22 @@
             }
             >Champions</button>
 
-            <button type="button" onclick={() => handleSelect("Items", data.items)}
+            <button type="button" onclick={() => handleSelect("Items", data.items.map((o) => {
+                  return {
+                    index: data.items.indexOf(o),
+                    Nome: o.Nome,
+                    Immagine: o.Immagine
+                  }
+                }))}
             >Items</button>
 
-            <button type="button" onclick={() => handleSelect("Runes", data.runes)}
+            <button type="button" onclick={() => handleSelect("Runes", data.runes.map((r) => {
+                  return {
+                    index: data.runes.indexOf(r),
+                    Nome: r.Nome,
+                    Immagine: r.Immagine
+                  }
+                }))}
             >Runes</button>
           </div>
         {/if}

@@ -3,8 +3,15 @@
     import ItemFilter from "./itemFilter.svelte";
 
 
-  let { itemFilter = $bindable() } 
-  : { itemFilter? : itemStatFilter } = $props()
+  let { 
+    itemFilter = $bindable(),
+    championFilter = $bindable(),
+    buildFilter = $bindable()
+  } : { 
+    itemFilter? : itemStatFilter
+    championFilter? : any
+    buildFilter? : any
+  } = $props()
 
   let isFilterVisible = $state(false)
 </script>

@@ -36,7 +36,8 @@
     <div class="spacing"></div>
     <div class="nav-links">
       {#if role === "Admin"}
-        <a href="/admin/reports" class="nav-link">reports</a>
+      <a href="/admin/reports" class="nav-link">reports</a>
+      <a href="/admin/patch" class="nav-link">patches</a>
       {/if}
       <a href="/builder" class="nav-link">builder</a>
       <a href="/champions" class="nav-link">champions</a>

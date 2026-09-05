@@ -105,3 +105,10 @@ export async function getItems({
 
     return itemList
 }
+
+export async function updateItem(
+    id: number,
+    {} : {}
+) {
+    
+}

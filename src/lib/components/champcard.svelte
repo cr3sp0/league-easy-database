@@ -4,7 +4,7 @@
 
 <div class="card-container">
   <div class="card-content">
-    <img src={Icon} alt="faker" />
+    <img src={Icon} alt={name} />
     <div class="card-name">{name}</div>
   </div>
 </div>

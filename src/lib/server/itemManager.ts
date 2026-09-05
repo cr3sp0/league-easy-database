@@ -31,8 +31,8 @@ export interface itemStatFilter {
 
 export async function getItems({
     name = undefined,
-    costsLess = undefined,
-    costsMore = undefined,
+    costFloor = undefined,
+    costCeil = undefined,
     containsStat = {
         Vita: undefined,
         VitaPerLivello: undefined,
@@ -57,8 +57,8 @@ export async function getItems({
     }
 } : {
     name? : string
-    costsLess? : number
-    costsMore? : number
+    costFloor? : number
+    costCeil? : number
     containsStat? : itemStatFilter
 }) {
 
@@ -69,8 +69,8 @@ export async function getItems({
         where: {
             Nome: name,
             Costo: {
-                lt: costsLess,
-                gt: costsMore
+                gt: costFloor,
+                lt: costCeil
             },
             Stats: {
                 Vita                         : { gt: containsStat.Vita },

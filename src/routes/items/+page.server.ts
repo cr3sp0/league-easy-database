@@ -17,18 +17,18 @@ export const load: PageServerLoad = async ({ params, locals, url }) => {
 
         const filterParam = url.searchParams.get("filter")
         const name = url.searchParams.get("search")
-        const costsLess = url.searchParams.get("costsMore")
-        const costsMore = url.searchParams.get("costsLess")
+        const costFloor = url.searchParams.get("costFloor")
+        const costCeil = url.searchParams.get("costCeil")
         
         const filter : itemStatFilter = filterParam ? JSON.parse(filterParam) : undefined
 
         const items = await getItems({
             name: name 
                 ? name : undefined,
-            costsLess: costsLess 
-                ? parseInt(costsLess) : undefined,
-            costsMore: costsMore 
-                ? parseInt(costsMore) : undefined,
+            costFloor: costFloor 
+                ? parseInt(costFloor) : undefined,
+            costCeil: costCeil 
+                ? parseInt(costCeil) : undefined,
             containsStat: filter
         })
         

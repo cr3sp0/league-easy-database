@@ -67,7 +67,10 @@ export async function getItems({
             Stats: true
         },
         where: {
-            Nome: name,
+            Nome: {
+                contains: name,
+                mode: "insensitive"
+            },
             Costo: {
                 gt: costFloor,
                 lt: costCeil

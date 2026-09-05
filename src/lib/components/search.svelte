@@ -13,7 +13,6 @@
 class="search-container"
 id="head-section"
 method="get"
-action="?/"
 >
   <input type="text" class="search" placeholder="Search..." name="search" />
   <div class="filler"></div>

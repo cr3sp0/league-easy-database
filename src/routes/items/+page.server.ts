@@ -19,7 +19,7 @@ export const load: PageServerLoad = async ({ params, locals, url }) => {
         const name = url.searchParams.get("search")
         const costFloor = url.searchParams.get("costFloor")
         const costCeil = url.searchParams.get("costCeil")
-        
+
         const filter : itemStatFilter = filterParam ? JSON.parse(filterParam) : undefined
 
         const items = await getItems({
@@ -31,7 +31,7 @@ export const load: PageServerLoad = async ({ params, locals, url }) => {
                 ? parseInt(costCeil) : undefined,
             containsStat: filter
         })
-        
+
         return {
             profile: profile,
             role: role,

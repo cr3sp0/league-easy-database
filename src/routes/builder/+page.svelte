@@ -1,16 +1,8 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import Buildcard from "$lib/components/buildcard.svelte";
   import BuildcardHolder from "$lib/components/buildcardHolder.svelte";
   import Champcard from "$lib/components/champcard.svelte";
   import Navbar from "$lib/components/navbar.svelte";
-  import type {
-    Item,
-    Rune,
-    RuneConfiguration,
-    Build,
-    Champion,
-  } from "$lib/types.js";
 
   let { data, form } = $props();
 
@@ -71,7 +63,7 @@
           placeholder="Search for a Build"
         />
       </div>
-      <BuildcardHolder comunityBuilds={[]} />
+      <BuildcardHolder comunityBuilds={data.communityBuilds} />
     </div>
   </div>
 </div>

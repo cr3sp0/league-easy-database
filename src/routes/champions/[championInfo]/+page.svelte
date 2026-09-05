@@ -34,7 +34,7 @@
       {/if}
       <div class="title">Best Builds</div>
       <Search />
-      <BuildcardHolder />
+      <BuildcardHolder comunityBuilds={data.communityBuilds} personalBuilds={data.personalBuilds} />
     </div>
   </div>
 </div>

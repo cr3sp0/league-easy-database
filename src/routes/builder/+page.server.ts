@@ -1,6 +1,7 @@
 import { error, type Action, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getChampionsBasicInfo } from '$lib/server/championsManager';
+import { getBuilds } from '$lib/server/buildManager';
 
 function getRandomIndices(champions: { nome: string; Icona: string;}[]) {
 
@@ -22,13 +23,15 @@ export const load: PageServerLoad = async ({ locals }) => {
   try {
     const champions = await getChampionsBasicInfo();
     const randomIndices = getRandomIndices(champions);
-  
+    const builds = await getBuilds({})
+
     if(!locals.user) {
       return {
         profile: undefined,
         role: "User",
         champions: champions,
-        randomIndices: randomIndices
+        randomIndices: randomIndices,
+        communityBuilds: builds
       }
     }
 
@@ -36,8 +39,9 @@ export const load: PageServerLoad = async ({ locals }) => {
       profile: locals.user.username,
       role: locals.user.isAdmin
         ? "Admin" : "User",
-      champions,
-      randomIndices
+      champions: champions,
+      randomIndices: randomIndices,
+      communityBuilds: builds
     };
   } catch (errore: any) {
     console.log("ERRORE:", errore.message);

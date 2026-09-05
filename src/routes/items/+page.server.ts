@@ -15,14 +15,13 @@ export const load: PageServerLoad = async ({ params, locals, url }) => {
                 ? "Admin" : "User"
         }
 
-        
         const filterParam = url.searchParams.get("filter")
         const name = url.searchParams.get("search")
         const costsLess = url.searchParams.get("costsMore")
         const costsMore = url.searchParams.get("costsLess")
         
         const filter : itemStatFilter = filterParam ? JSON.parse(filterParam) : undefined
-        
+
         const items = await getItems({
             name: name 
                 ? name : undefined,

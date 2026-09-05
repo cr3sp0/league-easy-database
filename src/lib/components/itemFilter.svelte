@@ -4,6 +4,11 @@
     let { filter = $bindable(), visible = $bindable() } 
     : { filter : itemStatFilter, visible : boolean } = $props()
 
+    function toggle(value? : number) {
+        return value === undefined
+            ? 1 : undefined
+    }
+
 </script>
 
 <button
@@ -12,23 +17,75 @@
     aria-label="Close form"
 ></button>
 <div class="container">
-    <button type="button" onclick={() => filter.Vita = 1}>Vita</button>
-    <button type="button" onclick={() => filter.RigenerazioneVita = 1}>Health Regen</button>
-    <button type="button" onclick={() => filter.Attacco = 1}>Attack Damage</button>
-    <button type="button" onclick={() => filter.AttaccoMagico = 1}>Ability Power</button>
-    <button type="button" onclick={() => filter.Armatura = 1}>Armor</button>
-    <button type="button" onclick={() => filter.ResistenzaMagica = 1}>Magic Resistance</button>
-    <button type="button" onclick={() => filter.Critico = 1}>Crit Rate</button>
-    <button type="button" onclick={() => filter.Gittata = 1}>Range</button>
-    <button type="button" onclick={() => filter.Mana = 1}>Mana</button>
-    <button type="button" onclick={() => filter.RigenerazioneMana = 1}>Mana Regen</button>
-    <button type="button" onclick={() => filter.VelocitàDiAttacco = 1}>Attack Speed</button>
-    <button type="button" onclick={() => filter.Velocità_di_movimento = 1}>Movement Speed</button>
+    <button
+    type="button"
+    onclick={() => filter.Vita = toggle(filter.Vita)}
+    class:selected={filter.Vita !== undefined}
+    >Health</button>
+    <button
+    type="button"
+    onclick={() => filter.RigenerazioneVita = toggle(filter.RigenerazioneVita)}
+    class:selected={filter.RigenerazioneVita !== undefined}
+    >Health Regen</button>
+    <button
+    type="button"
+    onclick={() => filter.Attacco = toggle(filter.Attacco)}
+    class:selected={filter.Attacco !== undefined}
+    >Attack Damage</button>
+    <button
+    type="button"
+    onclick={() => filter.AttaccoMagico = toggle(filter.AttaccoMagico)}
+    class:selected={filter.AttaccoMagico !== undefined}
+    >Ability Power</button>
+    <button
+    type="button"
+    onclick={() => filter.Armatura = toggle(filter.Armatura)}
+    class:selected={filter.Armatura !== undefined}
+    >Armor</button>
+    <button
+    type="button"
+    onclick={() => filter.ResistenzaMagica = toggle(filter.ResistenzaMagica)}
+    class:selected={filter.ResistenzaMagica !== undefined}
+    >Magic Resistance</button>
+    <button
+    type="button"
+    onclick={() => filter.Critico = toggle(filter.Critico)}
+    class:selected={filter.Critico !== undefined}
+    >Crit Rate</button>
+    <button
+    type="button"
+    onclick={() => filter.Gittata = toggle(filter.Gittata)}
+    class:selected={filter.Gittata !== undefined}
+    >Range</button>
+    <button
+    type="button"
+    onclick={() => filter.Mana = toggle(filter.Mana)}
+    class:selected={filter.Mana !== undefined}
+    >Mana</button>
+    <button
+    type="button"
+    onclick={() => filter.RigenerazioneMana = toggle(filter.RigenerazioneMana)}
+    class:selected={filter.RigenerazioneMana !== undefined}
+    >Mana Regen</button>
+    <button
+    type="button"
+    onclick={() => filter.VelocitàDiAttacco = toggle(filter.VelocitàDiAttacco)}
+    class:selected={filter.VelocitàDiAttacco !== undefined}
+    >Attack Speed</button>
+    <button
+    type="button"
+    onclick={() => filter.Velocità_di_movimento = toggle(filter.Velocità_di_movimento)}
+    class:selected={filter.Velocità_di_movimento !== undefined}
+    >Movement Speed</button>
     <button type="submit">submit</button>
 </div>
-    
+
 <style>
-    .container{
+    .container {
         z-index: 100;
     } 
+
+    .selected {
+        background-color: red;
+    }
 </style>

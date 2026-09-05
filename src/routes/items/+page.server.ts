@@ -1,9 +1,9 @@
-import { getItems } from '$lib/server/itemManager';
+import { getItems, type itemStatFilter } from '$lib/server/itemManager';
 import type { IUser } from '$lib/types';
 import { error, fail, type Action, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({params, locals}) => {
+export const load: PageServerLoad = async ({ params, locals, url }) => {
   
     let profile : IUser | undefined = undefined
     let role = "User"
@@ -15,7 +15,23 @@ export const load: PageServerLoad = async ({params, locals}) => {
                 ? "Admin" : "User"
         }
 
-        const items = await getItems({})
+        
+        const filterParam = url.searchParams.get("filter")
+        const name = url.searchParams.get("search")
+        const costsLess = url.searchParams.get("costsMore")
+        const costsMore = url.searchParams.get("costsLess")
+        
+        const filter : itemStatFilter = filterParam ? JSON.parse(filterParam) : undefined
+        
+        const items = await getItems({
+            name: name 
+                ? name : undefined,
+            costsLess: costsLess 
+                ? parseInt(costsLess) : undefined,
+            costsMore: costsMore 
+                ? parseInt(costsMore) : undefined,
+            containsStat: filter
+        })
         
         return {
             profile: profile,
@@ -28,27 +44,3 @@ export const load: PageServerLoad = async ({params, locals}) => {
         return error(500, "Loading Error")
     }
 };
-
-const sendFilter : Action = async ({ request }) => {
-
-    try {
-
-        const formData = await request.formData()
-
-        const name = formData.get("search")?.toString()
-
-        console.log(name)
-
-        const filteredItems = await getItems({
-
-        })
-
-    } catch (err : any) {
-        console.log(err)
-
-        return fail(400, { msg: "Something went wrong. Try again later" })
-    }
-
-}
-
-export const actions : Actions = await ({ sendFilter })

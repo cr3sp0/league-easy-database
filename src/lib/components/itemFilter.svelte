@@ -11,20 +11,24 @@
     onclick={() => (visible = false)}
     aria-label="Close form"
 ></button>
-
-<button onclick={() => filter.Vita = 1}>Vita</button>
-<button onclick={() => filter.RigenerazioneVita = 1}>Health Regen</button>
-<button onclick={() => filter.Attacco = 1}>Attack Damage</button>
-<button onclick={() => filter.AttaccoMagico = 1}>Ability Power</button>
-<button onclick={() => filter.Armatura = 1}>Armor</button>
-<button onclick={() => filter.ResistenzaMagica = 1}>Magic Resistance</button>
-<button onclick={() => filter.Critico = 1}>Crit Rate</button>
-<button onclick={() => filter.Gittata = 1}>Range</button>
-<button onclick={() => filter.Mana = 1}>Mana</button>
-<button onclick={() => filter.RigenerazioneMana = 1}>Mana Regen</button>
-<button onclick={() => filter.VelocitàDiAttacco = 1}>Attack Speed</button>
-<button onclick={() => filter.Velocità_di_movimento = 1}>Movement Speed</button>
-
+<div class="container">
+    <button type="button" onclick={() => filter.Vita = 1}>Vita</button>
+    <button type="button" onclick={() => filter.RigenerazioneVita = 1}>Health Regen</button>
+    <button type="button" onclick={() => filter.Attacco = 1}>Attack Damage</button>
+    <button type="button" onclick={() => filter.AttaccoMagico = 1}>Ability Power</button>
+    <button type="button" onclick={() => filter.Armatura = 1}>Armor</button>
+    <button type="button" onclick={() => filter.ResistenzaMagica = 1}>Magic Resistance</button>
+    <button type="button" onclick={() => filter.Critico = 1}>Crit Rate</button>
+    <button type="button" onclick={() => filter.Gittata = 1}>Range</button>
+    <button type="button" onclick={() => filter.Mana = 1}>Mana</button>
+    <button type="button" onclick={() => filter.RigenerazioneMana = 1}>Mana Regen</button>
+    <button type="button" onclick={() => filter.VelocitàDiAttacco = 1}>Attack Speed</button>
+    <button type="button" onclick={() => filter.Velocità_di_movimento = 1}>Movement Speed</button>
+    <button type="submit">submit</button>
+</div>
+    
 <style>
-
+    .container{
+        z-index: 100;
+    } 
 </style>

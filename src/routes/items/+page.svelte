@@ -14,7 +14,14 @@
     <Navbar profile={data.profile?.username} role={data.role} />
     <div class="title">Items</div>
     <Search bind:itemFilter={itemFilter} />
-    <Itemsgrid itemList={data.items} />
+    <Itemsgrid
+    itemList={data.items.map((o) => {
+      return { 
+        item: o, 
+        stats: o.Stats 
+      }
+    })} 
+    />
   </div>
 </div>
 

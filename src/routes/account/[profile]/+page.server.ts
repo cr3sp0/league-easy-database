@@ -87,7 +87,7 @@ const sendReport : Action = async ({ request, params, cookies, locals }) => {
 		const author = locals.user
 		
 		const reason = formData.get("reason")?.toString()
-		const description = formData.get("description")?.valueOf() as string
+		const description = formData.get("description")?.toString()
 		
 		if(!author) {
 			throw { message: "You must be logged-in to Report someone" }
@@ -100,12 +100,6 @@ const sendReport : Action = async ({ request, params, cookies, locals }) => {
 			throw { message: "You cannot Report your own account" }
 		}
 
-		let bannedAccount
-
-		if(bannedAccount) { //TODO: Check actual banned accounts.
-			return fail(400, {msg: "This Account has already been Banned"})
-		}
-		
 		const report = await createReport(reason, {
 			target: target,
 			author: author.username,

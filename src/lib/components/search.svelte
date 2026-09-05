@@ -12,8 +12,8 @@
 <form 
 class="search-container"
 id="head-section"
-method="post"
-action="?/sendFilter"
+method="get"
+action="?/"
 >
   <input type="text" class="search" placeholder="Search..." name="search" />
   <div class="filler"></div>
@@ -36,6 +36,7 @@ action="?/sendFilter"
     Filter
   </div>
   {#if isFilterVisible && itemFilter !== undefined}
+    <input name="filter" type="hidden" value={JSON.stringify(itemFilter)} />
     <ItemFilter bind:visible={isFilterVisible} bind:filter={itemFilter} />
   {/if}
 </form>

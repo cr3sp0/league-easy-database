@@ -29,12 +29,15 @@
       <Sectionheader />
       {#if data.champion}
         <div class="info-stat section">
-          <InfoStat champion={data.champion} />
+          <InfoStat stats={data.stats} />
         </div>
       {/if}
       <div class="title">Best Builds</div>
       <Search />
-      <BuildcardHolder bind:comunityBuilds={data.communityBuilds} bind:personalBuilds={data.personalBuilds} />
+      <BuildcardHolder
+        bind:comunityBuilds={data.communityBuilds}
+        bind:personalBuilds={data.personalBuilds}
+      />
     </div>
   </div>
 </div>

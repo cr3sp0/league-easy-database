@@ -179,7 +179,7 @@ export const actions = {
           Uccisioni: k,
           Morti: d,
           Assist: a,
-          Risultato: match.result === "Vittoria" ? "Vittoria" : "Sconfitta" 
+          Risultato: match.result
         };
       });
 

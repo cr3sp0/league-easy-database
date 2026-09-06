@@ -4,14 +4,15 @@
   import Navbar from "$lib/components/navbar.svelte";
   import Runeselector from "$lib/components/runeselector.svelte";
   import Spellselector from "$lib/components/Spellselector.svelte";
-  import type {
-    Campione,
-    SetBase,
-    Oggetto,
-    Runa,
-    Tipologia_runa,
-    Incantesimo,
-  } from "$lib/server/prisma/client.js";
+  import {
+    type Campione,
+    type SetBase,
+    type Oggetto,
+    type Runa,
+    type Tipologia_runa,
+    type Incantesimo,
+    Risultato,
+  } from "$lib/server/prisma/browser.js";
 
   let { data } = $props();
 
@@ -125,7 +126,7 @@
     id: number;
     date: string;
     kda: string;
-    result: "Win" | "Loss";
+    result: Risultato;
   };
 
   let matches: MatchRecord[] = $state(
@@ -135,16 +136,18 @@
           date: new Date(p.Data).toLocaleDateString("it-IT"),
           kda: `${p.Uccisioni}/${p.Morti}/${p.Assist}`,
           result:
-            p.Risultato === "Win" || p.Risultato === "Vittoria"
-              ? "Win"
-              : "Loss",
+            p.Risultato === Risultato.Vittoria
+              ? Risultato.Vittoria
+              : Risultato.Sconfitta,
         }))
       : [],
   );
 
-  let wins = $state(eb ? matches.filter((m) => m.result === "Win").length : 0);
+  let wins = $state(
+    eb ? matches.filter((m) => m.result === Risultato.Vittoria).length : 0,
+  );
   let losses = $state(
-    eb ? matches.filter((m) => m.result === "Loss").length : 0,
+    eb ? matches.filter((m) => m.result === Risultato.Sconfitta).length : 0,
   );
 
   let buildPayload = $derived(
@@ -167,13 +170,13 @@
 
   let isAddingGame = $state(false);
   let editingMatchId = $state<number | null>(null);
-  let originalResult = $state<"Win" | "Loss" | null>(null);
+  let originalResult = $state<Risultato | null>(null);
 
   let newDate = $state(new Date().toLocaleDateString("it-IT"));
   let newK = $state(0);
   let newD = $state(0);
   let newA = $state(0);
-  let newResult = $state<"Win" | "Loss">("Win");
+  let newResult = $state<Risultato>(Risultato.Vittoria);
 
   function openAddGame() {
     editingMatchId = null;
@@ -182,7 +185,7 @@
     newK = 0;
     newD = 0;
     newA = 0;
-    newResult = "Win";
+    newResult = Risultato.Vittoria;
     isAddingGame = true;
   }
 
@@ -210,7 +213,7 @@
     const matchIndex = matches.findIndex((m) => m.id === id);
     if (matchIndex > -1) {
       const match = matches[matchIndex];
-      if (match.result === "Win") wins--;
+      if (match.result === Risultato.Vittoria) wins--;
       else losses--;
 
       matches.splice(matchIndex, 1);
@@ -226,10 +229,10 @@
         matches[matchIndex].result = newResult;
 
         if (originalResult !== newResult) {
-          if (originalResult === "Win") wins--;
+          if (originalResult === Risultato.Vittoria) wins--;
           else losses--;
 
-          if (newResult === "Win") wins++;
+          if (newResult === Risultato.Vittoria) wins++;
           else losses++;
         }
       }
@@ -242,7 +245,7 @@
       };
       matches.push(newMatch);
 
-      if (newResult === "Win") wins++;
+      if (newResult === Risultato.Vittoria) wins++;
       else losses++;
     }
 
@@ -428,8 +431,8 @@
               </div>
 
               <select class="form-input result-select" bind:value={newResult}>
-                <option value="Win">Win</option>
-                <option value="Loss">Loss</option>
+                <option value={Risultato.Vittoria}>Win</option>
+                <option value={Risultato.Sconfitta}>Loss</option>
               </select>
             </div>
             {#if data.isOwner}

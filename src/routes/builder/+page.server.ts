@@ -20,11 +20,16 @@ function getRandomIndices(champions: { nome: string; Icona: string;}[]) {
     return randomIndices;
 }
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async ({ locals, url }) => {
   try {
     const champions = await getChampionsBasicInfo();
     const randomIndices = getRandomIndices(champions);
-    const builds = await getBuilds({})
+    let buildName = url.searchParams.get("build-title") 
+    if(buildName === null) {
+      buildName = ""
+    }
+
+    const builds = await getBuilds({buildTitle: buildName})
 
     if(!locals.user) {
       return {

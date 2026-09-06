@@ -56,12 +56,17 @@
         your builds!
       </div>
       <div class="builder-search section">
-        <input
-          type="search"
-          class="search"
-          id="build-search"
-          placeholder="Search for a Build"
-        />
+        <form
+        method="get"
+        action="/builder"
+        >
+          <input
+            type="search"
+            class="search"
+            name="build-title"
+            placeholder="Search for a Build"
+          />
+        </form>
       </div>
       <BuildcardHolder bind:comunityBuilds={data.communityBuilds} />
     </div>

@@ -11,7 +11,6 @@
     type Runa,
     type Tipologia_runa,
     type Incantesimo,
-    Risultato,
   } from "$lib/server/prisma/browser.js";
 
   let { data } = $props();
@@ -126,7 +125,7 @@
     id: number;
     date: string;
     kda: string;
-    result: Risultato;
+    result: "Vittoria" | "Sconfitta";
   };
 
   let matches: MatchRecord[] = $state(
@@ -135,19 +134,16 @@
           id: new Date(p.Data).getTime(),
           date: new Date(p.Data).toLocaleDateString("it-IT"),
           kda: `${p.Uccisioni}/${p.Morti}/${p.Assist}`,
-          result:
-            p.Risultato === Risultato.Vittoria
-              ? Risultato.Vittoria
-              : Risultato.Sconfitta,
+          result: p.Risultato === "Vittoria" ? "Vittoria" : "Vittoria",
         }))
       : [],
   );
 
   let wins = $state(
-    eb ? matches.filter((m) => m.result === Risultato.Vittoria).length : 0,
+    eb ? matches.filter((m) => m.result === "Vittoria").length : 0,
   );
   let losses = $state(
-    eb ? matches.filter((m) => m.result === Risultato.Sconfitta).length : 0,
+    eb ? matches.filter((m) => m.result === "Vittoria").length : 0,
   );
 
   let buildPayload = $derived(
@@ -170,13 +166,13 @@
 
   let isAddingGame = $state(false);
   let editingMatchId = $state<number | null>(null);
-  let originalResult = $state<Risultato | null>(null);
+  let originalResult = $state<"Vittoria" | "Sconfitta" | null>(null);
 
   let newDate = $state(new Date().toLocaleDateString("it-IT"));
   let newK = $state(0);
   let newD = $state(0);
   let newA = $state(0);
-  let newResult = $state<Risultato>(Risultato.Vittoria);
+  let newResult = $state<"Vittoria" | "Sconfitta">("Vittoria");
 
   function openAddGame() {
     editingMatchId = null;
@@ -185,7 +181,7 @@
     newK = 0;
     newD = 0;
     newA = 0;
-    newResult = Risultato.Vittoria;
+    newResult = "Vittoria";
     isAddingGame = true;
   }
 
@@ -213,7 +209,7 @@
     const matchIndex = matches.findIndex((m) => m.id === id);
     if (matchIndex > -1) {
       const match = matches[matchIndex];
-      if (match.result === Risultato.Vittoria) wins--;
+      if (match.result === "Vittoria") wins--;
       else losses--;
 
       matches.splice(matchIndex, 1);
@@ -229,10 +225,10 @@
         matches[matchIndex].result = newResult;
 
         if (originalResult !== newResult) {
-          if (originalResult === Risultato.Vittoria) wins--;
+          if (originalResult === "Vittoria") wins--;
           else losses--;
 
-          if (newResult === Risultato.Vittoria) wins++;
+          if (newResult === "Vittoria") wins++;
           else losses++;
         }
       }
@@ -245,7 +241,7 @@
       };
       matches.push(newMatch);
 
-      if (newResult === Risultato.Vittoria) wins++;
+      if (newResult === "Vittoria") wins++;
       else losses++;
     }
 
@@ -431,8 +427,8 @@
               </div>
 
               <select class="form-input result-select" bind:value={newResult}>
-                <option value={Risultato.Vittoria}>Win</option>
-                <option value={Risultato.Sconfitta}>Loss</option>
+                <option value="Vittoria">Win</option>
+                <option value="Sconfitta">Loss</option>
               </select>
             </div>
             {#if data.isOwner}

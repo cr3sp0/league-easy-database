@@ -1,11 +1,21 @@
 import { error, redirect, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
-import { getChampionAndCosmeticsByName, getChampionByName } from "$lib/server/championsManager";
+import { getChampionAndCosmeticsByName, getChampionByName, getStats } from "$lib/server/championsManager";
 import { getBuilds } from "$lib/server/buildManager";
 import { moreBuilds } from "$lib/server/genericActions";
 
 export const load: PageServerLoad = async ({ params, cookies, locals }) => {
     const champion = await getChampionAndCosmeticsByName(params.championInfo);
+
+    if (!champion) {
+    throw error(404, 'Could not find the Champion');
+  }
+
+    const stats = await getStats(champion.SetStatistiche);
+
+    if (!stats) {
+        throw error(404, 'Could not find Stats for the Champion');
+    }
 
     const communityBuilds = await getBuilds({champion: champion?.nome})
 
@@ -15,7 +25,8 @@ export const load: PageServerLoad = async ({ params, cookies, locals }) => {
             role: "User",
             champion: champion,
             communityBuilds: communityBuilds,
-            personalBuilds: []
+            personalBuilds: [],
+            stats: stats
         }
     }
     return {
@@ -27,7 +38,8 @@ export const load: PageServerLoad = async ({ params, cookies, locals }) => {
         personalBuilds: await getBuilds({
             champion: champion?.nome,
             userID: locals.user.userID
-        })
+        }),
+        stats: stats
     };
 }
 

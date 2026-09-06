@@ -148,10 +148,10 @@ export type Partita = Prisma.PartitaModel
  */
 export type Modifica = Prisma.ModificaModel
 /**
- * Model Storico
+ * Model Versione
  * 
  */
-export type Storico = Prisma.StoricoModel
+export type Versione = Prisma.VersioneModel
 /**
  * Model SetBase
  * 

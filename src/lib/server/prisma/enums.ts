@@ -41,6 +41,7 @@ export const Statistica = {
   ResistenzaMagicaPerLivello: 'ResistenzaMagicaPerLivello',
   Gittata: 'Gittata',
   RigenerazioneVita: 'RigenerazioneVita',
+  RigenerazioneVitaPerLivello: 'RigenerazioneVitaPerLivello',
   RigenerazioneMana: 'RigenerazioneMana',
   RigenerazioneManaPerLivello: 'RigenerazioneManaPerLivello',
   Critico: 'Critico',

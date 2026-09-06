@@ -212,7 +212,8 @@ export type ModificaWhereInput = {
   Id_Statistica?: Prisma.EnumStatisticaFilter<"Modifica"> | $Enums.Statistica
   Versione?: Prisma.StringFilter<"Modifica"> | string
   Nuovo_Valore?: Prisma.FloatFilter<"Modifica"> | number
-  Vers?: Prisma.XOR<Prisma.StoricoScalarRelationFilter, Prisma.StoricoWhereInput>
+  Vers?: Prisma.XOR<Prisma.VersioneScalarRelationFilter, Prisma.VersioneWhereInput>
+  Set_Statiche?: Prisma.XOR<Prisma.SetBaseScalarRelationFilter, Prisma.SetBaseWhereInput>
 }
 
 export type ModificaOrderByWithRelationInput = {
@@ -220,7 +221,8 @@ export type ModificaOrderByWithRelationInput = {
   Id_Statistica?: Prisma.SortOrder
   Versione?: Prisma.SortOrder
   Nuovo_Valore?: Prisma.SortOrder
-  Vers?: Prisma.StoricoOrderByWithRelationInput
+  Vers?: Prisma.VersioneOrderByWithRelationInput
+  Set_Statiche?: Prisma.SetBaseOrderByWithRelationInput
 }
 
 export type ModificaWhereUniqueInput = Prisma.AtLeast<{
@@ -232,7 +234,8 @@ export type ModificaWhereUniqueInput = Prisma.AtLeast<{
   Id_Statistica?: Prisma.EnumStatisticaFilter<"Modifica"> | $Enums.Statistica
   Versione?: Prisma.StringFilter<"Modifica"> | string
   Nuovo_Valore?: Prisma.FloatFilter<"Modifica"> | number
-  Vers?: Prisma.XOR<Prisma.StoricoScalarRelationFilter, Prisma.StoricoWhereInput>
+  Vers?: Prisma.XOR<Prisma.VersioneScalarRelationFilter, Prisma.VersioneWhereInput>
+  Set_Statiche?: Prisma.XOR<Prisma.SetBaseScalarRelationFilter, Prisma.SetBaseWhereInput>
 }, "Soggetto_modifica_Id_Statistica_Versione">
 
 export type ModificaOrderByWithAggregationInput = {
@@ -258,10 +261,10 @@ export type ModificaScalarWhereWithAggregatesInput = {
 }
 
 export type ModificaCreateInput = {
-  Soggetto_modifica: number
   Id_Statistica: $Enums.Statistica
   Nuovo_Valore: number
-  Vers: Prisma.StoricoCreateNestedOneWithoutModifInput
+  Vers: Prisma.VersioneCreateNestedOneWithoutModifInput
+  Set_Statiche: Prisma.SetBaseCreateNestedOneWithoutStoricoInput
 }
 
 export type ModificaUncheckedCreateInput = {
@@ -272,10 +275,10 @@ export type ModificaUncheckedCreateInput = {
 }
 
 export type ModificaUpdateInput = {
-  Soggetto_modifica?: Prisma.IntFieldUpdateOperationsInput | number
   Id_Statistica?: Prisma.EnumStatisticaFieldUpdateOperationsInput | $Enums.Statistica
   Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
-  Vers?: Prisma.StoricoUpdateOneRequiredWithoutModifNestedInput
+  Vers?: Prisma.VersioneUpdateOneRequiredWithoutModifNestedInput
+  Set_Statiche?: Prisma.SetBaseUpdateOneRequiredWithoutStoricoNestedInput
 }
 
 export type ModificaUncheckedUpdateInput = {
@@ -293,7 +296,6 @@ export type ModificaCreateManyInput = {
 }
 
 export type ModificaUpdateManyMutationInput = {
-  Soggetto_modifica?: Prisma.IntFieldUpdateOperationsInput | number
   Id_Statistica?: Prisma.EnumStatisticaFieldUpdateOperationsInput | $Enums.Statistica
   Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
 }
@@ -398,10 +400,52 @@ export type ModificaUncheckedUpdateManyWithoutVersNestedInput = {
   deleteMany?: Prisma.ModificaScalarWhereInput | Prisma.ModificaScalarWhereInput[]
 }
 
+export type ModificaCreateNestedManyWithoutSet_StaticheInput = {
+  create?: Prisma.XOR<Prisma.ModificaCreateWithoutSet_StaticheInput, Prisma.ModificaUncheckedCreateWithoutSet_StaticheInput> | Prisma.ModificaCreateWithoutSet_StaticheInput[] | Prisma.ModificaUncheckedCreateWithoutSet_StaticheInput[]
+  connectOrCreate?: Prisma.ModificaCreateOrConnectWithoutSet_StaticheInput | Prisma.ModificaCreateOrConnectWithoutSet_StaticheInput[]
+  createMany?: Prisma.ModificaCreateManySet_StaticheInputEnvelope
+  connect?: Prisma.ModificaWhereUniqueInput | Prisma.ModificaWhereUniqueInput[]
+}
+
+export type ModificaUncheckedCreateNestedManyWithoutSet_StaticheInput = {
+  create?: Prisma.XOR<Prisma.ModificaCreateWithoutSet_StaticheInput, Prisma.ModificaUncheckedCreateWithoutSet_StaticheInput> | Prisma.ModificaCreateWithoutSet_StaticheInput[] | Prisma.ModificaUncheckedCreateWithoutSet_StaticheInput[]
+  connectOrCreate?: Prisma.ModificaCreateOrConnectWithoutSet_StaticheInput | Prisma.ModificaCreateOrConnectWithoutSet_StaticheInput[]
+  createMany?: Prisma.ModificaCreateManySet_StaticheInputEnvelope
+  connect?: Prisma.ModificaWhereUniqueInput | Prisma.ModificaWhereUniqueInput[]
+}
+
+export type ModificaUpdateManyWithoutSet_StaticheNestedInput = {
+  create?: Prisma.XOR<Prisma.ModificaCreateWithoutSet_StaticheInput, Prisma.ModificaUncheckedCreateWithoutSet_StaticheInput> | Prisma.ModificaCreateWithoutSet_StaticheInput[] | Prisma.ModificaUncheckedCreateWithoutSet_StaticheInput[]
+  connectOrCreate?: Prisma.ModificaCreateOrConnectWithoutSet_StaticheInput | Prisma.ModificaCreateOrConnectWithoutSet_StaticheInput[]
+  upsert?: Prisma.ModificaUpsertWithWhereUniqueWithoutSet_StaticheInput | Prisma.ModificaUpsertWithWhereUniqueWithoutSet_StaticheInput[]
+  createMany?: Prisma.ModificaCreateManySet_StaticheInputEnvelope
+  set?: Prisma.ModificaWhereUniqueInput | Prisma.ModificaWhereUniqueInput[]
+  disconnect?: Prisma.ModificaWhereUniqueInput | Prisma.ModificaWhereUniqueInput[]
+  delete?: Prisma.ModificaWhereUniqueInput | Prisma.ModificaWhereUniqueInput[]
+  connect?: Prisma.ModificaWhereUniqueInput | Prisma.ModificaWhereUniqueInput[]
+  update?: Prisma.ModificaUpdateWithWhereUniqueWithoutSet_StaticheInput | Prisma.ModificaUpdateWithWhereUniqueWithoutSet_StaticheInput[]
+  updateMany?: Prisma.ModificaUpdateManyWithWhereWithoutSet_StaticheInput | Prisma.ModificaUpdateManyWithWhereWithoutSet_StaticheInput[]
+  deleteMany?: Prisma.ModificaScalarWhereInput | Prisma.ModificaScalarWhereInput[]
+}
+
+export type ModificaUncheckedUpdateManyWithoutSet_StaticheNestedInput = {
+  create?: Prisma.XOR<Prisma.ModificaCreateWithoutSet_StaticheInput, Prisma.ModificaUncheckedCreateWithoutSet_StaticheInput> | Prisma.ModificaCreateWithoutSet_StaticheInput[] | Prisma.ModificaUncheckedCreateWithoutSet_StaticheInput[]
+  connectOrCreate?: Prisma.ModificaCreateOrConnectWithoutSet_StaticheInput | Prisma.ModificaCreateOrConnectWithoutSet_StaticheInput[]
+  upsert?: Prisma.ModificaUpsertWithWhereUniqueWithoutSet_StaticheInput | Prisma.ModificaUpsertWithWhereUniqueWithoutSet_StaticheInput[]
+  createMany?: Prisma.ModificaCreateManySet_StaticheInputEnvelope
+  set?: Prisma.ModificaWhereUniqueInput | Prisma.ModificaWhereUniqueInput[]
+  disconnect?: Prisma.ModificaWhereUniqueInput | Prisma.ModificaWhereUniqueInput[]
+  delete?: Prisma.ModificaWhereUniqueInput | Prisma.ModificaWhereUniqueInput[]
+  connect?: Prisma.ModificaWhereUniqueInput | Prisma.ModificaWhereUniqueInput[]
+  update?: Prisma.ModificaUpdateWithWhereUniqueWithoutSet_StaticheInput | Prisma.ModificaUpdateWithWhereUniqueWithoutSet_StaticheInput[]
+  updateMany?: Prisma.ModificaUpdateManyWithWhereWithoutSet_StaticheInput | Prisma.ModificaUpdateManyWithWhereWithoutSet_StaticheInput[]
+  deleteMany?: Prisma.ModificaScalarWhereInput | Prisma.ModificaScalarWhereInput[]
+}
+
 export type ModificaCreateWithoutVersInput = {
-  Soggetto_modifica: number
   Id_Statistica: $Enums.Statistica
   Nuovo_Valore: number
+  Set_Statiche: Prisma.SetBaseCreateNestedOneWithoutStoricoInput
 }
 
 export type ModificaUncheckedCreateWithoutVersInput = {
@@ -446,6 +490,44 @@ export type ModificaScalarWhereInput = {
   Nuovo_Valore?: Prisma.FloatFilter<"Modifica"> | number
 }
 
+export type ModificaCreateWithoutSet_StaticheInput = {
+  Id_Statistica: $Enums.Statistica
+  Nuovo_Valore: number
+  Vers: Prisma.VersioneCreateNestedOneWithoutModifInput
+}
+
+export type ModificaUncheckedCreateWithoutSet_StaticheInput = {
+  Id_Statistica: $Enums.Statistica
+  Versione: string
+  Nuovo_Valore: number
+}
+
+export type ModificaCreateOrConnectWithoutSet_StaticheInput = {
+  where: Prisma.ModificaWhereUniqueInput
+  create: Prisma.XOR<Prisma.ModificaCreateWithoutSet_StaticheInput, Prisma.ModificaUncheckedCreateWithoutSet_StaticheInput>
+}
+
+export type ModificaCreateManySet_StaticheInputEnvelope = {
+  data: Prisma.ModificaCreateManySet_StaticheInput | Prisma.ModificaCreateManySet_StaticheInput[]
+  skipDuplicates?: boolean
+}
+
+export type ModificaUpsertWithWhereUniqueWithoutSet_StaticheInput = {
+  where: Prisma.ModificaWhereUniqueInput
+  update: Prisma.XOR<Prisma.ModificaUpdateWithoutSet_StaticheInput, Prisma.ModificaUncheckedUpdateWithoutSet_StaticheInput>
+  create: Prisma.XOR<Prisma.ModificaCreateWithoutSet_StaticheInput, Prisma.ModificaUncheckedCreateWithoutSet_StaticheInput>
+}
+
+export type ModificaUpdateWithWhereUniqueWithoutSet_StaticheInput = {
+  where: Prisma.ModificaWhereUniqueInput
+  data: Prisma.XOR<Prisma.ModificaUpdateWithoutSet_StaticheInput, Prisma.ModificaUncheckedUpdateWithoutSet_StaticheInput>
+}
+
+export type ModificaUpdateManyWithWhereWithoutSet_StaticheInput = {
+  where: Prisma.ModificaScalarWhereInput
+  data: Prisma.XOR<Prisma.ModificaUpdateManyMutationInput, Prisma.ModificaUncheckedUpdateManyWithoutSet_StaticheInput>
+}
+
 export type ModificaCreateManyVersInput = {
   Soggetto_modifica: number
   Id_Statistica: $Enums.Statistica
@@ -453,9 +535,9 @@ export type ModificaCreateManyVersInput = {
 }
 
 export type ModificaUpdateWithoutVersInput = {
-  Soggetto_modifica?: Prisma.IntFieldUpdateOperationsInput | number
   Id_Statistica?: Prisma.EnumStatisticaFieldUpdateOperationsInput | $Enums.Statistica
   Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
+  Set_Statiche?: Prisma.SetBaseUpdateOneRequiredWithoutStoricoNestedInput
 }
 
 export type ModificaUncheckedUpdateWithoutVersInput = {
@@ -470,6 +552,30 @@ export type ModificaUncheckedUpdateManyWithoutVersInput = {
   Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
+export type ModificaCreateManySet_StaticheInput = {
+  Id_Statistica: $Enums.Statistica
+  Versione: string
+  Nuovo_Valore: number
+}
+
+export type ModificaUpdateWithoutSet_StaticheInput = {
+  Id_Statistica?: Prisma.EnumStatisticaFieldUpdateOperationsInput | $Enums.Statistica
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
+  Vers?: Prisma.VersioneUpdateOneRequiredWithoutModifNestedInput
+}
+
+export type ModificaUncheckedUpdateWithoutSet_StaticheInput = {
+  Id_Statistica?: Prisma.EnumStatisticaFieldUpdateOperationsInput | $Enums.Statistica
+  Versione?: Prisma.StringFieldUpdateOperationsInput | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
+}
+
+export type ModificaUncheckedUpdateManyWithoutSet_StaticheInput = {
+  Id_Statistica?: Prisma.EnumStatisticaFieldUpdateOperationsInput | $Enums.Statistica
+  Versione?: Prisma.StringFieldUpdateOperationsInput | string
+  Nuovo_Valore?: Prisma.FloatFieldUpdateOperationsInput | number
+}
+
 
 
 export type ModificaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -477,7 +583,8 @@ export type ModificaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   Id_Statistica?: boolean
   Versione?: boolean
   Nuovo_Valore?: boolean
-  Vers?: boolean | Prisma.StoricoDefaultArgs<ExtArgs>
+  Vers?: boolean | Prisma.VersioneDefaultArgs<ExtArgs>
+  Set_Statiche?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["modifica"]>
 
 export type ModificaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -485,7 +592,8 @@ export type ModificaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   Id_Statistica?: boolean
   Versione?: boolean
   Nuovo_Valore?: boolean
-  Vers?: boolean | Prisma.StoricoDefaultArgs<ExtArgs>
+  Vers?: boolean | Prisma.VersioneDefaultArgs<ExtArgs>
+  Set_Statiche?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["modifica"]>
 
 export type ModificaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -493,7 +601,8 @@ export type ModificaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   Id_Statistica?: boolean
   Versione?: boolean
   Nuovo_Valore?: boolean
-  Vers?: boolean | Prisma.StoricoDefaultArgs<ExtArgs>
+  Vers?: boolean | Prisma.VersioneDefaultArgs<ExtArgs>
+  Set_Statiche?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["modifica"]>
 
 export type ModificaSelectScalar = {
@@ -505,19 +614,23 @@ export type ModificaSelectScalar = {
 
 export type ModificaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Soggetto_modifica" | "Id_Statistica" | "Versione" | "Nuovo_Valore", ExtArgs["result"]["modifica"]>
 export type ModificaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Vers?: boolean | Prisma.StoricoDefaultArgs<ExtArgs>
+  Vers?: boolean | Prisma.VersioneDefaultArgs<ExtArgs>
+  Set_Statiche?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }
 export type ModificaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Vers?: boolean | Prisma.StoricoDefaultArgs<ExtArgs>
+  Vers?: boolean | Prisma.VersioneDefaultArgs<ExtArgs>
+  Set_Statiche?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }
 export type ModificaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Vers?: boolean | Prisma.StoricoDefaultArgs<ExtArgs>
+  Vers?: boolean | Prisma.VersioneDefaultArgs<ExtArgs>
+  Set_Statiche?: boolean | Prisma.SetBaseDefaultArgs<ExtArgs>
 }
 
 export type $ModificaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Modifica"
   objects: {
-    Vers: Prisma.$StoricoPayload<ExtArgs>
+    Vers: Prisma.$VersionePayload<ExtArgs>
+    Set_Statiche: Prisma.$SetBasePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     Soggetto_modifica: number
@@ -918,7 +1031,8 @@ readonly fields: ModificaFieldRefs;
  */
 export interface Prisma__ModificaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Vers<T extends Prisma.StoricoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StoricoDefaultArgs<ExtArgs>>): Prisma.Prisma__StoricoClient<runtime.Types.Result.GetResult<Prisma.$StoricoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Vers<T extends Prisma.VersioneDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VersioneDefaultArgs<ExtArgs>>): Prisma.Prisma__VersioneClient<runtime.Types.Result.GetResult<Prisma.$VersionePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Set_Statiche<T extends Prisma.SetBaseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBaseDefaultArgs<ExtArgs>>): Prisma.Prisma__SetBaseClient<runtime.Types.Result.GetResult<Prisma.$SetBasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

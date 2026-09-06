@@ -77,7 +77,7 @@ export const ModelName = {
   Tipologia_runa: 'Tipologia_runa',
   Partita: 'Partita',
   Modifica: 'Modifica',
-  Storico: 'Storico',
+  Versione: 'Versione',
   SetBase: 'SetBase'
 } as const
 
@@ -352,12 +352,12 @@ export const ModificaScalarFieldEnum = {
 export type ModificaScalarFieldEnum = (typeof ModificaScalarFieldEnum)[keyof typeof ModificaScalarFieldEnum]
 
 
-export const StoricoScalarFieldEnum = {
+export const VersioneScalarFieldEnum = {
   Versione: 'Versione',
   Data: 'Data'
 } as const
 
-export type StoricoScalarFieldEnum = (typeof StoricoScalarFieldEnum)[keyof typeof StoricoScalarFieldEnum]
+export type VersioneScalarFieldEnum = (typeof VersioneScalarFieldEnum)[keyof typeof VersioneScalarFieldEnum]
 
 
 export const SetBaseScalarFieldEnum = {
@@ -373,6 +373,7 @@ export const SetBaseScalarFieldEnum = {
   ResistenzaMagicaPerLivello: 'ResistenzaMagicaPerLivello',
   Gittata: 'Gittata',
   RigenerazioneVita: 'RigenerazioneVita',
+  RigenerazioneVitaPerLivello: 'RigenerazioneVitaPerLivello',
   RigenerazioneMana: 'RigenerazioneMana',
   RigenerazioneManaPerLivello: 'RigenerazioneManaPerLivello',
   Critico: 'Critico',

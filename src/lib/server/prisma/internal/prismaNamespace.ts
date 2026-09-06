@@ -410,7 +410,7 @@ export const ModelName = {
   Tipologia_runa: 'Tipologia_runa',
   Partita: 'Partita',
   Modifica: 'Modifica',
-  Storico: 'Storico',
+  Versione: 'Versione',
   SetBase: 'SetBase'
 } as const
 
@@ -427,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "campione" | "cosmetico" | "ruolo" | "razza" | "campione_Razza" | "posizione" | "campione_Posizione" | "regione" | "campione_Regione" | "incantesimo" | "configurazione" | "oggetto" | "inventario" | "account" | "sessione" | "report" | "banned_Account" | "kit" | "abilita" | "kit_Abilita" | "pagina_Runa" | "sezione_Runa" | "runa" | "tipologia_runa" | "partita" | "modifica" | "storico" | "setBase"
+    modelProps: "campione" | "cosmetico" | "ruolo" | "razza" | "campione_Razza" | "posizione" | "campione_Posizione" | "regione" | "campione_Regione" | "incantesimo" | "configurazione" | "oggetto" | "inventario" | "account" | "sessione" | "report" | "banned_Account" | "kit" | "abilita" | "kit_Abilita" | "pagina_Runa" | "sezione_Runa" | "runa" | "tipologia_runa" | "partita" | "modifica" | "versione" | "setBase"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2355,77 +2355,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Storico: {
-      payload: Prisma.$StoricoPayload<ExtArgs>
-      fields: Prisma.StoricoFieldRefs
+    Versione: {
+      payload: Prisma.$VersionePayload<ExtArgs>
+      fields: Prisma.VersioneFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.StoricoFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload> | null
+          args: Prisma.VersioneFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.StoricoFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload>
+          args: Prisma.VersioneFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload>
         }
         findFirst: {
-          args: Prisma.StoricoFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload> | null
+          args: Prisma.VersioneFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.StoricoFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload>
+          args: Prisma.VersioneFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload>
         }
         findMany: {
-          args: Prisma.StoricoFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload>[]
+          args: Prisma.VersioneFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload>[]
         }
         create: {
-          args: Prisma.StoricoCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload>
+          args: Prisma.VersioneCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload>
         }
         createMany: {
-          args: Prisma.StoricoCreateManyArgs<ExtArgs>
+          args: Prisma.VersioneCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.StoricoCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload>[]
+          args: Prisma.VersioneCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload>[]
         }
         delete: {
-          args: Prisma.StoricoDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload>
+          args: Prisma.VersioneDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload>
         }
         update: {
-          args: Prisma.StoricoUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload>
+          args: Prisma.VersioneUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload>
         }
         deleteMany: {
-          args: Prisma.StoricoDeleteManyArgs<ExtArgs>
+          args: Prisma.VersioneDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.StoricoUpdateManyArgs<ExtArgs>
+          args: Prisma.VersioneUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.StoricoUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload>[]
+          args: Prisma.VersioneUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload>[]
         }
         upsert: {
-          args: Prisma.StoricoUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoricoPayload>
+          args: Prisma.VersioneUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VersionePayload>
         }
         aggregate: {
-          args: Prisma.StoricoAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateStorico>
+          args: Prisma.VersioneAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVersione>
         }
         groupBy: {
-          args: Prisma.StoricoGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.StoricoGroupByOutputType>[]
+          args: Prisma.VersioneGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VersioneGroupByOutputType>[]
         }
         count: {
-          args: Prisma.StoricoCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.StoricoCountAggregateOutputType> | number
+          args: Prisma.VersioneCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VersioneCountAggregateOutputType> | number
         }
       }
     }
@@ -2797,12 +2797,12 @@ export const ModificaScalarFieldEnum = {
 export type ModificaScalarFieldEnum = (typeof ModificaScalarFieldEnum)[keyof typeof ModificaScalarFieldEnum]
 
 
-export const StoricoScalarFieldEnum = {
+export const VersioneScalarFieldEnum = {
   Versione: 'Versione',
   Data: 'Data'
 } as const
 
-export type StoricoScalarFieldEnum = (typeof StoricoScalarFieldEnum)[keyof typeof StoricoScalarFieldEnum]
+export type VersioneScalarFieldEnum = (typeof VersioneScalarFieldEnum)[keyof typeof VersioneScalarFieldEnum]
 
 
 export const SetBaseScalarFieldEnum = {
@@ -2818,6 +2818,7 @@ export const SetBaseScalarFieldEnum = {
   ResistenzaMagicaPerLivello: 'ResistenzaMagicaPerLivello',
   Gittata: 'Gittata',
   RigenerazioneVita: 'RigenerazioneVita',
+  RigenerazioneVitaPerLivello: 'RigenerazioneVitaPerLivello',
   RigenerazioneMana: 'RigenerazioneMana',
   RigenerazioneManaPerLivello: 'RigenerazioneManaPerLivello',
   Critico: 'Critico',
@@ -3102,7 +3103,7 @@ export type GlobalOmitConfig = {
   tipologia_runa?: Prisma.Tipologia_runaOmit
   partita?: Prisma.PartitaOmit
   modifica?: Prisma.ModificaOmit
-  storico?: Prisma.StoricoOmit
+  versione?: Prisma.VersioneOmit
   setBase?: Prisma.SetBaseOmit
 }
 

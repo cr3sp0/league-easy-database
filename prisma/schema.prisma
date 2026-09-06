@@ -269,6 +269,7 @@ model Modifica {
   Versione          String
   Nuovo_Valore      Float
   Vers              Versione    @relation(fields: [Versione], references: [Versione])
+  Set_Statiche      SetBase     @relation(fields: [Soggetto_modifica], references: [IdStatistiche])
 
   @@id([Soggetto_modifica, Id_Statistica, Versione])
 }
@@ -304,6 +305,7 @@ model SetBase {
   AttaccoMagico                Int   @default(0)
   Champ Campione[]
   Item Oggetto[]
+  Storico Modifica[]
 }
 
 enum Tipo_Abilita {

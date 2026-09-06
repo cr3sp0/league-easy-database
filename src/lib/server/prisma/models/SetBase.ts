@@ -39,6 +39,7 @@ export type SetBaseAvgAggregateOutputType = {
   ResistenzaMagicaPerLivello: number | null
   Gittata: number | null
   RigenerazioneVita: number | null
+  RigenerazioneVitaPerLivello: number | null
   RigenerazioneMana: number | null
   RigenerazioneManaPerLivello: number | null
   Critico: number | null
@@ -63,6 +64,7 @@ export type SetBaseSumAggregateOutputType = {
   ResistenzaMagicaPerLivello: number | null
   Gittata: number | null
   RigenerazioneVita: number | null
+  RigenerazioneVitaPerLivello: number | null
   RigenerazioneMana: number | null
   RigenerazioneManaPerLivello: number | null
   Critico: number | null
@@ -87,6 +89,7 @@ export type SetBaseMinAggregateOutputType = {
   ResistenzaMagicaPerLivello: number | null
   Gittata: number | null
   RigenerazioneVita: number | null
+  RigenerazioneVitaPerLivello: number | null
   RigenerazioneMana: number | null
   RigenerazioneManaPerLivello: number | null
   Critico: number | null
@@ -111,6 +114,7 @@ export type SetBaseMaxAggregateOutputType = {
   ResistenzaMagicaPerLivello: number | null
   Gittata: number | null
   RigenerazioneVita: number | null
+  RigenerazioneVitaPerLivello: number | null
   RigenerazioneMana: number | null
   RigenerazioneManaPerLivello: number | null
   Critico: number | null
@@ -135,6 +139,7 @@ export type SetBaseCountAggregateOutputType = {
   ResistenzaMagicaPerLivello: number
   Gittata: number
   RigenerazioneVita: number
+  RigenerazioneVitaPerLivello: number
   RigenerazioneMana: number
   RigenerazioneManaPerLivello: number
   Critico: number
@@ -161,6 +166,7 @@ export type SetBaseAvgAggregateInputType = {
   ResistenzaMagicaPerLivello?: true
   Gittata?: true
   RigenerazioneVita?: true
+  RigenerazioneVitaPerLivello?: true
   RigenerazioneMana?: true
   RigenerazioneManaPerLivello?: true
   Critico?: true
@@ -185,6 +191,7 @@ export type SetBaseSumAggregateInputType = {
   ResistenzaMagicaPerLivello?: true
   Gittata?: true
   RigenerazioneVita?: true
+  RigenerazioneVitaPerLivello?: true
   RigenerazioneMana?: true
   RigenerazioneManaPerLivello?: true
   Critico?: true
@@ -209,6 +216,7 @@ export type SetBaseMinAggregateInputType = {
   ResistenzaMagicaPerLivello?: true
   Gittata?: true
   RigenerazioneVita?: true
+  RigenerazioneVitaPerLivello?: true
   RigenerazioneMana?: true
   RigenerazioneManaPerLivello?: true
   Critico?: true
@@ -233,6 +241,7 @@ export type SetBaseMaxAggregateInputType = {
   ResistenzaMagicaPerLivello?: true
   Gittata?: true
   RigenerazioneVita?: true
+  RigenerazioneVitaPerLivello?: true
   RigenerazioneMana?: true
   RigenerazioneManaPerLivello?: true
   Critico?: true
@@ -257,6 +266,7 @@ export type SetBaseCountAggregateInputType = {
   ResistenzaMagicaPerLivello?: true
   Gittata?: true
   RigenerazioneVita?: true
+  RigenerazioneVitaPerLivello?: true
   RigenerazioneMana?: true
   RigenerazioneManaPerLivello?: true
   Critico?: true
@@ -368,6 +378,7 @@ export type SetBaseGroupByOutputType = {
   ResistenzaMagicaPerLivello: number
   Gittata: number
   RigenerazioneVita: number
+  RigenerazioneVitaPerLivello: number
   RigenerazioneMana: number
   RigenerazioneManaPerLivello: number
   Critico: number
@@ -415,6 +426,7 @@ export type SetBaseWhereInput = {
   ResistenzaMagicaPerLivello?: Prisma.FloatFilter<"SetBase"> | number
   Gittata?: Prisma.IntFilter<"SetBase"> | number
   RigenerazioneVita?: Prisma.FloatFilter<"SetBase"> | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFilter<"SetBase"> | number
   RigenerazioneMana?: Prisma.FloatFilter<"SetBase"> | number
   RigenerazioneManaPerLivello?: Prisma.FloatFilter<"SetBase"> | number
   Critico?: Prisma.FloatFilter<"SetBase"> | number
@@ -426,6 +438,7 @@ export type SetBaseWhereInput = {
   AttaccoMagico?: Prisma.IntFilter<"SetBase"> | number
   Champ?: Prisma.CampioneListRelationFilter
   Item?: Prisma.OggettoListRelationFilter
+  Storico?: Prisma.ModificaListRelationFilter
 }
 
 export type SetBaseOrderByWithRelationInput = {
@@ -441,6 +454,7 @@ export type SetBaseOrderByWithRelationInput = {
   ResistenzaMagicaPerLivello?: Prisma.SortOrder
   Gittata?: Prisma.SortOrder
   RigenerazioneVita?: Prisma.SortOrder
+  RigenerazioneVitaPerLivello?: Prisma.SortOrder
   RigenerazioneMana?: Prisma.SortOrder
   RigenerazioneManaPerLivello?: Prisma.SortOrder
   Critico?: Prisma.SortOrder
@@ -452,6 +466,7 @@ export type SetBaseOrderByWithRelationInput = {
   AttaccoMagico?: Prisma.SortOrder
   Champ?: Prisma.CampioneOrderByRelationAggregateInput
   Item?: Prisma.OggettoOrderByRelationAggregateInput
+  Storico?: Prisma.ModificaOrderByRelationAggregateInput
 }
 
 export type SetBaseWhereUniqueInput = Prisma.AtLeast<{
@@ -470,6 +485,7 @@ export type SetBaseWhereUniqueInput = Prisma.AtLeast<{
   ResistenzaMagicaPerLivello?: Prisma.FloatFilter<"SetBase"> | number
   Gittata?: Prisma.IntFilter<"SetBase"> | number
   RigenerazioneVita?: Prisma.FloatFilter<"SetBase"> | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFilter<"SetBase"> | number
   RigenerazioneMana?: Prisma.FloatFilter<"SetBase"> | number
   RigenerazioneManaPerLivello?: Prisma.FloatFilter<"SetBase"> | number
   Critico?: Prisma.FloatFilter<"SetBase"> | number
@@ -481,6 +497,7 @@ export type SetBaseWhereUniqueInput = Prisma.AtLeast<{
   AttaccoMagico?: Prisma.IntFilter<"SetBase"> | number
   Champ?: Prisma.CampioneListRelationFilter
   Item?: Prisma.OggettoListRelationFilter
+  Storico?: Prisma.ModificaListRelationFilter
 }, "IdStatistiche">
 
 export type SetBaseOrderByWithAggregationInput = {
@@ -496,6 +513,7 @@ export type SetBaseOrderByWithAggregationInput = {
   ResistenzaMagicaPerLivello?: Prisma.SortOrder
   Gittata?: Prisma.SortOrder
   RigenerazioneVita?: Prisma.SortOrder
+  RigenerazioneVitaPerLivello?: Prisma.SortOrder
   RigenerazioneMana?: Prisma.SortOrder
   RigenerazioneManaPerLivello?: Prisma.SortOrder
   Critico?: Prisma.SortOrder
@@ -528,6 +546,7 @@ export type SetBaseScalarWhereWithAggregatesInput = {
   ResistenzaMagicaPerLivello?: Prisma.FloatWithAggregatesFilter<"SetBase"> | number
   Gittata?: Prisma.IntWithAggregatesFilter<"SetBase"> | number
   RigenerazioneVita?: Prisma.FloatWithAggregatesFilter<"SetBase"> | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatWithAggregatesFilter<"SetBase"> | number
   RigenerazioneMana?: Prisma.FloatWithAggregatesFilter<"SetBase"> | number
   RigenerazioneManaPerLivello?: Prisma.FloatWithAggregatesFilter<"SetBase"> | number
   Critico?: Prisma.FloatWithAggregatesFilter<"SetBase"> | number
@@ -552,6 +571,7 @@ export type SetBaseCreateInput = {
   ResistenzaMagicaPerLivello: number
   Gittata: number
   RigenerazioneVita: number
+  RigenerazioneVitaPerLivello?: number
   RigenerazioneMana: number
   RigenerazioneManaPerLivello: number
   Critico: number
@@ -563,6 +583,7 @@ export type SetBaseCreateInput = {
   AttaccoMagico?: number
   Champ?: Prisma.CampioneCreateNestedManyWithoutStatsInput
   Item?: Prisma.OggettoCreateNestedManyWithoutStatsInput
+  Storico?: Prisma.ModificaCreateNestedManyWithoutSet_StaticheInput
 }
 
 export type SetBaseUncheckedCreateInput = {
@@ -578,6 +599,7 @@ export type SetBaseUncheckedCreateInput = {
   ResistenzaMagicaPerLivello: number
   Gittata: number
   RigenerazioneVita: number
+  RigenerazioneVitaPerLivello?: number
   RigenerazioneMana: number
   RigenerazioneManaPerLivello: number
   Critico: number
@@ -589,6 +611,7 @@ export type SetBaseUncheckedCreateInput = {
   AttaccoMagico?: number
   Champ?: Prisma.CampioneUncheckedCreateNestedManyWithoutStatsInput
   Item?: Prisma.OggettoUncheckedCreateNestedManyWithoutStatsInput
+  Storico?: Prisma.ModificaUncheckedCreateNestedManyWithoutSet_StaticheInput
 }
 
 export type SetBaseUpdateInput = {
@@ -604,6 +627,7 @@ export type SetBaseUpdateInput = {
   ResistenzaMagicaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   RigenerazioneVita?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneMana?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneManaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Critico?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -615,6 +639,7 @@ export type SetBaseUpdateInput = {
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Champ?: Prisma.CampioneUpdateManyWithoutStatsNestedInput
   Item?: Prisma.OggettoUpdateManyWithoutStatsNestedInput
+  Storico?: Prisma.ModificaUpdateManyWithoutSet_StaticheNestedInput
 }
 
 export type SetBaseUncheckedUpdateInput = {
@@ -630,6 +655,7 @@ export type SetBaseUncheckedUpdateInput = {
   ResistenzaMagicaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   RigenerazioneVita?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneMana?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneManaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Critico?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -641,6 +667,7 @@ export type SetBaseUncheckedUpdateInput = {
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Champ?: Prisma.CampioneUncheckedUpdateManyWithoutStatsNestedInput
   Item?: Prisma.OggettoUncheckedUpdateManyWithoutStatsNestedInput
+  Storico?: Prisma.ModificaUncheckedUpdateManyWithoutSet_StaticheNestedInput
 }
 
 export type SetBaseCreateManyInput = {
@@ -656,6 +683,7 @@ export type SetBaseCreateManyInput = {
   ResistenzaMagicaPerLivello: number
   Gittata: number
   RigenerazioneVita: number
+  RigenerazioneVitaPerLivello?: number
   RigenerazioneMana: number
   RigenerazioneManaPerLivello: number
   Critico: number
@@ -680,6 +708,7 @@ export type SetBaseUpdateManyMutationInput = {
   ResistenzaMagicaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   RigenerazioneVita?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneMana?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneManaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Critico?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -704,6 +733,7 @@ export type SetBaseUncheckedUpdateManyInput = {
   ResistenzaMagicaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   RigenerazioneVita?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneMana?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneManaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Critico?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -733,6 +763,7 @@ export type SetBaseCountOrderByAggregateInput = {
   ResistenzaMagicaPerLivello?: Prisma.SortOrder
   Gittata?: Prisma.SortOrder
   RigenerazioneVita?: Prisma.SortOrder
+  RigenerazioneVitaPerLivello?: Prisma.SortOrder
   RigenerazioneMana?: Prisma.SortOrder
   RigenerazioneManaPerLivello?: Prisma.SortOrder
   Critico?: Prisma.SortOrder
@@ -757,6 +788,7 @@ export type SetBaseAvgOrderByAggregateInput = {
   ResistenzaMagicaPerLivello?: Prisma.SortOrder
   Gittata?: Prisma.SortOrder
   RigenerazioneVita?: Prisma.SortOrder
+  RigenerazioneVitaPerLivello?: Prisma.SortOrder
   RigenerazioneMana?: Prisma.SortOrder
   RigenerazioneManaPerLivello?: Prisma.SortOrder
   Critico?: Prisma.SortOrder
@@ -781,6 +813,7 @@ export type SetBaseMaxOrderByAggregateInput = {
   ResistenzaMagicaPerLivello?: Prisma.SortOrder
   Gittata?: Prisma.SortOrder
   RigenerazioneVita?: Prisma.SortOrder
+  RigenerazioneVitaPerLivello?: Prisma.SortOrder
   RigenerazioneMana?: Prisma.SortOrder
   RigenerazioneManaPerLivello?: Prisma.SortOrder
   Critico?: Prisma.SortOrder
@@ -805,6 +838,7 @@ export type SetBaseMinOrderByAggregateInput = {
   ResistenzaMagicaPerLivello?: Prisma.SortOrder
   Gittata?: Prisma.SortOrder
   RigenerazioneVita?: Prisma.SortOrder
+  RigenerazioneVitaPerLivello?: Prisma.SortOrder
   RigenerazioneMana?: Prisma.SortOrder
   RigenerazioneManaPerLivello?: Prisma.SortOrder
   Critico?: Prisma.SortOrder
@@ -829,6 +863,7 @@ export type SetBaseSumOrderByAggregateInput = {
   ResistenzaMagicaPerLivello?: Prisma.SortOrder
   Gittata?: Prisma.SortOrder
   RigenerazioneVita?: Prisma.SortOrder
+  RigenerazioneVitaPerLivello?: Prisma.SortOrder
   RigenerazioneMana?: Prisma.SortOrder
   RigenerazioneManaPerLivello?: Prisma.SortOrder
   Critico?: Prisma.SortOrder
@@ -868,6 +903,20 @@ export type SetBaseUpdateOneRequiredWithoutItemNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SetBaseUpdateToOneWithWhereWithoutItemInput, Prisma.SetBaseUpdateWithoutItemInput>, Prisma.SetBaseUncheckedUpdateWithoutItemInput>
 }
 
+export type SetBaseCreateNestedOneWithoutStoricoInput = {
+  create?: Prisma.XOR<Prisma.SetBaseCreateWithoutStoricoInput, Prisma.SetBaseUncheckedCreateWithoutStoricoInput>
+  connectOrCreate?: Prisma.SetBaseCreateOrConnectWithoutStoricoInput
+  connect?: Prisma.SetBaseWhereUniqueInput
+}
+
+export type SetBaseUpdateOneRequiredWithoutStoricoNestedInput = {
+  create?: Prisma.XOR<Prisma.SetBaseCreateWithoutStoricoInput, Prisma.SetBaseUncheckedCreateWithoutStoricoInput>
+  connectOrCreate?: Prisma.SetBaseCreateOrConnectWithoutStoricoInput
+  upsert?: Prisma.SetBaseUpsertWithoutStoricoInput
+  connect?: Prisma.SetBaseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SetBaseUpdateToOneWithWhereWithoutStoricoInput, Prisma.SetBaseUpdateWithoutStoricoInput>, Prisma.SetBaseUncheckedUpdateWithoutStoricoInput>
+}
+
 export type SetBaseCreateWithoutChampInput = {
   IdStatistiche: number
   Vita: number
@@ -881,6 +930,7 @@ export type SetBaseCreateWithoutChampInput = {
   ResistenzaMagicaPerLivello: number
   Gittata: number
   RigenerazioneVita: number
+  RigenerazioneVitaPerLivello?: number
   RigenerazioneMana: number
   RigenerazioneManaPerLivello: number
   Critico: number
@@ -891,6 +941,7 @@ export type SetBaseCreateWithoutChampInput = {
   VelocitàDiAttaccoPerLivello: number
   AttaccoMagico?: number
   Item?: Prisma.OggettoCreateNestedManyWithoutStatsInput
+  Storico?: Prisma.ModificaCreateNestedManyWithoutSet_StaticheInput
 }
 
 export type SetBaseUncheckedCreateWithoutChampInput = {
@@ -906,6 +957,7 @@ export type SetBaseUncheckedCreateWithoutChampInput = {
   ResistenzaMagicaPerLivello: number
   Gittata: number
   RigenerazioneVita: number
+  RigenerazioneVitaPerLivello?: number
   RigenerazioneMana: number
   RigenerazioneManaPerLivello: number
   Critico: number
@@ -916,6 +968,7 @@ export type SetBaseUncheckedCreateWithoutChampInput = {
   VelocitàDiAttaccoPerLivello: number
   AttaccoMagico?: number
   Item?: Prisma.OggettoUncheckedCreateNestedManyWithoutStatsInput
+  Storico?: Prisma.ModificaUncheckedCreateNestedManyWithoutSet_StaticheInput
 }
 
 export type SetBaseCreateOrConnectWithoutChampInput = {
@@ -947,6 +1000,7 @@ export type SetBaseUpdateWithoutChampInput = {
   ResistenzaMagicaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   RigenerazioneVita?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneMana?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneManaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Critico?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -957,6 +1011,7 @@ export type SetBaseUpdateWithoutChampInput = {
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Item?: Prisma.OggettoUpdateManyWithoutStatsNestedInput
+  Storico?: Prisma.ModificaUpdateManyWithoutSet_StaticheNestedInput
 }
 
 export type SetBaseUncheckedUpdateWithoutChampInput = {
@@ -972,6 +1027,7 @@ export type SetBaseUncheckedUpdateWithoutChampInput = {
   ResistenzaMagicaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   RigenerazioneVita?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneMana?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneManaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Critico?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -982,6 +1038,7 @@ export type SetBaseUncheckedUpdateWithoutChampInput = {
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Item?: Prisma.OggettoUncheckedUpdateManyWithoutStatsNestedInput
+  Storico?: Prisma.ModificaUncheckedUpdateManyWithoutSet_StaticheNestedInput
 }
 
 export type SetBaseCreateWithoutItemInput = {
@@ -997,6 +1054,7 @@ export type SetBaseCreateWithoutItemInput = {
   ResistenzaMagicaPerLivello: number
   Gittata: number
   RigenerazioneVita: number
+  RigenerazioneVitaPerLivello?: number
   RigenerazioneMana: number
   RigenerazioneManaPerLivello: number
   Critico: number
@@ -1007,6 +1065,7 @@ export type SetBaseCreateWithoutItemInput = {
   VelocitàDiAttaccoPerLivello: number
   AttaccoMagico?: number
   Champ?: Prisma.CampioneCreateNestedManyWithoutStatsInput
+  Storico?: Prisma.ModificaCreateNestedManyWithoutSet_StaticheInput
 }
 
 export type SetBaseUncheckedCreateWithoutItemInput = {
@@ -1022,6 +1081,7 @@ export type SetBaseUncheckedCreateWithoutItemInput = {
   ResistenzaMagicaPerLivello: number
   Gittata: number
   RigenerazioneVita: number
+  RigenerazioneVitaPerLivello?: number
   RigenerazioneMana: number
   RigenerazioneManaPerLivello: number
   Critico: number
@@ -1032,6 +1092,7 @@ export type SetBaseUncheckedCreateWithoutItemInput = {
   VelocitàDiAttaccoPerLivello: number
   AttaccoMagico?: number
   Champ?: Prisma.CampioneUncheckedCreateNestedManyWithoutStatsInput
+  Storico?: Prisma.ModificaUncheckedCreateNestedManyWithoutSet_StaticheInput
 }
 
 export type SetBaseCreateOrConnectWithoutItemInput = {
@@ -1063,6 +1124,7 @@ export type SetBaseUpdateWithoutItemInput = {
   ResistenzaMagicaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   RigenerazioneVita?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneMana?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneManaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Critico?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1073,6 +1135,7 @@ export type SetBaseUpdateWithoutItemInput = {
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Champ?: Prisma.CampioneUpdateManyWithoutStatsNestedInput
+  Storico?: Prisma.ModificaUpdateManyWithoutSet_StaticheNestedInput
 }
 
 export type SetBaseUncheckedUpdateWithoutItemInput = {
@@ -1088,6 +1151,7 @@ export type SetBaseUncheckedUpdateWithoutItemInput = {
   ResistenzaMagicaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Gittata?: Prisma.IntFieldUpdateOperationsInput | number
   RigenerazioneVita?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneMana?: Prisma.FloatFieldUpdateOperationsInput | number
   RigenerazioneManaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   Critico?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1098,6 +1162,131 @@ export type SetBaseUncheckedUpdateWithoutItemInput = {
   VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
   AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
   Champ?: Prisma.CampioneUncheckedUpdateManyWithoutStatsNestedInput
+  Storico?: Prisma.ModificaUncheckedUpdateManyWithoutSet_StaticheNestedInput
+}
+
+export type SetBaseCreateWithoutStoricoInput = {
+  IdStatistiche: number
+  Vita: number
+  VitaPerLivello: number
+  Mana: number
+  ManaPerLivello: number
+  Velocità_di_movimento: number
+  Armatura: number
+  ArmaturaPerLivello: number
+  ResistenzaMagica: number
+  ResistenzaMagicaPerLivello: number
+  Gittata: number
+  RigenerazioneVita: number
+  RigenerazioneVitaPerLivello?: number
+  RigenerazioneMana: number
+  RigenerazioneManaPerLivello: number
+  Critico: number
+  CriticoPerLivello: number
+  Attacco: number
+  AttaccoPerLivello: number
+  VelocitàDiAttacco: number
+  VelocitàDiAttaccoPerLivello: number
+  AttaccoMagico?: number
+  Champ?: Prisma.CampioneCreateNestedManyWithoutStatsInput
+  Item?: Prisma.OggettoCreateNestedManyWithoutStatsInput
+}
+
+export type SetBaseUncheckedCreateWithoutStoricoInput = {
+  IdStatistiche: number
+  Vita: number
+  VitaPerLivello: number
+  Mana: number
+  ManaPerLivello: number
+  Velocità_di_movimento: number
+  Armatura: number
+  ArmaturaPerLivello: number
+  ResistenzaMagica: number
+  ResistenzaMagicaPerLivello: number
+  Gittata: number
+  RigenerazioneVita: number
+  RigenerazioneVitaPerLivello?: number
+  RigenerazioneMana: number
+  RigenerazioneManaPerLivello: number
+  Critico: number
+  CriticoPerLivello: number
+  Attacco: number
+  AttaccoPerLivello: number
+  VelocitàDiAttacco: number
+  VelocitàDiAttaccoPerLivello: number
+  AttaccoMagico?: number
+  Champ?: Prisma.CampioneUncheckedCreateNestedManyWithoutStatsInput
+  Item?: Prisma.OggettoUncheckedCreateNestedManyWithoutStatsInput
+}
+
+export type SetBaseCreateOrConnectWithoutStoricoInput = {
+  where: Prisma.SetBaseWhereUniqueInput
+  create: Prisma.XOR<Prisma.SetBaseCreateWithoutStoricoInput, Prisma.SetBaseUncheckedCreateWithoutStoricoInput>
+}
+
+export type SetBaseUpsertWithoutStoricoInput = {
+  update: Prisma.XOR<Prisma.SetBaseUpdateWithoutStoricoInput, Prisma.SetBaseUncheckedUpdateWithoutStoricoInput>
+  create: Prisma.XOR<Prisma.SetBaseCreateWithoutStoricoInput, Prisma.SetBaseUncheckedCreateWithoutStoricoInput>
+  where?: Prisma.SetBaseWhereInput
+}
+
+export type SetBaseUpdateToOneWithWhereWithoutStoricoInput = {
+  where?: Prisma.SetBaseWhereInput
+  data: Prisma.XOR<Prisma.SetBaseUpdateWithoutStoricoInput, Prisma.SetBaseUncheckedUpdateWithoutStoricoInput>
+}
+
+export type SetBaseUpdateWithoutStoricoInput = {
+  IdStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
+  Vita?: Prisma.IntFieldUpdateOperationsInput | number
+  VitaPerLivello?: Prisma.IntFieldUpdateOperationsInput | number
+  Mana?: Prisma.IntFieldUpdateOperationsInput | number
+  ManaPerLivello?: Prisma.IntFieldUpdateOperationsInput | number
+  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
+  ArmaturaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  ResistenzaMagica?: Prisma.FloatFieldUpdateOperationsInput | number
+  ResistenzaMagicaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  RigenerazioneVita?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneMana?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneManaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  Critico?: Prisma.FloatFieldUpdateOperationsInput | number
+  CriticoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
+  AttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  VelocitàDiAttacco?: Prisma.FloatFieldUpdateOperationsInput | number
+  VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
+  Champ?: Prisma.CampioneUpdateManyWithoutStatsNestedInput
+  Item?: Prisma.OggettoUpdateManyWithoutStatsNestedInput
+}
+
+export type SetBaseUncheckedUpdateWithoutStoricoInput = {
+  IdStatistiche?: Prisma.IntFieldUpdateOperationsInput | number
+  Vita?: Prisma.IntFieldUpdateOperationsInput | number
+  VitaPerLivello?: Prisma.IntFieldUpdateOperationsInput | number
+  Mana?: Prisma.IntFieldUpdateOperationsInput | number
+  ManaPerLivello?: Prisma.IntFieldUpdateOperationsInput | number
+  Velocità_di_movimento?: Prisma.IntFieldUpdateOperationsInput | number
+  Armatura?: Prisma.FloatFieldUpdateOperationsInput | number
+  ArmaturaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  ResistenzaMagica?: Prisma.FloatFieldUpdateOperationsInput | number
+  ResistenzaMagicaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  Gittata?: Prisma.IntFieldUpdateOperationsInput | number
+  RigenerazioneVita?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneVitaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneMana?: Prisma.FloatFieldUpdateOperationsInput | number
+  RigenerazioneManaPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  Critico?: Prisma.FloatFieldUpdateOperationsInput | number
+  CriticoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  Attacco?: Prisma.FloatFieldUpdateOperationsInput | number
+  AttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  VelocitàDiAttacco?: Prisma.FloatFieldUpdateOperationsInput | number
+  VelocitàDiAttaccoPerLivello?: Prisma.FloatFieldUpdateOperationsInput | number
+  AttaccoMagico?: Prisma.IntFieldUpdateOperationsInput | number
+  Champ?: Prisma.CampioneUncheckedUpdateManyWithoutStatsNestedInput
+  Item?: Prisma.OggettoUncheckedUpdateManyWithoutStatsNestedInput
 }
 
 
@@ -1108,11 +1297,13 @@ export type SetBaseUncheckedUpdateWithoutItemInput = {
 export type SetBaseCountOutputType = {
   Champ: number
   Item: number
+  Storico: number
 }
 
 export type SetBaseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Champ?: boolean | SetBaseCountOutputTypeCountChampArgs
   Item?: boolean | SetBaseCountOutputTypeCountItemArgs
+  Storico?: boolean | SetBaseCountOutputTypeCountStoricoArgs
 }
 
 /**
@@ -1139,6 +1330,13 @@ export type SetBaseCountOutputTypeCountItemArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.OggettoWhereInput
 }
 
+/**
+ * SetBaseCountOutputType without action
+ */
+export type SetBaseCountOutputTypeCountStoricoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ModificaWhereInput
+}
+
 
 export type SetBaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   IdStatistiche?: boolean
@@ -1153,6 +1351,7 @@ export type SetBaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   ResistenzaMagicaPerLivello?: boolean
   Gittata?: boolean
   RigenerazioneVita?: boolean
+  RigenerazioneVitaPerLivello?: boolean
   RigenerazioneMana?: boolean
   RigenerazioneManaPerLivello?: boolean
   Critico?: boolean
@@ -1164,6 +1363,7 @@ export type SetBaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   AttaccoMagico?: boolean
   Champ?: boolean | Prisma.SetBase$ChampArgs<ExtArgs>
   Item?: boolean | Prisma.SetBase$ItemArgs<ExtArgs>
+  Storico?: boolean | Prisma.SetBase$StoricoArgs<ExtArgs>
   _count?: boolean | Prisma.SetBaseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["setBase"]>
 
@@ -1180,6 +1380,7 @@ export type SetBaseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   ResistenzaMagicaPerLivello?: boolean
   Gittata?: boolean
   RigenerazioneVita?: boolean
+  RigenerazioneVitaPerLivello?: boolean
   RigenerazioneMana?: boolean
   RigenerazioneManaPerLivello?: boolean
   Critico?: boolean
@@ -1204,6 +1405,7 @@ export type SetBaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   ResistenzaMagicaPerLivello?: boolean
   Gittata?: boolean
   RigenerazioneVita?: boolean
+  RigenerazioneVitaPerLivello?: boolean
   RigenerazioneMana?: boolean
   RigenerazioneManaPerLivello?: boolean
   Critico?: boolean
@@ -1228,6 +1430,7 @@ export type SetBaseSelectScalar = {
   ResistenzaMagicaPerLivello?: boolean
   Gittata?: boolean
   RigenerazioneVita?: boolean
+  RigenerazioneVitaPerLivello?: boolean
   RigenerazioneMana?: boolean
   RigenerazioneManaPerLivello?: boolean
   Critico?: boolean
@@ -1239,10 +1442,11 @@ export type SetBaseSelectScalar = {
   AttaccoMagico?: boolean
 }
 
-export type SetBaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdStatistiche" | "Vita" | "VitaPerLivello" | "Mana" | "ManaPerLivello" | "Velocità_di_movimento" | "Armatura" | "ArmaturaPerLivello" | "ResistenzaMagica" | "ResistenzaMagicaPerLivello" | "Gittata" | "RigenerazioneVita" | "RigenerazioneMana" | "RigenerazioneManaPerLivello" | "Critico" | "CriticoPerLivello" | "Attacco" | "AttaccoPerLivello" | "VelocitàDiAttacco" | "VelocitàDiAttaccoPerLivello" | "AttaccoMagico", ExtArgs["result"]["setBase"]>
+export type SetBaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"IdStatistiche" | "Vita" | "VitaPerLivello" | "Mana" | "ManaPerLivello" | "Velocità_di_movimento" | "Armatura" | "ArmaturaPerLivello" | "ResistenzaMagica" | "ResistenzaMagicaPerLivello" | "Gittata" | "RigenerazioneVita" | "RigenerazioneVitaPerLivello" | "RigenerazioneMana" | "RigenerazioneManaPerLivello" | "Critico" | "CriticoPerLivello" | "Attacco" | "AttaccoPerLivello" | "VelocitàDiAttacco" | "VelocitàDiAttaccoPerLivello" | "AttaccoMagico", ExtArgs["result"]["setBase"]>
 export type SetBaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Champ?: boolean | Prisma.SetBase$ChampArgs<ExtArgs>
   Item?: boolean | Prisma.SetBase$ItemArgs<ExtArgs>
+  Storico?: boolean | Prisma.SetBase$StoricoArgs<ExtArgs>
   _count?: boolean | Prisma.SetBaseCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SetBaseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1253,6 +1457,7 @@ export type $SetBasePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     Champ: Prisma.$CampionePayload<ExtArgs>[]
     Item: Prisma.$OggettoPayload<ExtArgs>[]
+    Storico: Prisma.$ModificaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     IdStatistiche: number
@@ -1267,6 +1472,7 @@ export type $SetBasePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     ResistenzaMagicaPerLivello: number
     Gittata: number
     RigenerazioneVita: number
+    RigenerazioneVitaPerLivello: number
     RigenerazioneMana: number
     RigenerazioneManaPerLivello: number
     Critico: number
@@ -1672,6 +1878,7 @@ export interface Prisma__SetBaseClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   Champ<T extends Prisma.SetBase$ChampArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBase$ChampArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampionePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Item<T extends Prisma.SetBase$ItemArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBase$ItemArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OggettoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Storico<T extends Prisma.SetBase$StoricoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SetBase$StoricoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModificaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1713,6 +1920,7 @@ export interface SetBaseFieldRefs {
   readonly ResistenzaMagicaPerLivello: Prisma.FieldRef<"SetBase", 'Float'>
   readonly Gittata: Prisma.FieldRef<"SetBase", 'Int'>
   readonly RigenerazioneVita: Prisma.FieldRef<"SetBase", 'Float'>
+  readonly RigenerazioneVitaPerLivello: Prisma.FieldRef<"SetBase", 'Float'>
   readonly RigenerazioneMana: Prisma.FieldRef<"SetBase", 'Float'>
   readonly RigenerazioneManaPerLivello: Prisma.FieldRef<"SetBase", 'Float'>
   readonly Critico: Prisma.FieldRef<"SetBase", 'Float'>
@@ -2160,6 +2368,30 @@ export type SetBase$ItemArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.OggettoScalarFieldEnum | Prisma.OggettoScalarFieldEnum[]
+}
+
+/**
+ * SetBase.Storico
+ */
+export type SetBase$StoricoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Modifica
+   */
+  select?: Prisma.ModificaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Modifica
+   */
+  omit?: Prisma.ModificaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ModificaInclude<ExtArgs> | null
+  where?: Prisma.ModificaWhereInput
+  orderBy?: Prisma.ModificaOrderByWithRelationInput | Prisma.ModificaOrderByWithRelationInput[]
+  cursor?: Prisma.ModificaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ModificaScalarFieldEnum | Prisma.ModificaScalarFieldEnum[]
 }
 
 /**

@@ -276,7 +276,7 @@ export type OggettoCreateInput = {
   Costo: number
   Descrizione: string
   Immagine: string
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutItemInput
+  Stats: Prisma.SetBaseCreateNestedOneWithoutItemInput
   Inv?: Prisma.InventarioCreateNestedManyWithoutOggettoInput
 }
 
@@ -285,7 +285,7 @@ export type OggettoUncheckedCreateInput = {
   Costo: number
   Descrizione: string
   Immagine: string
-  SetStatistiche?: number
+  SetStatistiche: number
   Inv?: Prisma.InventarioUncheckedCreateNestedManyWithoutOggettoInput
 }
 
@@ -312,7 +312,7 @@ export type OggettoCreateManyInput = {
   Costo: number
   Descrizione: string
   Immagine: string
-  SetStatistiche?: number
+  SetStatistiche: number
 }
 
 export type OggettoUpdateManyMutationInput = {
@@ -440,7 +440,7 @@ export type OggettoCreateWithoutInvInput = {
   Costo: number
   Descrizione: string
   Immagine: string
-  Stats?: Prisma.SetBaseCreateNestedOneWithoutItemInput
+  Stats: Prisma.SetBaseCreateNestedOneWithoutItemInput
 }
 
 export type OggettoUncheckedCreateWithoutInvInput = {
@@ -448,7 +448,7 @@ export type OggettoUncheckedCreateWithoutInvInput = {
   Costo: number
   Descrizione: string
   Immagine: string
-  SetStatistiche?: number
+  SetStatistiche: number
 }
 
 export type OggettoCreateOrConnectWithoutInvInput = {

@@ -138,13 +138,14 @@
           <div class="total">{wins + losses}</div>
         </div>
       </div>
-
+      {#if isEditable}
       <form method="get" action="/builder/{champion.ID}">
         <input type="hidden" name="author" value={author.AccountId} />
         <input type="hidden" name="title" value={name} />
-
+        
         <button type="submit" class="btn">Edit</button>
       </form>
+      {/if}
     </div>
   {/if}
 </div>

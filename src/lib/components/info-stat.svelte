@@ -1,14 +1,15 @@
 <script lang="ts">
   import type { SetBase } from "$lib/server/prisma/client";
 
-  let { stats }: { stats: SetBase } = $props();
+  let { stats, level }: { stats: SetBase; level: number } = $props();
 </script>
 
 <div class="stats-container">
   <div class="stats-column left-stats">
     <div class="stat-item">
       <span class="stat-label">HP</span>
-      <span class="stat-value">{stats.Vita}</span>
+      <span class="stat-value">{stats.Vita + stats.VitaPerLivello * level}</span
+      >
     </div>
     <div class="stat-item">
       <span class="stat-label">HP Regen</span>
@@ -16,11 +17,16 @@
     </div>
     <div class="stat-item">
       <span class="stat-label">AR</span>
-      <span class="stat-value">{stats.Armatura}</span>
+      <span class="stat-value"
+        >{stats.Armatura + stats.ArmaturaPerLivello * level}</span
+      >
     </div>
     <div class="stat-item">
       <span class="stat-label">MR</span>
-      <span class="stat-value">{stats.ResistenzaMagica}</span>
+      <span class="stat-value"
+        >{stats.ResistenzaMagica +
+          stats.ResistenzaMagicaPerLivello * level}</span
+      >
     </div>
     <div class="stat-item">
       <span class="stat-label">MS</span>
@@ -28,7 +34,10 @@
     </div>
     <div class="stat-item">
       <span class="stat-label">Base AS</span>
-      <span class="stat-value">{stats.VelocitàDiAttacco}</span>
+      <span class="stat-value"
+        >{stats.VelocitàDiAttacco +
+          stats.VelocitàDiAttaccoPerLivello * level}</span
+      >
     </div>
   </div>
 
@@ -39,19 +48,25 @@
   <div class="stats-column right-stats">
     <div class="stat-item">
       <span class="stat-label">Mana</span>
-      <span class="stat-value">{stats.Mana}</span>
+      <span class="stat-value">{stats.Mana + stats.ManaPerLivello * level}</span
+      >
     </div>
     <div class="stat-item">
       <span class="stat-label">Mana Regen</span>
-      <span class="stat-value">{stats.RigenerazioneMana}</span>
+      <span class="stat-value"
+        >{stats.RigenerazioneMana +
+          stats.RigenerazioneManaPerLivello * level}</span
+      >
     </div>
     <div class="stat-item">
       <span class="stat-label">AD</span>
-      <span class="stat-value">{stats.Attacco}</span>
+      <span class="stat-value">{stats.Attacco + stats.Attacco * level}</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">Crit. DMG</span>
-      <span class="stat-value">{stats.Critico}</span>
+      <span class="stat-value"
+        >{stats.Critico + stats.CriticoPerLivello * level}</span
+      >
     </div>
     <div class="stat-item">
       <span class="stat-label">Attack Range</span>

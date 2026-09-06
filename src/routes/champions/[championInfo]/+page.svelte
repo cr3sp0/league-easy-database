@@ -6,6 +6,8 @@
   import Sectionheader from "$lib/components/sectionheader.svelte";
 
   let { data } = $props();
+
+  let level: number = $state(1);
 </script>
 
 <div class="container">
@@ -26,10 +28,10 @@
       <div class="title">{data.champion?.Titolo}</div>
       <div class="description section">{data.champion?.Descrizione}</div>
       <div class="title">Stats</div>
-      <Sectionheader />
+      <Sectionheader bind:level />
       {#if data.champion}
         <div class="info-stat section">
-          <InfoStat stats={data.stats} />
+          <InfoStat stats={data.stats} {level} />
         </div>
       {/if}
       <div class="title">Best Builds</div>

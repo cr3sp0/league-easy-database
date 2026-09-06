@@ -54,10 +54,8 @@
     </div>
     <div class="buildcard-header-title">
       <div class="buildcard-header-title-name">{champion.nome}, {name}</div>
-      <a
-        href="/account/{author}"
-        class="buildcard-header-title-auth"
-        onclick={(e) => e.stopPropagation()}>{author.Nome}</a
+      <a href="/account/{author.Nome}" class="buildcard-header-title-auth"
+        >{author.Nome}</a
       >
     </div>
     <div class="buildcard-header-winrate">{winPerc}</div>

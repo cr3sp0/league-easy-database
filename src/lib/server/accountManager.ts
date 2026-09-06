@@ -240,7 +240,10 @@ export async function getReport({
         where: {
             Target: {
                 Nome: target,
-                AccountId: targetID
+                AccountId: targetID,
+                Banned: {
+                    is: null
+                }
             },
             Author: {
                 Nome: author,
@@ -260,11 +263,15 @@ export async function getReport({
                         lte: afterDate
                     }
                 }
-            ]
+            ],
         },
         include: {
             Author: true,
-            Target: true
+            Target: {
+                include: {
+                    Banned: true
+                }
+            }
         }
     })
 }

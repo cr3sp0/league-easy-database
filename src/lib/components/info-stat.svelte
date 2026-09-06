@@ -8,7 +8,7 @@
   <div class="stats-column left-stats">
     <div class="stat-item">
       <span class="stat-label">HP</span>
-      <span class="stat-value">{stats.Vita + stats.VitaPerLivello * level}</span
+      <span class="stat-value">{(stats.Vita + stats.VitaPerLivello * level).toFixed(0)}</span
       >
     </div>
     <div class="stat-item">
@@ -18,14 +18,14 @@
     <div class="stat-item">
       <span class="stat-label">AR</span>
       <span class="stat-value"
-        >{stats.Armatura + stats.ArmaturaPerLivello * level}</span
+        >{(stats.Armatura + stats.ArmaturaPerLivello * level).toFixed(0)}</span
       >
     </div>
     <div class="stat-item">
       <span class="stat-label">MR</span>
       <span class="stat-value"
-        >{stats.ResistenzaMagica +
-          stats.ResistenzaMagicaPerLivello * level}</span
+        >{(stats.ResistenzaMagica +
+          stats.ResistenzaMagicaPerLivello * level).toFixed(0)}</span
       >
     </div>
     <div class="stat-item">
@@ -35,8 +35,8 @@
     <div class="stat-item">
       <span class="stat-label">Base AS</span>
       <span class="stat-value"
-        >{stats.VelocitàDiAttacco +
-          stats.VelocitàDiAttaccoPerLivello * level}</span
+        >{(stats.VelocitàDiAttacco +
+          stats.VelocitàDiAttaccoPerLivello * level).toFixed(0)}</span
       >
     </div>
   </div>
@@ -48,24 +48,24 @@
   <div class="stats-column right-stats">
     <div class="stat-item">
       <span class="stat-label">Mana</span>
-      <span class="stat-value">{stats.Mana + stats.ManaPerLivello * level}</span
+      <span class="stat-value">{(stats.Mana + stats.ManaPerLivello * level).toFixed(0)}</span
       >
     </div>
     <div class="stat-item">
       <span class="stat-label">Mana Regen</span>
       <span class="stat-value"
-        >{stats.RigenerazioneMana +
-          stats.RigenerazioneManaPerLivello * level}</span
+        >{(stats.RigenerazioneMana +
+          stats.RigenerazioneManaPerLivello * level).toFixed(0)}</span
       >
     </div>
     <div class="stat-item">
       <span class="stat-label">AD</span>
-      <span class="stat-value">{stats.Attacco + stats.Attacco * level}</span>
+      <span class="stat-value">{(stats.Attacco + stats.Attacco * level).toFixed(0)}</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">Crit. DMG</span>
       <span class="stat-value"
-        >{stats.Critico + stats.CriticoPerLivello * level}</span
+        >{(stats.Critico + stats.CriticoPerLivello * level).toFixed(0)}</span
       >
     </div>
     <div class="stat-item">

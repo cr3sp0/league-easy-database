@@ -63,7 +63,7 @@
           placeholder="Search for a Build"
         />
       </div>
-      <BuildcardHolder comunityBuilds={data.communityBuilds} />
+      <BuildcardHolder bind:comunityBuilds={data.communityBuilds} />
     </div>
   </div>
 </div>

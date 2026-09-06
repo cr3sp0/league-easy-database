@@ -86,22 +86,8 @@
         <div class="builds-content">
             <Search />
             <div class="builds-grid">
-                <BuildcardHolder personalBuilds={personalBuilds} isEditable={data.profile.Nome === data.user.userProfile.username} />
+                <BuildcardHolder bind:personalBuilds={personalBuilds} isEditable={data.profile.Nome === data.user.userProfile.username} />
             </div>
-
-            <form
-            class="btn-more"
-            method="post"
-            action="?/moreBuilds"
-            use:enhance = {() => async ({result}) => {
-                if(result.type === 'success' && result.data?.builds){
-                    personalBuilds = (result.data as {builds : completeBuild[]}).builds
-                }
-            }}
-            >
-                <input name="limit" type="hidden" value={personalBuilds.length + 3}/>
-                <button class="btn-more" type="submit">More...</button>
-            </form>
         </div>
     </div>
 </div>
@@ -196,24 +182,6 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 15px;
-    }
-
-    .btn-more {
-        background: transparent;
-        border: none;
-        outline: none;
-        font-family: var(--font-mono);
-        color: inherit;
-        display: flex;
-        flex-grow: 1;
-        cursor: pointer;
-        justify-content: center;
-    }
-    .btn-more:hover {
-        text-decoration: underline;
-    }
-    .btn-more:focus-visible {
-        text-decoration: underline;
     }
 
     .options{

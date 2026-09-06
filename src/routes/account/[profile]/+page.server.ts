@@ -2,6 +2,7 @@ import { error, fail, type Action, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from "./$types";
 import { getBuilds } from '$lib/server/buildManager';
 import { createReport, deleteSession, getAccount } from '$lib/server/accountManager';
+import { moreBuilds } from '$lib/server/genericActions';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
 
@@ -51,33 +52,6 @@ const logout : Action = async ({ cookies }) => {
 	}
 }
 
-const moreBuilds : Action = async ({ request, params }) => {
-	
-	try {
-		if (!params.profile) {
-			throw { message: "Missing the profile" }
-		}
-
-		let limit = (await request.formData()).get("limit")?.toString()
-
-		if (!limit) {
-			throw { message: "Invalid Request" }
-		}
-
-		return {
-			success: true,
-			builds: await getBuilds({
-					username: params.profile,
-					limit: parseInt(limit)
-				})
-		}
-	} catch (err : any) {
-		console.error(err.message)
-		
-		return fail(500, {msg: err.message})
-	}
-}
-
 const sendReport : Action = async ({ request, params, cookies, locals }) => {
 
 	try {
@@ -117,4 +91,4 @@ const sendReport : Action = async ({ request, params, cookies, locals }) => {
 	}
 }
 
-export const actions : Actions = { logout, moreBuilds, sendReport }
+export const actions : Actions = { logout, sendReport, moreBuilds }

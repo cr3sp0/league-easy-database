@@ -1,7 +1,8 @@
-import { error, redirect } from "@sveltejs/kit";
+import { error, redirect, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 import { getChampionAndCosmeticsByName, getChampionByName } from "$lib/server/championsManager";
 import { getBuilds } from "$lib/server/buildManager";
+import { moreBuilds } from "$lib/server/genericActions";
 
 export const load: PageServerLoad = async ({ params, cookies, locals }) => {
     const champion = await getChampionAndCosmeticsByName(params.championInfo);
@@ -29,3 +30,5 @@ export const load: PageServerLoad = async ({ params, cookies, locals }) => {
         })
     };
 }
+
+export const actions : Actions = await ({ moreBuilds })

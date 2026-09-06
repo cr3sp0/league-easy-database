@@ -2,6 +2,7 @@ import { error, type Action, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getChampionsBasicInfo } from '$lib/server/championsManager';
 import { getBuilds } from '$lib/server/buildManager';
+import { moreBuilds } from '$lib/server/genericActions';
 
 function getRandomIndices(champions: { nome: string; Icona: string;}[]) {
 
@@ -78,5 +79,7 @@ export const actions = {
       success: true,
       indices: indices
     };
-  }
+  },
+
+  moreBuilds
 } satisfies Actions;

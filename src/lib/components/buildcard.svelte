@@ -28,6 +28,7 @@
 
   let isOpen = $state(false);
   let winPerc: string | undefined = $state();
+
   // svelte-ignore state_referenced_locally
   if (wins && losses) {
     winPerc = ((wins / (wins + losses)) * 100).toFixed(0) + "%";
@@ -59,8 +60,8 @@
     </div>
     <div class="buildcard-header-winrate">{winPerc}</div>
     <div class="buildcard-header-button">
-      <span class="arrow" class:rotated={isOpen}
-        ><svg
+      <span class="arrow" class:rotated={isOpen}>
+        <svg
           width="25"
           height="15"
           viewBox="0 0 25 15"
@@ -83,10 +84,14 @@
       <div class="buildcard-section-title">Runes</div>
       <div class="buildcard-runes">
         <div class="buildcard-body-column">
-          <img src={ runes.PietraChiave.Immagine } alt={ runes.PietraChiave.Nome } />
+          <img
+            src={runes.PietraChiave.Immagine}
+            alt={runes.PietraChiave.Nome}
+            class="keystone"
+          />
           <div class="buildcard-body-row">
             {#each runes.Primaria as rune}
-              <img src={rune.Immagine} alt={ rune.Nome }/>
+              <img src={rune.Immagine} alt={rune.Nome} />
             {/each}
           </div>
         </div>
@@ -94,13 +99,13 @@
           <div class="buildcard-body-row">
             {#each runes.Secondaria as rune}
               {#if rune.Nome !== "Nessuna"}
-              <img src={rune.Immagine} alt={ rune.Nome }/>
+                <img src={rune.Immagine} alt={rune.Nome} />
               {/if}
             {/each}
           </div>
           <div class="buildcard-body-row">
             {#each runes.Frammenti as rune}
-                <img src={rune.Immagine} alt={ rune.Nome }/>
+              <img src={rune.Immagine} alt={rune.Nome} />
             {/each}
           </div>
         </div>
@@ -108,30 +113,32 @@
 
       <div class="buildcard-section-title">Items</div>
       <div class="buildcard-items">
-          <Itemsgrid itemList={items} />
+        <Itemsgrid itemList={items} />
       </div>
 
       <div class="buildcard-section-title">Stats</div>
       <div class="buildcard-stats">
-        <div>
+        <div class="stat-block">
           <div>K / D / A</div>
           <div class="total">{kills} / {deaths} / {assists}</div>
         </div>
       </div>
-      <div class="buildcard-stats">
-        <div>
+
+      <div class="buildcard-stats summary">
+        <div class="stat-block">
           <div>Victories</div>
           <div class="win">{wins}</div>
         </div>
-        <div>
+        <div class="stat-block">
           <div>Defeates</div>
           <div class="loss">{losses}</div>
         </div>
-        <div>
+        <div class="stat-block">
           <div>Total</div>
           <div class="total">{wins + losses}</div>
         </div>
       </div>
+
       <form method="get" action="/builder/{champion.ID}">
         <input type="hidden" name="author" value={author.AccountId} />
         <input type="hidden" name="title" value={name} />
@@ -148,13 +155,12 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-
     box-sizing: border-box;
     width: 100%;
+
+    min-width: 0;
     height: auto;
-
-    padding: clamp(20px, 2vw, 30px) 10px;
-
+    padding: clamp(15px, 2vw, 30px) clamp(10px, 2vw, 20px);
     background-color: var(--black-20, #1a1a1a);
     font-family: var(--font-mono, monospace);
   }
@@ -163,32 +169,53 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 80px;
+    min-height: 80px;
     width: 100%;
-    gap: 20px;
+    gap: 15px;
     cursor: pointer;
     user-select: none;
   }
 
   .buildcard-header-icon {
-    height: 100%;
-    aspect-ratio: 1;
+    height: 60px;
+    width: 60px;
+    flex-shrink: 0;
   }
+
   .buildcard-header-icon img {
     border-radius: 100px;
     width: 100%;
     height: 100%;
-
     object-fit: cover;
   }
 
   .buildcard-header-title {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .buildcard-header-title-name {
+    display: block;
     width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
   }
 
   .buildcard-header-title-auth {
+    display: block;
+    width: 100%;
     color: var(--white-20, #888);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
   .buildcard-header-title-auth:hover {
     text-decoration: underline;
   }
@@ -197,29 +224,29 @@
     font-family: inherit;
     font-size: var(--text-lm);
     color: var(--white-20);
+    flex-shrink: 0;
   }
 
   .buildcard-header-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
   }
 
   .btn {
-    height: fit-content;
-    padding: 1.5vh 2vw;
-
+    padding: 10px 20px;
     background-color: var(--black-20);
     border: 1px var(--white-20) solid;
-
     color: white;
-
     font-family: var(--font-mono);
     font-size: var(--text-md);
     cursor: pointer;
+    transition: background-color 0.2s;
   }
+
   .btn:hover,
   .btn:focus {
     background-color: #2a2323;
@@ -244,75 +271,92 @@
     align-items: center;
     gap: 20px;
   }
-  .buildcard-body-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-  }
-  .buildcard-body-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .buildcard-model {
-    width: 60%;
-    height: auto;
-  }
 
   .buildcard-section-title {
     width: 100%;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
   }
 
   .buildcard-runes {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 100px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    gap: 20px;
   }
-  .buildcard-runes img {
-    height: 50px;
-    width: 50px;
 
-    overflow-x: visible;
+  .buildcard-body-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .buildcard-body-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(10px, 2vw, 30px);
+  }
+
+  .buildcard-runes img {
+    height: clamp(35px, 4vw, 50px);
+    width: clamp(35px, 4vw, 50px);
+    object-fit: contain;
+  }
+
+  .keystone {
+    height: clamp(45px, 5vw, 65px) !important;
+    width: clamp(45px, 5vw, 65px) !important;
   }
 
   .buildcard-items {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
   }
 
   .buildcard-stats {
     display: flex;
     flex-direction: row;
-
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    gap: 20px;
     cursor: default;
-
-    gap: clamp(8rem, 2vw, 10rem);
   }
-  .buildcard-stats div {
+
+  .stat-block {
     display: flex;
     flex-direction: column;
-
+    align-items: center;
     font-family: var(--font-mono);
     font-size: var(--text-md);
-    align-items: center;
+    min-width: 80px;
   }
-  .buildcard-stats .win {
-    color: green;
 
+  .buildcard-stats .win {
+    color: #4caf50;
     font-size: var(--text-lm);
+    font-weight: bold;
   }
+
   .buildcard-stats .loss {
-    color: red;
+    color: #f44336;
     font-size: var(--text-lm);
+    font-weight: bold;
   }
+
   .buildcard-stats .total {
-    color: gray;
+    color: #9e9e9e;
     font-size: var(--text-lm);
+    font-weight: bold;
   }
 </style>

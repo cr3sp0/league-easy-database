@@ -1,6 +1,13 @@
 import prisma from "./prisma";
 import type { Runa } from "./prisma/client";
 
+export interface completeRune {
+  PietraChiave : Runa
+  Primaria : Runa[]
+  Secondaria : Runa[]
+  Frammenti : Runa[]
+}
+
 let runeCache: Runa[] | null = null;
 
 async function getRunesCache() {

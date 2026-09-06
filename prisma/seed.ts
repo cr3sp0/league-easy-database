@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../src/lib/server/prisma/client";
+import { PrismaClient, Statistica } from "../src/lib/server/prisma/client";
 
 const connectionString = `${process.env.DATABASE_URL}`;
 
@@ -16,10 +16,10 @@ const prisma = new PrismaClient({
 });
 
 async function main() {
-
+    
 }
 
-main().catch(console.error).finally(() => prisma.$disconnect());
+
 
 main()
   .then(async () => {

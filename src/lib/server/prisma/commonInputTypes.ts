@@ -211,6 +211,23 @@ export type EnumRisultatoWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumRisultatoFilter<$PrismaModel>
 }
 
+export type EnumStatisticaFilter<$PrismaModel = never> = {
+  equals?: $Enums.Statistica | Prisma.EnumStatisticaFieldRefInput<$PrismaModel>
+  in?: $Enums.Statistica[] | Prisma.ListEnumStatisticaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Statistica[] | Prisma.ListEnumStatisticaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStatisticaFilter<$PrismaModel> | $Enums.Statistica
+}
+
+export type EnumStatisticaWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Statistica | Prisma.EnumStatisticaFieldRefInput<$PrismaModel>
+  in?: $Enums.Statistica[] | Prisma.ListEnumStatisticaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Statistica[] | Prisma.ListEnumStatisticaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStatisticaWithAggregatesFilter<$PrismaModel> | $Enums.Statistica
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumStatisticaFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumStatisticaFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -408,6 +425,23 @@ export type NestedEnumRisultatoWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumRisultatoFilter<$PrismaModel>
   _max?: Prisma.NestedEnumRisultatoFilter<$PrismaModel>
+}
+
+export type NestedEnumStatisticaFilter<$PrismaModel = never> = {
+  equals?: $Enums.Statistica | Prisma.EnumStatisticaFieldRefInput<$PrismaModel>
+  in?: $Enums.Statistica[] | Prisma.ListEnumStatisticaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Statistica[] | Prisma.ListEnumStatisticaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStatisticaFilter<$PrismaModel> | $Enums.Statistica
+}
+
+export type NestedEnumStatisticaWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Statistica | Prisma.EnumStatisticaFieldRefInput<$PrismaModel>
+  in?: $Enums.Statistica[] | Prisma.ListEnumStatisticaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Statistica[] | Prisma.ListEnumStatisticaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStatisticaWithAggregatesFilter<$PrismaModel> | $Enums.Statistica
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumStatisticaFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumStatisticaFilter<$PrismaModel>
 }
 
 

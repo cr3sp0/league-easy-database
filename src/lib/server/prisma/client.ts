@@ -177,11 +177,6 @@ export type Modifica = Prisma.ModificaModel
  */
 export type Storico = Prisma.StoricoModel
 /**
- * Model Statistica
- * 
- */
-export type Statistica = Prisma.StatisticaModel
-/**
  * Model SetBase
  * 
  */

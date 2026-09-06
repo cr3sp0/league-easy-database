@@ -38,18 +38,21 @@ export type IncantesimoMinAggregateOutputType = {
   Nome: string | null
   Descrizione: string | null
   Ricarica: number | null
+  Immagine: string | null
 }
 
 export type IncantesimoMaxAggregateOutputType = {
   Nome: string | null
   Descrizione: string | null
   Ricarica: number | null
+  Immagine: string | null
 }
 
 export type IncantesimoCountAggregateOutputType = {
   Nome: number
   Descrizione: number
   Ricarica: number
+  Immagine: number
   _all: number
 }
 
@@ -66,18 +69,21 @@ export type IncantesimoMinAggregateInputType = {
   Nome?: true
   Descrizione?: true
   Ricarica?: true
+  Immagine?: true
 }
 
 export type IncantesimoMaxAggregateInputType = {
   Nome?: true
   Descrizione?: true
   Ricarica?: true
+  Immagine?: true
 }
 
 export type IncantesimoCountAggregateInputType = {
   Nome?: true
   Descrizione?: true
   Ricarica?: true
+  Immagine?: true
   _all?: true
 }
 
@@ -171,6 +177,7 @@ export type IncantesimoGroupByOutputType = {
   Nome: string
   Descrizione: string
   Ricarica: number
+  Immagine: string
   _count: IncantesimoCountAggregateOutputType | null
   _avg: IncantesimoAvgAggregateOutputType | null
   _sum: IncantesimoSumAggregateOutputType | null
@@ -200,6 +207,7 @@ export type IncantesimoWhereInput = {
   Nome?: Prisma.StringFilter<"Incantesimo"> | string
   Descrizione?: Prisma.StringFilter<"Incantesimo"> | string
   Ricarica?: Prisma.FloatFilter<"Incantesimo"> | number
+  Immagine?: Prisma.StringFilter<"Incantesimo"> | string
   Incant1?: Prisma.ConfigurazioneListRelationFilter
   Incant2?: Prisma.ConfigurazioneListRelationFilter
 }
@@ -208,6 +216,7 @@ export type IncantesimoOrderByWithRelationInput = {
   Nome?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Ricarica?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
   Incant1?: Prisma.ConfigurazioneOrderByRelationAggregateInput
   Incant2?: Prisma.ConfigurazioneOrderByRelationAggregateInput
 }
@@ -219,6 +228,7 @@ export type IncantesimoWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.IncantesimoWhereInput | Prisma.IncantesimoWhereInput[]
   Descrizione?: Prisma.StringFilter<"Incantesimo"> | string
   Ricarica?: Prisma.FloatFilter<"Incantesimo"> | number
+  Immagine?: Prisma.StringFilter<"Incantesimo"> | string
   Incant1?: Prisma.ConfigurazioneListRelationFilter
   Incant2?: Prisma.ConfigurazioneListRelationFilter
 }, "Nome">
@@ -227,6 +237,7 @@ export type IncantesimoOrderByWithAggregationInput = {
   Nome?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Ricarica?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
   _count?: Prisma.IncantesimoCountOrderByAggregateInput
   _avg?: Prisma.IncantesimoAvgOrderByAggregateInput
   _max?: Prisma.IncantesimoMaxOrderByAggregateInput
@@ -241,12 +252,14 @@ export type IncantesimoScalarWhereWithAggregatesInput = {
   Nome?: Prisma.StringWithAggregatesFilter<"Incantesimo"> | string
   Descrizione?: Prisma.StringWithAggregatesFilter<"Incantesimo"> | string
   Ricarica?: Prisma.FloatWithAggregatesFilter<"Incantesimo"> | number
+  Immagine?: Prisma.StringWithAggregatesFilter<"Incantesimo"> | string
 }
 
 export type IncantesimoCreateInput = {
   Nome: string
   Descrizione: string
   Ricarica: number
+  Immagine?: string
   Incant1?: Prisma.ConfigurazioneCreateNestedManyWithoutInc1Input
   Incant2?: Prisma.ConfigurazioneCreateNestedManyWithoutInc2Input
 }
@@ -255,6 +268,7 @@ export type IncantesimoUncheckedCreateInput = {
   Nome: string
   Descrizione: string
   Ricarica: number
+  Immagine?: string
   Incant1?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutInc1Input
   Incant2?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutInc2Input
 }
@@ -263,6 +277,7 @@ export type IncantesimoUpdateInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Incant1?: Prisma.ConfigurazioneUpdateManyWithoutInc1NestedInput
   Incant2?: Prisma.ConfigurazioneUpdateManyWithoutInc2NestedInput
 }
@@ -271,6 +286,7 @@ export type IncantesimoUncheckedUpdateInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Incant1?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutInc1NestedInput
   Incant2?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutInc2NestedInput
 }
@@ -279,24 +295,28 @@ export type IncantesimoCreateManyInput = {
   Nome: string
   Descrizione: string
   Ricarica: number
+  Immagine?: string
 }
 
 export type IncantesimoUpdateManyMutationInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type IncantesimoUncheckedUpdateManyInput = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type IncantesimoCountOrderByAggregateInput = {
   Nome?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Ricarica?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
 }
 
 export type IncantesimoAvgOrderByAggregateInput = {
@@ -307,12 +327,14 @@ export type IncantesimoMaxOrderByAggregateInput = {
   Nome?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Ricarica?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
 }
 
 export type IncantesimoMinOrderByAggregateInput = {
   Nome?: Prisma.SortOrder
   Descrizione?: Prisma.SortOrder
   Ricarica?: Prisma.SortOrder
+  Immagine?: Prisma.SortOrder
 }
 
 export type IncantesimoSumOrderByAggregateInput = {
@@ -364,6 +386,7 @@ export type IncantesimoCreateWithoutIncant1Input = {
   Nome: string
   Descrizione: string
   Ricarica: number
+  Immagine?: string
   Incant2?: Prisma.ConfigurazioneCreateNestedManyWithoutInc2Input
 }
 
@@ -371,6 +394,7 @@ export type IncantesimoUncheckedCreateWithoutIncant1Input = {
   Nome: string
   Descrizione: string
   Ricarica: number
+  Immagine?: string
   Incant2?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutInc2Input
 }
 
@@ -383,6 +407,7 @@ export type IncantesimoCreateWithoutIncant2Input = {
   Nome: string
   Descrizione: string
   Ricarica: number
+  Immagine?: string
   Incant1?: Prisma.ConfigurazioneCreateNestedManyWithoutInc1Input
 }
 
@@ -390,6 +415,7 @@ export type IncantesimoUncheckedCreateWithoutIncant2Input = {
   Nome: string
   Descrizione: string
   Ricarica: number
+  Immagine?: string
   Incant1?: Prisma.ConfigurazioneUncheckedCreateNestedManyWithoutInc1Input
 }
 
@@ -413,6 +439,7 @@ export type IncantesimoUpdateWithoutIncant1Input = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Incant2?: Prisma.ConfigurazioneUpdateManyWithoutInc2NestedInput
 }
 
@@ -420,6 +447,7 @@ export type IncantesimoUncheckedUpdateWithoutIncant1Input = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Incant2?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutInc2NestedInput
 }
 
@@ -438,6 +466,7 @@ export type IncantesimoUpdateWithoutIncant2Input = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Incant1?: Prisma.ConfigurazioneUpdateManyWithoutInc1NestedInput
 }
 
@@ -445,6 +474,7 @@ export type IncantesimoUncheckedUpdateWithoutIncant2Input = {
   Nome?: Prisma.StringFieldUpdateOperationsInput | string
   Descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   Ricarica?: Prisma.FloatFieldUpdateOperationsInput | number
+  Immagine?: Prisma.StringFieldUpdateOperationsInput | string
   Incant1?: Prisma.ConfigurazioneUncheckedUpdateManyWithoutInc1NestedInput
 }
 
@@ -492,6 +522,7 @@ export type IncantesimoSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   Nome?: boolean
   Descrizione?: boolean
   Ricarica?: boolean
+  Immagine?: boolean
   Incant1?: boolean | Prisma.Incantesimo$Incant1Args<ExtArgs>
   Incant2?: boolean | Prisma.Incantesimo$Incant2Args<ExtArgs>
   _count?: boolean | Prisma.IncantesimoCountOutputTypeDefaultArgs<ExtArgs>
@@ -501,21 +532,24 @@ export type IncantesimoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   Nome?: boolean
   Descrizione?: boolean
   Ricarica?: boolean
+  Immagine?: boolean
 }, ExtArgs["result"]["incantesimo"]>
 
 export type IncantesimoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   Nome?: boolean
   Descrizione?: boolean
   Ricarica?: boolean
+  Immagine?: boolean
 }, ExtArgs["result"]["incantesimo"]>
 
 export type IncantesimoSelectScalar = {
   Nome?: boolean
   Descrizione?: boolean
   Ricarica?: boolean
+  Immagine?: boolean
 }
 
-export type IncantesimoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Nome" | "Descrizione" | "Ricarica", ExtArgs["result"]["incantesimo"]>
+export type IncantesimoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"Nome" | "Descrizione" | "Ricarica" | "Immagine", ExtArgs["result"]["incantesimo"]>
 export type IncantesimoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Incant1?: boolean | Prisma.Incantesimo$Incant1Args<ExtArgs>
   Incant2?: boolean | Prisma.Incantesimo$Incant2Args<ExtArgs>
@@ -534,6 +568,7 @@ export type $IncantesimoPayload<ExtArgs extends runtime.Types.Extensions.Interna
     Nome: string
     Descrizione: string
     Ricarica: number
+    Immagine: string
   }, ExtArgs["result"]["incantesimo"]>
   composites: {}
 }
@@ -962,6 +997,7 @@ export interface IncantesimoFieldRefs {
   readonly Nome: Prisma.FieldRef<"Incantesimo", 'String'>
   readonly Descrizione: Prisma.FieldRef<"Incantesimo", 'String'>
   readonly Ricarica: Prisma.FieldRef<"Incantesimo", 'Float'>
+  readonly Immagine: Prisma.FieldRef<"Incantesimo", 'String'>
 }
     
 

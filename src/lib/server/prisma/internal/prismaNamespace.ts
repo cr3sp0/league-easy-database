@@ -411,7 +411,6 @@ export const ModelName = {
   Partita: 'Partita',
   Modifica: 'Modifica',
   Storico: 'Storico',
-  Statistica: 'Statistica',
   SetBase: 'SetBase'
 } as const
 
@@ -428,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "campione" | "cosmetico" | "ruolo" | "razza" | "campione_Razza" | "posizione" | "campione_Posizione" | "regione" | "campione_Regione" | "incantesimo" | "configurazione" | "oggetto" | "inventario" | "account" | "sessione" | "report" | "banned_Account" | "kit" | "abilita" | "kit_Abilita" | "pagina_Runa" | "sezione_Runa" | "runa" | "tipologia_runa" | "partita" | "modifica" | "storico" | "statistica" | "setBase"
+    modelProps: "campione" | "cosmetico" | "ruolo" | "razza" | "campione_Razza" | "posizione" | "campione_Posizione" | "regione" | "campione_Regione" | "incantesimo" | "configurazione" | "oggetto" | "inventario" | "account" | "sessione" | "report" | "banned_Account" | "kit" | "abilita" | "kit_Abilita" | "pagina_Runa" | "sezione_Runa" | "runa" | "tipologia_runa" | "partita" | "modifica" | "storico" | "setBase"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2430,80 +2429,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Statistica: {
-      payload: Prisma.$StatisticaPayload<ExtArgs>
-      fields: Prisma.StatisticaFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.StatisticaFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.StatisticaFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload>
-        }
-        findFirst: {
-          args: Prisma.StatisticaFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.StatisticaFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload>
-        }
-        findMany: {
-          args: Prisma.StatisticaFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload>[]
-        }
-        create: {
-          args: Prisma.StatisticaCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload>
-        }
-        createMany: {
-          args: Prisma.StatisticaCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.StatisticaCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload>[]
-        }
-        delete: {
-          args: Prisma.StatisticaDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload>
-        }
-        update: {
-          args: Prisma.StatisticaUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload>
-        }
-        deleteMany: {
-          args: Prisma.StatisticaDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.StatisticaUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.StatisticaUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload>[]
-        }
-        upsert: {
-          args: Prisma.StatisticaUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StatisticaPayload>
-        }
-        aggregate: {
-          args: Prisma.StatisticaAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateStatistica>
-        }
-        groupBy: {
-          args: Prisma.StatisticaGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.StatisticaGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.StatisticaCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.StatisticaCountAggregateOutputType> | number
-        }
-      }
-    }
     SetBase: {
       payload: Prisma.$SetBasePayload<ExtArgs>
       fields: Prisma.SetBaseFieldRefs
@@ -2697,7 +2622,8 @@ export type Campione_RegioneScalarFieldEnum = (typeof Campione_RegioneScalarFiel
 export const IncantesimoScalarFieldEnum = {
   Nome: 'Nome',
   Descrizione: 'Descrizione',
-  Ricarica: 'Ricarica'
+  Ricarica: 'Ricarica',
+  Immagine: 'Immagine'
 } as const
 
 export type IncantesimoScalarFieldEnum = (typeof IncantesimoScalarFieldEnum)[keyof typeof IncantesimoScalarFieldEnum]
@@ -2879,14 +2805,6 @@ export const StoricoScalarFieldEnum = {
 export type StoricoScalarFieldEnum = (typeof StoricoScalarFieldEnum)[keyof typeof StoricoScalarFieldEnum]
 
 
-export const StatisticaScalarFieldEnum = {
-  Id: 'Id',
-  Nome: 'Nome'
-} as const
-
-export type StatisticaScalarFieldEnum = (typeof StatisticaScalarFieldEnum)[keyof typeof StatisticaScalarFieldEnum]
-
-
 export const SetBaseScalarFieldEnum = {
   IdStatistiche: 'IdStatistiche',
   Vita: 'Vita',
@@ -3034,6 +2952,20 @@ export type EnumRisultatoFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
 export type ListEnumRisultatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Risultato[]'>
     
 
+
+/**
+ * Reference to a field of type 'Statistica'
+ */
+export type EnumStatisticaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Statistica'>
+    
+
+
+/**
+ * Reference to a field of type 'Statistica[]'
+ */
+export type ListEnumStatisticaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Statistica[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -3171,7 +3103,6 @@ export type GlobalOmitConfig = {
   partita?: Prisma.PartitaOmit
   modifica?: Prisma.ModificaOmit
   storico?: Prisma.StoricoOmit
-  statistica?: Prisma.StatisticaOmit
   setBase?: Prisma.SetBaseOmit
 }
 

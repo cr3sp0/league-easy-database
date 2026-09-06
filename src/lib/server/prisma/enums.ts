@@ -27,3 +27,28 @@ export const Risultato = {
 } as const
 
 export type Risultato = (typeof Risultato)[keyof typeof Risultato]
+
+
+export const Statistica = {
+  Vita: 'Vita',
+  VitaPerLivello: 'VitaPerLivello',
+  Mana: 'Mana',
+  ManaPerLivello: 'ManaPerLivello',
+  Velocità_di_movimento: 'Velocità_di_movimento',
+  Armatura: 'Armatura',
+  ArmaturaPerLivello: 'ArmaturaPerLivello',
+  ResistenzaMagica: 'ResistenzaMagica',
+  ResistenzaMagicaPerLivello: 'ResistenzaMagicaPerLivello',
+  Gittata: 'Gittata',
+  RigenerazioneVita: 'RigenerazioneVita',
+  RigenerazioneMana: 'RigenerazioneMana',
+  RigenerazioneManaPerLivello: 'RigenerazioneManaPerLivello',
+  Critico: 'Critico',
+  CriticoPerLivello: 'CriticoPerLivello',
+  Attacco: 'Attacco',
+  AttaccoPerLivello: 'AttaccoPerLivello',
+  VelocitàDiAttacco: 'VelocitàDiAttacco',
+  VelocitàDiAttaccoPerLivello: 'VelocitàDiAttaccoPerLivello'
+} as const
+
+export type Statistica = (typeof Statistica)[keyof typeof Statistica]

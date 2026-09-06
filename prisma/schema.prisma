@@ -88,6 +88,7 @@ model Incantesimo {
   Nome        String           @id
   Descrizione String
   Ricarica    Float
+  Immagine String @default("")
   Incant1     Configurazione[] @relation("Inc1")
   Incant2     Configurazione[] @relation("Inc2")
 }
@@ -263,11 +264,10 @@ model Partita {
 }
 
 model Modifica {
-  Soggetto_modifica String
-  Id_Statistica     Int
+  Soggetto_modifica Int
+  Id_Statistica     Statistica
   Versione          String
   Nuovo_Valore      Float
-  Stat              Statistica @relation(fields: [Id_Statistica], references: [Id])
   Vers              Storico    @relation(fields: [Versione], references: [Versione])
 
   @@id([Soggetto_modifica, Id_Statistica, Versione])
@@ -277,12 +277,6 @@ model Storico {
   Versione String     @id
   Data     DateTime
   Modif    Modifica[]
-}
-
-model Statistica {
-  Id   Int        @id
-  Nome String
-  Stat Modifica[]
 }
 
 model SetBase {
@@ -323,4 +317,26 @@ enum Risultato {
   Vittoria
   Sconfitta
   Remake
+}
+
+enum Statistica {
+  Vita                       
+  VitaPerLivello               
+  Mana                         
+  ManaPerLivello               
+  Velocità_di_movimento        
+  Armatura                     
+  ArmaturaPerLivello           
+  ResistenzaMagica             
+  ResistenzaMagicaPerLivello   
+  Gittata                      
+  RigenerazioneVita            
+  RigenerazioneMana            
+  RigenerazioneManaPerLivello  
+  Critico                      
+  CriticoPerLivello           
+  Attacco                      
+  AttaccoPerLivello            
+  VelocitàDiAttacco           
+  VelocitàDiAttaccoPerLivello 
 }

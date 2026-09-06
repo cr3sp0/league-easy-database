@@ -78,7 +78,6 @@ export const ModelName = {
   Partita: 'Partita',
   Modifica: 'Modifica',
   Storico: 'Storico',
-  Statistica: 'Statistica',
   SetBase: 'SetBase'
 } as const
 
@@ -178,7 +177,8 @@ export type Campione_RegioneScalarFieldEnum = (typeof Campione_RegioneScalarFiel
 export const IncantesimoScalarFieldEnum = {
   Nome: 'Nome',
   Descrizione: 'Descrizione',
-  Ricarica: 'Ricarica'
+  Ricarica: 'Ricarica',
+  Immagine: 'Immagine'
 } as const
 
 export type IncantesimoScalarFieldEnum = (typeof IncantesimoScalarFieldEnum)[keyof typeof IncantesimoScalarFieldEnum]
@@ -358,14 +358,6 @@ export const StoricoScalarFieldEnum = {
 } as const
 
 export type StoricoScalarFieldEnum = (typeof StoricoScalarFieldEnum)[keyof typeof StoricoScalarFieldEnum]
-
-
-export const StatisticaScalarFieldEnum = {
-  Id: 'Id',
-  Nome: 'Nome'
-} as const
-
-export type StatisticaScalarFieldEnum = (typeof StatisticaScalarFieldEnum)[keyof typeof StatisticaScalarFieldEnum]
 
 
 export const SetBaseScalarFieldEnum = {

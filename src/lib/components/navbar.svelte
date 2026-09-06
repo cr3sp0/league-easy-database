@@ -5,7 +5,6 @@
     import { popup } from "./store/popup.svelte";
 
   let { profile, role = "User" } : { profile? : String, role? : String } = $props();
-  //TODO: Add role to each navbar
 </script>
 
 <div class="nav-container">

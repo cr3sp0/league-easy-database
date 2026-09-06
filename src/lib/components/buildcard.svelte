@@ -10,7 +10,6 @@
     Build: completeBuild;
     isEditable?: boolean;
   } = $props();
-  // TODO: More parameters are required for this component, add them once the dbms is ready.
 
   const name = $derived(Build.build.TitoloConf);
   const author = $derived(Build.author);

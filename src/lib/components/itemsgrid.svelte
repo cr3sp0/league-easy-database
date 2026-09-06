@@ -49,6 +49,7 @@
               VelocitàDiAttacco={gridItem.item.stats.VelocitàDiAttacco}
               AttaccoMagico={gridItem.item.stats.AttaccoMagico}
             />
+            <br />
             <p>{gridItem.item.item.Descrizione}</p>
           </div>
         </div>

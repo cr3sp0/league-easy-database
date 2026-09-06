@@ -14,8 +14,8 @@
   const name = $derived(Build.build.TitoloConf);
   const author = $derived(Build.author);
   const champion = $derived(Build.champion);
-  const runes = $derived(Build);
-  const items = $derived(Build);
+  const runes = $derived(Build.runes);
+  const items = $derived(Build.items);
   const wins = $derived(
     Build.results.filter((r) => r.Risultato === "Vittoria").length,
   );
@@ -83,35 +83,32 @@
       <div class="buildcard-section-title">Runes</div>
       <div class="buildcard-runes">
         <div class="buildcard-body-column">
-          <!--<img src="" alt={ runes.primary.find((rune) => rune.level === "keystone")?.name } />
+          <img src={ runes.PietraChiave.Immagine } alt={ runes.PietraChiave.Nome } />
           <div class="buildcard-body-row">
-            {#each runes.primary as rune}
-              {#if rune.level !== "keystone"}
-                <img src={rune.image} alt={ rune.name }/>
-              {/if}
+            {#each runes.Primaria as rune}
+              <img src={rune.Immagine} alt={ rune.Nome }/>
             {/each}
-          </div>-->
+          </div>
         </div>
         <div class="buildcard-body-column">
-          <!--<img src="" alt={ runes.secondary.find((rune) => rune.path)?.path.name } />
           <div class="buildcard-body-row">
-            {#each runes.secondary as rune}
-              <img src={rune.image} alt={ rune.name }/>
+            {#each runes.Secondaria as rune}
+              {#if rune.Nome !== "Nessuna"}
+              <img src={rune.Immagine} alt={ rune.Nome }/>
+              {/if}
             {/each}
           </div>
           <div class="buildcard-body-row">
-            {#each runes.shards as rune}
-                <img src={rune.image} alt={ rune.name }/>
+            {#each runes.Frammenti as rune}
+                <img src={rune.Immagine} alt={ rune.Nome }/>
             {/each}
-          </div>-->
+          </div>
         </div>
       </div>
 
       <div class="buildcard-section-title">Items</div>
       <div class="buildcard-items">
-        <!--
           <Itemsgrid itemList={items} />
-        -->
       </div>
 
       <div class="buildcard-section-title">Stats</div>

@@ -53,7 +53,7 @@
     </div>
     <div class="buildcard-header-title">
       <div class="buildcard-header-title-name">{champion.nome}, {name}</div>
-      <a href="/account/{author}" class="buildcard-header-title-auth"
+      <a href="/account/{author.Nome}" class="buildcard-header-title-auth"
         >{author.Nome}</a
       >
     </div>

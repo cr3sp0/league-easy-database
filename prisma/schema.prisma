@@ -116,7 +116,7 @@ model Oggetto {
   Costo          Int
   Descrizione    String
   Immagine       String
-  SetStatistiche Int          @default(0)
+  SetStatistiche Int        
   Stats        SetBase @relation(fields: [SetStatistiche], references: [IdStatistiche])
   Inv            Inventario[]
 }
@@ -159,7 +159,7 @@ model Sessione {
 model Report {
   IdTarget    Int
   IdAutore    Int
-  Motivazione String
+  Motivazione String  
   Data_Creazione  DateTime
   Descrizione String?
   Author      Account         @relation("Author", fields: [IdAutore], references: [AccountId])
@@ -268,15 +268,15 @@ model Modifica {
   Id_Statistica     Statistica
   Versione          String
   Nuovo_Valore      Float
-  Vers              Storico    @relation(fields: [Versione], references: [Versione])
+  Vers              Versione    @relation(fields: [Versione], references: [Versione])
 
   @@id([Soggetto_modifica, Id_Statistica, Versione])
 }
 
-model Storico {
+model Versione{
   Versione String     @id
   Data     DateTime
-  Modif    Modifica[]
+  Modif Modifica[]
 }
 
 model SetBase {
@@ -292,6 +292,7 @@ model SetBase {
   ResistenzaMagicaPerLivello   Float
   Gittata                      Int
   RigenerazioneVita            Float
+  RigenerazioneVitaPerLivello  Float @default(0)
   RigenerazioneMana            Float
   RigenerazioneManaPerLivello  Float
   Critico                      Float
@@ -330,7 +331,8 @@ enum Statistica {
   ResistenzaMagica             
   ResistenzaMagicaPerLivello   
   Gittata                      
-  RigenerazioneVita            
+  RigenerazioneVita      
+  RigenerazioneVitaPerLivello      
   RigenerazioneMana            
   RigenerazioneManaPerLivello  
   Critico                      

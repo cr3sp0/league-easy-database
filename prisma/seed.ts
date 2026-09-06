@@ -16,7 +16,30 @@ const prisma = new PrismaClient({
 });
 
 async function main() {
-    
+    await prisma.runa.update({
+  where: {
+    Nome: "Legend: Alacrity",
+  },
+  data: {
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/runes/Legend-_Alacrity_rune.png",
+  },
+});
+await prisma.runa.update({
+  where: {
+    Nome: "Legend: Bloodline",
+  },
+  data: {
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/runes/Legend-_Bloodline_rune.png",
+  },
+});
+await prisma.runa.update({
+  where: {
+    Nome: "Legend: Haste",
+  },
+  data: {
+    Immagine: "https://y2gjsxxeqdmvlbby.public.blob.vercel-storage.com/runes/Legend-_Haste_rune.png",
+  },
+});
 }
 
 

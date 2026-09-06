@@ -1,13 +1,15 @@
 <script lang="ts">
-    import type { CompleteItem } from "$lib/server/itemManager";
-    import StatGrid from "./statGrid.svelte";
+  import type { CompleteItem } from "$lib/server/itemManager";
+  import StatGrid from "./statGrid.svelte";
 
-  let { itemList } : { itemList : CompleteItem[] } = $props()
+  let { itemList }: { itemList: CompleteItem[] } = $props();
 
-  const items = $derived(Array.from({ length: itemList.length }, (_, i) => ({
-    id: i,
-    item: itemList[i]
-  })));
+  const items = $derived(
+    Array.from({ length: itemList.length }, (_, i) => ({
+      id: i,
+      item: itemList[i],
+    })),
+  );
 
   let expandedId = $state<number | null>(null);
 
@@ -30,23 +32,25 @@
       </div>
 
       {#if expandedId === gridItem.id}
-        <div class="info-wrapper">
-          <h3>{gridItem.item.item.Nome}</h3>
-          <StatGrid 
-          Vita = {gridItem.item.stats.Vita}
-          Mana = {gridItem.item.stats.Mana}
-          Velocità_di_movimento = {gridItem.item.stats.Velocità_di_movimento}
-          Armatura = {gridItem.item.stats.Armatura}
-          ResistenzaMagica = {gridItem.item.stats.ResistenzaMagica}
-          Gittata = {gridItem.item.stats.Gittata}
-          RigenerazioneVita = {gridItem.item.stats.RigenerazioneVita}
-          RigenerazioneMana = {gridItem.item.stats.RigenerazioneMana}
-          Critico = {gridItem.item.stats.Critico}
-          Attacco = {gridItem.item.stats.Attacco}
-          VelocitàDiAttacco = {gridItem.item.stats.VelocitàDiAttacco}
-          AttaccoMagico = {gridItem.item.stats.AttaccoMagico}
-          />
-          <p>{gridItem.item.item.Descrizione}</p>
+        <div class="info-container">
+          <div class="info-wrapper">
+            <h3>{gridItem.item.item.Nome}</h3>
+            <StatGrid
+              Vita={gridItem.item.stats.Vita}
+              Mana={gridItem.item.stats.Mana}
+              Velocità_di_movimento={gridItem.item.stats.Velocità_di_movimento}
+              Armatura={gridItem.item.stats.Armatura}
+              ResistenzaMagica={gridItem.item.stats.ResistenzaMagica}
+              Gittata={gridItem.item.stats.Gittata}
+              RigenerazioneVita={gridItem.item.stats.RigenerazioneVita}
+              RigenerazioneMana={gridItem.item.stats.RigenerazioneMana}
+              Critico={gridItem.item.stats.Critico}
+              Attacco={gridItem.item.stats.Attacco}
+              VelocitàDiAttacco={gridItem.item.stats.VelocitàDiAttacco}
+              AttaccoMagico={gridItem.item.stats.AttaccoMagico}
+            />
+            <p>{gridItem.item.item.Descrizione}</p>
+          </div>
         </div>
       {/if}
     </div>
@@ -102,8 +106,12 @@
     background-color: #2a2323;
     border-color: #554949;
     aspect-ratio: auto;
-    align-items: flex-start;
-    overflow-y: auto;
+    align-items: stretch;
+  }
+
+  .info-container {
+    flex: 1;
+    position: relative;
   }
 
   .grid-item.expanded .image-wrapper {
@@ -112,11 +120,15 @@
   }
 
   .info-wrapper {
-    flex: 1;
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    box-sizing: border-box;
+
     padding: 16px 24px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     color: white;
     animation: fadeIn 0.4s ease-out;
 

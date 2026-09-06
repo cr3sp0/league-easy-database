@@ -38,7 +38,7 @@
           onclick={() => selectSpell(spell)}
           title={spell.Nome}
         >
-          <img src={selectedSpell?.Immagine} alt={spell.Nome} />
+          <img src={spell.Immagine} alt={spell.Nome} />
         </button>
       {/each}
     </div>

@@ -99,8 +99,6 @@ export const load: PageServerLoad = async ({params, url, locals}) => {
     }
   }
 
-  
-
   return {
     profile: locals.user.username,
     role: locals.user.isAdmin ? "Admin" : "User",
@@ -129,6 +127,7 @@ export const actions = {
     try {
       const primarie = buildData.runes.primaryRunes;
       const secondarie = buildData.runes.secondaryRunes;
+      const shards = buildData.runes.shards;
       const getSec = (grado: number) => secondarie.find((r: any) => r && r.Grado === grado)?.Nome || "Nessuna";
 
       const sezPrimaria = await prisma.sezione_Runa.create({
@@ -152,9 +151,9 @@ export const actions = {
       const sezFrammenti = await prisma.sezione_Runa.create({
         data: {
           Keystone: { connect: { Nome: "Nessuna" } },
-          First: { connect: { Nome: "Adaptive Force (Offense)" } },
-          Middle: { connect: { Nome: "Adaptive Force (Offense)" } },
-          Lower: { connect: { Nome: "Health" } },
+          First: { connect: { Nome: shards[0].Nome || "Nessuna" } },
+          Middle: { connect: { Nome: shards[1].Nome || "Nessuna" } },
+          Lower: { connect: { Nome: shards[2].Nome || "Nessuna" } },
         }
       });
 

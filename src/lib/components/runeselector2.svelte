@@ -6,14 +6,18 @@
     runes = [],
     selectedPath = $bindable(null),
     selectedRunes = $bindable([null, null]),
+    shards = $bindable([null, null, null]),
   }: {
     paths: Tipologia_runa[];
     runes: Runa[];
     selectedPath?: Tipologia_runa | null;
     selectedRunes?: (Runa | null)[];
+    shards?: (Runa | null)[];
   } = $props();
 
-  let activeMenu = $state<"path" | 0 | 1 | null>(null);
+  let activeMenu = $state<
+    "path" | 0 | 1 | "shard0" | "shard1" | "shard2" | null
+  >(null);
   let isAnimating = $state(false);
 
   let currentPathColor = $derived(
@@ -35,7 +39,14 @@
     );
   }
 
-  function toggleMenu(menu: "path" | 0 | 1) {
+  function getAvailableShards(slotIndex: 0 | 1 | 2) {
+    if (!selectedPath) return [];
+
+    const grado = slotIndex + 1;
+    return runes.filter((r) => r.CamminoId === 0 && r.Grado === grado);
+  }
+
+  function toggleMenu(menu: "path" | 0 | 1 | "shard0" | "shard1" | "shard2") {
     activeMenu = activeMenu === menu ? null : menu;
   }
 
@@ -52,6 +63,11 @@
 
   function selectRune(index: 0 | 1, rune: Runa) {
     selectedRunes[index] = rune;
+    activeMenu = null;
+  }
+
+  function selectShard(index: 0 | 1 | 2, rune: Runa) {
+    shards[index] = rune;
     activeMenu = null;
   }
 </script>
@@ -122,9 +138,42 @@
         </div>
       {/each}
 
-      <div class="small-rune-bead" class:active={selectedPath}></div>
-      <div class="small-rune-bead" class:active={selectedPath}></div>
-      <div class="small-rune-bead" class:active={selectedPath}></div>
+      {#each [0, 1, 2] as shardIndex}
+        <div
+          class="bead-wrapper"
+          class:open={activeMenu === `shard${shardIndex}`}
+        >
+          <button
+            class="small-rune-bead"
+            class:active={selectedPath}
+            onclick={() =>
+              selectedPath && toggleMenu(`shard${shardIndex}` as any)}
+            aria-label={`Select Shard ${shardIndex + 1}`}
+          >
+            {#if shards[shardIndex]}
+              <img
+                src={shards[shardIndex]!.Immagine}
+                alt={shards[shardIndex]!.Nome}
+                title={shards[shardIndex]!.Descrizione}
+              />
+            {/if}
+          </button>
+
+          {#if activeMenu === `shard${shardIndex}`}
+            <div class="path-dropdown rune-dropdown">
+              {#each getAvailableShards(shardIndex as 0 | 1 | 2) as rune}
+                <button
+                  class="path-option rune-option"
+                  onclick={() => selectShard(shardIndex as 0 | 1 | 2, rune)}
+                >
+                  <img src={rune.Immagine} alt="" class="rune-option-img" />
+                  {rune.Nome}
+                </button>
+              {/each}
+            </div>
+          {/if}
+        </div>
+      {/each}
     </div>
   </div>
 </div>
@@ -179,6 +228,13 @@
   .rune-bead img {
     width: 80%;
     height: 80%;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
+  .small-rune-bead img {
+    width: 70%;
+    height: 70%;
     object-fit: contain;
     border-radius: 50%;
   }
@@ -351,6 +407,7 @@
     cursor: pointer;
   }
 
+  /* Resa cliccabile e centrata */
   .small-rune-bead {
     position: relative;
     z-index: 2;
@@ -363,6 +420,11 @@
       border-color 0.4s 0.4s,
       box-shadow 0.4s 0.4s;
     flex-shrink: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 
   .rune-bead.active,
@@ -371,7 +433,8 @@
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   }
 
-  .rune-bead:hover.active {
+  .rune-bead:hover.active,
+  .small-rune-bead:hover.active {
     border-color: white;
   }
 

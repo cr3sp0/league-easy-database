@@ -65,6 +65,7 @@
   );
 
   let initialSecondaryRunes: (Runa | null)[] = [null, null];
+
   if (eb) {
     const secRunes = [
       getRune(eb.Pag_Runa.Secondaria.RigaSuperiore),
@@ -74,11 +75,26 @@
 
     initialSecondaryRunes = [secRunes[0] || null, secRunes[1] || null];
   }
+
   let buildSecondaryPath = $state<Tipologia_runa | null>(
     eb ? getPath(eb.Pag_Runa.Secondaria.RigaSuperiore) : null,
   );
 
   let buildSecondaryRunes = $state<(Runa | null)[]>(initialSecondaryRunes);
+
+  let initialShards: (Runa | null)[] = [null, null, null];
+
+  if (eb) {
+    const shards = [
+      getRune(eb.Pag_Runa.Shards.RigaSuperiore),
+      getRune(eb.Pag_Runa.Shards.RigaCentrale),
+      getRune(eb.Pag_Runa.Shards.RigaInferiore),
+    ].filter((r) => r !== null && r.Nome !== "Nessuna");
+
+    initialShards = [shards[0] || null, shards[1] || null, shards[2] || null];
+  }
+
+  let buildShards = $state<(Runa | null)[]>(initialShards);
 
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === "Enter") {
@@ -143,6 +159,7 @@
         primaryRunes: buildPrimaryRunes,
         secondaryPath: buildSecondaryPath,
         secondaryRunes: buildSecondaryRunes,
+        shards: buildShards,
       },
       matches: matches,
     }),
@@ -325,6 +342,7 @@
         bind:primaryRunes={buildPrimaryRunes}
         bind:secondaryPath={buildSecondaryPath}
         bind:secondaryRunes={buildSecondaryRunes}
+        bind:shards={buildShards}
       />
     </div>
 

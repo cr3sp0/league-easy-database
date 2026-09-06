@@ -9,6 +9,7 @@
     primaryRunes = $bindable([null, null, null, null]),
     secondaryPath = $bindable(null),
     secondaryRunes = $bindable([null, null]),
+    shards = $bindable([null, null, null]),
   }: {
     runes: Runa[];
     paths: Tipologia_runa[];
@@ -16,6 +17,7 @@
     primaryRunes?: (Runa | null)[];
     secondaryPath?: Tipologia_runa | null;
     secondaryRunes?: (Runa | null)[];
+    shards?: (Runa | null)[];
   } = $props();
 
   let activeMenu = $state<"path" | 0 | 1 | 2 | 3 | null>(null);
@@ -162,6 +164,7 @@
   {runes}
   bind:selectedPath={secondaryPath}
   bind:selectedRunes={secondaryRunes}
+  bind:shards
 />
 
 {#if activeMenu !== null}

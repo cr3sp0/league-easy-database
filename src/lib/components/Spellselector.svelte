@@ -23,7 +23,11 @@
 
 <div class="spell-container">
   <button class="spell-pic" aria-label="Select Spell" onclick={toggleMenu}>
-    <span class="placeholder">+</span>
+    {#if selectedSpell}
+      <img src={selectedSpell.Immagine} alt="" />
+    {:else}
+      <span class="placeholder">+</span>
+    {/if}
   </button>
 
   {#if isMenuOpen}
@@ -34,7 +38,7 @@
           onclick={() => selectSpell(spell)}
           title={spell.Nome}
         >
-          <img src={"*"} alt={spell.Nome} />
+          <img src={selectedSpell?.Immagine} alt={spell.Nome} />
         </button>
       {/each}
     </div>

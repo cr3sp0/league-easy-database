@@ -34,14 +34,10 @@
       {/if}
       <div class="title">Best Builds</div>
       <Search />
-<<<<<<< Updated upstream
-      <BuildcardHolder bind:comunityBuilds={data.communityBuilds} bind:personalBuilds={data.personalBuilds} />
-=======
       <BuildcardHolder
-        comunityBuilds={data.communityBuilds}
-        personalBuilds={data.personalBuilds}
+        bind:comunityBuilds={data.communityBuilds}
+        bind:personalBuilds={data.personalBuilds}
       />
->>>>>>> Stashed changes
     </div>
   </div>
 </div>

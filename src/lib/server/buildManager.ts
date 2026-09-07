@@ -194,84 +194,43 @@ export async function createBuild(
   const creation = await prisma.configurazione.create({
     data: {
       TitoloConf: buildTitle,
-      User: {
-        connect: {
-          AccountId: userID
-        }
-      },
-      champ: {
-        connect: {
-          ID: championID
-        }
-      },
-      Pag_Runa: {
-        create: runes
-      },
-      Inc1: {
-        connect: {
-          Nome: inc1.Nome
-        }
-      },
-      Inc2: {
-        connect: {
-          Nome: inc2.Nome
-        }
-      },
-      Inv: {
-        create: items
-          .filter(item => item !== null)
-          .map(item => ({
-            Oggetto: { connect: { Nome: item.Nome } }
-          }))
-      },
-      Partite: {
-        createMany: {
-          data: matches
-        }
-      }
+      User: { connect: { AccountId: userID } },
+      champ: { connect: { ID: championID } },
+      Pag_Runa: { create: runes },
+      Inc1: { connect: { Nome: inc1.Nome } },
+      Inc2: { connect: { Nome: inc2.Nome } },
+      Inv: { create: items.filter(item => item !== null)
+                      .map(item => ({ Oggetto: { connect: { Nome: item.Nome } } })) },
+      Partite: { createMany: { data: matches } }
     },
     include: {
       User: true,
       champ: true,
-        Pag_Runa: {
-          include: {
-            Principale: {
-              include: {
+        Pag_Runa: { include: {
+            Principale: { include: {
                 Keystone: { include: { Camm: true } },
                 Middle: { include: { Camm: true } },
                 Lower: { include: { Camm: true } },
                 First: { include: { Camm: true } }
-              }
-            },
-            Secondaria: {
-              include: {
-                Keystone: { include: { Camm: true } },
+              } },
+            Secondaria: { include: {
                 Middle: { include: { Camm: true } },
                 Lower: { include: { Camm: true } },
                 First: { include: { Camm: true } }
-              }
-            },
-            Shards: {
-              include: {
-                Keystone: { include: { Camm: true } },
+              } },
+            Shards: { include: {
                 Middle: { include: { Camm: true } },
                 Lower: { include: { Camm: true } },
                 First: { include: { Camm: true } }
-              }
-            },
-          }
-        },
+              } },
+          } },
       Inc1: true,
       Inc2: true,
-      Inv: {
-        include: {
-          Oggetto: {
-            include: {
+      Inv: { include: {
+          Oggetto: { include: {
               Stats: true
-            }
-          }
-        }
-      },
+            } }
+        } },
       Partite: true
     }
   })
@@ -450,3 +409,4 @@ export async function updateBuild(
     results: build.Partite
   } : undefined;
 }
+

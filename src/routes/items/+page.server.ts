@@ -2,11 +2,14 @@ import { getItems, type itemStatFilter } from '$lib/server/itemManager';
 import type { IUser } from '$lib/types';
 import { error, fail, type Action, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
+import { getPastValues } from '$lib/server/patchManager';
 
 export const load: PageServerLoad = async ({ params, locals, url }) => {
   
     let profile : IUser | undefined = undefined
     let role = "User"
+
+    console.log(await getPastValues("26.11", {champion: "Akali"}))
 
     try {
         if(locals.user) {

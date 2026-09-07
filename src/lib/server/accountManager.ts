@@ -309,14 +309,22 @@ export async function banAccount(
     }
     
     try{
-        const ban = await prisma.banned_Account.create({
-            data: {
+        const ban = await prisma.banned_Account.upsert({
+            create: {
                 Account: {
                     connect: {
                         AccountId: accountID,
                         Nome: username
                     }
                 },
+                Expiration_Date: expiration_Date,
+                Motivazione: reason,
+                Descrizione: description,
+            },
+            where: {
+                AccountId: accountID
+            },
+            update: {
                 Expiration_Date: expiration_Date,
                 Motivazione: reason,
                 Descrizione: description,

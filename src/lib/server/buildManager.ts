@@ -46,8 +46,6 @@ export async function getBuilds({
 
   try{
 
-    // TODO: add explicit query sql
-    //TODO: fix select to return only the valueable info of the Build
     const builds = await prisma.configurazione.findMany({
       include: {
         champ: true,

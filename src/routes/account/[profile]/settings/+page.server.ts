@@ -61,7 +61,6 @@ const sendEdit : Action = async ({ request, params, cookies, locals }) => {
             throw { message: "Invalid RiotID" }
         }
 
-        //TODO: Add explicit query sql
         const update = updateAccount(locals.user.userID, {
             newPfp: newPfp,
             newUsername: newUsername,

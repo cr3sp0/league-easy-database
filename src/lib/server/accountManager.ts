@@ -15,7 +15,7 @@ export async function createSession(
     userID : number,
     guid : string
 ) : Promise<completeUser> {
-    //TODO: write explicit sql query
+    
     const Sessione = await prisma.sessione.upsert({
         where: {
             guid_id: guid
@@ -48,7 +48,7 @@ export async function getActiveSession({
     guid_id? : string
 })
 : Promise<completeUser | undefined> {
-    //TODO: write explicit sql query
+    
     let session = await prisma.sessione.findUnique({
         where: {
             Id: sessionID,
@@ -80,7 +80,7 @@ export async function deleteSession(currentSession : number) {
     })
 }
 export async function getAccount(username : string) {
-    //TODO: write explicit sql query
+    
     return await prisma.account.findUnique({ 
         where: {
             Nome: username,
@@ -102,7 +102,7 @@ export async function createAccount(
 ) : Promise<completeUser> {
     
     try {
-        //TODO: write explicit sql query
+        
         const createAccount = await prisma.account.create({
             data: {
                 Nome: username,

@@ -22,7 +22,7 @@ model Campione {
   Regione                Campione_Regione[]
   Config                 Configurazione[]
   Cosmetico              Cosmetico[]
-  Kit                    Kit[]
+  Kit                    Abilita[]
 }
 
 model Cosmetico {
@@ -104,7 +104,7 @@ model Configurazione {
   champ        Campione     @relation(fields: [IdCampione], references: [ID])
   Inc1         Incantesimo  @relation("Inc1", fields: [Incantesimo1], references: [Nome])
   Inc2         Incantesimo  @relation("Inc2", fields: [Incantesimo2], references: [Nome])
-  Pag_Runa     Pagina_Runa @relation(fields: [Runa], references: [Id])
+  Pag_Runa     Pagina_Runa @relation(fields: [Runa], references: [Id], onDelete: Cascade)
   Inv          Inventario[]
   Partite      Partita[]
 
@@ -176,31 +176,14 @@ model Banned_Account {
   Account         Account @relation(fields: [AccountId], references: [AccountId])
 }
 
-model Kit {
-  IdKit      Int           @id @default(autoincrement())
-  IdCampione String
-  champ      Campione      @relation(fields: [IdCampione], references: [ID])
-  abilita    Kit_Abilita[]
-
-  @@index([IdCampione])
-}
-
 model Abilita {
   Id           Int          @id @default(autoincrement())
+  IdCampione  String        @default("akali")
+  Tipo        Tipo_Abilita  @default(Abilità1)
   NomeAbilità String       @unique
   Descrizione  String
   Immagine     String
-  KitAb        Kit_Abilita?
-}
-
-model Kit_Abilita {
-  IdKit     Int
-  IdAbilita Int          @unique
-  Tipo      Tipo_Abilita
-  abilita   Abilita      @relation(fields: [IdAbilita], references: [Id])
-  kit       Kit          @relation(fields: [IdKit], references: [IdKit])
-
-  @@id([IdKit, Tipo])
+  Campione Campione @relation(fields: [IdCampione], references: [ID])
 }
 
 model Pagina_Runa {
@@ -219,7 +202,7 @@ model Sezione_Runa {
   Pietrachiave  String
   RigaSuperiore String
   RigaCentrale  String
-  RigaInferiore String
+  RigaInferiore String 
   Shard         Pagina_Runa[] @relation("Shards")
   Prim          Pagina_Runa[] @relation("Primaria")
   Secon         Pagina_Runa[] @relation("Secondaria")

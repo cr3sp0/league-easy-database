@@ -91,3 +91,56 @@ export async function createPatch({
     })
   })
 }
+
+export async function getPastValues(patch : string, {
+  object = undefined,
+  champion = undefined,
+  championID = undefined
+} : {
+  object? : string
+  champion? : string
+  championID? : string
+}) {
+
+  return await prisma.modifica.findMany({
+  where: {
+    Vers: {
+      Data: {
+        lte: await prisma.versione
+          .findUnique({
+            where: { Versione: patch },
+            select: { Data: true },
+          })
+          .then((v) => v?.Data),
+      },
+    },
+    Set_Statiche: {
+      Item: {
+        some: {
+          Nome: object
+        }
+      },
+      Champ: {
+        some: {
+          nome: champion,
+          ID: championID
+        }
+      }
+    }
+  },
+  distinct: ['Id_Statistica'],
+  orderBy: [
+    { Id_Statistica: 'asc' },
+    { Vers: { Data: 'desc' } },
+  ],
+  include: {
+    Vers: true,
+    Set_Statiche: {
+      include: {
+        Champ: true,
+        Item: true
+      },
+    },
+  },
+});
+}
